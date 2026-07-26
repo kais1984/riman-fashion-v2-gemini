@@ -18,10 +18,12 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 interface CheckoutRequest {
   items: Array<{
+    product_id: string;
     name: string;
     price: number;
     quantity: number;
     productType: string;
+    intent: 'sale' | 'rent';
   }>;
   subtotal: number;
   orderType: string;
@@ -32,6 +34,20 @@ interface CheckoutRequest {
   customerCity?: string;
   customerCountry?: string;
   notes?: string;
+}
+
+interface ProductRow {
+  id: string;
+  name: string;
+  product_type: string;
+  sale_price: number | null;
+  rental_price: number | null;
+  is_active: boolean;
+}
+
+function resolveUnitPrice(product: ProductRow, intent: 'sale' | 'rent'): number {
+  if (intent === 'rent') return product.rental_price ?? 0;
+  return product.sale_price ?? 0;
 }
 
 serve(async (req) => {
@@ -57,6 +73,71 @@ serve(async (req) => {
         { status: 503, headers: { 'Content-Type': 'application/json' } },
       );
     }
+
+    if (!payload.items?.length) {
+      return new Response(JSON.stringify({ error: 'No items provided' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // --- Server-side price verification ---
+    const productIds = [...new Set(payload.items.map((i) => i.product_id))];
+    const { data: dbProducts, error: prodError } = await supabase
+      .from('products')
+      .select('id, name, product_type, sale_price, rental_price, is_active')
+      .in('id', productIds);
+
+    if (prodError) throw prodError;
+
+    const productMap = new Map<string, ProductRow>();
+    for (const p of dbProducts ?? []) productMap.set(p.id, p as ProductRow);
+
+    const verifiedItems: Array<{
+      name: string;
+      price: number;
+      quantity: number;
+      productType: string;
+    }> = [];
+
+    for (const item of payload.items) {
+      const db = productMap.get(item.product_id);
+      if (!db || !db.is_active) {
+        return new Response(
+          JSON.stringify({ error: `Invalid or inactive product: ${item.product_id}` }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } },
+        );
+      }
+
+      const intent = item.intent === 'rent' ? 'rent' : 'sale';
+      const serverPrice = resolveUnitPrice(db, intent);
+
+      if (serverPrice <= 0) {
+        return new Response(
+          JSON.stringify({ error: `Product "${db.name}" is not available for ${intent}` }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } },
+        );
+      }
+
+      if (item.quantity < 1) {
+        return new Response(
+          JSON.stringify({ error: 'Invalid quantity' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } },
+        );
+      }
+
+      verifiedItems.push({
+        name: db.name,
+        price: serverPrice,
+        quantity: item.quantity,
+        productType: db.product_type,
+      });
+    }
+
+    const verifiedSubtotal = verifiedItems.reduce(
+      (sum, i) => sum + i.price * i.quantity,
+      0,
+    );
 
     // 1. Create an order in pending_payment status
     const { data: customer } = await supabase
@@ -88,7 +169,7 @@ serve(async (req) => {
         customer_id: customerId,
         status: 'pending',
         type: payload.orderType,
-        subtotal: payload.subtotal,
+        subtotal: verifiedSubtotal,
         notes: payload.notes,
         payment_method: 'card',
         payment_status: 'processing',
@@ -111,7 +192,7 @@ serve(async (req) => {
         'cancel_url': `${APP_URL}/payment/cancel`,
         'customer_email': payload.customerEmail,
         'metadata[order_id]': order.id,
-        ...payload.items.reduce((params, item, i) => {
+        ...verifiedItems.reduce((params, item, i) => {
           params[`line_items[${i}][price_data][currency]`] = 'aed';
           params[`line_items[${i}][price_data][product_data][name]`] = item.name;
           params[`line_items[${i}][price_data][unit_amount]`] = String(item.price * 100); // cents

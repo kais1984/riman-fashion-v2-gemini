@@ -156,7 +156,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
 
             <div slot="poster" className="absolute inset-0 flex items-center justify-center bg-stone-100">
             {poster ? (
-              <img src={poster} alt="Loading 3D model" className="w-full h-full object-cover opacity-50" />
+              <img src={poster} alt={alt || '3D model poster'} className="w-full h-full object-cover opacity-50" />
             ) : (
               <div className="flex flex-col items-center gap-3">
                 <Box className="w-8 h-8 text-gold/30 animate-pulse" />

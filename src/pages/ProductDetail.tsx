@@ -152,7 +152,7 @@ export default function ProductDetail() {
                     <motion.div key="3d-viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
                       <div className="w-full h-full">
                         <Suspense fallback={<div className="w-full h-full flex items-center justify-center bg-stone-50"><Loader2 className="w-8 h-8 text-gold animate-spin" /></div>}>
-                          <ThreeDViewer src={product.glbUrl} poster={product.images[0]} className="w-full h-full border border-gold/20" />
+                          <ThreeDViewer src={product.glbUrl} poster={product.images[0]} alt={`${product.name} 3D model`} className="w-full h-full border border-gold/20" />
                         </Suspense>
                       </div>
                     </motion.div>
@@ -258,7 +258,7 @@ export default function ProductDetail() {
                   const index = product.videoUrl ? i + 1 : i;
                   return (
                     <button key={i} onClick={() => setCurrentImageIndex(index)} className={cn("w-16 h-16 flex-shrink-0 bg-stone-100 overflow-hidden border-2 transition-all", currentImageIndex === index ? "border-gold" : "border-transparent")}>
-                      <img src={img} className="w-full h-full object-cover" alt="" />
+                      <img src={img} className="w-full h-full object-cover" alt={`${product.name} thumbnail ${i + 1}`} />
                     </button>
                   );
                 })}

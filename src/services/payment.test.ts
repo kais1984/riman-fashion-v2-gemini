@@ -30,7 +30,7 @@ describe('createCheckoutSession', () => {
     const { createCheckoutSession } = await import('./payment');
 
     const result = await createCheckoutSession({
-      items: [{ name: 'Test Gown', price: 45000, quantity: 1, productType: 'sale' }],
+      items: [{ product_id: 'test-1', name: 'Test Gown', price: 45000, quantity: 1, productType: 'sale', intent: 'sale' as const }],
       subtotal: 45000,
       orderType: 'sale',
       successUrl: 'http://localhost:3001/success',

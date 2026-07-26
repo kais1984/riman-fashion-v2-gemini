@@ -1,20 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { supabase, isSupabaseConfigured } from '../services/supabase';
 import { getProfile } from '../services/auth';
-import { hashPassword, generateToken } from '../lib/crypto';
-
-// Simple constant‑time hash comparison (fallback to plain equality if timingSafeEqual unavailable)
-async function compareHash(storedHash: string, password: string): Promise<boolean> {
-  const inputHash = await hashPassword(password);
-  // Ensure same length to avoid timing attacks early exit
-  if (storedHash.length !== inputHash.length) return false;
-  // Perform a bitwise comparison
-  let diff = 0;
-  for (let i = 0; i < storedHash.length; i++) {
-    diff |= storedHash.charCodeAt(i) ^ inputHash.charCodeAt(i);
-  }
-  return diff === 0;
-}
+import { hashPassword } from '../lib/crypto';
 
 interface User {
   id: string;
@@ -32,12 +19,9 @@ interface AuthContextType {
   error: string | null;
 }
 
-// Local fallback storage keys
+// Local fallback storage keys (client-only, never admin)
 const LOCAL_SESSION_KEY = 'riman_session';
 const LOCAL_USERS_KEY = 'riman_users';
-const LOCAL_ADMIN_KEY = 'riman_admin_hash';
-const LOCAL_ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || '';
-const LOCAL_ADMIN_DEFAULT_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
 
 // Rate limiting
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
@@ -80,14 +64,6 @@ function saveLocalUsers(users: Record<string, { name: string; passwordHash: stri
   localStorage.setItem(LOCAL_USERS_KEY, JSON.stringify(users));
 }
 
-function getAdminHash(): string | null {
-  return localStorage.getItem(LOCAL_ADMIN_KEY);
-}
-
-function setAdminHash(hash: string) {
-  localStorage.setItem(LOCAL_ADMIN_KEY, hash);
-}
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -107,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const initSupabaseAuth = async () => {
     // Safety timeout to ensure app doesn't hang forever
     const timeout = setTimeout(() => {
-      initLocalAuth();
+      setIsLoading(false);
     }, 5000);
 
     try {
@@ -115,9 +91,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (session?.user) {
         await loadSupabaseProfile(session.user.id, session.user.email || '');
-      } else {
-        // No session — prepare local auth as fallback
-        initLocalAuth();
       }
 
       supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -129,9 +102,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
     } catch (err) {
       console.error('[Riman] Auth initialization failed:', err);
-      // Always fall back to local auth when Supabase is unreachable
-      initLocalAuth();
-      return;
     } finally {
       clearTimeout(timeout);
       setIsLoading(false);
@@ -160,7 +130,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // --- Local Auth Fallback ---
+  // --- Local Auth Fallback (client-only, no admin) ---
   const initLocalAuth = async () => {
     try {
       const saved = localStorage.getItem(LOCAL_SESSION_KEY);
@@ -170,19 +140,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     } catch {
       localStorage.removeItem(LOCAL_SESSION_KEY);
-    }
-
-    // Initialize admin account on first run if env vars are set
-    if (LOCAL_ADMIN_EMAIL && LOCAL_ADMIN_DEFAULT_PASSWORD && !getAdminHash()) {
-      const password = LOCAL_ADMIN_DEFAULT_PASSWORD;
-      const hash = await hashPassword(password);
-      setAdminHash(hash);
-      if (import.meta.env.DEV) {
-        console.info(
-          '%c[Riman] Local admin initialized from environment variables.',
-          'color: #b8860b; font-weight: bold; font-size: 12px;'
-        );
-      }
     }
 
     setIsLoading(false);
@@ -195,16 +152,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return localSignIn(email, password);
     }
 
-    try {
-      const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
-      if (authError) {
-        // Fall back to local auth for any Supabase auth error (project paused, user not found, etc.)
-        // This ensures the app remains usable even when Supabase is misconfigured
-        return localSignIn(email, password);
-      }
-    } catch (err: any) {
-      // Fall back to local auth if Supabase is unreachable (e.g. paused project)
-      return localSignIn(email, password);
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+    if (authError) {
+      setError(authError.message);
+      throw new Error(authError.message);
     }
   };
 
@@ -215,19 +166,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return localSignUp(email, name, password);
     }
 
-    try {
-      const { error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { data: { name } },
-      });
-      if (authError) {
-        // Fall back to local auth for any Supabase sign-up error
-        return localSignUp(email, name, password);
-      }
-    } catch (err: any) {
-      // Fall back to local auth if Supabase is unreachable (e.g. paused project)
-      return localSignUp(email, name, password);
+    const { error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { name } },
+    });
+    if (authError) {
+      setError(authError.message);
+      throw new Error(authError.message);
     }
   };
 
@@ -240,31 +186,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(LOCAL_SESSION_KEY);
   };
 
-  // --- Local Auth Implementations ---
+  // --- Local Auth Implementations (client-only, never admin) ---
   const localSignIn = async (email: string, password: string) => {
     const normalizedEmail = email.trim().toLowerCase();
 
     checkRateLimit(normalizedEmail);
-
-    // Check admin account (hashed) — only if env vars configured
-    if (LOCAL_ADMIN_EMAIL && normalizedEmail === LOCAL_ADMIN_EMAIL) {
-      let adminHash = getAdminHash();
-      // Initialize admin account on the fly if not yet set (safety net)
-      if (!adminHash && LOCAL_ADMIN_DEFAULT_PASSWORD) {
-        const hash = await hashPassword(LOCAL_ADMIN_DEFAULT_PASSWORD);
-        setAdminHash(hash);
-        adminHash = hash;
-      }
-      if (adminHash) {
-        const isMatch = await compareHash(adminHash, password);
-        if (isMatch) {
-          const adminUser: User = { id: 'admin-local', name: 'Riman Admin', email: normalizedEmail, role: 'admin' };
-          setUser(adminUser);
-          localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(adminUser));
-          return;
-        }
-      }
-    }
 
     // Check regular users (hashed)
     const users = getLocalUsers();
@@ -289,10 +215,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const localSignUp = async (email: string, name: string, password: string) => {
     const normalizedEmail = email.trim().toLowerCase();
-    if (LOCAL_ADMIN_EMAIL && normalizedEmail === LOCAL_ADMIN_EMAIL) {
-      setError('This email is reserved for the administrator.');
-      throw new Error('Email reserved');
-    }
 
     const users = getLocalUsers();
     if (users[normalizedEmail]) {

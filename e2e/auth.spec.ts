@@ -160,8 +160,66 @@ test.describe('Riman Fashion — Authentication', () => {
       await page.goto('/admin');
       // Should be redirected to auth
       await expect(page).toHaveURL(/auth/);
+    });
 
-      // Should have a redirect state so after login we go back to admin
+    test('local sign-in always produces client role, not admin', async ({ page }) => {
+      // Clear any Supabase session to force local auth mode
+      await page.goto('/auth');
+      await page.evaluate(() => {
+        localStorage.removeItem('riman_session');
+        localStorage.removeItem('riman_users');
+      });
+      await page.reload();
+
+      // Create a local account
+      const createBtn = page.getByRole('button', { name: /create|register/i }).or(
+        page.getByText(/create account/i).first()
+      );
+      if (await createBtn.isVisible()) {
+        await createBtn.click();
+        await page.waitForTimeout(300);
+
+        const inputs = page.locator('input');
+        if (await inputs.nth(0).isVisible()) await inputs.nth(0).fill('Test Security');
+        const emailInput = page.locator('input[type="email"]').first();
+        if (await emailInput.isVisible()) await emailInput.fill('security-test-' + Date.now() + '@example.com');
+        const passwordInput = page.locator('input[type="password"]').first();
+        if (await passwordInput.isVisible()) await passwordInput.fill('SecurePass123!');
+
+        const submitBtn = page.locator('button[type="submit"]').first();
+        if (await submitBtn.isVisible()) {
+          await submitBtn.click();
+          await page.waitForTimeout(1000);
+        }
+      }
+
+      // Check the session in localStorage — role should always be 'client'
+      const session = await page.evaluate(() => {
+        const raw = localStorage.getItem('riman_session');
+        return raw ? JSON.parse(raw) : null;
+      });
+
+      if (session) {
+        expect(session.role).toBe('client');
+        expect(session.role).not.toBe('admin');
+      }
+    });
+
+    test('admin routes are protected when not authenticated', async ({ page }) => {
+      // Clear all auth state
+      await page.goto('/auth');
+      await page.evaluate(() => {
+        localStorage.removeItem('riman_session');
+        localStorage.removeItem('riman_users');
+        localStorage.removeItem('riman_admin_hash');
+      });
+
+      const adminRoutes = ['/admin', '/admin/products', '/admin/orders', '/admin/customers'];
+      for (const route of adminRoutes) {
+        await page.goto(route);
+        // Should redirect to auth page
+        await expect(page).toHaveURL(/auth/, { timeout: 5000 });
+      }
     });
   });
 });

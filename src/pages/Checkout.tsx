@@ -129,10 +129,12 @@ export default function Checkout() {
       if (paymentMethod === 'card' && isStripeConfigured()) {
         const url = await createCheckoutSession({
           items: items.map(i => ({
+            product_id: i.id,
             name: i.name,
             price: i.intent === 'rent' ? (i.rentalPrice || 0) : (i.salePrice || 0),
             quantity: i.quantity,
             productType: i.productType,
+            intent: i.intent,
           })),
           subtotal,
           orderType,

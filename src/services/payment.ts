@@ -4,10 +4,12 @@ function getEndpoint(): string {
 
 export async function createCheckoutSession(orderData: {
   items: Array<{
+    product_id: string;
     name: string;
     price: number;
     quantity: number;
     productType: string;
+    intent: 'sale' | 'rent';
   }>;
   subtotal: number;
   orderType: string;
