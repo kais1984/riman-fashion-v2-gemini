@@ -117,8 +117,18 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const updateProducts = (newProducts: Product[]) => setProducts(newProducts);
 
-  const updateContent = (updates: Partial<SiteContent>) => {
+  const updateContent = async (updates: Partial<SiteContent>) => {
     setContent(prev => ({ ...prev, ...updates }));
+    if (isSupabaseConfigured) {
+      try {
+        const { updateSiteContentKey } = await import('../services/siteContent');
+        if (updates.hero) await updateSiteContentKey('hero', updates.hero);
+        if (updates.about) await updateSiteContentKey('about', updates.about);
+        if (updates.quote !== undefined) await updateSiteContentKey('quote', { value: updates.quote });
+      } catch (err) {
+        console.error('[Riman] Failed to save content to Supabase:', err);
+      }
+    }
   };
 
   const resetData = () => {

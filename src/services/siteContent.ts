@@ -20,3 +20,26 @@ export async function updateSiteContentKey(key: string, value: any): Promise<voi
 
   if (error) throw error;
 }
+
+// --- Site Settings ---
+
+export async function fetchSiteSettings(): Promise<Record<string, any>> {
+  const { data, error } = await supabase
+    .from('site_settings')
+    .select('key, value');
+
+  if (error) throw error;
+  const result: Record<string, any> = {};
+  (data || []).forEach(row => {
+    result[row.key] = row.value;
+  });
+  return result;
+}
+
+export async function updateSiteSetting(key: string, value: any): Promise<void> {
+  const { error } = await supabase
+    .from('site_settings')
+    .upsert({ key, value, updated_at: new Date().toISOString() });
+
+  if (error) throw error;
+}

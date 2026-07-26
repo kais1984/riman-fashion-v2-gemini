@@ -3,39 +3,13 @@ import { useToast } from '../../contexts/ToastContext';
 import { Download, Upload, CheckCircle2, AlertTriangle, Eye, Smartphone, Mail, Globe, Camera, Search, Palette, Code, Shield, ShoppingBag, Gem, RefreshCw, PenTool, Layout as LayoutIcon, Home, BookOpen, Truck, FileText } from 'lucide-react';
 import { isSupabaseConfigured } from '../../services/supabase';
 import { useData } from '../../contexts/DataContext';
+import { useSettings } from '../../contexts/SettingsContext';
 import { cn } from '../../lib/utils';
 import { motion } from 'motion/react';
 
-interface SiteSettings {
-  branding: { siteName: string; tagline: string; logoText: string };
-  contact: { email: string; phone: string; address: string; hours: string };
-  social: { instagram: string; whatsapp: string; facebook: string; twitter: string; youtube: string; tiktok: string; pinterest: string };
-  homepage: { heroTitle: string; heroSubtitle: string; heroCta: string; heroBgImage: string; aboutTitle: string; aboutDescription: string; brandQuote: string; featuredTitle: string };
-  policies: { rentalPeriodDays: number; depositAmount: number; insuranceText: string; lateReturnFee: string; shippingInfo: string; returnPolicy: string };
-  features: { newsletter: boolean; whatsappBtn: boolean; preloader: boolean; instagramFeed: boolean; cookieBanner: boolean; scrollReveal: boolean; threeDViewer: boolean };
-  advanced: { metaDescription: string; ogImageUrl: string; keywords: string; gaId: string; plausibleDomain: string; fathomSiteId: string; maintenanceMode: boolean; maintenanceMessage: string; customHeadCode: string };
-}
-
-const defaultSettings: SiteSettings = {
-  branding: { siteName: 'Atelier Riman', tagline: "Sharjah's Most Majestic Couture", logoText: 'Riman' },
-  contact: { email: 'hello@rimanfashion.com', phone: '+971 50 123 4567', address: 'Al Zahra St, Sharjah, UAE', hours: 'Sat–Thu, 10am – 8pm' },
-  social: { instagram: '@rimanfashion', whatsapp: '+971501234567', facebook: 'rimanfashion', twitter: 'rimanfashion', youtube: 'rimanfashion', tiktok: '@rimanfashion', pinterest: 'rimanfashion' },
-  homepage: { heroTitle: 'Reverie & Essence', heroSubtitle: "Sharjah's Most Majestic Couture", heroCta: 'Request A Private Viewing', heroBgImage: 'https://images.unsplash.com/photo-1594553423282-55ad0c034431?auto=format&fit=crop&w=2000&q=80', aboutTitle: 'The Riman Legacy', aboutDescription: 'Founded in the vibrant cultural landscape of Sharjah, Riman Fashion was born from a passion for preserving traditional artistry while embracing contemporary design.', brandQuote: 'In the heart of Sharjah, we weave dreams into silk. Every thread is a testament to the heritage we preserve and the majestic future we envision.', featuredTitle: 'Featured Designs' },
-  policies: { rentalPeriodDays: 7, depositAmount: 5000, insuranceText: '7-day hire period includes eco-friendly dry cleaning and couture insurance. Please ensure return within your window.', lateReturnFee: 'AED 500 per day', shippingInfo: 'Complimentary delivery within UAE and GCC. International shipping available upon request.', returnPolicy: 'All sales are final. Rental items must be returned within the agreed period to avoid additional charges.' },
-  features: { newsletter: true, whatsappBtn: true, preloader: true, instagramFeed: true, cookieBanner: true, scrollReveal: true, threeDViewer: true },
-  advanced: { metaDescription: 'Atelier Riman — Sharjah\'s premier bridal and evening couture atelier. Discover handcrafted gowns, premium rentals, and fine jewelry.', ogImageUrl: '', keywords: 'bridal gowns, evening dresses, couture, Sharjah, UAE, wedding dress rental, luxury fashion', gaId: '', plausibleDomain: '', fathomSiteId: '', maintenanceMode: false, maintenanceMessage: 'Our atelier is currently being curated. We will return with an even more exquisite experience.', customHeadCode: '' },
-};
-
-function loadSettings(): SiteSettings {
-  try { const saved = localStorage.getItem('riman_admin_settings'); return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings; }
-  catch { return defaultSettings; }
-}
-
-function saveSettings(s: SiteSettings) { localStorage.setItem('riman_admin_settings', JSON.stringify(s)); }
-
 export default function AdminSettings() {
   const { content, updateContent } = useData();
-  const [settings, setSettings] = useState<SiteSettings>(loadSettings);
+  const { settings, updateSetting } = useSettings();
   const [saved, setSaved] = useState(false);
   const [tab, setTab] = useState<'brand' | 'homepage' | 'policies' | 'features' | 'advanced'>('brand');
   const [importData, setImportData] = useState('');
@@ -43,17 +17,13 @@ export default function AdminSettings() {
 
   useEffect(() => { if (saved) { const t = setTimeout(() => setSaved(false), 2000); return () => clearTimeout(t); } }, [saved]);
 
-  const update = <K extends keyof SiteSettings>(section: K, key: string, value: any) => {
-    setSettings(prev => {
-      const next = { ...prev, [section]: { ...prev[section], [key]: value } };
-      saveSettings(next);
-      return next;
-    });
+  const update = async <K extends keyof typeof settings>(section: K, key: string, value: any) => {
+    await updateSetting(section, key, value);
     setSaved(true);
   };
 
-  const syncToDataContext = () => {
-    updateContent({
+  const syncToDataContext = async () => {
+    await updateContent({
       hero: { title: settings.homepage.heroTitle, subtitle: settings.homepage.heroSubtitle, cta: settings.homepage.heroCta, bgImage: settings.homepage.heroBgImage },
       about: { title: settings.homepage.aboutTitle, description: settings.homepage.aboutDescription },
       quote: settings.homepage.brandQuote,
@@ -61,25 +31,46 @@ export default function AdminSettings() {
   };
 
   const handleExport = () => {
-    const data = JSON.stringify({ settings, products: localStorage.getItem('riman_dynamic_products'), content: localStorage.getItem('riman_dynamic_site_content') }, null, 2);
+    const data = JSON.stringify({ settings }, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = 'riman-backup.json'; a.click();
+    const a = document.createElement('a'); a.href = url; a.download = 'riman-settings-backup.json'; a.click();
     URL.revokeObjectURL(url);
   };
 
   const handleImport = () => {
     try {
       const data = JSON.parse(importData);
-      if (data.settings) { setSettings(data.settings); saveSettings(data.settings); }
-      if (data.products) localStorage.setItem('riman_dynamic_products', data.products);
-      if (data.content) localStorage.setItem('riman_dynamic_site_content', data.content);
+      if (data.settings) {
+        Object.entries(data.settings).forEach(([section, values]) => {
+          if (typeof values === 'object' && values !== null) {
+            Object.entries(values as Record<string, any>).forEach(([key, value]) => {
+              updateSetting(section as any, key, value);
+            });
+          }
+        });
+      }
       setSaved(true); setImportData('');
+      addToast({ type: 'success', title: 'Import Complete', message: 'Settings imported successfully.' });
     } catch { addToast({ type: 'error', title: 'Import Failed', message: 'Invalid JSON format.' }); }
   };
 
-  const handleReset = () => {
-    setSettings(defaultSettings); saveSettings(defaultSettings); setSaved(true);
+  const handleReset = async () => {
+    const defaults = {
+      branding: { siteName: 'Atelier Riman', tagline: "Sharjah's Most Majestic Couture", logoText: 'Riman' },
+      contact: { email: 'hello@rimanfashion.com', phone: '+971 50 123 4567', address: 'Al Zahra St, Sharjah, UAE', hours: 'Sat–Thu, 10am – 8pm' },
+      social: { instagram: '@rimanfashion', whatsapp: '+971501234567', facebook: 'rimanfashion', twitter: 'rimanfashion', youtube: 'rimanfashion', tiktok: '@rimanfashion', pinterest: 'rimanfashion' },
+      homepage: { heroTitle: 'Reverie & Essence', heroSubtitle: "Sharjah's Most Majestic Couture", heroCta: 'Request A Private Viewing', heroBgImage: 'https://images.unsplash.com/photo-1594553423282-55ad0c034431?auto=format&fit=crop&w=2000&q=80', aboutTitle: 'The Riman Legacy', aboutDescription: 'Founded in the vibrant cultural landscape of Sharjah.', brandQuote: 'In the heart of Sharjah, we weave dreams into silk.', featuredTitle: 'Featured Designs' },
+      features: { newsletter: true, whatsappBtn: true, preloader: true, instagramFeed: true, cookieBanner: true, scrollReveal: true, threeDViewer: true },
+      policies: { rentalPeriodDays: 7, depositAmount: 5000, insuranceText: '7-day hire period includes eco-friendly dry cleaning.', lateReturnFee: 'AED 500 per day', shippingInfo: 'Complimentary delivery within UAE and GCC.', returnPolicy: 'All sales are final.' },
+      advanced: { metaDescription: "Atelier Riman — Sharjah's premier bridal and evening couture.", ogImageUrl: '', keywords: 'bridal gowns, evening dresses, couture, Sharjah, UAE', gaId: '', plausibleDomain: '', fathomSiteId: '', maintenanceMode: false, maintenanceMessage: 'Our atelier is currently being curated.', customHeadCode: '' },
+    };
+    for (const [section, values] of Object.entries(defaults)) {
+      for (const [key, value] of Object.entries(values as Record<string, any>)) {
+        await updateSetting(section as any, key, value);
+      }
+    }
+    setSaved(true);
     addToast({ type: 'info', title: 'Settings Reset', message: 'Restored to factory defaults.' });
   };
 
