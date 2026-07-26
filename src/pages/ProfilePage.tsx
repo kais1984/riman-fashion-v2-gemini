@@ -1,6 +1,6 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate, Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Calendar, Settings, LogOut, User, Heart, ChevronRight, Package, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
@@ -11,6 +11,7 @@ import { isSupabaseConfigured } from '../services/supabase';
 export default function ProfilePage() {
   const { user, signOut, isLoading } = useAuth();
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
 
@@ -66,7 +67,7 @@ export default function ProfilePage() {
                   <ProfileLink icon={Calendar} label={t('profile.appointments')} />
                   <ProfileLink icon={Settings} label={t('profile.preferences')} />
                  <button 
-                   onClick={signOut}
+                    onClick={async () => { await signOut(); navigate('/'); }}
                    className="w-full flex items-center gap-4 p-4 text-[10px] text-stone-400 uppercase tracking-[0.2em] hover:text-rose-500 hover:bg-rose-50/30 transition-all text-left mt-8 border-t border-stone-50 pt-8"
                  >
                     <LogOut className="w-4 h-4" /> {t('profile.sign_out')}
