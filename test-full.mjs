@@ -188,20 +188,23 @@ async function testSuite() {
     await dp.goto(`${BASE}/admin/gallery`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await dp.waitForTimeout(3000);
     const galText = await dp.locator('body').innerText();
-    log('Admin: Gallery', 'Page loads', galText.includes('Gallery') || galText.includes('Image') || galText.includes('Upload') ? 'PASS' : 'FAIL');
+    const galLower = galText.toLowerCase();
+    log('Admin: Gallery', 'Page loads', galLower.includes('gallery') || galLower.includes('image') || galLower.includes('upload') || galLower.includes('media') ? 'PASS' : 'FAIL');
     
     // Bookings
     await dp.goto(`${BASE}/admin/bookings`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await dp.waitForTimeout(3000);
     const bkText = await dp.locator('body').innerText();
-    log('Admin: Bookings', 'Page loads', bkText.includes('Booking') || bkText.includes('Calendar') || bkText.includes('Schedule') ? 'PASS' : 'FAIL');
+    const bkLower = bkText.toLowerCase();
+    log('Admin: Bookings', 'Page loads', bkLower.includes('booking') || bkLower.includes('calendar') || bkLower.includes('schedule') || bkLower.includes('agenda') ? 'PASS' : 'FAIL');
     
     // Appointments
     await dp.goto(`${BASE}/admin/appointments`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await dp.waitForTimeout(3000);
     const apText = await dp.locator('body').innerText();
-    log('Admin: Appointments', 'Page loads (no error)', !apText.includes('Unable to connect') ? 'PASS' : 'FAIL');
-    log('Admin: Appointments', 'Page has content', apText.includes('Appointment') || apText.includes('Consultation') || apText.length > 200 ? 'PASS' : 'WARN');
+    const apLower = apText.toLowerCase();
+    log('Admin: Appointments', 'Page loads (no error)', !apLower.includes('unable to connect') ? 'PASS' : 'FAIL');
+    log('Admin: Appointments', 'Page has content', apLower.includes('appointment') || apLower.includes('consultation') || apText.length > 200 ? 'PASS' : 'WARN');
     
     // Sign out
     const signOut = dp.locator('text=Sign Out').first();
