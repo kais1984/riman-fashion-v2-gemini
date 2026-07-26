@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 import { supabase, isSupabaseConfigured } from '../services/supabase';
 import { getProfile } from '../services/auth';
 import { hashPassword } from '../lib/crypto';
@@ -70,6 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const signingOutRef = useRef(false);
 
   useEffect(() => {
     if (isSupabaseConfigured) {
@@ -94,6 +95,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       supabase.auth.onAuthStateChange(async (_event, session) => {
+        if (signingOutRef.current) return;
         if (session?.user) {
           await loadSupabaseProfile(session.user.id, session.user.email || '');
         } else {
@@ -178,12 +180,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
-    if (isSupabaseConfigured) {
-      await supabase.auth.signOut();
-    }
+    signingOutRef.current = true;
     setUser(null);
     setError(null);
     localStorage.removeItem(LOCAL_SESSION_KEY);
+    try {
+      if (isSupabaseConfigured) {
+        await supabase.auth.signOut();
+      }
+    } catch {
+      // Sign out locally even if Supabase call fails
+    }
+    signingOutRef.current = false;
   };
 
   // --- Local Auth Implementations (client-only, never admin) ---
