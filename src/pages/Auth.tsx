@@ -12,13 +12,21 @@ export default function Auth() {
   const { t } = useLanguage();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: '', password: '', name: '' });
-  const { signIn, signUp, error } = useAuth();
+  const { signIn, signUp, error, user, isLoading } = useAuth();
   const [localError, setLocalError] = useState('');
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = (location.state as any)?.from?.pathname || "/profile";
+  const from = (location.state as any)?.from?.pathname;
+
+  // After successful login, redirect based on role once profile loads
+  React.useEffect(() => {
+    if (success && !isLoading && user) {
+      const redirectTarget = user.role === 'admin' ? (from || '/admin') : (from || '/profile');
+      navigate(redirectTarget, { replace: true });
+    }
+  }, [success, isLoading, user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +52,6 @@ export default function Auth() {
         await signUp(formData.email, formData.name, formData.password);
       }
       setSuccess(true);
-      setTimeout(() => navigate(from, { replace: true }), 1500);
     } catch (err: any) {
       let message = err.message || 'An error occurred. Please try again.';
       if (message.includes('Failed to fetch') || message.includes('CONNECTION_ERROR')) {
