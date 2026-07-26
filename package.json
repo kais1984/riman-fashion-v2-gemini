@@ -1,0 +1,53 @@
+{
+  "name": "riman-fashion",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3001",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "mcp": "npx @playwright/mcp --port 8939"
+  },
+  "dependencies": {
+    "@google/model-viewer": "^4.2.0",
+    "@hookform/resolvers": "^5.2.2",
+    "@stripe/react-stripe-js": "^5.6.1",
+    "@supabase/supabase-js": "^2.99.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-query": "^5.66.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "dotenv": "^17.2.3",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.61.1",
+    "react-router-dom": "^6.30.1",
+    "recharts": "^2.15.1",
+    "tailwind-merge": "^3.0.1",
+    "vite": "^6.2.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@playwright/mcp": "^0.0.75",
+    "@playwright/test": "^1.60.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.0-alpha-1778188671000",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "vitest": "^4.1.6"
+  }
+}

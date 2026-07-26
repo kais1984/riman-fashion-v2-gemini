@@ -1,0 +1,19 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Cart Wishlist & Checkout",
+  "description": "Verifies adding a product to cart updates the cart count, cart drawer opens, wishlist toggle works, and the checkout page renders with order summary and payment form.",
+  "priority": "p0",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to the homepage" },
+    { "type": "action", "description": "Click the 'Shop' link in the navigation" },
+    { "type": "action", "description": "Click on the first product card" },
+    { "type": "action", "description": "Click the 'Add to Cart' button on the product detail page" },
+    { "type": "assertion", "description": "Verify a cart drawer or cart notification appears showing the added product" },
+    { "type": "action", "description": "Click the heart/wishlist icon on the product detail page" },
+    { "type": "assertion", "description": "Verify the heart icon changes state to indicate the product is wishlisted" },
+    { "type": "action", "description": "Click the cart icon in the navigation bar to open the cart" },
+    { "type": "action", "description": "Click the 'Checkout' or 'Proceed to Checkout' button" },
+    { "type": "assertion", "description": "Verify the checkout page loads with an order summary section and a payment or contact information form" }
+  ]
+}

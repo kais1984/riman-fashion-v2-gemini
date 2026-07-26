@@ -1,0 +1,19 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Shop & Product Browse",
+  "description": "Verifies the shop page loads with product cards, filtering works, product detail page renders with gallery and add-to-cart, and search functionality works.",
+  "priority": "p0",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to the homepage" },
+    { "type": "action", "description": "Click the 'Shop' link in the navigation bar" },
+    { "type": "assertion", "description": "Verify the collection page loads with a grid of product cards showing images, names, and prices" },
+    { "type": "action", "description": "Click on a filter button such as 'Dresses' in the category filter bar" },
+    { "type": "assertion", "description": "Verify the product grid updates to show filtered results" },
+    { "type": "action", "description": "Click on the first product card in the grid" },
+    { "type": "assertion", "description": "Verify the product detail page loads with a product image gallery on the left, product name, price, size selector, and an 'Add to Cart' or 'Add to Collection' button" },
+    { "type": "action", "description": "Click the search icon in the navigation bar" },
+    { "type": "action", "description": "Type 'dress' into the search input field" },
+    { "type": "assertion", "description": "Verify search results appear showing products matching the search term" }
+  ]
+}

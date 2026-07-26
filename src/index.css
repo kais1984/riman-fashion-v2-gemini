@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700;800&family=Reem+Kufi:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Plus Jakarta Sans", sans-serif;
+  --font-editorial: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-arabic: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+  --font-arabic-heading: "Reem Kufi", "Cairo", sans-serif;
+  --font-jewelry: "Plus Jakarta Sans", sans-serif;
+
+  --color-gold: #D4AF37;
+  --color-gold-light: #F9E27E;
+  --color-gold-dark: #A67C00;
+  --color-onyx: #0A0A0A;
+  --color-bone: #FDFBF7;
+  --color-ivory: #FFFDF9;
+  --color-pearl: #F3F1ED;
+  --color-jewelry: linear-gradient(45deg, #A67C00 0%, #D4AF37 45%, #F9E27E 50%, #D4AF37 55%, #A67C00 100%);
+
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s infinite linear;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply font-body bg-ivory text-stone-800 overflow-x-hidden leading-relaxed;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+  [dir="rtl"] {
+    @apply font-arabic;
+    font-weight: 400;
+  }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0 !important;
+  }
+  [dir="rtl"] .font-heading {
+    font-family: "Reem Kufi", "Cairo", sans-serif;
+    letter-spacing: 0 !important;
+  }
+  [dir="rtl"] .font-body {
+    font-family: "Cairo", "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 500;
+  }
+  [dir="rtl"] .heading-display {
+    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0 !important;
+  }
+  [dir="rtl"] .heading-editorial {
+    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+  }
+  /* Arabic text needs to be ~25-30% larger than English for readability */
+  [dir="rtl"] .text-xs { font-size: 0.8125rem; }      /* 13px instead of 12px */
+  [dir="rtl"] .text-sm { font-size: 0.9375rem; }      /* 15px instead of 14px */
+  [dir="rtl"] .text-base { font-size: 1.0625rem; }    /* 17px instead of 16px */
+  [dir="rtl"] .text-lg { font-size: 1.1875rem; }      /* 19px instead of 18px */
+  [dir="rtl"] .text-xl { font-size: 1.3125rem; }      /* 21px instead of 20px */
+  [dir="rtl"] .text-2xl { font-size: 1.625rem; }      /* 26px instead of 24px */
+  [dir="rtl"] .text-3xl { font-size: 2rem; }           /* 32px instead of 30px */
+  [dir="rtl"] .text-4xl { font-size: 2.5rem; }
+  [dir="rtl"] .text-5xl { font-size: 3.25rem; }
+  [dir="rtl"] .text-6xl { font-size: 4rem; }
+  [dir="rtl"] .text-7xl { font-size: 5rem; }
+  [dir="rtl"] .text-8xl { font-size: 6.5rem; }
+  [dir="rtl"] .text-9xl { font-size: 8.5rem; }
+  /* Pixel-based sizes: enlarge by ~25% */
+  [dir="rtl"] .text-\[8px\] { font-size: 11px; }
+  [dir="rtl"] .text-\[9px\] { font-size: 12px; }
+  [dir="rtl"] .text-\[10px\] { font-size: 13px; }
+  [dir="rtl"] .text-\[11px\] { font-size: 14px; }
+  [dir="rtl"] .text-\[12px\] { font-size: 15px; }
+  /* Tracking is meaningless in Arabic and causes rendering issues */
+  [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-wider { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-\[0\.3em\] { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-\[0\.2em\] { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-\[0\.5em\] { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-\[0\.4em\] { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-\[0\.15em\] { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-tight { letter-spacing: 0 !important; }
+  [dir="rtl"] .tracking-tighter { letter-spacing: 0 !important; }
+}
+
+@layer components {
+/* Import print stylesheet */
+@import "./print.css";
+
+  .btn-luxury {
+    @apply inline-flex items-center justify-center px-10 py-5 font-heading text-xs tracking-[0.2em] uppercase transition-all duration-500 bg-onyx text-white hover:text-gold font-bold relative overflow-hidden;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+  }
+
+  .btn-luxury-outline {
+    @apply inline-flex items-center justify-center px-10 py-5 font-heading text-xs tracking-[0.2em] uppercase transition-all duration-500 border border-gold/40 bg-transparent text-gold hover:bg-gold hover:text-onyx font-bold;
+  }
+
+  .btn-luxury:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn-luxury-outline:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .heading-display {
+    @apply font-heading font-medium tracking-widest uppercase leading-[1.2];
+  }
+
+  .heading-editorial {
+    @apply font-editorial font-normal italic tracking-normal text-gold-dark;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-32 px-6 md:px-12 lg:px-20;
+  }
+
+  .divider-gold {
+    @apply w-12 h-px bg-gold mx-auto;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .film-grain {
+    position: relative;
+  }
+  .film-grain::after {
+    content: "";
+    @apply fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay z-[9999];
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-shimmer {
+      animation: none !important;
+      background-image: none !important;
+      background: linear-gradient(135deg, #A67C00, #D4AF37) !important;
+    }
+    .animate-pulse {
+      animation: none !important;
+    }
+    .animate-bounce {
+      animation: none !important;
+    }
+    .animate-float {
+      animation: none !important;
+    }
+  }
+}
+
+/* Gallery masonry responsive */
+@media (max-width: 768px) {
+  .columns-1 {
+    columns: 1 !important;
+  }
+}
+
+/* Lightbox video controls styling */
+.lightbox-video::-webkit-media-controls-panel {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.lightbox-video::-webkit-media-controls-button {
+  filter: invert(1);
+}

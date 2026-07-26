@@ -1,0 +1,18 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Auth & Admin Dashboard",
+  "description": "Verifies the sign-up modal opens, login form renders with email and password fields, and admin dashboard loads with stats and navigation after login.",
+  "priority": "p1",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to the homepage" },
+    { "type": "action", "description": "Click the 'Sign Up' or account icon in the navigation" },
+    { "type": "assertion", "description": "Verify a sign-up or login modal/form appears with email and password input fields" },
+    { "type": "action", "description": "Type 'admin@rimanfashion.com' into the email field" },
+    { "type": "action", "description": "Type 'REDACTED_ADMIN_PASSWORD' into the password field" },
+    { "type": "action", "description": "Click the 'Sign In' or 'Login' button" },
+    { "type": "assertion", "description": "Verify the user is logged in and redirected or the navigation shows a profile/admin link" },
+    { "type": "action", "description": "Navigate to the admin dashboard URL by appending '/admin' to the base URL" },
+    { "type": "assertion", "description": "Verify the admin dashboard loads with stats cards showing numbers and a sidebar with navigation links for Products, Orders, and Gallery" }
+  ]
+}

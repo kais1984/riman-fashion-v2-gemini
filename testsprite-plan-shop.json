@@ -1,0 +1,57 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Shop & Product Features",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify homepage loads",
+      "description": "Verify the homepage loads with hero section, featured products, and navigation visible."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to Bridal collection",
+      "description": "Click on the Bridal Gown or Shop navigation link and verify the collection page loads with product cards."
+    },
+    {
+      "type": "action",
+      "step": "Test product filters",
+      "description": "On the collection page, try filtering by color or style. Verify the product list updates to show filtered results."
+    },
+    {
+      "type": "action",
+      "step": "Test sort functionality",
+      "description": "Use the sort dropdown to sort products by price or name. Verify products reorder correctly."
+    },
+    {
+      "type": "action",
+      "step": "Open product detail",
+      "description": "Click on any product card to open the product detail page. Verify images, name, price, description, and size options are visible."
+    },
+    {
+      "type": "action",
+      "step": "Test search functionality",
+      "description": "Navigate to /search or use the search bar. Type a search term like 'bridal' and verify results appear."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to About page",
+      "description": "Click the About link in navigation. Verify the about page loads with brand story content."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to Contact page",
+      "description": "Click the Contact link. Verify the contact form loads with name, email, subject, and message fields."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify footer links",
+      "description": "Scroll to footer and verify all links are present: About, Contact, FAQ, Privacy, Terms, social media icons."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Appointments, Rentals & Alterations",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to appointment page",
+      "description": "Navigate to /appointment. Verify the appointment booking page loads with service selection options."
+    },
+    {
+      "type": "action",
+      "step": "Select appointment service",
+      "description": "Select a service type like 'Consultation' or 'Fitting'. Verify it becomes highlighted or selected."
+    },
+    {
+      "type": "action",
+      "step": "Pick appointment date and time",
+      "description": "Click Next and select an available date on the calendar. Then select an available time slot."
+    },
+    {
+      "type": "action",
+      "step": "Fill appointment contact details",
+      "description": "Enter name, email, phone number in the contact details step. Verify all fields accept input."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to alterations page via footer",
+      "description": "Scroll to the footer of the site and click the Alterations link. Verify the alterations info page loads with a call-to-action to contact."
+    },
+    {
+      "type": "action",
+      "step": "Test rental product flow",
+      "description": "Navigate to a product that has rental pricing (productType 'rent' or 'both'). Verify the rental option and price are displayed."
+    },
+    {
+      "type": "action",
+      "step": "Test style quiz",
+      "description": "Navigate to /quiz. Answer all 4 questions (occasion, style, color, budget). Verify a style recommendation result appears."
+    },
+    {
+      "type": "action",
+      "step": "Test wedding checklist",
+      "description": "Navigate to /wedding-checklist. Verify the 6-step checklist is displayed with progress tracking."
+    },
+    {
+      "type": "action",
+      "step": "Test FAQ page",
+      "description": "Navigate to /faq. Verify FAQ categories and accordion items are visible. Try clicking an FAQ item to expand it."
+    }
+  ]
+}
