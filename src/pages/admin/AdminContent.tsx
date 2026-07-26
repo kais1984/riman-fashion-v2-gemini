@@ -9,12 +9,14 @@ export default function AdminContent() {
   const [activeView, setActiveView] = useState('homepage');
   const [isSaving, setIsSaving] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!formRef.current) return;
     
     setIsSaving(true);
+    setSaveError(null);
     const formData = new FormData(formRef.current);
     
     const updates: any = {};
@@ -33,13 +35,15 @@ export default function AdminContent() {
       };
     }
 
-    updateContent(updates);
-    
-    setTimeout(() => {
-      setIsSaving(false);
+    try {
+      await updateContent(updates);
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
-    }, 1000);
+    } catch (err: any) {
+      setSaveError(err.message || 'Failed to save. Please try again.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -60,6 +64,16 @@ export default function AdminContent() {
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span className="text-[10px] uppercase tracking-widest font-bold">Changes Published</span>
+              </motion.div>
+            )}
+            {saveError && (
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                className="flex items-center gap-2 text-rose-600 bg-rose-50 px-4 py-2 border border-rose-100"
+              >
+                <span className="text-[10px] uppercase tracking-widest font-bold">{saveError}</span>
               </motion.div>
             )}
           </AnimatePresence>

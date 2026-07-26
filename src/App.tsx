@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'motion/react';
 import { DataProvider } from './contexts/DataContext';
+import { SettingsProvider, useSettings } from './contexts/SettingsContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -69,28 +70,118 @@ export default function App() {
   return (
     <GlobalErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <WishlistProvider>
-            <LanguageProvider>
-              <CartProvider>
-                <BrowserRouter>
-                  <ToastProvider>
-                    <Suspense fallback={
-                      <div className="min-h-screen bg-ivory flex items-center justify-center">
-                        <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
-                      </div>
-                    }>
-                      <AnimatedRoutes />
-                    </Suspense>
-                  </ToastProvider>
-                </BrowserRouter>
-              </CartProvider>
-            </LanguageProvider>
-          </WishlistProvider>
-        </AuthProvider>
+        <SettingsProvider>
+          <AuthProvider>
+            <WishlistProvider>
+              <LanguageProvider>
+                <CartProvider>
+                  <BrowserRouter>
+                    <ToastProvider>
+                      <Suspense fallback={
+                        <div className="min-h-screen bg-ivory flex items-center justify-center">
+                          <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+                        </div>
+                      }>
+                        <MaintenanceGate>
+                          <AnimatedRoutes />
+                        </MaintenanceGate>
+                      </Suspense>
+                    </ToastProvider>
+                  </BrowserRouter>
+                </CartProvider>
+              </LanguageProvider>
+            </WishlistProvider>
+          </AuthProvider>
+        </SettingsProvider>
       </QueryClientProvider>
     </GlobalErrorBoundary>
   );
+}
+
+function MaintenanceGate({ children }: { children: React.ReactNode }) {
+  const { settings, isLoading } = useSettings();
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith('/admin');
+
+  useEffect(() => {
+    if (settings.advanced.maintenanceMode && !isAdmin) {
+      document.title = 'Maintenance | Atelier Riman';
+    }
+  }, [settings.advanced.maintenanceMode, isAdmin]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-ivory flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (settings.advanced.maintenanceMode && !isAdmin) {
+    return (
+      <div className="min-h-screen bg-onyx flex items-center justify-center text-center px-6">
+        <div className="max-w-md">
+          <h1 className="font-heading text-4xl md:text-5xl text-gold uppercase tracking-widest mb-4">Atelier Riman</h1>
+          <div className="w-16 h-px bg-gold mx-auto mb-8" />
+          <p className="font-body text-ivory/60 text-sm tracking-widest uppercase mb-2">
+            {settings.advanced.maintenanceMessage || 'We are currently updating our atelier.'}
+          </p>
+          <p className="font-body text-ivory/30 text-[10px] tracking-widest uppercase mt-6">
+            Please check back soon.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return <>{children}</>;
+}
+
+function SEOInjector() {
+  const { settings } = useSettings();
+
+  useEffect(() => {
+    if (settings.advanced.metaDescription) {
+      let meta = document.querySelector('meta[name="description"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'description');
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', settings.advanced.metaDescription);
+    }
+
+    if (settings.advanced.keywords) {
+      let meta = document.querySelector('meta[name="keywords"]');
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('name', 'keywords');
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', settings.advanced.keywords);
+    }
+
+    if (settings.advanced.ogImageUrl) {
+      let og = document.querySelector('meta[property="og:image"]');
+      if (!og) {
+        og = document.createElement('meta');
+        og.setAttribute('property', 'og:image');
+        document.head.appendChild(og);
+      }
+      og.setAttribute('content', settings.advanced.ogImageUrl);
+    }
+
+    if (settings.advanced.customHeadCode) {
+      const existing = document.getElementById('custom-head-code');
+      if (existing) existing.remove();
+      const wrapper = document.createElement('div');
+      wrapper.id = 'custom-head-code';
+      wrapper.innerHTML = settings.advanced.customHeadCode;
+      document.head.appendChild(wrapper);
+    }
+  }, [settings.advanced]);
+
+  return null;
 }
 
 function AnimatedRoutes() {
@@ -98,6 +189,7 @@ function AnimatedRoutes() {
 
   return (
     <DataProvider>
+      <SEOInjector />
       <ScrollToTop />
       <AnimatePresence mode="wait" initial={false}>
       <motion.div key={location.pathname}>
