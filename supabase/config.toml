@@ -1,0 +1,27 @@
+[project]
+ref = "qiccxnxtwbsreyfbqilw"
+name = "riman-fashion"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+
+[db]
+migration_dir = "supabase/migrations"
+
+[functions]
+enabled = true
+include = ["create-checkout", "stripe-webhook", "send-notification"]
+
+[functions.secrets]
+RESEND_API_KEY = ""
+STRIPE_SECRET_KEY = ""
+STRIPE_WEBHOOK_SECRET = ""
+SUPABASE_SERVICE_ROLE_KEY = ""
+APP_URL = "http://localhost:3001"
+
+[auth]
+enabled = true
+site_url = "http://localhost:3001"
+additional_redirect_urls = ["http://localhost:3001", "http://127.0.0.1:3001"]

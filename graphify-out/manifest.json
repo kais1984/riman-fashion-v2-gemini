@@ -1,0 +1,1072 @@
+{
+  "E:\\riman-fashion website v2 gemini v3\\deploy.ps1": {
+    "mtime": 1778614579.6667926,
+    "ast_hash": "4b568258cac975233a286b1bd687dddf",
+    "semantic_hash": "4b568258cac975233a286b1bd687dddf"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\metadata.json": {
+    "mtime": 1777044162.0,
+    "ast_hash": "d4b139eac65077bfbddf7b3a82f25050",
+    "semantic_hash": "d4b139eac65077bfbddf7b3a82f25050"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\package.json": {
+    "mtime": 1780025956.9494605,
+    "ast_hash": "e5efec0c09bbfd241e16421f143c8a81",
+    "semantic_hash": "e5efec0c09bbfd241e16421f143c8a81"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\playwright.config.ts": {
+    "mtime": 1780027805.6522489,
+    "ast_hash": "9abd7d655705c9eecb92fcd831c146f1",
+    "semantic_hash": "9abd7d655705c9eecb92fcd831c146f1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\tsconfig.json": {
+    "mtime": 1778613947.1184013,
+    "ast_hash": "7be43a2ccc1004ee8253e279b11798de",
+    "semantic_hash": "7be43a2ccc1004ee8253e279b11798de"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\vite.config.ts": {
+    "mtime": 1778612852.072054,
+    "ast_hash": "d2245639583eb780efcedc34a64afdd4",
+    "semantic_hash": "d2245639583eb780efcedc34a64afdd4"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\vitest.config.ts": {
+    "mtime": 1778613595.1112318,
+    "ast_hash": "277260e3f11295ddca5f7ea02d1d3884",
+    "semantic_hash": "277260e3f11295ddca5f7ea02d1d3884"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\.impeccable\\design.json": {
+    "mtime": 1778599435.989206,
+    "ast_hash": "2371cb21411f176bb0ab90600bc3027d",
+    "semantic_hash": "2371cb21411f176bb0ab90600bc3027d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\.impeccable\\live\\config.json": {
+    "mtime": 1778599507.8375068,
+    "ast_hash": "db3f47aa64932b4c922bce752e0e6e0c",
+    "semantic_hash": "db3f47aa64932b4c922bce752e0e6e0c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\.impeccable\\live\\sessions\\237c15d2.snapshot.json": {
+    "mtime": 1778600733.815694,
+    "ast_hash": "167de82d7ed7ebd65b39b41af8d61023",
+    "semantic_hash": "167de82d7ed7ebd65b39b41af8d61023"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\.impeccable\\live\\sessions\\77e35c05.snapshot.json": {
+    "mtime": 1778600919.4709482,
+    "ast_hash": "1566d7fb6a694c9a7d9e59c5c5274a22",
+    "semantic_hash": "1566d7fb6a694c9a7d9e59c5c5274a22"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\auth.spec.ts": {
+    "mtime": 1780029734.1231236,
+    "ast_hash": "4deef458b041c5694acb2ce74168adb0",
+    "semantic_hash": "4deef458b041c5694acb2ce74168adb0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\checkout.spec.ts": {
+    "mtime": 1780030489.1718557,
+    "ast_hash": "0c1ee946fee97e449b0204daf788a074",
+    "semantic_hash": "0c1ee946fee97e449b0204daf788a074"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\collection.spec.ts": {
+    "mtime": 1780030485.722562,
+    "ast_hash": "6702c7b3bcb39c99a7eb399fdffb0884",
+    "semantic_hash": "6702c7b3bcb39c99a7eb399fdffb0884"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\global-features.spec.ts": {
+    "mtime": 1780030487.6489425,
+    "ast_hash": "8bbb8da939a3c5e824367f0c81c52571",
+    "semantic_hash": "8bbb8da939a3c5e824367f0c81c52571"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\homepage.spec.ts": {
+    "mtime": 1780029787.9043248,
+    "ast_hash": "aac48009e473d674f17b7471057eaa31",
+    "semantic_hash": "aac48009e473d674f17b7471057eaa31"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\interactive-pages.spec.ts": {
+    "mtime": 1780030516.744348,
+    "ast_hash": "69fa1bb4f10fbcb04d3fae8bf8348d15",
+    "semantic_hash": "69fa1bb4f10fbcb04d3fae8bf8348d15"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\navigation.spec.ts": {
+    "mtime": 1780033416.8150313,
+    "ast_hash": "e7ddd51b5e7050931c9f168f2c359353",
+    "semantic_hash": "e7ddd51b5e7050931c9f168f2c359353"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\product-detail.spec.ts": {
+    "mtime": 1780035482.2607067,
+    "ast_hash": "df01700c96686327e2be7b73967d64b1",
+    "semantic_hash": "df01700c96686327e2be7b73967d64b1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\e2e\\smoke.spec.ts": {
+    "mtime": 1778616396.2786322,
+    "ast_hash": "6350a6fbd53071bdb624968aa8a797de",
+    "semantic_hash": "6350a6fbd53071bdb624968aa8a797de"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\App.tsx": {
+    "mtime": 1778617001.3477533,
+    "ast_hash": "ccd5a276c724835e4c622dda65a24eef",
+    "semantic_hash": "ccd5a276c724835e4c622dda65a24eef"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\main.tsx": {
+    "mtime": 1777044162.0,
+    "ast_hash": "2b36426d5ad7e08ef79746aa524f4fb7",
+    "semantic_hash": "2b36426d5ad7e08ef79746aa524f4fb7"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\types.ts": {
+    "mtime": 1778441409.3998723,
+    "ast_hash": "4424d62b2f66b373d86c006c813c01ed",
+    "semantic_hash": "4424d62b2f66b373d86c006c813c01ed"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\vite-env.d.ts": {
+    "mtime": 1778433329.2100573,
+    "ast_hash": "aafbdcdcd8f12d2e6d64191981e7eb09",
+    "semantic_hash": "aafbdcdcd8f12d2e6d64191981e7eb09"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\AvailabilityCalendar.tsx": {
+    "mtime": 1778602977.484439,
+    "ast_hash": "742189fdd1d62e0f8cccda7732b2b676",
+    "semantic_hash": "742189fdd1d62e0f8cccda7732b2b676"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\Footer.tsx": {
+    "mtime": 1778605793.7712147,
+    "ast_hash": "0bce7f04cd2d3f8e481c257546fcaae0",
+    "semantic_hash": "0bce7f04cd2d3f8e481c257546fcaae0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\GlobalErrorBoundary.tsx": {
+    "mtime": 1778432812.8579998,
+    "ast_hash": "c4cee13a43fc22918183a949d3bcccc0",
+    "semantic_hash": "c4cee13a43fc22918183a949d3bcccc0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\GlobalFeatures.test.tsx": {
+    "mtime": 1778614150.5057666,
+    "ast_hash": "44a2807d913aa213aec5249a1b272043",
+    "semantic_hash": "44a2807d913aa213aec5249a1b272043"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\GlobalFeatures.tsx": {
+    "mtime": 1778613381.00685,
+    "ast_hash": "610165fdbb8b47f3a71c01ce1925ff0d",
+    "semantic_hash": "610165fdbb8b47f3a71c01ce1925ff0d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\Header.tsx": {
+    "mtime": 1780042508.7605622,
+    "ast_hash": "512169886b1d42b18a299e63d473985c",
+    "semantic_hash": "512169886b1d42b18a299e63d473985c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ImmersiveUI.tsx": {
+    "mtime": 1780038531.8944526,
+    "ast_hash": "b5daa44d5d3b4d676c9c869cfedd459c",
+    "semantic_hash": "b5daa44d5d3b4d676c9c869cfedd459c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\InstagramSection.tsx": {
+    "mtime": 1778605286.6255074,
+    "ast_hash": "ade17004c7cc9e4b8119aaab12ef1dcf",
+    "semantic_hash": "ade17004c7cc9e4b8119aaab12ef1dcf"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\Layout.tsx": {
+    "mtime": 1778617010.827248,
+    "ast_hash": "c73e8eb924903e179f1956062e5e02ae",
+    "semantic_hash": "c73e8eb924903e179f1956062e5e02ae"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\Logo.tsx": {
+    "mtime": 1778600727.1340058,
+    "ast_hash": "01ce60e32994c420257d5c5646084c49",
+    "semantic_hash": "01ce60e32994c420257d5c5646084c49"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\MaintenanceMode.tsx": {
+    "mtime": 1778613467.3855264,
+    "ast_hash": "42ece4d66ab97709900b3ac61cc5def1",
+    "semantic_hash": "42ece4d66ab97709900b3ac61cc5def1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\MobileBottomNav.tsx": {
+    "mtime": 1778602815.0526397,
+    "ast_hash": "fa1b68ba5365ff9fa60c02779b51488e",
+    "semantic_hash": "fa1b68ba5365ff9fa60c02779b51488e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ProductCard.tsx": {
+    "mtime": 1780042253.163818,
+    "ast_hash": "05ca32e296c77614f2b9a27b5a44c8cd",
+    "semantic_hash": "05ca32e296c77614f2b9a27b5a44c8cd"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ProtectedRoute.tsx": {
+    "mtime": 1778432661.025277,
+    "ast_hash": "ae0022e2238870bf2dec1baf60821253",
+    "semantic_hash": "ae0022e2238870bf2dec1baf60821253"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ScrollReveal.tsx": {
+    "mtime": 1778613447.6203637,
+    "ast_hash": "6988671cd3f88685d4b19e81512e5622",
+    "semantic_hash": "6988671cd3f88685d4b19e81512e5622"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\SEOHead.tsx": {
+    "mtime": 1780039415.1525044,
+    "ast_hash": "ddd7ee64246e7da8fb1d18a435c45f9b",
+    "semantic_hash": "ddd7ee64246e7da8fb1d18a435c45f9b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\SizeGuide.tsx": {
+    "mtime": 1778605774.321249,
+    "ast_hash": "feac411bfb8e317df1634eb204d26280",
+    "semantic_hash": "feac411bfb8e317df1634eb204d26280"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\Skeleton.tsx": {
+    "mtime": 1778602827.1466663,
+    "ast_hash": "b57f940e999b2dc08cf5ca9285988607",
+    "semantic_hash": "b57f940e999b2dc08cf5ca9285988607"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ThreeDViewer.tsx": {
+    "mtime": 1780041374.9404922,
+    "ast_hash": "3c9a019b364ca83139652495fa97716d",
+    "semantic_hash": "3c9a019b364ca83139652495fa97716d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\components\\ToastContainer.tsx": {
+    "mtime": 1778616989.2262008,
+    "ast_hash": "1a249ae6f2813d75a64656a98216124b",
+    "semantic_hash": "1a249ae6f2813d75a64656a98216124b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\AuthContext.tsx": {
+    "mtime": 1780044105.6723385,
+    "ast_hash": "71204a601ff77454106f16c0ea2286bb",
+    "semantic_hash": "71204a601ff77454106f16c0ea2286bb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\CartContext.tsx": {
+    "mtime": 1780042239.896852,
+    "ast_hash": "eb0bd7b2d10774a66ba068f12dcd96f8",
+    "semantic_hash": "eb0bd7b2d10774a66ba068f12dcd96f8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\DataContext.tsx": {
+    "mtime": 1780044152.3934548,
+    "ast_hash": "8c78a3f56232e96d5498c0502cbcb6ae",
+    "semantic_hash": "8c78a3f56232e96d5498c0502cbcb6ae"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\LanguageContext.tsx": {
+    "mtime": 1778601965.5203278,
+    "ast_hash": "8d1f76acead57015d74779542b1d10e1",
+    "semantic_hash": "8d1f76acead57015d74779542b1d10e1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\ToastContext.tsx": {
+    "mtime": 1778616984.9042263,
+    "ast_hash": "bb6c16bcc6feceb46de5547a6fd2b598",
+    "semantic_hash": "bb6c16bcc6feceb46de5547a6fd2b598"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\contexts\\WishlistContext.tsx": {
+    "mtime": 1778433224.644552,
+    "ast_hash": "a3e719f3f99efe84ef9a7ca5acd660dc",
+    "semantic_hash": "a3e719f3f99efe84ef9a7ca5acd660dc"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\data\\products.ts": {
+    "mtime": 1780040221.6990817,
+    "ast_hash": "428a5ba32e3036d060eb75ae618f8c30",
+    "semantic_hash": "428a5ba32e3036d060eb75ae618f8c30"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\hooks\\useFeature.test.ts": {
+    "mtime": 1778614071.6473055,
+    "ast_hash": "3ca31434403858e4cd8ff8c78bd65fcd",
+    "semantic_hash": "3ca31434403858e4cd8ff8c78bd65fcd"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\hooks\\useFeature.ts": {
+    "mtime": 1780038398.1785173,
+    "ast_hash": "f0d7c093aa99fba817fcfe12ae788f30",
+    "semantic_hash": "f0d7c093aa99fba817fcfe12ae788f30"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\hooks\\useScrollLock.test.ts": {
+    "mtime": 1778614075.1089478,
+    "ast_hash": "24f4b857dc2abf30f20d7f6e1a1f4a81",
+    "semantic_hash": "24f4b857dc2abf30f20d7f6e1a1f4a81"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\hooks\\useScrollLock.ts": {
+    "mtime": 1777044162.0,
+    "ast_hash": "a1c76eefc956613575af6d9514e35914",
+    "semantic_hash": "a1c76eefc956613575af6d9514e35914"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\lib\\crypto.ts": {
+    "mtime": 1778611838.1649442,
+    "ast_hash": "b0109a1d3a755d205f5e0b76cd481014",
+    "semantic_hash": "b0109a1d3a755d205f5e0b76cd481014"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\lib\\seo.ts": {
+    "mtime": 1780039538.6772327,
+    "ast_hash": "b89e5c0312cd1f540886abd659a1ea3a",
+    "semantic_hash": "b89e5c0312cd1f540886abd659a1ea3a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\lib\\utils.test.ts": {
+    "mtime": 1778613604.1261597,
+    "ast_hash": "75230313f52effba2029f8f16ab81e83",
+    "semantic_hash": "75230313f52effba2029f8f16ab81e83"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\lib\\utils.ts": {
+    "mtime": 1778614063.1815057,
+    "ast_hash": "a181a9d8286a5d532ac9e14d0ba7ded3",
+    "semantic_hash": "a181a9d8286a5d532ac9e14d0ba7ded3"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\AboutPage.tsx": {
+    "mtime": 1778605801.1515524,
+    "ast_hash": "b9c323ac1af5ec9c6281c005152b7836",
+    "semantic_hash": "b9c323ac1af5ec9c6281c005152b7836"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\AlterationsPage.tsx": {
+    "mtime": 1778605467.2254012,
+    "ast_hash": "d7b298ad4bba9547e3985ea627e09afb",
+    "semantic_hash": "d7b298ad4bba9547e3985ea627e09afb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\AppointmentPage.tsx": {
+    "mtime": 1778603182.3835423,
+    "ast_hash": "d3e454d18a0a94954c19bf5e35ef192c",
+    "semantic_hash": "d3e454d18a0a94954c19bf5e35ef192c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\Auth.tsx": {
+    "mtime": 1780045239.7246647,
+    "ast_hash": "0b9348fd33070790846a53417607c54f",
+    "semantic_hash": "0b9348fd33070790846a53417607c54f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\BlogPage.tsx": {
+    "mtime": 1778605781.4083633,
+    "ast_hash": "892d4a874fec35380f478af406c9dcf1",
+    "semantic_hash": "892d4a874fec35380f478af406c9dcf1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\Checkout.tsx": {
+    "mtime": 1780042253.163818,
+    "ast_hash": "65cac24bfab4ed6da067c112d7a78efb",
+    "semantic_hash": "65cac24bfab4ed6da067c112d7a78efb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\CollectionPage.tsx": {
+    "mtime": 1780038588.1929011,
+    "ast_hash": "24738fe42ec5abcc6dc884b7734d730b",
+    "semantic_hash": "24738fe42ec5abcc6dc884b7734d730b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\ContactPage.tsx": {
+    "mtime": 1778617119.9317467,
+    "ast_hash": "4c4b4286c4096fdde07cca85e8e2d73a",
+    "semantic_hash": "4c4b4286c4096fdde07cca85e8e2d73a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\FaqPage.tsx": {
+    "mtime": 1778605805.970548,
+    "ast_hash": "8b28a5e07d3a05fc0c6df06de08f9173",
+    "semantic_hash": "8b28a5e07d3a05fc0c6df06de08f9173"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\GalleryPage.tsx": {
+    "mtime": 1778605455.218932,
+    "ast_hash": "55bc3ad0fda851e66ebb347a34e61f0e",
+    "semantic_hash": "55bc3ad0fda851e66ebb347a34e61f0e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\Index.tsx": {
+    "mtime": 1780040192.3905895,
+    "ast_hash": "d173fe2155cdc48860f2cdf2576b4e26",
+    "semantic_hash": "d173fe2155cdc48860f2cdf2576b4e26"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\NotFound.tsx": {
+    "mtime": 1778612178.8105395,
+    "ast_hash": "00eadaf018d06873b0c97e8d3cd92fd2",
+    "semantic_hash": "00eadaf018d06873b0c97e8d3cd92fd2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\PaymentCancel.tsx": {
+    "mtime": 1778613875.4822583,
+    "ast_hash": "ac2fe635e3e785a5ea721bd19c3387e0",
+    "semantic_hash": "ac2fe635e3e785a5ea721bd19c3387e0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\PaymentSuccess.tsx": {
+    "mtime": 1778613873.041977,
+    "ast_hash": "264a04b42c6e0aade44820c42674b4cd",
+    "semantic_hash": "264a04b42c6e0aade44820c42674b4cd"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\PrivacyPage.tsx": {
+    "mtime": 1777044162.0,
+    "ast_hash": "ecfd420729d0cb998a25b5fe0d39b644",
+    "semantic_hash": "ecfd420729d0cb998a25b5fe0d39b644"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\ProductDetail.tsx": {
+    "mtime": 1780042523.8553154,
+    "ast_hash": "d899386ccf47a1be7d0b9f205fdeb659",
+    "semantic_hash": "d899386ccf47a1be7d0b9f205fdeb659"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\ProfilePage.tsx": {
+    "mtime": 1778617160.5519588,
+    "ast_hash": "9298aebc9a77891fdf2b5f5280127713",
+    "semantic_hash": "9298aebc9a77891fdf2b5f5280127713"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\SearchPage.tsx": {
+    "mtime": 1778605804.9317098,
+    "ast_hash": "344276ae2255c987c824bf661e5c1ee4",
+    "semantic_hash": "344276ae2255c987c824bf661e5c1ee4"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\StyleQuiz.tsx": {
+    "mtime": 1778603230.0743616,
+    "ast_hash": "c2d6ece25f7058fa1961845ca7d7ff22",
+    "semantic_hash": "c2d6ece25f7058fa1961845ca7d7ff22"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\TermsPage.tsx": {
+    "mtime": 1777044162.0,
+    "ast_hash": "78f5433958cdba64c3986da76021f4a4",
+    "semantic_hash": "78f5433958cdba64c3986da76021f4a4"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\WeddingChecklist.tsx": {
+    "mtime": 1777044162.0,
+    "ast_hash": "ca4640e527cb39e6ca9ea962114d7f6d",
+    "semantic_hash": "ca4640e527cb39e6ca9ea962114d7f6d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\WeddingTimeline.tsx": {
+    "mtime": 1777044162.0,
+    "ast_hash": "a783ecd7e6bd849d1f91bfa69a5aae6a",
+    "semantic_hash": "a783ecd7e6bd849d1f91bfa69a5aae6a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\WishlistPage.tsx": {
+    "mtime": 1778605445.81168,
+    "ast_hash": "cf3c0054328567213ae3fcf7f7301335",
+    "semantic_hash": "cf3c0054328567213ae3fcf7f7301335"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminAppointments.tsx": {
+    "mtime": 1780044142.746094,
+    "ast_hash": "707da0cb785447456fa9b37827e7b3b2",
+    "semantic_hash": "707da0cb785447456fa9b37827e7b3b2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminCalendar.tsx": {
+    "mtime": 1778606844.3826907,
+    "ast_hash": "526efa61080c0fbc8c638e9b7a3fa98a",
+    "semantic_hash": "526efa61080c0fbc8c638e9b7a3fa98a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminContent.tsx": {
+    "mtime": 1778606861.5465164,
+    "ast_hash": "9e020aa5b4968d37c2c111bdbe6ae96e",
+    "semantic_hash": "9e020aa5b4968d37c2c111bdbe6ae96e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminDashboard.tsx": {
+    "mtime": 1778606797.1299992,
+    "ast_hash": "4e8426db5ef2b396c4e40f001a395814",
+    "semantic_hash": "4e8426db5ef2b396c4e40f001a395814"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminLayout.tsx": {
+    "mtime": 1778611234.4337213,
+    "ast_hash": "1029b1f00f5901af7f54efa7da31fc54",
+    "semantic_hash": "1029b1f00f5901af7f54efa7da31fc54"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminOrders.tsx": {
+    "mtime": 1780044525.3642764,
+    "ast_hash": "10d67e6cd2ba11a4514205e5bb538f52",
+    "semantic_hash": "10d67e6cd2ba11a4514205e5bb538f52"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminPlaceholder.tsx": {
+    "mtime": 1778606863.5054193,
+    "ast_hash": "24ecfdf2124412b01b2b4a3dbd164162",
+    "semantic_hash": "24ecfdf2124412b01b2b4a3dbd164162"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminProducts.tsx": {
+    "mtime": 1778613555.9390018,
+    "ast_hash": "3aaabe07e3fe688a0dbbec6cbabd19c5",
+    "semantic_hash": "3aaabe07e3fe688a0dbbec6cbabd19c5"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\pages\\admin\\AdminSettings.tsx": {
+    "mtime": 1778617062.9153302,
+    "ast_hash": "9c852221866bfcbc984efcc8986aceb1",
+    "semantic_hash": "9c852221866bfcbc984efcc8986aceb1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\appointments.ts": {
+    "mtime": 1778441465.5651286,
+    "ast_hash": "cbb55aa3087a3210416a3251f213ec2f",
+    "semantic_hash": "cbb55aa3087a3210416a3251f213ec2f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\auth.ts": {
+    "mtime": 1778433145.1727006,
+    "ast_hash": "0ad6157cd092268d2b3f6e4ff9f1d2bb",
+    "semantic_hash": "0ad6157cd092268d2b3f6e4ff9f1d2bb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\contact.ts": {
+    "mtime": 1778433191.1819866,
+    "ast_hash": "7ae869872d2b83fc517674b84909fd00",
+    "semantic_hash": "7ae869872d2b83fc517674b84909fd00"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\customers.ts": {
+    "mtime": 1778433187.398348,
+    "ast_hash": "e3e08ffb5d8bff5027921d9957edb156",
+    "semantic_hash": "e3e08ffb5d8bff5027921d9957edb156"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\geminiService.ts": {
+    "mtime": 1778432433.1249337,
+    "ast_hash": "d8157d3c74585f3f50cfcfc1e93eaa2d",
+    "semantic_hash": "d8157d3c74585f3f50cfcfc1e93eaa2d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\notifications.test.ts": {
+    "mtime": 1778613975.8220544,
+    "ast_hash": "aeaba87344f214e0a892e91a86d1228e",
+    "semantic_hash": "aeaba87344f214e0a892e91a86d1228e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\notifications.ts": {
+    "mtime": 1778612932.116501,
+    "ast_hash": "b45fb1a2d27e17ef5dd7069c2b790c18",
+    "semantic_hash": "b45fb1a2d27e17ef5dd7069c2b790c18"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\orders.ts": {
+    "mtime": 1778614480.201363,
+    "ast_hash": "7f6ff1c374e613980241020256a2e55e",
+    "semantic_hash": "7f6ff1c374e613980241020256a2e55e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\payment.test.ts": {
+    "mtime": 1780025958.7828765,
+    "ast_hash": "012987092e5e572c7aa0bb9d26e8d420",
+    "semantic_hash": "012987092e5e572c7aa0bb9d26e8d420"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\payment.ts": {
+    "mtime": 1778614088.8132007,
+    "ast_hash": "298d0ae8e9f9312c48dbf3acadf0d7cd",
+    "semantic_hash": "298d0ae8e9f9312c48dbf3acadf0d7cd"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\products.ts": {
+    "mtime": 1778441461.6163323,
+    "ast_hash": "ee8dfb7a1187b6582da11c480235b72f",
+    "semantic_hash": "ee8dfb7a1187b6582da11c480235b72f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\rentals.ts": {
+    "mtime": 1778433181.740271,
+    "ast_hash": "d12536b14fe5baef22f59184c401bb52",
+    "semantic_hash": "d12536b14fe5baef22f59184c401bb52"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\siteContent.ts": {
+    "mtime": 1778611836.3046556,
+    "ast_hash": "cf57130d337f0e14d350505bda6178da",
+    "semantic_hash": "cf57130d337f0e14d350505bda6178da"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\supabase.ts": {
+    "mtime": 1780045520.7168968,
+    "ast_hash": "913d5b88bd01792d2227fa04c5310d72",
+    "semantic_hash": "913d5b88bd01792d2227fa04c5310d72"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\upload.ts": {
+    "mtime": 1778613507.1356785,
+    "ast_hash": "6f377ca661244413a0c6a9f65636946d",
+    "semantic_hash": "6f377ca661244413a0c6a9f65636946d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\services\\wishlist.ts": {
+    "mtime": 1778433195.592402,
+    "ast_hash": "2bdb29a42909d21be1cba3d090642e13",
+    "semantic_hash": "2bdb29a42909d21be1cba3d090642e13"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\src\\test\\setup.ts": {
+    "mtime": 1778613601.9189038,
+    "ast_hash": "00e47f7b9836e8f731101981fa2bb2de",
+    "semantic_hash": "00e47f7b9836e8f731101981fa2bb2de"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\functions\\create-checkout\\index.ts": {
+    "mtime": 1780025958.3793411,
+    "ast_hash": "ecc0d665ae32816b2445771b1b0a3fdf",
+    "semantic_hash": "ecc0d665ae32816b2445771b1b0a3fdf"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\functions\\send-notification\\index.ts": {
+    "mtime": 1778612946.0356536,
+    "ast_hash": "240b01b3f4865af5524976f4c8392308",
+    "semantic_hash": "240b01b3f4865af5524976f4c8392308"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\functions\\stripe-webhook\\index.ts": {
+    "mtime": 1778613847.74128,
+    "ast_hash": "0fe465e0338fc8895a8ecba4676361f8",
+    "semantic_hash": "0fe465e0338fc8895a8ecba4676361f8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\migrations\\00001_initial_schema.sql": {
+    "mtime": 1778434646.3453329,
+    "ast_hash": "6f27ef424faaa221aefffb4fb846a032",
+    "semantic_hash": "6f27ef424faaa221aefffb4fb846a032"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\migrations\\00002_appointments_and_product_fields.sql": {
+    "mtime": 1778441639.3641958,
+    "ast_hash": "c532076495c2ba1e33ca1d24a5990bb9",
+    "semantic_hash": "c532076495c2ba1e33ca1d24a5990bb9"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\supabase\\migrations\\00003_add_payment_fields.sql": {
+    "mtime": 1778613839.5678596,
+    "ast_hash": "17da25a8660f8a07b632e3db3d7cb832",
+    "semantic_hash": "17da25a8660f8a07b632e3db3d7cb832"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3271564769488258933_227867687_2024-01-02.mp4": {
+    "mtime": 1770172308.0,
+    "ast_hash": "a5764534381b5639a9690af4ef6f5884",
+    "semantic_hash": "a5764534381b5639a9690af4ef6f5884"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3277354778011246541_227867687_2024-01-10.mp4": {
+    "mtime": 1770172306.0,
+    "ast_hash": "0a70f2a07953241e70a687bbdfa5240c",
+    "semantic_hash": "0a70f2a07953241e70a687bbdfa5240c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3288897766323495537_227867687_2024-01-26.mp4": {
+    "mtime": 1770172304.0,
+    "ast_hash": "8845c5b8e9f276e9f69168c56a4b03e4",
+    "semantic_hash": "8845c5b8e9f276e9f69168c56a4b03e4"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3296879093173607035_227867687_2024-02-06.mp4": {
+    "mtime": 1770172304.0,
+    "ast_hash": "150a48444af4bc221a3cfe829215341a",
+    "semantic_hash": "150a48444af4bc221a3cfe829215341a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3306305106777368667_227867687_2024-02-19.mp4": {
+    "mtime": 1770172302.0,
+    "ast_hash": "72596071c7a2ed07b5df07d1be57f732",
+    "semantic_hash": "72596071c7a2ed07b5df07d1be57f732"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3308630105483843025_227867687_2024-02-22.mp4": {
+    "mtime": 1770172300.0,
+    "ast_hash": "980e1ddc238e9cacbfb9b7c93fa5e638",
+    "semantic_hash": "980e1ddc238e9cacbfb9b7c93fa5e638"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3309210353606940990_227867687_2024-02-23.mp4": {
+    "mtime": 1770172300.0,
+    "ast_hash": "8ceb3e0c753a7b081dbf13962e4cc89f",
+    "semantic_hash": "8ceb3e0c753a7b081dbf13962e4cc89f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3310669199512876600_227867687_2024-02-25.mp4": {
+    "mtime": 1770172300.0,
+    "ast_hash": "c77e4796078997ac489cb445cb396d07",
+    "semantic_hash": "c77e4796078997ac489cb445cb396d07"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3312848069934546229_227867687_2024-02-28.mp4": {
+    "mtime": 1770172298.0,
+    "ast_hash": "041d7bc8323b8149ee94319b651d4cae",
+    "semantic_hash": "041d7bc8323b8149ee94319b651d4cae"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3314333417197917246_227867687_2024-03-01.mp4": {
+    "mtime": 1770172298.0,
+    "ast_hash": "eb2323be56e939b5e69a4ede1086d117",
+    "semantic_hash": "eb2323be56e939b5e69a4ede1086d117"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3315049841449186212_227867687_2024-03-02.mp4": {
+    "mtime": 1770172296.0,
+    "ast_hash": "9987d65a2b795f8b9f76bae40eae5895",
+    "semantic_hash": "9987d65a2b795f8b9f76bae40eae5895"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3316578309986685246_227867687_2024-03-04.mp4": {
+    "mtime": 1770172296.0,
+    "ast_hash": "968e39cb3949f111b0912685c40ee31d",
+    "semantic_hash": "968e39cb3949f111b0912685c40ee31d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3322260262325151539_227867687_2024-03-12.mp4": {
+    "mtime": 1770172294.0,
+    "ast_hash": "f3db01f5624a49443a8c26f980e1b599",
+    "semantic_hash": "f3db01f5624a49443a8c26f980e1b599"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3322941546840129334_227867687_2024-03-13.mp4": {
+    "mtime": 1770172294.0,
+    "ast_hash": "b9ffadeb5e5b3722f3ec7a0dcf09227b",
+    "semantic_hash": "b9ffadeb5e5b3722f3ec7a0dcf09227b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3325186544843120447_227867687_2024-03-16.mp4": {
+    "mtime": 1770172292.0,
+    "ast_hash": "561046c87b791560cca65010fa58ee60",
+    "semantic_hash": "561046c87b791560cca65010fa58ee60"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3327363506546303529_227867687_2024-03-19.mp4": {
+    "mtime": 1770172292.0,
+    "ast_hash": "c3af7c25d0025d008418f429ceecebc1",
+    "semantic_hash": "c3af7c25d0025d008418f429ceecebc1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3329525836570864832_227867687_2024-03-22.mp4": {
+    "mtime": 1770172290.0,
+    "ast_hash": "766c17ca3f3d9ef74b4841f750740f0e",
+    "semantic_hash": "766c17ca3f3d9ef74b4841f750740f0e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3333172177620522994_227867687_2024-03-27.mp4": {
+    "mtime": 1770172290.0,
+    "ast_hash": "72272b604e002a694d03415cc44a0a96",
+    "semantic_hash": "72272b604e002a694d03415cc44a0a96"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3333930607620545117_227867687_2024-03-28.mp4": {
+    "mtime": 1770172288.0,
+    "ast_hash": "67235642f7ca856db5f9cf2111d170c0",
+    "semantic_hash": "67235642f7ca856db5f9cf2111d170c0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3334597886687832302_227867687_2024-03-29.mp4": {
+    "mtime": 1770172288.0,
+    "ast_hash": "bcb175e3aec3c849c8dab321dccb8ea3",
+    "semantic_hash": "bcb175e3aec3c849c8dab321dccb8ea3"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3340448131913058125_227867687_2024-04-06.mp4": {
+    "mtime": 1770172288.0,
+    "ast_hash": "e8b5c6aa80f04671e8a05939aa41db3a",
+    "semantic_hash": "e8b5c6aa80f04671e8a05939aa41db3a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3350528041822055491_227867687_2024-04-20.mp4": {
+    "mtime": 1770172286.0,
+    "ast_hash": "65cd6710422142908d155fad658be46a",
+    "semantic_hash": "65cd6710422142908d155fad658be46a"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3351982620619095606_227867687_2024-04-22.mp4": {
+    "mtime": 1770172284.0,
+    "ast_hash": "69e96fcaeee4a9786b55bfbd7aac9566",
+    "semantic_hash": "69e96fcaeee4a9786b55bfbd7aac9566"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3352701330631767766_227867687_2024-04-23.mp4": {
+    "mtime": 1770172284.0,
+    "ast_hash": "9a15dd32be8d25f7728200505536ea62",
+    "semantic_hash": "9a15dd32be8d25f7728200505536ea62"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3354137868888457174_227867687_2024-04-25.mp4": {
+    "mtime": 1770172282.0,
+    "ast_hash": "ec6bb4c72216e8e58bba15de9a97f13f",
+    "semantic_hash": "ec6bb4c72216e8e58bba15de9a97f13f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3355606430471795405_227867687_2024-04-27.mp4": {
+    "mtime": 1770172282.0,
+    "ast_hash": "3e7662d537d30fd4d71d6cd001de9ab5",
+    "semantic_hash": "3e7662d537d30fd4d71d6cd001de9ab5"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3356399233178846252_227867687_2024-04-28.mp4": {
+    "mtime": 1770172280.0,
+    "ast_hash": "e9d484b4d9c027d1be29fae16e88b3e3",
+    "semantic_hash": "e9d484b4d9c027d1be29fae16e88b3e3"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3357054069549814310_227867687_2024-04-29.mp4": {
+    "mtime": 1770172280.0,
+    "ast_hash": "3b2f26bc9bfa4a3e44910308bf7e6d54",
+    "semantic_hash": "3b2f26bc9bfa4a3e44910308bf7e6d54"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3359243640756506731_227867687_2024-05-02.mp4": {
+    "mtime": 1770172280.0,
+    "ast_hash": "fc38d6025cac97822f035583d6d87308",
+    "semantic_hash": "fc38d6025cac97822f035583d6d87308"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3359996951554297024_227867687_2024-05-03.mp4": {
+    "mtime": 1770172278.0,
+    "ast_hash": "92f7e969f6dd51459c0b78274773a0a7",
+    "semantic_hash": "92f7e969f6dd51459c0b78274773a0a7"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3364274599914887203_227867687_2024-05-09.mp4": {
+    "mtime": 1770172276.0,
+    "ast_hash": "4d1b72dd66837d40ad2deece45dc7254",
+    "semantic_hash": "4d1b72dd66837d40ad2deece45dc7254"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3365749248615797256_227867687_2024-05-11.mp4": {
+    "mtime": 1770172276.0,
+    "ast_hash": "2a170690752ea60e1bf091e2c8f3a57e",
+    "semantic_hash": "2a170690752ea60e1bf091e2c8f3a57e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3367267838938482979_227867687_2024-05-13.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "70d65f117d447e4253320186785dd21f",
+    "semantic_hash": "70d65f117d447e4253320186785dd21f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3370105422979055344_227867687_2024-05-17.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "c7ed476da9d3df6d53eb9d0df24a2fca",
+    "semantic_hash": "c7ed476da9d3df6d53eb9d0df24a2fca"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3371560108680708502_227867687_2024-05-19.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "e1a0dfec2cb80b960aaf7f9917f6b1e2",
+    "semantic_hash": "e1a0dfec2cb80b960aaf7f9917f6b1e2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3375167222493987089_227867687_2024-05-24.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "63c91a389823a2447c272d86fb210287",
+    "semantic_hash": "63c91a389823a2447c272d86fb210287"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3381669800002159973_227867687_2024-06-02.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "9800b8b1b1143373ea390f44c4173ec6",
+    "semantic_hash": "9800b8b1b1143373ea390f44c4173ec6"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3383102677034195694_227867687_2024-06-04.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "457cb2c177547077fcb51b15c139df47",
+    "semantic_hash": "457cb2c177547077fcb51b15c139df47"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3390309818157471206_227867687_2024-06-14.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "782ea66e61527fe8833895033df8a4e5",
+    "semantic_hash": "782ea66e61527fe8833895033df8a4e5"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3391124870200381239_227867687_2024-06-15.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "2608551be53f818555098ad4a2a0f8d1",
+    "semantic_hash": "2608551be53f818555098ad4a2a0f8d1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3394807990741192551_227867687_2024-06-20.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "f8e8efbed50a2325de685f10751b4ec9",
+    "semantic_hash": "f8e8efbed50a2325de685f10751b4ec9"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3396173556685001768_227867687_2024-06-22.mp4": {
+    "mtime": 1770172274.0,
+    "ast_hash": "25dc943e56518eaf01bf71315686f8a0",
+    "semantic_hash": "25dc943e56518eaf01bf71315686f8a0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3399810825328107847_227867687_2024-06-27.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "bfa1bfa24fbb9d42abe29dcff52f9e48",
+    "semantic_hash": "bfa1bfa24fbb9d42abe29dcff52f9e48"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3425889096458495904_227867687_2024-08-02.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "533b26e9ab050962af9520a0f5aa43da",
+    "semantic_hash": "533b26e9ab050962af9520a0f5aa43da"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3426641152312050623_227867687_2024-08-03.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "8f57abfc35fc8329c11d09a36408cf6f",
+    "semantic_hash": "8f57abfc35fc8329c11d09a36408cf6f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3428103556564661922_227867687_2024-08-05.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "ff505f9de54c4ad748728d4686fbeff8",
+    "semantic_hash": "ff505f9de54c4ad748728d4686fbeff8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3462207588768255429_227867687_2024-09-21.mp4": {
+    "mtime": 1770172272.0,
+    "ast_hash": "563253d538d08f8b369696b59d452e41",
+    "semantic_hash": "563253d538d08f8b369696b59d452e41"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3471600233915866860_227867687_2024-10-04.mp4": {
+    "mtime": 1770172246.0,
+    "ast_hash": "02e78ee8bc0e2cc86b92eb23668d3c0c",
+    "semantic_hash": "02e78ee8bc0e2cc86b92eb23668d3c0c"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3475906409600181303_227867687_2024-10-10.mp4": {
+    "mtime": 1770172188.0,
+    "ast_hash": "50b7368893de6bc0097a8d000bd1ef47",
+    "semantic_hash": "50b7368893de6bc0097a8d000bd1ef47"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3477377876368283343_227867687_2024-10-12.mp4": {
+    "mtime": 1770172186.0,
+    "ast_hash": "9b8b53dd494d8c3e4b7d06e85392aef8",
+    "semantic_hash": "9b8b53dd494d8c3e4b7d06e85392aef8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3485330490015650568_227867687_2024-10-23.mp4": {
+    "mtime": 1770172182.0,
+    "ast_hash": "102aa160eb945516e25a62fcec44ea12",
+    "semantic_hash": "102aa160eb945516e25a62fcec44ea12"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3493341711603969964_227867687_2024-11-03.mp4": {
+    "mtime": 1770172182.0,
+    "ast_hash": "8cee151115d67f378f0bc67524e9cdcf",
+    "semantic_hash": "8cee151115d67f378f0bc67524e9cdcf"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3496928911537791443_227867687_2024-11-08.mp4": {
+    "mtime": 1770172180.0,
+    "ast_hash": "c04756e6cc96d8d81df3fc128ddf5993",
+    "semantic_hash": "c04756e6cc96d8d81df3fc128ddf5993"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3500586925431085901_227867687_2024-11-13.mp4": {
+    "mtime": 1770172178.0,
+    "ast_hash": "1ee903f30d9c3ab759d6c4932cf33b95",
+    "semantic_hash": "1ee903f30d9c3ab759d6c4932cf33b95"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3502038229055691355_227867687_2024-11-15.mp4": {
+    "mtime": 1770172178.0,
+    "ast_hash": "53f618548cfa6b9515f7e4a0abfde955",
+    "semantic_hash": "53f618548cfa6b9515f7e4a0abfde955"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3503453756513821961_227867687_2024-11-17.mp4": {
+    "mtime": 1770172178.0,
+    "ast_hash": "37fc0582c67aea0bd15f4a087c6ac4e2",
+    "semantic_hash": "37fc0582c67aea0bd15f4a087c6ac4e2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3510691796517616177_227867687_2024-11-27.mp4": {
+    "mtime": 1770172178.0,
+    "ast_hash": "1a5d0974b11fe5b9b79e7919b4909edb",
+    "semantic_hash": "1a5d0974b11fe5b9b79e7919b4909edb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3512896212918121484_227867687_2024-11-30.mp4": {
+    "mtime": 1770172176.0,
+    "ast_hash": "d42dfac73cdba8745ae76f084862ac46",
+    "semantic_hash": "d42dfac73cdba8745ae76f084862ac46"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3516494791959963624_227867687_2024-12-05.mp4": {
+    "mtime": 1770172174.0,
+    "ast_hash": "bf1ffb99dfc215a77b68da45cd496713",
+    "semantic_hash": "bf1ffb99dfc215a77b68da45cd496713"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3555006645686538614_378733734_2025-01-27.mp4": {
+    "mtime": 1770172170.0,
+    "ast_hash": "ee0ccae6ab2e4d98e8fe1c5ead25334d",
+    "semantic_hash": "ee0ccae6ab2e4d98e8fe1c5ead25334d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3555681706080885658_227867687_2025-01-28.mp4": {
+    "mtime": 1770172168.0,
+    "ast_hash": "9069c7c993d9e9aac625ea7864211707",
+    "semantic_hash": "9069c7c993d9e9aac625ea7864211707"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3559232085338914779_227867687_2025-02-02.mp4": {
+    "mtime": 1770172168.0,
+    "ast_hash": "4e011e245ae7a6cb27b906467df2692b",
+    "semantic_hash": "4e011e245ae7a6cb27b906467df2692b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3560717884580463219_227867687_2025-02-04.mp4": {
+    "mtime": 1770172166.0,
+    "ast_hash": "3a46dd9f9762edf87d0b94dddf133015",
+    "semantic_hash": "3a46dd9f9762edf87d0b94dddf133015"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3565801680568887216_227867687_2025-02-11.mp4": {
+    "mtime": 1770172164.0,
+    "ast_hash": "309d7c30dcf586150559b1f50215042e",
+    "semantic_hash": "309d7c30dcf586150559b1f50215042e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3570191695390447226_227867687_2025-02-17.mp4": {
+    "mtime": 1770172164.0,
+    "ast_hash": "0e6ce7eceb02d6513d788e563725623d",
+    "semantic_hash": "0e6ce7eceb02d6513d788e563725623d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3578095054269357155_227867687_2025-02-28.mp4": {
+    "mtime": 1770172162.0,
+    "ast_hash": "d9b8c8c9ef97dca1762b58655d721290",
+    "semantic_hash": "d9b8c8c9ef97dca1762b58655d721290"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3583174476538090801_227867687_2025-03-07.mp4": {
+    "mtime": 1770172160.0,
+    "ast_hash": "acf05ae15a2a0aef095c4d5d7006d56b",
+    "semantic_hash": "acf05ae15a2a0aef095c4d5d7006d56b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3627403684646510580_227867687_2025-05-07.mp4": {
+    "mtime": 1770172160.0,
+    "ast_hash": "02a7d00f7b88398c9153792544fcb403",
+    "semantic_hash": "02a7d00f7b88398c9153792544fcb403"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3628153643776027236_227867687_2025-05-08.mp4": {
+    "mtime": 1770172160.0,
+    "ast_hash": "7caa20818ea7b38b6f60aa8024c7cc8f",
+    "semantic_hash": "7caa20818ea7b38b6f60aa8024c7cc8f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3628542079376149955_7272985925_2025-05-09.mp4": {
+    "mtime": 1770172158.0,
+    "ast_hash": "37f1f28254bd7a51cb9acc2ec1bf5553",
+    "semantic_hash": "37f1f28254bd7a51cb9acc2ec1bf5553"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3628856075267072495_227867687_2025-05-09.mp4": {
+    "mtime": 1770172156.0,
+    "ast_hash": "66816c7144360972f9eab91b9ff3342e",
+    "semantic_hash": "66816c7144360972f9eab91b9ff3342e"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3631044602218102970_227867687_2025-05-12.mp4": {
+    "mtime": 1770172156.0,
+    "ast_hash": "81be6d2a05c9f532a55b82b2c1b32fdc",
+    "semantic_hash": "81be6d2a05c9f532a55b82b2c1b32fdc"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3634631583355239112_227867687_2025-05-17.mp4": {
+    "mtime": 1770172154.0,
+    "ast_hash": "522839e3957f994ed4a9ee3acbe9debb",
+    "semantic_hash": "522839e3957f994ed4a9ee3acbe9debb"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3637595208575571389_227867687_2025-05-21.mp4": {
+    "mtime": 1770172152.0,
+    "ast_hash": "58070f5b7da690524983fd77442479e3",
+    "semantic_hash": "58070f5b7da690524983fd77442479e3"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3638272630430035602_227867687_2025-05-22.mp4": {
+    "mtime": 1770172150.0,
+    "ast_hash": "e33ab71f04945da8bdb37cf6cd82d85f",
+    "semantic_hash": "e33ab71f04945da8bdb37cf6cd82d85f"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3638353337395379269_353452888_2025-05-22.mp4": {
+    "mtime": 1770172150.0,
+    "ast_hash": "663a3f72664c8812405e438561acf8ce",
+    "semantic_hash": "663a3f72664c8812405e438561acf8ce"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3638987298593265644_227867687_2025-05-23.mp4": {
+    "mtime": 1770172150.0,
+    "ast_hash": "d7cad24ac3c979685c6ae91235826070",
+    "semantic_hash": "d7cad24ac3c979685c6ae91235826070"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3640433975103420052_227867687_2025-05-25.mp4": {
+    "mtime": 1770172148.0,
+    "ast_hash": "31dc296b8b15e02d5cdefbe90510e6fe",
+    "semantic_hash": "31dc296b8b15e02d5cdefbe90510e6fe"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3646233666718170327_227867687_2025-06-02.mp4": {
+    "mtime": 1770172148.0,
+    "ast_hash": "400bd7aa2faad6541016e28e2636ae05",
+    "semantic_hash": "400bd7aa2faad6541016e28e2636ae05"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3657857472045908787_227867687_2025-06-18.mp4": {
+    "mtime": 1770172144.0,
+    "ast_hash": "df5250847e0cf2150ce893c422fc7e69",
+    "semantic_hash": "df5250847e0cf2150ce893c422fc7e69"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3658560284371413226_227867687_2025-06-19.mp4": {
+    "mtime": 1770172144.0,
+    "ast_hash": "ba2796f606155a718d7e4bdcfc129703",
+    "semantic_hash": "ba2796f606155a718d7e4bdcfc129703"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3660727437300268045_227867687_2025-06-22.mp4": {
+    "mtime": 1770172142.0,
+    "ast_hash": "5be43829b10f07856c64f1170cc2dca8",
+    "semantic_hash": "5be43829b10f07856c64f1170cc2dca8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3661463055366070525_227867687_2025-06-23.mp4": {
+    "mtime": 1770172142.0,
+    "ast_hash": "baf1b55ccd2c14f0e531d585c808568d",
+    "semantic_hash": "baf1b55ccd2c14f0e531d585c808568d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3665070866624682264_227867687_2025-06-28.mp4": {
+    "mtime": 1770172140.0,
+    "ast_hash": "7ce5a0ec0d380383b236e91edd1b6b4d",
+    "semantic_hash": "7ce5a0ec0d380383b236e91edd1b6b4d"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3665807074904574696_227867687_2025-06-29.mp4": {
+    "mtime": 1770172140.0,
+    "ast_hash": "35f686de2bea790285629d71706ca181",
+    "semantic_hash": "35f686de2bea790285629d71706ca181"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3666514604085596551_227867687_2025-06-30.mp4": {
+    "mtime": 1770172138.0,
+    "ast_hash": "583ca3420cee5e75ab030165d2fdb8a1",
+    "semantic_hash": "583ca3420cee5e75ab030165d2fdb8a1"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3669200303742063641_227867687_2025-07-04.mp4": {
+    "mtime": 1770172128.0,
+    "ast_hash": "8d8604f2ad8291628b1d2c6c0c888350",
+    "semantic_hash": "8d8604f2ad8291628b1d2c6c0c888350"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3671634217794335581_227867687_2025-07-07.mp4": {
+    "mtime": 1770172128.0,
+    "ast_hash": "f669a1c24e450b0b11d4c54c133cd820",
+    "semantic_hash": "f669a1c24e450b0b11d4c54c133cd820"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3674433706879885513_48077922453_2025-07-11.mp4": {
+    "mtime": 1770172130.0,
+    "ast_hash": "6597c4aa2009fd4c026c8d443192e0f8",
+    "semantic_hash": "6597c4aa2009fd4c026c8d443192e0f8"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3675944476172208677_227867687_2025-07-13.mp4": {
+    "mtime": 1770172128.0,
+    "ast_hash": "31564a0d4acd802efc45d8bbb4b82cba",
+    "semantic_hash": "31564a0d4acd802efc45d8bbb4b82cba"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3678070355153305274_1739454936_2025-07-16.mp4": {
+    "mtime": 1770172130.0,
+    "ast_hash": "436bc00d3879d063663e321d675977a4",
+    "semantic_hash": "436bc00d3879d063663e321d675977a4"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3680308239742681540_227867687_2025-07-19.mp4": {
+    "mtime": 1770172126.0,
+    "ast_hash": "1bb31e0af3313f5bfb2280f4889afd08",
+    "semantic_hash": "1bb31e0af3313f5bfb2280f4889afd08"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3693365499263666902_227867687_2025-08-06.mp4": {
+    "mtime": 1770172124.0,
+    "ast_hash": "c9af8cf0a9b6db6decfd26e94c6d3df2",
+    "semantic_hash": "c9af8cf0a9b6db6decfd26e94c6d3df2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3718635690872397774_53526772268_2025-09-10.mp4": {
+    "mtime": 1770172120.0,
+    "ast_hash": "2ae3ce3e2fc1a64970545487e92f3b56",
+    "semantic_hash": "2ae3ce3e2fc1a64970545487e92f3b56"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3723761629122488075_227867687_2_2025-09-17.mp4": {
+    "mtime": 1770172114.0,
+    "ast_hash": "e3846e65e7fb3f1e4596f8c4a0e5e0df",
+    "semantic_hash": "e3846e65e7fb3f1e4596f8c4a0e5e0df"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3723761629122488075_227867687_3_2025-09-17.mp4": {
+    "mtime": 1770172116.0,
+    "ast_hash": "2225395e74e63af9608ffec8a2c1c60b",
+    "semantic_hash": "2225395e74e63af9608ffec8a2c1c60b"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3775737612968594326_227867687_2025-11-28.mp4": {
+    "mtime": 1770172112.0,
+    "ast_hash": "0808a88cd8645d39a84a4b5bcdaab4ea",
+    "semantic_hash": "0808a88cd8645d39a84a4b5bcdaab4ea"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3781516266222418918_353452888_2025-12-06.mp4": {
+    "mtime": 1770172112.0,
+    "ast_hash": "d2b09223ac9871e0dd2330f5a97158b2",
+    "semantic_hash": "d2b09223ac9871e0dd2330f5a97158b2"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3788388356687348427_227867687_2025-12-15.mp4": {
+    "mtime": 1770172110.0,
+    "ast_hash": "21787a859d6e812671ceffecd314e5c0",
+    "semantic_hash": "21787a859d6e812671ceffecd314e5c0"
+  },
+  "E:\\riman-fashion website v2 gemini v3\\public\\assets\\rimanfashion_3801256646816264278_6730733643_2026-01-02.mp4": {
+    "mtime": 1770172090.0,
+    "ast_hash": "87220e50b1af3e81cb6a0bc8bc24849c",
+    "semantic_hash": "87220e50b1af3e81cb6a0bc8bc24849c"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Multilingual & Accessibility",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify default English",
+      "description": "Verify the site loads in English by default with English text in navigation, hero, and buttons."
+    },
+    {
+      "type": "action",
+      "step": "Switch to Arabic",
+      "description": "Find and click the language switcher (EN/AR toggle) in the header. Verify the site text switches to Arabic."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify RTL layout",
+      "description": "After switching to Arabic, verify the page layout changes to right-to-left (RTL). Navigation should align to the right."
+    },
+    {
+      "type": "action",
+      "step": "Switch back to English",
+      "description": "Click the language switcher again to switch back to English. Verify all text returns to English and layout is left-to-right."
+    },
+    {
+      "type": "action",
+      "step": "Test mobile navigation",
+      "description": "If on mobile viewport, verify the mobile bottom navigation bar appears with main navigation icons."
+    },
+    {
+      "type": "action",
+      "step": "Test newsletter popup",
+      "description": "Look for a newsletter signup form in the footer or as a popup. Verify it has an email input and submit button."
+    },
+    {
+      "type": "action",
+      "step": "Test WhatsApp button",
+      "description": "Look for a WhatsApp floating button on the page. Verify it is visible and clickable."
+    },
+    {
+      "type": "action",
+      "step": "Test page scroll",
+      "description": "Scroll down the homepage. Verify smooth scrolling works and the header remains visible or collapses appropriately."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify images load",
+      "description": "Scroll through the homepage and collection pages. Verify product images load without broken image icons."
+    }
+  ]
+}

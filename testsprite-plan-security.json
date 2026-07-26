@@ -1,0 +1,67 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Auth & Security Testing",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to auth page",
+      "description": "Navigate to /auth. Verify the login/signup page loads with email and password fields."
+    },
+    {
+      "type": "action",
+      "step": "Test invalid login",
+      "description": "Enter a fake email like 'hacker@test.com' and wrong password 'wrongpass'. Click login. Verify an error message appears and login fails."
+    },
+    {
+      "type": "action",
+      "step": "Test XSS in login email field",
+      "description": "Enter '<script>alert(1)</script>' in the email field and try to submit. Verify no JavaScript alert pops up and the input is handled safely."
+    },
+    {
+      "type": "action",
+      "step": "Test SQL injection in login",
+      "description": "Enter \"' OR 1=1 --\" in the email field and any password. Try to login. Verify login fails with proper error message."
+    },
+    {
+      "type": "action",
+      "step": "Test XSS in contact form",
+      "description": "Navigate to /contact. Enter '<img src=x onerror=alert(1)>' in the name and message fields. Submit the form. Verify no script executes."
+    },
+    {
+      "type": "action",
+      "step": "Test contact form validation",
+      "description": "On /contact, enter an invalid email like 'not-an-email' in the email field. Try to submit. Verify email validation catches the invalid format."
+    },
+    {
+      "type": "action",
+      "step": "Test XSS in search",
+      "description": "Navigate to /search. Enter '<script>alert(1)</script>' in the search input. Verify no alert pops up and the search handles it safely."
+    },
+    {
+      "type": "action",
+      "step": "Test admin route protection",
+      "description": "Navigate to /admin without being logged in. Verify the page redirects to login or shows an access denied message."
+    },
+    {
+      "type": "action",
+      "step": "Test signup with weak password",
+      "description": "Navigate to /auth, switch to signup mode. Enter a valid email but a password shorter than 6 characters like '123'. Try to sign up. Verify a validation error appears."
+    },
+    {
+      "type": "action",
+      "step": "Test long input handling",
+      "description": "Navigate to /contact. Enter a very long string (500+ characters) in the message field. Verify the form handles it without crashing."
+    },
+    {
+      "type": "action",
+      "step": "Test special characters in forms",
+      "description": "On /contact, enter special characters like '<>&\"\\/' in the name and subject fields. Verify they are accepted or sanitized without errors."
+    }
+  ]
+}

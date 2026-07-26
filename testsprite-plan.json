@@ -1,0 +1,37 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Riman Fashion - Full Site Test",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "The site is password-protected. Find the password input field on the page and enter 'My-Drop-Site', then submit to unlock the site."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify homepage loaded",
+      "description": "After entering the password, verify the homepage loads with the main content, navigation, and product sections visible."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to Shop",
+      "description": "Click the Shop or Products link in the navigation and verify the product listing page loads with product cards visible."
+    },
+    {
+      "type": "action",
+      "step": "View product details",
+      "description": "Click on a product card and verify the product detail page opens with image, price, and description."
+    },
+    {
+      "type": "action",
+      "step": "Add to cart",
+      "description": "Click the Add to Cart or Select Size button on a product page and verify the cart icon updates or a confirmation appears."
+    },
+    {
+      "type": "assertion",
+      "step": "Check footer",
+      "description": "Scroll to the bottom of the page and verify the footer is visible with links and copyright info."
+    }
+  ]
+}

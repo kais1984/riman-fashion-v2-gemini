@@ -1,0 +1,35 @@
+/* Print stylesheet – ensures the site looks good on paper */
+@media print {
+  /* Use a light background for the whole page */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Preserve gold highlights but make them darker for contrast */
+  .text-gold, .bg-gold {
+    color: #b8860b !important;
+    background-color: #f5e6c5 !important;
+  }
+
+  /* Hide interactive UI that isn’t needed in print */
+  .no-print,
+  .ToastContainer,
+  .btn-luxury,
+  .btn-luxury-outline,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* Ensure images are printed at full width but keep aspect ratio */
+  img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Remove background videos/overlays */
+  .film-grain::after,
+  .bg-onyx {
+    background: none !important;
+  }
+}

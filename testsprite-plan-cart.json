@@ -1,0 +1,72 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Cart, Wishlist & Checkout",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to a product",
+      "description": "Go to any product detail page by clicking a product card from the homepage or collection."
+    },
+    {
+      "type": "action",
+      "step": "Add product to cart",
+      "description": "Select a size if available, then click the Add to Cart button. Verify a confirmation appears or the cart badge updates."
+    },
+    {
+      "type": "action",
+      "step": "Add second product to cart",
+      "description": "Navigate to a different product and add it to the cart as well."
+    },
+    {
+      "type": "action",
+      "step": "Open cart",
+      "description": "Click the cart icon in the header. Verify the cart opens showing both products with correct names, sizes, quantities, and prices."
+    },
+    {
+      "type": "action",
+      "step": "Update cart quantity",
+      "description": "In the cart, change the quantity of one item. Verify the subtotal and total update correctly."
+    },
+    {
+      "type": "action",
+      "step": "Remove item from cart",
+      "description": "Remove one item from the cart. Verify it disappears and the total updates."
+    },
+    {
+      "type": "action",
+      "step": "Add product to wishlist",
+      "description": "Navigate to a product detail page and click the wishlist/heart icon to add it to the wishlist."
+    },
+    {
+      "type": "action",
+      "step": "Check wishlist page",
+      "description": "Navigate to /wishlist and verify the saved product appears in the wishlist."
+    },
+    {
+      "type": "action",
+      "step": "Remove from wishlist",
+      "description": "On the wishlist page, remove the item. Verify it disappears from the list."
+    },
+    {
+      "type": "action",
+      "step": "Proceed to checkout",
+      "description": "Add a product to cart and click Proceed to Checkout. Verify the checkout page loads with shipping details form."
+    },
+    {
+      "type": "action",
+      "step": "Fill checkout form",
+      "description": "Fill in the shipping details form with name, email, address, city, and phone number."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify checkout form validation",
+      "description": "Leave required fields empty and try to proceed. Verify validation error messages appear for missing required fields."
+    }
+  ]
+}

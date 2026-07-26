@@ -1,0 +1,57 @@
+{
+  "projectId": "4c876be5-b96a-41f2-9ddf-65d2fdf9dfc2",
+  "type": "frontend",
+  "name": "Admin Dashboard",
+  "planSteps": [
+    {
+      "type": "action",
+      "step": "Enter site password",
+      "description": "Find the password input field and enter 'My-Drop-Site' to unlock the site."
+    },
+    {
+      "type": "action",
+      "step": "Login as admin",
+      "description": "Navigate to /auth. Enter admin email 'admin@rimanfashion.com' and password 'riman-admin-2024'. Login successfully."
+    },
+    {
+      "type": "action",
+      "step": "Navigate to admin dashboard",
+      "description": "Navigate to /admin. Verify the admin dashboard loads with stats cards, charts, and sidebar navigation."
+    },
+    {
+      "type": "action",
+      "step": "Check admin products page",
+      "description": "Click Products in the admin sidebar. Verify the products list loads with a table of products and an Add Product button."
+    },
+    {
+      "type": "action",
+      "step": "Check admin orders page",
+      "description": "Click Orders in the admin sidebar. Verify the orders list loads with order statuses and customer info."
+    },
+    {
+      "type": "action",
+      "step": "Check admin appointments page",
+      "description": "Click Appointments in the admin sidebar. Verify the appointments list loads with service types and statuses."
+    },
+    {
+      "type": "action",
+      "step": "Check admin calendar page",
+      "description": "Click Calendar in the admin sidebar. Verify the calendar view loads showing appointments on dates."
+    },
+    {
+      "type": "action",
+      "step": "Check admin settings page",
+      "description": "Click Settings in the admin sidebar. Verify the settings panel loads with branding, contact, and feature flag sections."
+    },
+    {
+      "type": "action",
+      "step": "Check admin content page",
+      "description": "Click Content in the admin sidebar. Verify the content editor loads for homepage and about sections."
+    },
+    {
+      "type": "assertion",
+      "step": "Verify admin sidebar navigation",
+      "description": "Verify all admin navigation links work: Dashboard, Products, Orders, Appointments, Calendar, Content, Settings."
+    }
+  ]
+}

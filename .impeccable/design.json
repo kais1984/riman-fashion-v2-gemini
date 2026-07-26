@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-12T19:23:00Z",
+  "title": "Design System: Atelier Riman",
+  "extensions": {
+    "colorMeta": {
+      "gold": { "role": "primary", "displayName": "Gold", "canonical": "oklch(72% 0.15 85)", "tonalRamp": ["oklch(25% 0.10 85)", "oklch(35% 0.12 85)", "oklch(45% 0.14 85)", "oklch(55% 0.15 85)", "oklch(65% 0.15 85)", "oklch(72% 0.15 85)", "oklch(80% 0.12 85)", "oklch(92% 0.08 85)"] },
+      "gold-light": { "role": "primary", "displayName": "Gold Light", "canonical": "oklch(88% 0.12 95)", "tonalRamp": [] },
+      "gold-dark": { "role": "primary", "displayName": "Gold Dark", "canonical": "oklch(48% 0.14 80)", "tonalRamp": [] },
+      "onyx": { "role": "neutral", "displayName": "Onyx", "canonical": "oklch(5% 0.005 70)", "tonalRamp": ["oklch(3% 0.005 70)", "oklch(5% 0.005 70)", "oklch(10% 0.005 70)", "oklch(20% 0.005 70)", "oklch(35% 0.005 70)", "oklch(50% 0.005 70)", "oklch(65% 0.005 70)", "oklch(80% 0.005 70)"] },
+      "bone": { "role": "neutral", "displayName": "Bone", "canonical": "oklch(96% 0.005 85)", "tonalRamp": [] },
+      "ivory": { "role": "neutral", "displayName": "Ivory", "canonical": "oklch(98% 0.003 85)", "tonalRamp": [] },
+      "pearl": { "role": "neutral", "displayName": "Pearl", "canonical": "oklch(94% 0.004 80)", "tonalRamp": [] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and major section titles. Always uppercase with wide tracking." },
+      "editorial": { "displayName": "Editorial", "purpose": "Accent phrases within headings. Always italic, never uppercase." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs, descriptions, all running text." },
+      "label": { "displayName": "Label", "purpose": "Navigation, badges, metadata. Always uppercase." }
+    },
+    "shadows": [
+      { "name": "gold-hover", "value": "0 4px 20px rgba(212, 175, 55, 0.1)", "purpose": "Warm gold glow on button hover states." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Standard easing for page entrances and transitions." },
+      { "name": "ease-duration", "value": "500ms", "purpose": "Standard transition duration for component hover states." },
+      { "name": "ease-duration-slow", "value": "700ms", "purpose": "Header scroll transition." },
+      { "name": "ease-duration-fast", "value": "300ms", "purpose": "Quick hover effects." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The primary call-to-action. Used for key actions like booking appointments, exploring collections, and checkout.",
+      "html": "<button class=\"ds-btn-primary\">EXPLORE COLLECTION</button>",
+      "css": ".ds-btn-primary { background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%); color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; padding: 20px 40px; border: none; cursor: pointer; transition: all 0.5s ease; box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1); } .ds-btn-primary:hover { color: #D4AF37; transform: scale(1.05); } .ds-btn-primary:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline variant for secondary actions. Used alongside primary buttons or for less prominent CTAs.",
+      "html": "<button class=\"ds-btn-secondary\">BOOK APPOINTMENT</button>",
+      "css": ".ds-btn-secondary { background: transparent; color: #D4AF37; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; padding: 20px 40px; border: 1px solid rgba(212, 175, 55, 0.4); cursor: pointer; transition: all 0.5s ease; } .ds-btn-secondary:hover { background: #D4AF37; color: #0A0A0A; } .ds-btn-secondary:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Top-level navigation link in the header. Transparent style on hero, white-background style when scrolled.",
+      "html": "<nav><a class=\"ds-nav-link\" href=\"#\">BRIDAL</a></nav>",
+      "css": ".ds-nav-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #78716c; text-decoration: none; transition: all 0.3s ease; padding: 4px 0; border-bottom: 1px solid transparent; } .ds-nav-link:hover { color: #D4AF37; border-bottom-color: rgba(212, 175, 55, 0.4); }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Product display card with 3:4 image aspect ratio, hover overlay with actions, and structured metadata below.",
+      "html": "<div class=\"ds-product-card\"><div class=\"ds-product-image\"><img src=\"https://placehold.co/600x800/F3F1ED/78716c?text=Gown\" alt=\"Product\" /></div><div class=\"ds-product-info\"><p class=\"ds-product-category\">Bridal</p><h3 class=\"ds-product-name\">The Legacy Gown</h3><p class=\"ds-product-price\">From AED 12,000</p></div></div>",
+      "css": ".ds-product-card { width: 100%; max-width: 350px; } .ds-product-image { aspect-ratio: 3/4; overflow: hidden; background: #F3F1ED; margin-bottom: 16px; position: relative; } .ds-product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease-out; } .ds-product-card:hover .ds-product-image img { transform: scale(1.05); } .ds-product-info { padding: 0; } .ds-product-category { font-family: Inter, sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #a8a29e; margin-bottom: 4px; } .ds-product-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 500; color: #1c1917; margin-bottom: 8px; transition: color 0.3s; } .ds-product-card:hover .ds-product-name { color: #D4AF37; } .ds-product-price { font-family: Inter, sans-serif; font-size: 0.8rem; color: #78716c; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Border-bottom style input with gold focus state. Used in forms and newsletter signup.",
+      "html": "<div class=\"ds-input-wrap\"><input class=\"ds-input\" type=\"email\" placeholder=\"YOUR EMAIL ADDRESS\" /></div>",
+      "css": ".ds-input-wrap { position: relative; width: 100%; max-width: 400px; } .ds-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #44403c; padding: 16px 0; font-family: Inter, sans-serif; font-size: 0.875rem; letter-spacing: 0.2em; color: #fff; outline: none; transition: border-color 0.3s ease; } .ds-input::placeholder { color: #44403c; letter-spacing: 0.2em; } .ds-input:focus { border-bottom-color: #D4AF37; }"
+    },
+    {
+      "name": "Social Link",
+      "kind": "custom",
+      "refersTo": "social-link",
+      "description": "Circular social media icon link with gold hover transition.",
+      "html": "<a class=\"ds-social-link\" href=\"#\" aria-label=\"Instagram\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><path d=\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"/><line x1=\"17.5\" y1=\"6.5\" x2=\"17.51\" y2=\"6.5\"/></svg></a>",
+      "css": ".ds-social-link { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #44403c; color: #a8a29e; transition: all 0.5s ease; } .ds-social-link:hover { background: #D4AF37; border-color: #D4AF37; color: #fff; } .ds-social-link:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Golden Atelier",
+    "overview": "A warm, handcrafted sanctuary where heritage meets contemporary luxury. Atelier Riman's visual language is built on the interplay of deep tonal dark, warm ivory, and accent gold — like a private fitting room bathed in candlelight. Every surface feels deliberate, tactile, and intimate. The system rejects mass-produced, fast-fashion aesthetics in favor of architectural precision softened by editorial elegance.",
+    "keyCharacteristics": [
+      "Warm layered depth through tonal surfaces, never harsh shadows",
+      "Gold as a restrained accent that signals luxury without excess",
+      "Sharp typographic hierarchy with editorial serif flourishes",
+      "Intimate, tactile component interactions",
+      "Arabic-first support alongside English"
+    ],
+    "rules": [
+      { "name": "The Gold Rarity Rule", "body": "Gold occupies ≤10% of any given screen. Its scarcity is its weight. Never use gold as a background fill for large areas, as body text, or in gradients for text.", "section": "colors" },
+      { "name": "The Warm-Black Rule", "body": "Never use pure #000 or #fff. All dark surfaces are onyx (#0A0A0A); all light surfaces are ivory (#FFFDF9) or bone (#FDFBF7).", "section": "colors" },
+      { "name": "The Uppercase Rule", "body": "Display, headline, and label text is always uppercase. Editorial accents and body text are never uppercase.", "section": "typography" },
+      { "name": "The Editorial Rule", "body": "Playfair Display italic is reserved for single words or short phrases within headings. Never use it for body text, full paragraphs, or multiple consecutive lines.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Depth comes from tonal contrast and spacing, not from box-shadows. Shadows appear only as response to state (hover, focus) and are always gold-tinted.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use gold as a restrained accent (≤10% of any screen). Its rarity is its power.",
+      "Do use onyx (#0A0A0A) for dark surfaces and ivory (#FFFDF9) for light surfaces — never pure black or white.",
+      "Do use Plus Jakarta Sans uppercase with wide tracking for all headings and navigation.",
+      "Do use Playfair Display italic sparingly for editorial accent words within headings.",
+      "Do use sharp edges (no border-radius) on buttons, cards, and containers.",
+      "Do use warm tonal layering for depth rather than box-shadows."
+    ],
+    "donts": [
+      "Don't use gold as a background fill for large areas or as body text.",
+      "Don't use gradient text (background-clip: text with gradients) — decorative, never meaningful.",
+      "Don't use pure #000 or #fff anywhere — tint neutrals toward the brand warmth.",
+      "Don't use border-radius on buttons, cards, or containers — sharp edges are architectural.",
+      "Don't use glassmorphism or frosted-glass effects as default decorative treatment.",
+      "Don't use side-stripe borders (border-left/right >1px colored accents on cards or callouts).",
+      "Don't do fast fashion aesthetics — avoid anything mass-produced, trendy, or disposable-feeling."
+    ]
+  }
+}

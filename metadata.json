@@ -1,0 +1,8 @@
+{
+  "name": "Riman Atelier",
+  "description": "Luxury Bridal & Evening Wear atelier based in Sharjah, UAE. Crafting Sharjah's Most Majestic Gowns and reimagining heritage for the modern muse.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}

@@ -1,0 +1,2 @@
+# Brand Assets Folder
+Please upload the brand logo as 'logo.png' to this directory.
