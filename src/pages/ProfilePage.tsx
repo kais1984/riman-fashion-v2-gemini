@@ -62,10 +62,10 @@ export default function ProfilePage() {
                </div>
 
                <nav className="space-y-1 relative z-10">
-                  <ProfileLink icon={ShoppingBag} label={t('profile.orders')} active />
-                  <Link to="/wishlist"><ProfileLink icon={Heart} label={t('wishlist.title')} /></Link>
-                  <ProfileLink icon={Calendar} label={t('profile.appointments')} />
-                  <ProfileLink icon={Settings} label={t('profile.preferences')} />
+                   <ProfileLink icon={ShoppingBag} label={t('profile.orders')} active onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
+                   <Link to="/wishlist"><ProfileLink icon={Heart} label={t('wishlist.title')} /></Link>
+                   <Link to="/appointment"><ProfileLink icon={Calendar} label={t('profile.appointments')} /></Link>
+                   <ProfileLink icon={Settings} label={t('profile.preferences')} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} />
                  <button 
                     onClick={async () => { await signOut(); navigate('/'); }}
                    className="w-full flex items-center gap-4 p-4 text-[10px] text-stone-400 uppercase tracking-[0.2em] hover:text-rose-500 hover:bg-rose-50/30 transition-all text-left mt-8 border-t border-stone-50 pt-8"

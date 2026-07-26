@@ -51,7 +51,7 @@ function SidebarContent({ onNav }: { onNav: () => void }) {
       </nav>
 
       <div className="p-4 border-t border-stone-800">
-        <button onClick={() => { signOut(); navigate('/auth'); }} aria-label="Sign out"
+        <button onClick={async () => { await signOut(); navigate('/auth'); }} aria-label="Sign out"
           className="w-full flex items-center gap-3 px-4 py-3 text-xs tracking-widest uppercase text-stone-400 hover:text-rose-400 transition-colors"
         >
           <LogOut className="w-4 h-4" /> Sign Out
