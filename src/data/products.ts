@@ -7,8 +7,8 @@ export const products: Product[] = [
     description: 'A signature Riman masterpiece. Featuring 24k gold-thread embroidery, hand-applied micro-pearls, and a dramatic four-meter cathedral train. This gown embodies Sharjah’s refined royal elegance and timeless allure.',
     productType: 'both',
     salePrice: 45000,
-    rentalPrice: 8500,
-    securityDeposit: 10000,
+    rentalPrice: 4500,
+    securityDeposit: 9000,
     images: [
       '/assets/rimanfashion_3542687554351211237_227867687_1_2025-01-10.jpg',
       '/assets/rimanfashion_3542687554351211237_227867687_2_2025-01-10.jpg'
@@ -32,8 +32,8 @@ export const products: Product[] = [
     description: 'A complete bridal ensemble featuring a hand-embroidered veil and a sculpted silk bodice. Designed for the bride who seeks a grand entrance with a contemporary Sharjah flair.',
     productType: 'both',
     salePrice: 38000,
-    rentalPrice: 6000,
-    securityDeposit: 7000,
+    rentalPrice: 3800,
+    securityDeposit: 7600,
     images: [
       '/assets/rimanfashion_3668321659658199107_227867687_3_2025-07-03.jpg'
     ],
@@ -54,8 +54,8 @@ export const products: Product[] = [
     description: 'Deep emerald velvet meets shimmering silver embroidery in this show-stopping evening gown. Perfect for high-profile events and galas in the heart of the city.',
     productType: 'both',
     salePrice: 28000,
-    rentalPrice: 4500,
-    securityDeposit: 6000,
+    rentalPrice: 2800,
+    securityDeposit: 5600,
     images: [
       '/assets/rimanfashion_3694819982011488304_227867687_1_2025-08-08.jpg'
     ],
@@ -76,8 +76,8 @@ export const products: Product[] = [
     description: 'A delicate yet commanding headpiece featuring rose-gold plating and intricate floral motifs encrusted with micro-diamonds.',
     productType: 'both',
     salePrice: 12500,
-    rentalPrice: 2200,
-    securityDeposit: 3000,
+    rentalPrice: 1250,
+    securityDeposit: 2500,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_10_2025-12-23.jpg'
     ],
@@ -94,11 +94,11 @@ export const products: Product[] = [
   {
     id: '16',
     name: 'Heritage Gold Anklet',
-    description: 'Traditional Emirati craftsmanship reimagined. This solid gold anklet features geometric patterns symbolic of Sharjah’s heritage.',
+    description: 'Traditional Emirati craftsmanship reimagined. This solid gold anklet features geometric patterns symbolic of Sharjah\'s heritage.',
     productType: 'both',
     salePrice: 8500,
-    rentalPrice: 1500,
-    securityDeposit: 2000,
+    rentalPrice: 850,
+    securityDeposit: 1700,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_15_2025-12-23.jpg'
     ],
@@ -118,7 +118,7 @@ export const products: Product[] = [
     description: 'A breathtaking 18k solid gold necklace featuring ethically sourced VVS diamonds and a deep amber centerpiece. This artisanal piece is designed to shimmer under the soft lights of a grand celebration.',
     productType: 'both',
     salePrice: 125000,
-    rentalPrice: 18000,
+    rentalPrice: 12500,
     securityDeposit: 25000,
     images: [
       '/assets/rimanfashion_3717964372695289282_4048704816_1_2025-09-09.jpg',
@@ -142,8 +142,8 @@ export const products: Product[] = [
     description: 'Capture the essence of royalty with this gold-plated silver tiara. Encrusted with baroque pearls and rose-cut diamonds, it is a statement of grace for the discerning bride.',
     productType: 'both',
     salePrice: 18000,
-    rentalPrice: 3500,
-    securityDeposit: 5000,
+    rentalPrice: 1800,
+    securityDeposit: 3600,
     images: [
       '/assets/rimanfashion_3475218855592081083_227867687_1_2024-10-09.jpg',
       '/assets/rimanfashion_3475218855592081083_227867687_2_2024-10-09.jpg'
@@ -164,8 +164,8 @@ export const products: Product[] = [
     description: 'An intricate fusion of white and yellow gold, the Sharjah Star Bracelet features a geometric motif that pays homage to the rich cultural tapestry of the Emirates.',
     productType: 'both',
     salePrice: 15000,
-    rentalPrice: 2800,
-    securityDeposit: 3500,
+    rentalPrice: 1500,
+    securityDeposit: 3000,
     images: [
       '/assets/rimanfashion_3484604921436590913_227867687_1_2024-10-22.jpg',
       '/assets/rimanfashion_3484604921436590913_227867687_2_2024-10-22.jpg'
@@ -185,8 +185,8 @@ export const products: Product[] = [
     description: 'Petal-shaped earrings with hand-set citrine centers and a halo of micro-diamonds.',
     productType: 'both',
     salePrice: 9500,
-    rentalPrice: 1700,
-    securityDeposit: 2000,
+    rentalPrice: 950,
+    securityDeposit: 1900,
     images: [
       '/assets/rimanfashion_3359996951554297024_227867687_2024-05-03.mp4' // Using thumbnail logic
     ],
@@ -205,8 +205,8 @@ export const products: Product[] = [
     description: 'Crafted from the finest Italian silk velvet, the Noor Royal Kaftan features meticulous Zardozi embroidery and crystal accents, offering a sophisticated silhouette for high-profile evening events.',
     productType: 'both',
     salePrice: 15500,
-    rentalPrice: 3200,
-    securityDeposit: 5000,
+    rentalPrice: 1550,
+    securityDeposit: 3100,
     images: [
       '/assets/rimanfashion_3638158883472325906_1739454936_1_2025-05-22.jpg',
       '/assets/rimanfashion_3638158883472325906_1739454936_2_2025-05-22.jpg'
@@ -228,8 +228,8 @@ export const products: Product[] = [
     description: 'Inspired by the rhythmic beauty of Sharjah’s dunes, this gown features delicate 3D floral appliqués and a shimmering base that captures the magic of the golden hour.',
     productType: 'both',
     salePrice: 26000,
-    rentalPrice: 4200,
-    securityDeposit: 5000,
+    rentalPrice: 2600,
+    securityDeposit: 5200,
     images: [
       '/assets/rimanfashion_3679604103535485555_6730733643_1_2025-07-18.jpg',
       '/assets/rimanfashion_3679604103535485555_6730733643_2_2025-07-18.jpg'
@@ -250,8 +250,8 @@ export const products: Product[] = [
     description: 'A masterpiece of luminosity, this column dress is encrusted with thousands of crystals. Its sleek design and high neckline offer a vision of modern architectural elegance.',
     productType: 'both',
     salePrice: 42000,
-    rentalPrice: 6500,
-    securityDeposit: 8000,
+    rentalPrice: 4200,
+    securityDeposit: 8400,
     images: [
       '/assets/rimanfashion_3677429744649852058_227867687_1_2025-07-15.jpg'
     ],
@@ -271,8 +271,8 @@ export const products: Product[] = [
     description: 'For the bride who appreciates structural perfection. Sculpted from premium Mikado silk, the Reverie gown balances a minimalist aesthetic with a commanding presence.',
     productType: 'both',
     salePrice: 22000,
-    rentalPrice: 3800,
-    securityDeposit: 4500,
+    rentalPrice: 2200,
+    securityDeposit: 4400,
     images: [
       '/assets/rimanfashion_3668321659658199107_227867687_1_2025-07-03.jpg'
     ],
@@ -291,8 +291,8 @@ export const products: Product[] = [
     description: 'Complete your bridal vision with the Celestial Veil. Hand-stitched crystals create a shimmering aura, flowing into a dramatic four-meter cathedral length.',
     productType: 'both',
     salePrice: 8500,
-    rentalPrice: 1500,
-    securityDeposit: 2000,
+    rentalPrice: 850,
+    securityDeposit: 1700,
     images: [
       '/assets/rimanfashion_3542687554351211237_227867687_3_2025-01-10.jpg'
     ],
@@ -312,8 +312,8 @@ export const products: Product[] = [
     description: 'A romantic exploration of floral textures. Intricate embroidery cascades over blush tulle, creating a gown that feels like a desert blossom in full bloom.',
     productType: 'both',
     salePrice: 24500,
-    rentalPrice: 3500,
-    securityDeposit: 4000,
+    rentalPrice: 2450,
+    securityDeposit: 4900,
     images: [
       '/assets/rimanfashion_3668024712984663829_6730733643_1_2025-07-02.jpg'
     ],
@@ -333,8 +333,8 @@ export const products: Product[] = [
     description: 'Traditional Sharjah motifs are reimagined in this luxurious black velvet kaftan, featuring silver bullion embroidery for a look of understated majesty.',
     productType: 'both',
     salePrice: 15500,
-    rentalPrice: 2800,
-    securityDeposit: 3500,
+    rentalPrice: 1550,
+    securityDeposit: 3100,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_1_2025-12-23.jpg'
     ],
