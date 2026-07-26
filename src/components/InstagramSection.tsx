@@ -56,7 +56,7 @@ export default function InstagramSection() {
                <img 
                 src={post.img} 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                alt="Instagram post" 
+                alt={`Riman Fashion gallery ${idx + 1}`} 
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">

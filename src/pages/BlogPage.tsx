@@ -66,7 +66,7 @@ export default function BlogPage() {
             className="relative group cursor-pointer"
           >
             <div className="overflow-hidden">
-               <img src={articles[0].image} alt="Featured" className="w-full aspect-[16/9] object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
+               <img src={articles[0].image} alt={articles[0].title} className="w-full aspect-[16/9] object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
             </div>
             <div className="absolute top-6 left-6 bg-ivory px-4 py-2 text-[10px] uppercase font-bold tracking-widest">
               {t('blog.latest')}

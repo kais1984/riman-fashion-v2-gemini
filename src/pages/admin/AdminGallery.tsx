@@ -188,7 +188,7 @@ export default function AdminGallery() {
                   {item.media_type === 'video' ? (
                     <video src={item.thumbnail_url || item.media_url} className="w-16 h-16 object-cover" />
                   ) : (
-                    <img src={item.media_url} alt="" className="w-16 h-16 object-cover" />
+                    <img src={item.media_url} alt={item.title || 'Gallery image'} className="w-16 h-16 object-cover" />
                   )}
                 </td>
                 <td className="p-4">

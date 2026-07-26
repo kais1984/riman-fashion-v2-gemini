@@ -153,12 +153,12 @@ export default function AboutPage() {
       <section className="py-32 bg-ivory">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            <img src="/assets/rimanfashion_3542687554351211237_227867687_2_2025-01-10.jpg" className="w-full aspect-square object-cover" alt="Detail 1" loading="lazy" />
+            <img src="/assets/rimanfashion_3542687554351211237_227867687_2_2025-01-10.jpg" className="w-full aspect-square object-cover" alt="Riman atelier beadwork detail" loading="lazy" />
             <div className="bg-ivory flex flex-col justify-center p-8 text-center border border-stone-50">
                <h4 className="font-heading text-3xl text-gold mb-2">10k+</h4>
                 <p className="text-[10px] text-stone-400 uppercase tracking-widest">{t('about.stat_beads')}</p>
             </div>
-            <img src="/assets/rimanfashion_3638158883472325906_1739454936_2_2025-05-22.jpg" className="w-full aspect-square object-cover" alt="Detail 2" loading="lazy" />
+            <img src="/assets/rimanfashion_3638158883472325906_1739454936_2_2025-05-22.jpg" className="w-full aspect-square object-cover" alt="Riman couture runway collection" loading="lazy" />
             <div className="bg-stone-900 text-ivory flex flex-col justify-center p-8 text-center">
                <h4 className="font-heading text-3xl text-gold mb-2">120</h4>
                 <p className="text-[10px] text-ivory/40 uppercase tracking-widest">{t('about.stat_runways')}</p>
