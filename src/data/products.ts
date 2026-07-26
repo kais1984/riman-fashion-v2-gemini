@@ -30,8 +30,10 @@ export const products: Product[] = [
     id: '13',
     name: 'Majestic Bridal Set',
     description: 'A complete bridal ensemble featuring a hand-embroidered veil and a sculpted silk bodice. Designed for the bride who seeks a grand entrance with a contemporary Sharjah flair.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 38000,
+    rentalPrice: 6000,
+    securityDeposit: 7000,
     images: [
       '/assets/rimanfashion_3668321659658199107_227867687_3_2025-07-03.jpg'
     ],
@@ -72,8 +74,10 @@ export const products: Product[] = [
     id: '15',
     name: 'Regal Rose Tiara',
     description: 'A delicate yet commanding headpiece featuring rose-gold plating and intricate floral motifs encrusted with micro-diamonds.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 12500,
+    rentalPrice: 2200,
+    securityDeposit: 3000,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_10_2025-12-23.jpg'
     ],
@@ -91,8 +95,10 @@ export const products: Product[] = [
     id: '16',
     name: 'Heritage Gold Anklet',
     description: 'Traditional Emirati craftsmanship reimagined. This solid gold anklet features geometric patterns symbolic of Sharjah’s heritage.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 8500,
+    rentalPrice: 1500,
+    securityDeposit: 2000,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_15_2025-12-23.jpg'
     ],
@@ -110,8 +116,10 @@ export const products: Product[] = [
     id: '9',
     name: 'Eternal Gilded Necklace',
     description: 'A breathtaking 18k solid gold necklace featuring ethically sourced VVS diamonds and a deep amber centerpiece. This artisanal piece is designed to shimmer under the soft lights of a grand celebration.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 125000,
+    rentalPrice: 18000,
+    securityDeposit: 25000,
     images: [
       '/assets/rimanfashion_3717964372695289282_4048704816_1_2025-09-09.jpg',
       '/assets/rimanfashion_3717964372695289282_4048704816_2_2025-09-09.jpg'
@@ -154,8 +162,10 @@ export const products: Product[] = [
     id: '11',
     name: 'Sharjah Star Bracelet',
     description: 'An intricate fusion of white and yellow gold, the Sharjah Star Bracelet features a geometric motif that pays homage to the rich cultural tapestry of the Emirates.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 15000,
+    rentalPrice: 2800,
+    securityDeposit: 3500,
     images: [
       '/assets/rimanfashion_3484604921436590913_227867687_1_2024-10-22.jpg',
       '/assets/rimanfashion_3484604921436590913_227867687_2_2024-10-22.jpg'
@@ -173,8 +183,10 @@ export const products: Product[] = [
     id: '12',
     name: 'Golden Bloom Earrings',
     description: 'Petal-shaped earrings with hand-set citrine centers and a halo of micro-diamonds.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 9500,
+    rentalPrice: 1700,
+    securityDeposit: 2000,
     images: [
       '/assets/rimanfashion_3359996951554297024_227867687_2024-05-03.mp4' // Using thumbnail logic
     ],
@@ -236,8 +248,10 @@ export const products: Product[] = [
     id: '4',
     name: 'Crystalline Muse',
     description: 'A masterpiece of luminosity, this column dress is encrusted with thousands of crystals. Its sleek design and high neckline offer a vision of modern architectural elegance.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 42000,
+    rentalPrice: 6500,
+    securityDeposit: 8000,
     images: [
       '/assets/rimanfashion_3677429744649852058_227867687_1_2025-07-15.jpg'
     ],
@@ -275,8 +289,10 @@ export const products: Product[] = [
     id: '6',
     name: 'Celestial Veil',
     description: 'Complete your bridal vision with the Celestial Veil. Hand-stitched crystals create a shimmering aura, flowing into a dramatic four-meter cathedral length.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 8500,
+    rentalPrice: 1500,
+    securityDeposit: 2000,
     images: [
       '/assets/rimanfashion_3542687554351211237_227867687_3_2025-01-10.jpg'
     ],
@@ -315,8 +331,10 @@ export const products: Product[] = [
     id: '8',
     name: 'Midnight Onyx Kaftan',
     description: 'Traditional Sharjah motifs are reimagined in this luxurious black velvet kaftan, featuring silver bullion embroidery for a look of understated majesty.',
-    productType: 'sale',
+    productType: 'both',
     salePrice: 15500,
+    rentalPrice: 2800,
+    securityDeposit: 3500,
     images: [
       '/assets/rimanfashion_3794117828967352274_6730733643_1_2025-12-23.jpg'
     ],
