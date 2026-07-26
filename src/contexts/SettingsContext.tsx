@@ -60,11 +60,20 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    const timeout = setTimeout(() => setIsLoading(false), 8000);
+    let settled = false;
+    const timeout = setTimeout(() => {
+      if (!settled) {
+        settled = true;
+        setIsLoading(false);
+      }
+    }, 5000);
 
     try {
       const { fetchSiteSettings } = await import('../services/siteContent');
-      const remote = await fetchSiteSettings();
+      const remote = await Promise.race([
+        fetchSiteSettings(),
+        new Promise<Record<string, never>>((resolve) => setTimeout(() => resolve({}), 4000)),
+      ]);
       if (Object.keys(remote).length > 0) {
         setSettings(prev => {
           const merged = { ...prev };
@@ -81,7 +90,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
       console.error('[Riman] Failed to load settings from Supabase:', err);
     } finally {
       clearTimeout(timeout);
-      setIsLoading(false);
+      if (!settled) {
+        settled = true;
+        setIsLoading(false);
+      }
     }
   };
 

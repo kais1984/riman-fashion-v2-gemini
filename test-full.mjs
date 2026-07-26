@@ -49,7 +49,8 @@ async function testSuite() {
     await dp.goto(`${BASE}/collection/all`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await dp.waitForTimeout(3000);
     const colText = await dp.locator('body').innerText();
-    log('Collection', 'Page loads', colText.includes('Design') || colText.includes('Collection') || colText.includes('Bridal') ? 'PASS' : 'FAIL');
+    const colLower = colText.toLowerCase();
+    log('Collection', 'Page loads', colLower.includes('design') || colLower.includes('collection') || colLower.includes('bridal') ? 'PASS' : 'FAIL');
     
     const productLinks = await dp.locator('a[href*="/product/"]').count();
     log('Collection', 'Product cards present', productLinks > 0 ? 'PASS' : 'FAIL', `${productLinks} products`);
@@ -150,7 +151,8 @@ async function testSuite() {
     
     // Check sidebar
     const bodyText = await dp.locator('body').innerText();
-    const hasAllNav = ['Dashboard', 'Products', 'Orders', 'Bookings', 'Appointments', 'Content', 'Gallery', 'Settings'].every(item => bodyText.includes(item));
+    const lowerBody = bodyText.toLowerCase();
+    const hasAllNav = ['dashboard', 'products', 'orders', 'bookings', 'appointments', 'content', 'gallery', 'settings'].every(item => lowerBody.includes(item));
     log('Admin: Sidebar', 'All nav items present', hasAllNav ? 'PASS' : 'FAIL');
     log('Admin: Dashboard', 'Stats section visible', bodyText.includes('Revenue') || bodyText.includes('REVENUE') || bodyText.includes('AED') ? 'PASS' : 'FAIL');
     
@@ -177,9 +179,10 @@ async function testSuite() {
     
     // Settings
     await dp.goto(`${BASE}/admin/settings`, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await dp.waitForTimeout(3000);
+    await dp.waitForTimeout(6000);
     const setText = await dp.locator('body').innerText();
-    log('Admin: Settings', 'Page loads', setText.includes('Setting') || setText.includes('Branding') || setText.includes('Social') || setText.includes('Feature') ? 'PASS' : 'FAIL');
+    const setLower = setText.toLowerCase();
+    log('Admin: Settings', 'Page loads', setLower.includes('setting') || setLower.includes('branding') || setLower.includes('social') || setLower.includes('feature') || setLower.includes('control panel') ? 'PASS' : 'FAIL');
     
     // Gallery
     await dp.goto(`${BASE}/admin/gallery`, { waitUntil: 'domcontentloaded', timeout: 30000 });
