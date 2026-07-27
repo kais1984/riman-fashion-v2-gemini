@@ -28,7 +28,7 @@ export default function Logo({ className, variant = 'gold', showText = true }: L
         <div className="flex flex-col items-center">
           <span 
             className={cn(
-              "font-heading text-lg md:text-xl tracking-[0.4em] uppercase whitespace-nowrap",
+              "font-heading text-xs md:text-sm tracking-[0.3em] uppercase",
               currentColor
             )}
           >
