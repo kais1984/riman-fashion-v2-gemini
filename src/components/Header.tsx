@@ -101,15 +101,15 @@ export default function Header() {
               className="flex flex-col items-center group py-2"
             >
               <Logo 
-                variant="gold" 
-                className={cn("transition-all duration-700", !isHome ? "w-10" : "w-14")}
-                showText={false}
+                variant={!isHome ? "gold" : "light"} 
+                className={cn("transition-all duration-700", !isHome ? "w-16 md:w-20" : "w-16 md:w-20")}
+                showText={true}
               />
               <span className={cn(
-                "text-xs tracking-[0.5em] uppercase mt-2 transition-all duration-700 font-heading font-bold",
+                "text-[9px] tracking-[0.4em] uppercase mt-1 transition-all duration-700 font-heading font-bold",
                 (!isHome) ? "text-stone-500 opacity-100" : "text-white/60 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-1"
               )}>
-                {isHome ? 'Atelier' : 'Riman'}
+                {isHome ? '' : ''}
               </span>
             </Link>
           </motion.div>
