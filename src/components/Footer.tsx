@@ -161,6 +161,13 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Giant couture wordmark */}
+        <div className="select-none pointer-events-none text-center overflow-hidden mb-8" aria-hidden="true">
+          <p className="font-heading font-bold text-[clamp(3.5rem,16vw,16rem)] leading-[0.8] tracking-[-0.02em] text-gold/10 whitespace-nowrap">
+            RIMAN<sup className="text-[1.6vw] align-super">®</sup>
+          </p>
+        </div>
+
         {/* Scroll to Top */}
         <div className="flex justify-center mb-8">
           <button 
