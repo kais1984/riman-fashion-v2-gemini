@@ -136,19 +136,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           {showMobileActions ? 'Close' : 'Quick Shop'}
         </button>
 
-        {/* Quick Actions Overlay — pointer-events-none, only buttons get pointer-events-auto */}
+        {/* Quick Actions — slim slide-up bar on hover */}
         <div className={cn(
-          "absolute inset-0 z-10 flex flex-col items-center justify-end pb-16 px-4 gap-2 border pointer-events-none transition-all duration-300",
-          showMobileActions 
-            ? "bg-onyx/5 opacity-100 border-gold/20" 
-            : "bg-transparent md:opacity-0 md:group-hover:opacity-100 md:bg-onyx/5 md:border-gold/20"
+          "absolute bottom-0 left-0 right-0 z-10 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]",
+          showMobileActions
+            ? "translate-y-0 opacity-100"
+            : "translate-y-full md:translate-y-full md:group-hover:translate-y-0 md:opacity-0 md:group-hover:opacity-100"
         )}>
           {/* Inline size selector */}
           {showSizes && hasSizes && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="w-full bg-ivory/95 backdrop-blur-sm p-3 flex flex-col gap-2 pointer-events-auto"
+              className="w-full bg-ivory/95 backdrop-blur-sm p-3 flex flex-col gap-2"
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[9px] tracking-[0.2em] uppercase text-stone-500 font-bold">Select Size</span>
@@ -175,39 +175,43 @@ export default function ProductCard({ product }: ProductCardProps) {
             </motion.div>
           )}
 
-          <button 
-            onClick={handleQuickAdd}
-            className={cn(
-              "w-full py-3.5 text-xs tracking-[0.2em] uppercase font-body transition-all duration-300 flex items-center justify-center gap-2 rounded-none pointer-events-auto",
-              isAdded 
-                ? "bg-emerald-500 text-white" 
-                : "bg-gold text-white hover:bg-stone-800"
-            )}
-          >
-            {isAdded ? (
-              <>
-                <CheckCircle2 className="w-4 h-4" />
-                {t('product.added')}
-              </>
-            ) : (
-              <>
-                <ShoppingBag className="w-4 h-4" />
-                {t('product.quick_add')}
-              </>
-            )}
-          </button>
-          <button 
-            onClick={toggleWishlist}
-            className={cn(
-              "w-full py-3 text-[10px] tracking-[0.2em] uppercase font-body transition-colors duration-300 flex items-center justify-center gap-2 rounded-none pointer-events-auto",
-              saved 
-                ? "bg-rose-500 text-white" 
-                : "bg-stone-800 text-white hover:bg-rose-500"
-            )}
-          >
-            <Heart className={cn("w-3 h-3", saved && "fill-current")} />
-            {saved ? t('product.in_wishlist') : t('product.add_wishlist')}
-          </button>
+          {/* Slim bar with two actions */}
+          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20">
+            <button
+              onClick={handleQuickAdd}
+              className={cn(
+                "flex-1 py-3 text-[10px] tracking-[0.2em] uppercase font-body transition-all duration-300 flex items-center justify-center gap-1.5",
+                isAdded
+                  ? "text-emerald-400"
+                  : "text-white hover:text-gold"
+              )}
+            >
+              {isAdded ? (
+                <>
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  {t('product.added')}
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                  {t('product.quick_add')}
+                </>
+              )}
+            </button>
+            <div className="w-px bg-white/10" />
+            <button
+              onClick={toggleWishlist}
+              className={cn(
+                "flex-1 py-3 text-[10px] tracking-[0.2em] uppercase font-body transition-colors duration-300 flex items-center justify-center gap-1.5",
+                saved
+                  ? "text-rose-400"
+                  : "text-white/70 hover:text-rose-400"
+              )}
+            >
+              <Heart className={cn("w-3.5 h-3.5", saved && "fill-current")} />
+              {saved ? t('product.in_wishlist') : t('product.add_wishlist')}
+            </button>
+          </div>
         </div>
       </div>
 
