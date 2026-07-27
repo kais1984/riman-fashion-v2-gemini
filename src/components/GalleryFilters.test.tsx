@@ -20,7 +20,8 @@ describe('GalleryFilters', () => {
     expect(screen.getByText('All')).toBeDefined();
     expect(screen.getByText('Bridal')).toBeDefined();
     expect(screen.getByText('Evening')).toBeDefined();
-    expect(screen.getByText('Jewelry')).toBeDefined();
+    expect(screen.getByText('Behind the Scenes')).toBeDefined();
+    expect(screen.getByText('Client Stories')).toBeDefined();
   });
 
   it('calls onCategoryChange when a filter is clicked', () => {

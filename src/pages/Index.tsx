@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
+import { motion, useMotionValue, useSpring, useTransform, useScroll, AnimatePresence } from 'motion/react';
 import { ArrowRight, Star, Quote, ChevronLeft, ChevronRight, Sparkles, Scissors, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
@@ -87,12 +87,21 @@ export default function Home() {
     });
   };
 
+  // Hero scroll parallax — giant typography drifts up, video drifts down
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const giantY = useTransform(heroScroll, [0, 1], ['0%', '-22%']);
+  const videoY = useTransform(heroScroll, [0, 1], ['0%', '12%']);
+
   return (
     <div id="homepage" className="film-grain" onMouseMove={handleMouseMove}>
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[55vh] md:min-h-[80vh] lg:h-screen flex items-center justify-center bg-onyx">
+      <section id="hero" ref={heroRef} className="relative min-h-[55vh] md:min-h-[80vh] lg:h-screen flex items-center justify-center bg-onyx overflow-hidden">
         {/* Cinematic Backdrop Video */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ y: videoY }}>
           <motion.video
             ref={videoRef}
             initial={{ opacity: 0 }}
@@ -110,6 +119,62 @@ export default function Home() {
           {/* Sophisticated Atmospheric Overlays */}
           <div className="absolute inset-0 bg-stone-900/30 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-onyx/40" />
+        </motion.div>
+
+        {/* Giant RIMAN typography — couture backdrop (fill layer) */}
+        <motion.div
+          style={{ y: giantY }}
+          className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <div className="flex overflow-hidden">
+            {['R', 'I', 'M', 'A', 'N'].map((letter, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: '120%' }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.15, delay: 0.2 + i * 0.055, ease: [0.19, 1, 0.22, 1] }}
+                className="font-heading font-bold text-[clamp(4rem,17vw,15rem)] leading-[0.82] tracking-[-0.02em] text-white/[0.05] inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+        {/* Giant RIMAN typography — gold outline layer */}
+        <motion.div
+          style={{ y: giantY }}
+          className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <div className="flex overflow-hidden">
+            {['R', 'I', 'M', 'A', 'N'].map((letter, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: '120%' }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.15, delay: 0.25 + i * 0.055, ease: [0.19, 1, 0.22, 1] }}
+                className="font-heading font-bold text-[clamp(4rem,17vw,15rem)] leading-[0.82] tracking-[-0.02em] text-transparent inline-block [-webkit-text-stroke:1.5px_rgba(212,175,55,0.35)]"
+              >
+                {letter}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Corner meta — couture details */}
+        <div className="absolute bottom-8 left-6 md:left-10 z-[4] hidden md:flex flex-col items-start gap-3 pointer-events-none">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/70">{t('hero.discover')}</span>
+          <span className="w-px h-11 bg-white/20 relative overflow-hidden">
+            <motion.span
+              className="absolute inset-0 bg-gold"
+              animate={{ y: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: [0.76, 0, 0.24, 1] }}
+            />
+          </span>
+        </div>
+        <div className="absolute bottom-8 right-6 md:right-10 z-[4] hidden md:block text-[10px] uppercase tracking-[0.3em] text-white/70 text-right pointer-events-none">
+          Silhouettes<br />in Motion
         </div>
 
         {/* Floating Creative Elements */}
@@ -173,16 +238,6 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Scroll Indicator — hidden on mobile */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
-            className="hidden md:flex mt-16 flex-col items-center gap-2"
-          >
-            <span className="text-white/70 text-xs uppercase tracking-[0.3em]">{t('hero.discover')}</span>
-            <div className="w-px h-12 bg-gradient-to-b from-gold to-transparent" />
-          </motion.div>
         </div>
       </section>
 
