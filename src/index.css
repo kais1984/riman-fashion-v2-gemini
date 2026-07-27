@@ -9,14 +9,14 @@
   --font-arabic-heading: "Reem Kufi", "Cairo", sans-serif;
   --font-jewelry: "Plus Jakarta Sans", sans-serif;
 
-  --color-gold: #D4AF37;
-  --color-gold-light: #F9E27E;
-  --color-gold-dark: #A67C00;
-  --color-onyx: #0A0A0A;
-  --color-bone: #FDFBF7;
-  --color-ivory: #FFFDF9;
-  --color-pearl: #F3F1ED;
-  --color-jewelry: linear-gradient(45deg, #A67C00 0%, #D4AF37 45%, #F9E27E 50%, #D4AF37 55%, #A67C00 100%);
+  --color-gold: #A2492B;
+  --color-gold-light: #C45A3C;
+  --color-gold-dark: #7A3520;
+  --color-onyx: #161513;
+  --color-bone: #EFEAE2;
+  --color-ivory: #EFEAE2;
+  --color-pearl: #E8E3D9;
+  --color-jewelry: linear-gradient(45deg, #7A3520 0%, #A2492B 45%, #C45A3C 50%, #A2492B 55%, #7A3520 100%);
 
   --animate-fade-up: fade-up 0.8s ease-out forwards;
   --animate-fade-in: fade-in 1s ease-out forwards;
@@ -136,8 +136,8 @@
 
   .btn-luxury {
     @apply inline-flex items-center justify-center px-10 py-5 font-heading text-xs tracking-[0.2em] uppercase transition-all duration-500 bg-onyx text-white hover:text-gold font-bold relative overflow-hidden;
-    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+    background: linear-gradient(135deg, #161513 0%, #252320 100%);
+    box-shadow: 0 4px 20px rgba(162, 73, 43, 0.1);
   }
 
   .btn-luxury-outline {
@@ -191,7 +191,7 @@
     .animate-shimmer {
       animation: none !important;
       background-image: none !important;
-      background: linear-gradient(135deg, #A67C00, #D4AF37) !important;
+      background: linear-gradient(135deg, #7A3520, #A2492B) !important;
     }
     .animate-pulse {
       animation: none !important;
