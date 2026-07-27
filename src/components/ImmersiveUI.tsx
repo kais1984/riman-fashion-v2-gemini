@@ -88,6 +88,16 @@ export default function ImmersiveUI() {
     };
   }, [customCursorEnabled, prefersReducedMotion]);
 
+  // Toggle custom cursor class on <html>
+  useEffect(() => {
+    const html = document.documentElement;
+    if (customCursorEnabled && !prefersReducedMotion) {
+      html.classList.add('custom-cursor-active');
+      return () => html.classList.remove('custom-cursor-active');
+    }
+    html.classList.remove('custom-cursor-active');
+  }, [customCursorEnabled, prefersReducedMotion]);
+
   return (
     <>
       {/* Scroll Progress Bar — disabled with prefers-reduced-motion */}

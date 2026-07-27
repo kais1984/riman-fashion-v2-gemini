@@ -116,6 +116,18 @@
   [dir="rtl"] .tracking-\[0\.15em\] { letter-spacing: 0 !important; }
   [dir="rtl"] .tracking-tight { letter-spacing: 0 !important; }
   [dir="rtl"] .tracking-tighter { letter-spacing: 0 !important; }
+
+  /* Hide native cursor when custom cursor is active (desktop only) */
+  @media (hover: hover) and (pointer: fine) {
+    html.custom-cursor-active {
+      cursor: none !important;
+    }
+    html.custom-cursor-active *,
+    html.custom-cursor-active *::before,
+    html.custom-cursor-active *::after {
+      cursor: none !important;
+    }
+  }
 }
 
 @layer components {
