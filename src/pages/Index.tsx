@@ -14,6 +14,8 @@ import { ProductCardSkeleton } from '../components/Skeleton';
 import GalleryGrid from '../components/GalleryGrid';
 import GalleryLightbox from '../components/GalleryLightbox';
 import { useGallery } from '../hooks/useGallery';
+import WordReveal from '../components/luxury/WordReveal';
+import StatCounter from '../components/luxury/StatCounter';
 
 export default function Home() {
   const { products, content, isLoading } = useData();
@@ -410,6 +412,22 @@ export default function Home() {
             )}
           </div>
         </ScrollReveal>
+      </section>
+
+      {/* Philosophy — word scrub + stats */}
+      <section className="bg-onyx text-ivory px-6 md:px-12 lg:px-20 py-32 md:py-48 border-t border-white/10">
+        <p className="text-[10px] uppercase tracking-[0.35em] text-gold mb-12">
+          ( 03 ) — {t('philosophy.eyebrow')}
+        </p>
+        <WordReveal
+          text={t('philosophy.statement')}
+          className="font-editorial italic text-[7vw] md:text-[3.4vw] leading-[1.15] max-w-6xl text-white"
+        />
+        <div className="grid grid-cols-3 gap-6 mt-24 md:mt-36 border-t border-white/10 pt-10">
+          <StatCounter value={15} label={t('philosophy.stat_years')} />
+          <StatCounter value={100} suffix="%" label={t('philosophy.stat_fibres')} />
+          <StatCounter value={500} suffix="+" label={t('philosophy.stat_brides')} />
+        </div>
       </section>
 
       {/* The Riman Bespoke Journey */}

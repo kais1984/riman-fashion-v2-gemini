@@ -65,6 +65,16 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.subtitle': "Sharjah's Premier Couture Atelier",
     'hero.discover': 'Discover',
 
+    // Couture Motion — Philosophy & Lookbook
+    'philosophy.eyebrow': 'The Philosophy',
+    'philosophy.statement': 'Every gown begins as a whisper — a sketch, a fabric, a dream. Our artisans cut less, and cut better.',
+    'philosophy.stat_years': 'Years of Craft',
+    'philosophy.stat_fibres': 'Natural Fibres',
+    'philosophy.stat_brides': 'Bespoke Brides',
+    'lookbook.eyebrow': 'The Lookbook',
+    'lookbook.heading': 'Silhouettes in Motion',
+    'lookbook.cta': 'View the Collection',
+
     // CTAs
     'cta.explore': 'Explore Collection',
     'cta.viewing': 'Request A Private Viewing',
@@ -680,6 +690,16 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.title': 'حلمٌ وجوهر',
     'hero.subtitle': 'دار الأزياء الرائدة في الشارقة',
     'hero.discover': 'اكتشف',
+
+    // Couture Motion — Philosophy & Lookbook
+    'philosophy.eyebrow': 'الفلسفة',
+    'philosophy.statement': 'كل فستان يبدأ كهمسة — رسم، قماش، حلم. حرفيو دارنا يقصّون أقل، ويقصّون أفضل.',
+    'philosophy.stat_years': 'سنوات من الحرفية',
+    'philosophy.stat_fibres': 'ألياف طبيعية',
+    'philosophy.stat_brides': 'عرائس بأزياء مخصصة',
+    'lookbook.eyebrow': 'دفتر الإطلالات',
+    'lookbook.heading': 'قصّات في حركة',
+    'lookbook.cta': 'شاهدي المجموعة',
 
     // CTAs
     'cta.explore': 'استكشف المجموعة',
