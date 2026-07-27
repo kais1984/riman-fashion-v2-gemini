@@ -1,7 +1,14 @@
 import { chromium } from 'playwright';
 
 const BASE = 'https://riman-fashion-v2.netlify.app';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@rimanfashion.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const results = [];
+
+if (!ADMIN_PASSWORD) {
+  console.error('Set ADMIN_PASSWORD env var before running this script');
+  process.exit(1);
+}
 
 function log(category, test, status, detail = '') {
   const icon = status === 'PASS' ? '✅' : status === 'FAIL' ? '❌' : '⚠️';
@@ -141,8 +148,8 @@ async function testSuite() {
     // Login
     await dp.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await dp.waitForTimeout(2000);
-    await dp.locator('input[type="email"]').first().fill('admin@rimanfashion.com');
-    await dp.locator('input[type="password"]').first().fill('REDACTED_ADMIN_PASSWORD');
+    await dp.locator('input[type="email"]').first().fill(ADMIN_EMAIL);
+    await dp.locator('input[type="password"]').first().fill(ADMIN_PASSWORD);
     await dp.getByRole('button', { name: /Enter Atelier/i }).click();
     await dp.waitForTimeout(6000);
     

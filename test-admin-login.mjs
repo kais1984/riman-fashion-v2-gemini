@@ -1,5 +1,13 @@
 import { chromium } from 'playwright';
 
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@rimanfashion.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+if (!ADMIN_PASSWORD) {
+  console.error('Set ADMIN_PASSWORD env var before running this script');
+  process.exit(1);
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
@@ -19,8 +27,8 @@ import { chromium } from 'playwright';
   await page.waitForTimeout(2000);
   
   console.log('=== Step 3: Fill and submit login ===');
-  await page.locator('input[type="email"]').first().fill('admin@rimanfashion.com');
-  await page.locator('input[type="password"]').first().fill('REDACTED_ADMIN_PASSWORD');
+  await page.locator('input[type="email"]').first().fill(ADMIN_EMAIL);
+  await page.locator('input[type="password"]').first().fill(ADMIN_PASSWORD);
   await page.getByRole('button', { name: /Enter Atelier/i }).click();
   
   console.log('=== Step 4: Wait for redirect ===');

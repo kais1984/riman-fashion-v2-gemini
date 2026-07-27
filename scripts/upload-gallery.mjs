@@ -2,8 +2,12 @@ import { readdir } from 'fs/promises';
 import { join, basename } from 'path';
 import { readFileSync } from 'fs';
 
-const PROJECT_URL = 'https://qiccxnxtwbsreyfbqilw.supabase.co';
-const SERVICE_ROLE = 'REDACTED_SERVICE_ROLE_KEY';
+const PROJECT_URL = process.env.SUPABASE_URL || 'https://qiccxnxtwbsreyfbqilw.supabase.co';
+const SERVICE_ROLE = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!SERVICE_ROLE) {
+  console.error('Set SUPABASE_SERVICE_ROLE_KEY env var before running this script');
+  process.exit(1);
+}
 const PHOTOS_DIR = 'C:\\Users\\KAIS\\Desktop\\rimanfashion_reel\\photos';
 const VIDEOS_DIR = 'C:\\Users\\KAIS\\Desktop\\rimanfashion_reel\\videos';
 const BUCKET = 'gallery';

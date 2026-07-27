@@ -1,7 +1,14 @@
 import { chromium } from 'playwright';
 
 const BASE = 'https://riman-fashion-v2.netlify.app';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@rimanfashion.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const results = [];
+
+if (!ADMIN_PASSWORD) {
+  console.error('Set ADMIN_PASSWORD env var before running this script');
+  process.exit(1);
+}
 
 function log(category, test, status, detail = '') {
   const icon = status === 'PASS' ? '✅' : status === 'FAIL' ? '❌' : '⚠️';
@@ -103,8 +110,8 @@ async function testSuite() {
     // Test admin login
     await page.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
-    await page.locator('input[type="email"]').first().fill('admin@rimanfashion.com');
-    await page.locator('input[type="password"]').first().fill('REDACTED_ADMIN_PASSWORD');
+    await page.locator('input[type="email"]').first().fill(ADMIN_EMAIL);
+    await page.locator('input[type="password"]').first().fill(ADMIN_PASSWORD);
     await page.getByRole('button', { name: /Enter Atelier/i }).click();
     await page.waitForTimeout(5000);
     log('Auth', 'Admin login redirects to /admin', page.url().includes('/admin') ? 'PASS' : 'FAIL', `URL: ${page.url()}`);
@@ -190,8 +197,8 @@ async function testSuite() {
     // Login as admin
     await page.goto(`${BASE}/auth`, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1000);
-    await page.locator('input[type="email"]').first().fill('admin@rimanfashion.com');
-    await page.locator('input[type="password"]').first().fill('REDACTED_ADMIN_PASSWORD');
+    await page.locator('input[type="email"]').first().fill(ADMIN_EMAIL);
+    await page.locator('input[type="password"]').first().fill(ADMIN_PASSWORD);
     await page.getByRole('button', { name: /Enter Atelier/i }).click();
     await page.waitForTimeout(5000);
     

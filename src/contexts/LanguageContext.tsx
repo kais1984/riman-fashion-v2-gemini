@@ -1241,6 +1241,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.valid_email': 'يرجى إدخال بريد إلكتروني صالح',
 
     // Gallery
+    'gallery.title': 'تأمل بصري',
     'gallery.subtitle': 'معرض المشغل',
     'gallery.description': 'مجموعة مختارة من أجمل لحظاتنا',
     'gallery.filter_all': 'الكل',

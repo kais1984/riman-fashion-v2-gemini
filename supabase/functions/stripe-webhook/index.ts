@@ -11,6 +11,11 @@ const STRIPE_WEBHOOK_SECRET = Deno.env.get('STRIPE_WEBHOOK_SECRET') || '';
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || '';
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, content-type, stripe-signature',
+};
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 async function verifyStripeSignature(body: string, signature: string): Promise<any> {
@@ -52,8 +57,12 @@ function hexToBytes(hex: string): Uint8Array {
 }
 
 serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
+  }
+
   if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+    return new Response('Method not allowed', { status: 405, headers: corsHeaders });
   }
 
   try {
@@ -64,7 +73,17 @@ serve(async (req) => {
     try {
       event = await verifyStripeSignature(body, signature);
     } catch {
-      return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401 });
+      return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+    }
+
+    // Replay protection: reject if timestamp is older than 5 minutes
+    const parts = signature.split(',');
+    const timestampPart = parts.find((p: string) => p.startsWith('t='));
+    if (timestampPart) {
+      const timestamp = Number(timestampPart.slice(2));
+      if (Math.abs(Date.now() / 1000 - timestamp) > 300) {
+        return new Response(JSON.stringify({ error: 'Timestamp too old' }), { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
     }
 
     if (event.type === 'checkout.session.completed') {
@@ -86,7 +105,7 @@ serve(async (req) => {
 
         if (error) {
           console.error('Failed to update order:', error);
-          return new Response(JSON.stringify({ error: 'Database update failed' }), { status: 500 });
+          return new Response(JSON.stringify({ error: 'Database update failed' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
         }
       }
     }
@@ -107,9 +126,9 @@ serve(async (req) => {
       }
     }
 
-    return new Response(JSON.stringify({ received: true }), { status: 200 });
+    return new Response(JSON.stringify({ received: true }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   } catch (err) {
     console.error('Webhook error:', err);
-    return new Response(JSON.stringify({ error: 'Internal error' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Internal error' }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 });

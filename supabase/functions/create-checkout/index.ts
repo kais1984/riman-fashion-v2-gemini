@@ -14,6 +14,11 @@ const FROM_EMAIL = 'Atelier Riman <orders@rimanfashion.com>';
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY') || '';
 const APP_URL = Deno.env.get('APP_URL') || 'http://localhost:3001';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, content-type',
+};
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 interface CheckoutRequest {
@@ -51,17 +56,21 @@ function resolveUnitPrice(product: ProductRow, intent: 'sale' | 'rent'): number 
 }
 
 serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
+  }
+
   if (req.method === 'GET') {
     const url = new URL(req.url);
     const sessionId = url.searchParams.get('session_id');
     if (!sessionId) {
-      return new Response(JSON.stringify({ error: 'Missing session_id' }), { status: 400 });
+      return new Response(JSON.stringify({ error: 'Missing session_id' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
     return handleVerify(sessionId);
   }
 
   if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+    return new Response('Method not allowed', { status: 405, headers: corsHeaders });
   }
 
   try {
@@ -70,14 +79,14 @@ serve(async (req) => {
     if (!STRIPE_SECRET_KEY) {
       return new Response(
         JSON.stringify({ error: 'Stripe not configured' }),
-        { status: 503, headers: { 'Content-Type': 'application/json' } },
+        { status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       );
     }
 
     if (!payload.items?.length) {
       return new Response(JSON.stringify({ error: 'No items provided' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
@@ -105,7 +114,7 @@ serve(async (req) => {
       if (!db || !db.is_active) {
         return new Response(
           JSON.stringify({ error: `Invalid or inactive product: ${item.product_id}` }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } },
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
         );
       }
 
@@ -115,14 +124,14 @@ serve(async (req) => {
       if (serverPrice <= 0) {
         return new Response(
           JSON.stringify({ error: `Product "${db.name}" is not available for ${intent}` }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } },
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
         );
       }
 
       if (item.quantity < 1) {
         return new Response(
           JSON.stringify({ error: 'Invalid quantity' }),
-          { status: 400, headers: { 'Content-Type': 'application/json' } },
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
         );
       }
 
@@ -218,13 +227,13 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ url: session.url }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (err) {
     console.error('create-checkout error:', err);
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
 });
@@ -238,7 +247,7 @@ async function handleVerify(sessionId: string) {
     const session = await sessionRes.json();
 
     if (!sessionRes.ok) {
-      return new Response(JSON.stringify({ paid: false }), { status: 200 });
+      return new Response(JSON.stringify({ paid: false }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
     }
 
     const paid = session.payment_status === 'paid';
@@ -250,7 +259,7 @@ async function handleVerify(sessionId: string) {
     if (orderId) {
       const { data } = await supabase
         .from('orders')
-        .select('*, customers!inner(*)')
+        .select('*, customers!inner(email)')
         .eq('id', orderId)
         .single();
       orderData = data;
@@ -311,9 +320,9 @@ async function handleVerify(sessionId: string) {
       paid,
       orderId: orderId || undefined,
       customerEmail,
-    }), { status: 200 });
+    }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   } catch (err) {
     console.error('Verify error:', err);
-    return new Response(JSON.stringify({ paid: false }), { status: 200 });
+    return new Response(JSON.stringify({ paid: false }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 }

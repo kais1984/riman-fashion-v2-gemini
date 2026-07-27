@@ -11,7 +11,7 @@
     {
       "type": "action",
       "step": "Login as admin",
-      "description": "Navigate to /auth. Enter admin email 'admin@rimanfashion.com' and password 'REDACTED_ADMIN_PASSWORD'. Login successfully."
+      "description": "Navigate to /auth. Enter admin email and password from environment variables. Login successfully."
     },
     {
       "type": "action",
