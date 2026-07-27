@@ -90,7 +90,7 @@ export default function Home() {
   return (
     <div id="homepage" className="film-grain" onMouseMove={handleMouseMove}>
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[55vh] md:min-h-[80vh] lg:h-screen flex items-center justify-center overflow-hidden bg-onyx">
+      <section id="hero" className="relative min-h-[55vh] md:min-h-[80vh] lg:h-screen flex items-center justify-center bg-onyx">
         {/* Cinematic Backdrop Video */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <motion.video
@@ -149,7 +149,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 0.3 }}
-            className="heading-display text-4xl sm:text-5xl md:text-8xl lg:text-[10rem] text-white font-bold mb-8 md:mb-12 drop-shadow-2xl"
+            className="heading-display text-4xl sm:text-5xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem] text-white font-bold mb-8 md:mb-12 drop-shadow-2xl"
           >
             {t('hero.title').split('&').map((part, i) => (
               <React.Fragment key={i}>
