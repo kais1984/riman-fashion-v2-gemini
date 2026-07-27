@@ -16,6 +16,9 @@ import GalleryLightbox from '../components/GalleryLightbox';
 import { useGallery } from '../hooks/useGallery';
 import WordReveal from '../components/luxury/WordReveal';
 import StatCounter from '../components/luxury/StatCounter';
+import Marquee from '../components/luxury/Marquee';
+import HorizontalLookbook from '../components/luxury/HorizontalLookbook';
+import MagneticButton from '../components/luxury/MagneticButton';
 
 export default function Home() {
   const { products, content, isLoading } = useData();
@@ -97,6 +100,14 @@ export default function Home() {
   });
   const giantY = useTransform(heroScroll, [0, 1], ['0%', '-22%']);
   const videoY = useTransform(heroScroll, [0, 1], ['0%', '12%']);
+
+  // Consultation banner parallax campaign image
+  const consultRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: consultScroll } = useScroll({
+    target: consultRef,
+    offset: ['start end', 'end start'],
+  });
+  const campaignY = useTransform(consultScroll, [0, 1], ['-10%', '10%']);
 
   return (
     <div id="homepage" className="film-grain" onMouseMove={handleMouseMove}>
@@ -232,16 +243,23 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-stretch justify-center gap-3 sm:gap-4 max-w-md sm:max-w-lg mx-auto"
           >
-            <Link to="/collection/bridal" className="btn-luxury animate-shimmer bg-[length:200%_100%] hover:scale-105 transition-transform duration-500 flex-1 text-[10px] sm:text-xs px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
-              {t('cta.explore')}
-            </Link>
-            <Link to="/appointment" className="btn-luxury-outline !border-white/40 !text-white hover:!bg-gold hover:!text-onyx backdrop-blur-md flex-1 text-[10px] sm:text-xs px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
-              {t('cta.viewing')}
-            </Link>
+            <MagneticButton className="flex-1">
+              <Link to="/collection/bridal" className="btn-luxury animate-shimmer bg-[length:200%_100%] hover:scale-105 transition-transform duration-500 w-full text-[10px] sm:text-xs px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
+                {t('cta.explore')}
+              </Link>
+            </MagneticButton>
+            <MagneticButton className="flex-1">
+              <Link to="/appointment" className="btn-luxury-outline !border-white/40 !text-white hover:!bg-gold hover:!text-onyx backdrop-blur-md w-full text-[10px] sm:text-xs px-4 py-3 sm:px-6 sm:py-4 whitespace-nowrap">
+                {t('cta.viewing')}
+              </Link>
+            </MagneticButton>
           </motion.div>
 
         </div>
       </section>
+
+      {/* Couture marquee strip */}
+      <Marquee items={['RIMAN — FW25', 'Défilé', 'Silhouettes in Motion', 'Savoir-Faire', 'Maison de Couture']} />
 
       {/* Atelier Journal Section */}
       <section className="section-padding bg-bone border-y border-stone-200 mt-8">
@@ -414,6 +432,9 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
+      {/* Horizontal Lookbook — pinned scroll */}
+      <HorizontalLookbook />
+
       {/* Philosophy — word scrub + stats */}
       <section className="bg-onyx text-ivory px-6 md:px-12 lg:px-20 py-32 md:py-48 border-t border-white/10">
         <p className="text-[10px] uppercase tracking-[0.35em] text-gold mb-12">
@@ -562,8 +583,16 @@ export default function Home() {
       {/* Instagram Feed */}
       {instagramFeedEnabled && <InstagramSection />}
 
-      {/* Consultation Banner */}
-      <section className="relative py-40 overflow-hidden bg-onyx">
+      {/* Consultation Banner — parallax campaign */}
+      <section ref={consultRef} className="relative py-40 overflow-hidden bg-onyx">
+        <motion.img
+          src="/assets/rimanfashion_3638158883472325906_1739454936_1_2025-05-22.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          style={{ y: campaignY }}
+          className="absolute inset-0 w-full h-[125%] object-cover -top-[12%] opacity-40"
+        />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
         <ScrollReveal>
           <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
@@ -576,9 +605,11 @@ export default function Home() {
               <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold" /> {t('experience.bridal')}</span>
               <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold" /> {t('experience.evening')}</span>
             </div>
-            <Link to="/appointment" className="btn-luxury animate-shimmer bg-[length:200%_100%] scale-110 shadow-gold/20">
-              {t('experience.cta')}
-            </Link>
+            <MagneticButton>
+              <Link to="/appointment" className="btn-luxury animate-shimmer bg-[length:200%_100%] scale-110 shadow-gold/20">
+                {t('experience.cta')}
+              </Link>
+            </MagneticButton>
           </div>
         </ScrollReveal>
         
