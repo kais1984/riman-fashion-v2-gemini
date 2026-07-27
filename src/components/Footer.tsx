@@ -30,7 +30,7 @@ function CollapsibleSection({ title, children, defaultOpen = false }: { title: s
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className={cn("overflow-hidden md:!h-auto md:!opacity-100", !isOpen && "md:hidden")}
+            className={cn("overflow-hidden", !isOpen && "max-h-0 opacity-0 md:max-h-[999px] md:opacity-100")}
           >
             {children}
           </motion.div>
@@ -105,7 +105,7 @@ export default function Footer() {
           {/* Brand - Always visible */}
           <div className="md:col-span-4 pb-8 md:pb-0 border-b border-white/5 md:border-0">
             <Link to="/" className="block mb-6 md:mb-10">
-              <Logo variant="gold" className="w-24 md:w-36 mx-auto md:mx-0 md:ml-2" />
+              <Logo variant="gold" className="w-24 md:w-36 mx-auto md:mx-0 md:ml-2" showText={false} />
             </Link>
             <p className="font-body text-xs md:text-sm text-stone-400 max-w-sm mb-6 md:mb-10 leading-relaxed italic mx-auto md:mx-0">
               {t('footer.about')}
