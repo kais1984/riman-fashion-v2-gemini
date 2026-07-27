@@ -84,7 +84,9 @@ function LookbookContent({ items }: { items: GalleryItem[] }) {
         <h2 className="font-heading font-medium text-5xl leading-[0.9] text-white mb-10">{t('lookbook.heading')}</h2>
         <div className="flex flex-col gap-14">
           {items.map((item) => (
-            <Panel key={item.id} item={item} />
+            <div key={item.id}>
+              <Panel item={item} />
+            </div>
           ))}
         </div>
         <Link to="/collection/all" className="inline-block mt-12 text-gold text-[11px] uppercase tracking-[0.3em] border-b border-gold/40 pb-1">
