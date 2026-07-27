@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, Heart, User, ShoppingBag, Menu, X, Globe, Sparkles, ChevronRight, Calendar, Scissors, HelpCircle, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -22,6 +22,8 @@ export default function Header() {
   const { totalItems } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoPos, setLogoPos] = useState({ x: 0, y: 0 });
+  const [navHidden, setNavHidden] = useState(false);
+  const lastY = useRef(0);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -40,12 +42,30 @@ export default function Header() {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
+  // Smart nav: hide on scroll down, reveal on scroll up (homepage only)
+  useEffect(() => {
+    if (!isHome) return;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (isMenuOpen) {
+        setNavHidden(false);
+      } else {
+        setNavHidden(y > lastY.current && y > 140);
+      }
+      lastY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHome, isMenuOpen]);
+
   return (
     <header
       id="header"
       dir={isRtl ? 'rtl' : 'ltr'}
       className={cn(
-        "absolute top-0 left-0 w-full z-[100] transition-all duration-700 ease-[0.16,1,0.3,1]",
+        "top-0 left-0 w-full z-[100] transition-all duration-700 ease-[0.16,1,0.3,1]",
+        isHome ? "fixed" : "absolute",
+        isHome && navHidden && "-translate-y-full",
         !isHome
           ? "bg-ivory/98 backdrop-blur-md py-3 border-b border-stone-200"
           : "bg-transparent py-5 md:py-8"
