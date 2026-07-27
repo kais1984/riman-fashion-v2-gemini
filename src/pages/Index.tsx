@@ -98,7 +98,6 @@ export default function Home() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const giantY = useTransform(heroScroll, [0, 1], ['0%', '-22%']);
   const videoY = useTransform(heroScroll, [0, 1], ['0%', '12%']);
 
   // Consultation banner parallax campaign image
@@ -134,46 +133,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-onyx/40" />
         </motion.div>
 
-        {/* Giant RIMAN typography — couture backdrop (fill layer) */}
-        <motion.div
-          style={{ y: giantY }}
-          className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <div className="flex overflow-hidden">
-            {['R', 'I', 'M', 'A', 'N'].map((letter, i) => (
-              <motion.span
-                key={i}
-                initial={{ y: '120%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1.15, delay: 0.2 + i * 0.055, ease: [0.19, 1, 0.22, 1] }}
-                className="font-heading font-bold text-[clamp(4rem,17vw,15rem)] leading-[0.82] tracking-[-0.02em] text-white/[0.05] inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
-        {/* Giant RIMAN typography — gold outline layer */}
-        <motion.div
-          style={{ y: giantY }}
-          className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          <div className="flex overflow-hidden">
-            {['R', 'I', 'M', 'A', 'N'].map((letter, i) => (
-              <motion.span
-                key={i}
-                initial={{ y: '120%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1.15, delay: 0.25 + i * 0.055, ease: [0.19, 1, 0.22, 1] }}
-                className="font-heading font-bold text-[clamp(4rem,17vw,15rem)] leading-[0.82] tracking-[-0.02em] text-transparent inline-block [-webkit-text-stroke:1.5px_rgba(212,175,55,0.35)]"
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
+
 
         {/* Corner meta — couture details */}
         <div className="absolute bottom-8 left-6 md:left-10 z-[4] hidden md:flex flex-col items-start gap-3 pointer-events-none">
