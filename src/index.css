@@ -208,3 +208,23 @@
 .lightbox-video::-webkit-media-controls-button {
   filter: invert(1);
 }
+
+/* Couture marquee */
+.marquee-track {
+  animation: marquee 26s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+[dir="rtl"] .marquee-track {
+  animation-name: marquee-rtl;
+}
+@keyframes marquee-rtl {
+  to { transform: translateX(50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
