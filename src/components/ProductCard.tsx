@@ -91,7 +91,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             className={cn(
-              "w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105",
+              "w-full h-full object-cover transition-transform duration-[1300ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.07]",
               !imageLoaded && "opacity-0"
             )}
           />
@@ -216,8 +216,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-[10px] tracking-widest text-stone-500 uppercase mb-1">{product.category}</p>
           <Link to={`/product/${product.id}`} className="block font-heading text-xl text-stone-900 tracking-tight hover:text-gold transition-colors leading-[1.1]">
             {product.name}
-          </Link>
-          
+        </Link>
+
+        {/* Expanding gold frame — couture hover detail */}
+        <span className="absolute inset-3 border border-gold/0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:inset-4 group-hover:border-gold/40 pointer-events-none z-10" aria-hidden="true" />
+        
           <div className="mt-2 flex flex-col gap-1">
             {isSale && (
               <p className="text-xs tracking-wider text-stone-600">
