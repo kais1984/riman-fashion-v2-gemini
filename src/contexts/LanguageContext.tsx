@@ -65,6 +65,11 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.subtitle': "Sharjah's Premier Couture Atelier",
     'hero.discover': 'Discover',
 
+    // Salon chapters
+    'chapter.atelier': "L'Atelier",
+    'chapter.silhouettes': 'Les Silhouettes',
+    'chapter.savoir_faire': 'Le Savoir-Faire',
+
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'The Philosophy',
     'philosophy.statement': 'Every gown begins as a whisper — a sketch, a fabric, a dream. Our artisans cut less, and cut better.',
@@ -738,6 +743,11 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.title': 'حلمٌ وجوهر',
     'hero.subtitle': 'دار الأزياء الرائدة في الشارقة',
     'hero.discover': 'اكتشف',
+
+    // Salon chapters
+    'chapter.atelier': 'الأتيليه',
+    'chapter.silhouettes': 'القصات',
+    'chapter.savoir_faire': 'الحرفية',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'الفلسفة',
