@@ -9,12 +9,12 @@ import { useScrollLock } from '../hooks/useScrollLock';
 import Logo from './Logo';
 
 const navLinks = [
+  { label: "Our Story", path: "/about", key: 'nav.about' },
   { label: "Bridal", path: "/collection/bridal", key: 'nav.bridal' },
   { label: "Evening", path: "/collection/evening", key: 'nav.evening' },
   { label: "Rentals", path: "/collection/rental", key: 'nav.rentals' },
-  { label: "Book Now", path: "/appointment", key: 'nav.appointment' },
-  { label: "Our Story", path: "/about", key: 'nav.about' },
   { label: "Contact", path: "/contact", key: 'nav.contact' },
+  { label: "Private Viewing", path: "/appointment", key: 'nav.private_viewing' },
 ];
 
 export default function Header() {
@@ -94,9 +94,9 @@ export default function Header() {
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  "font-heading text-xs tracking-[0.2em] uppercase transition-all duration-300",
+                  "font-label text-xs tracking-[0.25em] uppercase transition-all duration-300",
                   (!isHome) 
-                    ? "text-stone-600 hover:text-sunset" 
+                    ? "text-stone-600 hover:text-gold-dark" 
                     : "text-white/80 hover:text-gold border-b border-transparent hover:border-gold/40"
                 )}
               >
@@ -143,9 +143,9 @@ export default function Header() {
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  "font-heading text-xs tracking-[0.2em] uppercase transition-all duration-300",
+                  "font-label text-xs tracking-[0.25em] uppercase transition-all duration-300",
                   (!isHome) 
-                    ? "text-stone-600 hover:text-sunset" 
+                    ? "text-stone-600 hover:text-gold-dark" 
                     : "text-white/80 hover:text-gold border-b border-transparent hover:border-gold/40"
                 )}
               >
