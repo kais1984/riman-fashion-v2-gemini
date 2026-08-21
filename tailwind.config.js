@@ -1,3 +1,5 @@
+/* VESTIGIAL: Tailwind v4 reads the theme from src/index.css (@theme). Values below are NOT applied.
+   See docs/superpowers/specs/2026-08-21-riman-salon-rebrand-design.md */
 module.exports = {
   content: [
     "src/**/*.{js,jsx,ts,tsx}"
