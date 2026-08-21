@@ -1,0 +1,145 @@
+Commits:
+9a5105c feat(salon): add ChapterLabel and CalligraphicAccent primitives with en/ar keys
+
+Stat:
+ src/components/salon/CalligraphicAccent.test.tsx | 12 ++++++++++++
+ src/components/salon/CalligraphicAccent.tsx      | 15 +++++++++++++++
+ src/components/salon/ChapterLabel.test.tsx       | 16 ++++++++++++++++
+ src/components/salon/ChapterLabel.tsx            | 19 +++++++++++++++++++
+ src/contexts/LanguageContext.tsx                 | 10 ++++++++++
+ 5 files changed, 72 insertions(+)
+
+diff --git a/src/components/salon/CalligraphicAccent.test.tsx b/src/components/salon/CalligraphicAccent.test.tsx
+new file mode 100644
+index 0000000..ecad7dc
+--- /dev/null
++++ b/src/components/salon/CalligraphicAccent.test.tsx
+@@ -0,0 +1,12 @@
++import { describe, it, expect } from 'vitest';
++import { render, screen } from '@testing-library/react';
++import CalligraphicAccent from './CalligraphicAccent';
++
++describe('CalligraphicAccent', () => {
++  it('renders decorative Arabic word, hidden from assistive tech', () => {
++    render(<CalligraphicAccent word="╪ú┘å╪º┘é╪⌐" className="text-9xl" />);
++    const el = screen.getByText('╪ú┘å╪º┘é╪⌐');
++    expect(el).toHaveAttribute('aria-hidden', 'true');
++    expect(el.className).toContain('pointer-events-none');
++  });
++});
+diff --git a/src/components/salon/CalligraphicAccent.tsx b/src/components/salon/CalligraphicAccent.tsx
+new file mode 100644
+index 0000000..42426f9
+--- /dev/null
++++ b/src/components/salon/CalligraphicAccent.tsx
+@@ -0,0 +1,15 @@
++interface CalligraphicAccentProps {
++  word: string;
++  className?: string;
++}
++
++export default function CalligraphicAccent({ word, className }: CalligraphicAccentProps) {
++  return (
++    <span
++      aria-hidden="true"
++      className={`pointer-events-none absolute select-none font-arabic-heading leading-none text-gold/10 ${className ?? ''}`}
++    >
++      {word}
++    </span>
++  );
++}
+diff --git a/src/components/salon/ChapterLabel.test.tsx b/src/components/salon/ChapterLabel.test.tsx
+new file mode 100644
+index 0000000..0900b8f
+--- /dev/null
++++ b/src/components/salon/ChapterLabel.test.tsx
+@@ -0,0 +1,16 @@
++import { describe, it, expect } from 'vitest';
++import { render, screen } from '@testing-library/react';
++import { LanguageProvider } from '../../contexts/LanguageContext';
++import ChapterLabel from './ChapterLabel';
++
++describe('ChapterLabel', () => {
++  it('renders numeral and translated chapter title', () => {
++    render(
++      <LanguageProvider>
++        <ChapterLabel numeral="I" titleKey="chapter.atelier" />
++      </LanguageProvider>
++    );
++    expect(screen.getByText('I')).toBeInTheDocument();
++    expect(screen.getByText("L'Atelier")).toBeInTheDocument();
++  });
++});
+diff --git a/src/components/salon/ChapterLabel.tsx b/src/components/salon/ChapterLabel.tsx
+new file mode 100644
+index 0000000..7f439c2
+--- /dev/null
++++ b/src/components/salon/ChapterLabel.tsx
+@@ -0,0 +1,19 @@
++import { useLanguage } from '../../contexts/LanguageContext';
++
++interface ChapterLabelProps {
++  numeral: string;
++  titleKey: string;
++}
++
++export default function ChapterLabel({ numeral, titleKey }: ChapterLabelProps) {
++  const { t } = useLanguage();
++  return (
++    <div className="flex items-center gap-4 md:gap-6">
++      <span className="font-label text-xs tracking-[0.3em] uppercase text-gold">{numeral}</span>
++      <span className="h-px w-12 bg-gold/40" aria-hidden="true" />
++      <h2 className="font-heading text-3xl md:text-5xl font-light tracking-normal normal-case text-stone-800">
++        {t(titleKey)}
++      </h2>
++    </div>
++  );
++}
+diff --git a/src/contexts/LanguageContext.tsx b/src/contexts/LanguageContext.tsx
+index 900dd96..c87bf62 100644
+--- a/src/contexts/LanguageContext.tsx
++++ b/src/contexts/LanguageContext.tsx
+@@ -60,16 +60,21 @@ const translations: Record<Language, Record<string, string>> = {
+     'journal.artisan_title': 'Artisan Details',
+     'journal.artisan_desc': 'How hand-sewn Swarovski elements catch the light for a radiant glow.',
+ 
+     // Hero
+     'hero.title': 'Reverie & Essence',
+     'hero.subtitle': "Sharjah's Premier Couture Atelier",
+     'hero.discover': 'Discover',
+ 
++    // Salon chapters
++    'chapter.atelier': "L'Atelier",
++    'chapter.silhouettes': 'Les Silhouettes',
++    'chapter.savoir_faire': 'Le Savoir-Faire',
++
+     // Couture Motion ΓÇö Philosophy & Lookbook
+     'philosophy.eyebrow': 'The Philosophy',
+     'philosophy.statement': 'Every gown begins as a whisper ΓÇö a sketch, a fabric, a dream. Our artisans cut less, and cut better.',
+     'philosophy.stat_years': 'Years of Craft',
+     'philosophy.stat_fibres': 'Natural Fibres',
+     'philosophy.stat_brides': 'Bespoke Brides',
+     'lookbook.eyebrow': 'The Lookbook',
+     'lookbook.heading': 'Silhouettes in Motion',
+@@ -734,16 +739,21 @@ const translations: Record<Language, Record<string, string>> = {
+     'journal.artisan_title': '╪¬┘ü╪º╪╡┘è┘ä ╪º┘ä╪¡╪▒┘ü┘è╪⌐',
+     'journal.artisan_desc': '┘â┘è┘ü ╪¬┘ä╪¬┘é╪╖ ╪╣┘å╪º╪╡╪▒ ╪º┘ä╪│┘ê╪º╪▒┘ê┘ü╪│┘â┘è ╪º┘ä┘à╪«┘è╪╖╪⌐ ┘è╪»┘ê┘è╪º┘ï ╪º┘ä╪╢┘ê╪í ┘ä╪¬┘ê┘ç╪¼ ┘à╪┤╪▒┘é.',
+ 
+     // Hero
+     'hero.title': '╪¡┘ä┘à┘î ┘ê╪¼┘ê┘ç╪▒',
+     'hero.subtitle': '╪»╪º╪▒ ╪º┘ä╪ú╪▓┘è╪º╪í ╪º┘ä╪▒╪º╪ª╪»╪⌐ ┘ü┘è ╪º┘ä╪┤╪º╪▒┘é╪⌐',
+     'hero.discover': '╪º┘â╪¬╪┤┘ü',
+ 
++    // Salon chapters
++    'chapter.atelier': '╪º┘ä╪ú╪¬┘è┘ä┘è┘ç',
++    'chapter.silhouettes': '╪º┘ä┘é╪╡╪º╪¬',
++    'chapter.savoir_faire': '╪º┘ä╪¡╪▒┘ü┘è╪⌐',
++
+     // Couture Motion ΓÇö Philosophy & Lookbook
+     'philosophy.eyebrow': '╪º┘ä┘ü┘ä╪│┘ü╪⌐',
+     'philosophy.statement': '┘â┘ä ┘ü╪│╪¬╪º┘å ┘è╪¿╪»╪ú ┘â┘ç┘à╪│╪⌐ ΓÇö ╪▒╪│┘à╪î ┘é┘à╪º╪┤╪î ╪¡┘ä┘à. ╪¡╪▒┘ü┘è┘ê ╪»╪º╪▒┘å╪º ┘è┘é╪╡┘æ┘ê┘å ╪ú┘é┘ä╪î ┘ê┘è┘é╪╡┘æ┘ê┘å ╪ú┘ü╪╢┘ä.',
+     'philosophy.stat_years': '╪│┘å┘ê╪º╪¬ ┘à┘å ╪º┘ä╪¡╪▒┘ü┘è╪⌐',
+     'philosophy.stat_fibres': '╪ú┘ä┘è╪º┘ü ╪╖╪¿┘è╪╣┘è╪⌐',
+     'philosophy.stat_brides': '╪╣╪▒╪º╪ª╪│ ╪¿╪ú╪▓┘è╪º╪í ┘à╪«╪╡╪╡╪⌐',
+     'lookbook.eyebrow': '╪»┘ü╪¬╪▒ ╪º┘ä╪Ñ╪╖┘ä╪º┘ä╪º╪¬',
+     'lookbook.heading': '┘é╪╡┘æ╪º╪¬ ┘ü┘è ╪¡╪▒┘â╪⌐',

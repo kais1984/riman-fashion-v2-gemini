@@ -92,7 +92,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
             className={cn(
-              "w-full h-full object-cover transition-transform duration-[1300ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.07]",
+              "w-full h-full object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.05]",
               !imageLoaded && "opacity-0"
             )}
           />
@@ -177,7 +177,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           )}
 
           {/* Slim bar with two actions */}
-          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500">
             <button
               onClick={handleQuickAdd}
               className={cn(
@@ -221,7 +221,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           <p className="text-[10px] tracking-widest text-stone-500 uppercase mb-1">{product.category}</p>
         {lookNumber && (
           <span className="font-label text-[10px] tracking-[0.3em] uppercase text-gold">
-            Look {lookNumber}
+            {t('silhouettes.look')} {lookNumber}
           </span>
         )}
           <Link to={`/product/${product.id}`} className="block font-heading text-xl text-stone-900 tracking-tight hover:text-gold transition-colors leading-[1.1]">
@@ -251,7 +251,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             to={`/product/${product.id}`}
             className="inline-flex items-center gap-1.5 font-label text-[10px] tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
           >
-            Enquire
+            {t('silhouettes.enquire')}
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>

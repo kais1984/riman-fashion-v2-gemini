@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { ReactNode } from 'react';
 import { useFeature } from '../hooks/useFeature';
 
@@ -10,8 +10,9 @@ interface ScrollRevealProps {
 
 export default function ScrollReveal({ children, direction = 'up', delay = 0 }: ScrollRevealProps) {
   const enabled = useFeature('scrollReveal');
+  const prefersReducedMotion = useReducedMotion();
 
-  if (!enabled) return <>{children}</>;
+  if (!enabled || prefersReducedMotion) return <>{children}</>;
 
   const variants = {
     hidden: {

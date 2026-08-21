@@ -58,13 +58,13 @@
     font-weight: 400;
   }
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
-    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-family: var(--font-arabic-heading), "Cairo", sans-serif;
     font-weight: 700;
     line-height: 1.6;
     letter-spacing: 0 !important;
   }
   [dir="rtl"] .font-heading {
-    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-family: var(--font-arabic-heading), "Cairo", sans-serif;
     letter-spacing: 0 !important;
   }
   [dir="rtl"] .font-body {
@@ -72,13 +72,13 @@
     font-weight: 500;
   }
   [dir="rtl"] .heading-display {
-    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-family: var(--font-arabic-heading), "Cairo", sans-serif;
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0 !important;
   }
   [dir="rtl"] .heading-editorial {
-    font-family: "Reem Kufi", "Cairo", sans-serif;
+    font-family: var(--font-arabic-heading), "Cairo", sans-serif;
     font-style: normal;
     font-weight: 600;
   }

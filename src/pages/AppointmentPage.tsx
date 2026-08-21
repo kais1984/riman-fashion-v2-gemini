@@ -165,21 +165,21 @@ export default function AppointmentPage() {
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.full_name')}</label>
                     <div className="relative">
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.email')}</label>
                     <div className="relative">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.phone')}</label>
                     <div className="relative">
                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>

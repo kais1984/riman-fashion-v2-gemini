@@ -84,6 +84,7 @@ const translations: Record<Language, Record<string, string>> = {
     'disciplines.bridal': 'Gowns made once, for one day, forever.',
     'disciplines.evening': 'Red-carpet presence, tailored to the moment.',
     'disciplines.rentals': 'Couture for a night, kept flawless.',
+    'disciplines.discover': 'Discover',
     'invitation.heading': 'Experience The Riman Touch',
     'invitation.contact_line': 'Sharjah · By Appointment Only',
 
@@ -780,6 +781,7 @@ const translations: Record<Language, Record<string, string>> = {
     'disciplines.bridal': 'فساتين تُخلَّد لِيومٍ واحد، وتبقى للأبد.',
     'disciplines.evening': 'حضور سجادة حمراء، مفصّل للحظة.',
     'disciplines.rentals': 'كوتور ليلة واحدة، يبقى بلا عيب.',
+    'disciplines.discover': 'اكتشف',
     'invitation.heading': 'عِش لمسة ريمان',
     'invitation.contact_line': 'الشارقة · بموعد مسبق فقط',
 

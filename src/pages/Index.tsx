@@ -23,7 +23,7 @@ export default function Index() {
   const quote = testimonials[0];
 
   return (
-    <main>
+    <main className="film-grain">
       {/* ARRIVAL */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center bg-onyx overflow-hidden">
         <video
@@ -34,6 +34,7 @@ export default function Index() {
           loop
           playsInline
           preload="metadata"
+          ref={(el) => { if (el) el.playbackRate = 0.7; }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/40 to-onyx/80" aria-hidden="true" />
         <CalligraphicAccent
@@ -83,17 +84,19 @@ export default function Index() {
                 {t('atelier.heading')}
               </h3>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={0.1}>
               <p className="font-editorial italic text-xl md:text-2xl text-gold-dark leading-relaxed max-w-2xl">
                 {t('atelier.quote')}
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={200}>
+            <ScrollReveal delay={0.2}>
               <p className="font-body text-stone-600 leading-loose max-w-2xl">{t('atelier.body')}</p>
             </ScrollReveal>
           </div>
         </div>
       </section>
+
+      <InvitationRule className="bg-bone border-t border-gold/15" />
 
       {/* CHAPTER II — LES SILHOUETTES */}
       <section className="bg-champagne py-24 md:py-36 px-6 md:px-12 lg:px-20">
@@ -110,6 +113,8 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      <InvitationRule className="bg-champagne border-t border-gold/15" />
 
       {/* CHAPTER III — LE SAVOIR-FAIRE */}
       <section className="bg-bone py-24 md:py-36 px-6 md:px-12 lg:px-20">
@@ -142,7 +147,7 @@ export default function Index() {
                   <h3 className="font-heading text-2xl font-light text-stone-800 mt-5">{t(d.titleKey)}</h3>
                   <p className="font-editorial italic text-stone-600 mt-2">{t(d.descKey)}</p>
                   <span className="inline-block mt-3 font-label text-xs tracking-[0.25em] uppercase text-gold border-b border-gold/40 pb-1">
-                    Discover
+                    {t('disciplines.discover')}
                   </span>
                 </Link>
               </ScrollReveal>
@@ -150,6 +155,8 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      <InvitationRule className="bg-champagne border-t border-gold/15" />
 
       {/* L'INVITATION */}
       <section className="bg-champagne py-24 md:py-36 px-6 text-center relative overflow-hidden">
