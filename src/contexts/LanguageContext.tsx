@@ -75,6 +75,18 @@ const translations: Record<Language, Record<string, string>> = {
     'silhouettes.look': 'Look',
     'silhouettes.enquire': 'Enquire',
 
+    // Salon homepage
+    'atelier.heading': 'Mastering The Legacy Icon',
+    'atelier.quote': 'It begins with a tension — the architecture of Mikado silk against the whisper of French tulle.',
+    'atelier.body': 'Since 2011 our Sharjah atelier has cut by hand, fitted by eye, and finished by patience. Fewer gowns, finer gowns.',
+    'savoir.p1': 'Cut less, cut better. We drape Mikado silk and French tulle by hand, letting the fabric decide the line.',
+    'savoir.p2': 'Every discipline of the maison — bridal, evening, rental — begins at the same table: fabric, thread, patience.',
+    'disciplines.bridal': 'Gowns made once, for one day, forever.',
+    'disciplines.evening': 'Red-carpet presence, tailored to the moment.',
+    'disciplines.rentals': 'Couture for a night, kept flawless.',
+    'invitation.heading': 'Experience The Riman Touch',
+    'invitation.contact_line': 'Sharjah · By Appointment Only',
+
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'The Philosophy',
     'philosophy.statement': 'Every gown begins as a whisper — a sketch, a fabric, a dream. Our artisans cut less, and cut better.',
@@ -758,6 +770,18 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.private_viewing': 'زيارة خاصة',
     'silhouettes.look': 'إطلالة',
     'silhouettes.enquire': 'استفسار',
+
+    // Salon homepage
+    'atelier.heading': 'إتقان أيقونة الإرث',
+    'atelier.quote': 'يبدأ كل شيء بتوترٍ جميل — هندسة حرير الميكادو في مواجهة همس التول الفرنسي.',
+    'atelier.body': 'من مرسمنا في الشارقة، نقطع باليد، ونقاس بالنظر، ونُنهي العمل بالصبر. فساتين أقل، وإتقانًا أكبر.',
+    'savoir.p1': 'نقلّ القليل لنُتقن أكثر. نُشكّل الحرير الميكادو والتول الفرنسي يدويًا، تاركين للقماش أن يرسم الخط.',
+    'savoir.p2': 'كل تخصصات الدار — الزفاف، السهرة، الإيجار — تبدأ من الطاولة نفسها: قماش، خيط، وصبر.',
+    'disciplines.bridal': 'فساتين تُخلَّد لِيومٍ واحد، وتبقى للأبد.',
+    'disciplines.evening': 'حضور سجادة حمراء، مفصّل للحظة.',
+    'disciplines.rentals': 'كوتور ليلة واحدة، يبقى بلا عيب.',
+    'invitation.heading': 'عِش لمسة ريمان',
+    'invitation.contact_line': 'الشارقة · بموعد مسبق فقط',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'الفلسفة',
