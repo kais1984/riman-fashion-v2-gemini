@@ -69,6 +69,9 @@ const translations: Record<Language, Record<string, string>> = {
     'chapter.atelier': "L'Atelier",
     'chapter.silhouettes': 'Les Silhouettes',
     'chapter.savoir_faire': 'Le Savoir-Faire',
+    'invitation.line': 'Continue the conversation — request a private viewing.',
+    'invitation.cta': 'Request a Private Viewing',
+    'nav.private_viewing': 'Private Viewing',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'The Philosophy',
@@ -748,6 +751,9 @@ const translations: Record<Language, Record<string, string>> = {
     'chapter.atelier': 'الأتيليه',
     'chapter.silhouettes': 'القصات',
     'chapter.savoir_faire': 'الحرفية',
+    'invitation.line': 'أكمِل الحوار — اطلب زيارة خاصة.',
+    'invitation.cta': 'اطلب زيارة خاصة',
+    'nav.private_viewing': 'زيارة خاصة',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'الفلسفة',
