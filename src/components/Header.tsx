@@ -144,7 +144,7 @@ export default function Header() {
               className={cn("flex items-center gap-1.5 font-body text-xs tracking-widest uppercase transition-colors", 
                 (!isHome) ? "text-stone-800" : "text-white"
               )}
-              aria-label="Switch language"
+              aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
             >
               <Globe className="w-5 h-5" />
               <span className="hidden lg:inline">{language === 'en' ? 'AR' : 'EN'}</span>

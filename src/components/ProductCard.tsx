@@ -177,7 +177,11 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           )}
 
           {/* Slim bar with two actions */}
-          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20 opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500">
+          <div className={cn(
+            "flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20 transition-all duration-500",
+            showMobileActions ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
+            "md:group-hover:opacity-100 md:group-hover:translate-y-0"
+          )}>
             <button
               onClick={handleQuickAdd}
               className={cn(

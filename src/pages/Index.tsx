@@ -25,7 +25,7 @@ export default function Index() {
   return (
     <main className="film-grain">
       {/* ARRIVAL */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center bg-onyx overflow-hidden">
+      <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center bg-onyx overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           src="/assets/rimanfashion_3panel_split.mp4"
@@ -35,6 +35,7 @@ export default function Index() {
           playsInline
           preload="metadata"
           ref={(el) => { if (el) el.playbackRate = 0.7; }}
+          aria-label="Riman Fashion couture atelier showcase"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/40 to-onyx/80" aria-hidden="true" />
         <CalligraphicAccent
@@ -42,7 +43,7 @@ export default function Index() {
           className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,30vw,28rem)]"
         />
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto animate-fade-in">
-          <p className="font-label text-[11px] md:text-xs tracking-[0.35em] uppercase text-white/70 mb-8">
+          <p className="font-label text-[11px] md:text-xs tracking-[0.35em] uppercase text-white/90 mb-8">
             {t('hero.subtitle')}
           </p>
           <h1 className="font-heading text-white font-light leading-[0.95] text-[clamp(3.5rem,11vw,9rem)] mb-12">
@@ -126,8 +127,9 @@ export default function Index() {
           </div>
           <div className="mt-16 grid md:grid-cols-3 gap-6">
             {DISCIPLINES.map((d) => (
-              <ScrollReveal>
-                <Link key={d.titleKey} to={d.to} className="group block">
+              <div key={d.titleKey}>
+                <ScrollReveal>
+                <Link to={d.to} className="group block">
                   <div className="overflow-hidden">
                     {d.isVideo ? (
                       <video
@@ -150,7 +152,8 @@ export default function Index() {
                     {t('disciplines.discover')}
                   </span>
                 </Link>
-              </ScrollReveal>
+                </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>
