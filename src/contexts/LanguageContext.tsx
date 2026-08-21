@@ -72,6 +72,8 @@ const translations: Record<Language, Record<string, string>> = {
     'invitation.line': 'Continue the conversation — request a private viewing.',
     'invitation.cta': 'Request a Private Viewing',
     'nav.private_viewing': 'Private Viewing',
+    'silhouettes.look': 'Look',
+    'silhouettes.enquire': 'Enquire',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'The Philosophy',
@@ -754,6 +756,8 @@ const translations: Record<Language, Record<string, string>> = {
     'invitation.line': 'أكمِل الحوار — اطلب زيارة خاصة.',
     'invitation.cta': 'اطلب زيارة خاصة',
     'nav.private_viewing': 'زيارة خاصة',
+    'silhouettes.look': 'إطلالة',
+    'silhouettes.enquire': 'استفسار',
 
     // Couture Motion — Philosophy & Lookbook
     'philosophy.eyebrow': 'الفلسفة',
