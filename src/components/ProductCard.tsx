@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Box, CheckCircle2 } from 'lucide-react';
+import { Heart, ShoppingBag, Box, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import React from 'react';
@@ -14,9 +14,10 @@ import { Skeleton } from './Skeleton';
 interface ProductCardProps {
   product: Product;
   key?: string | number;
+  lookNumber?: string;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, lookNumber }: ProductCardProps) {
   const [isAdded, setIsAdded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showMobileActions, setShowMobileActions] = useState(false);
@@ -176,7 +177,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
 
           {/* Slim bar with two actions */}
-          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20">
+          <div className="flex bg-onyx/95 backdrop-blur-sm border-t border-gold/20 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
             <button
               onClick={handleQuickAdd}
               className={cn(
@@ -218,9 +219,17 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="flex justify-between items-start">
         <div>
           <p className="text-[10px] tracking-widest text-stone-500 uppercase mb-1">{product.category}</p>
+        {lookNumber && (
+          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-gold">
+            Look {lookNumber}
+          </span>
+        )}
           <Link to={`/product/${product.id}`} className="block font-heading text-xl text-stone-900 tracking-tight hover:text-gold transition-colors leading-[1.1]">
             {product.name}
         </Link>
+        {product.fabric && (
+          <p className="font-editorial italic text-sm text-stone-500">{product.fabric}</p>
+        )}
 
         {/* Expanding gold frame — couture hover detail */}
         <span className="absolute inset-3 border border-gold/0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:inset-4 group-hover:border-gold/40 pointer-events-none z-10" aria-hidden="true" />
@@ -237,6 +246,14 @@ export default function ProductCard({ product }: ProductCardProps) {
               </p>
             )}
           </div>
+
+          <Link
+            to={`/product/${product.id}`}
+            className="inline-flex items-center gap-1.5 font-label text-[10px] tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
+          >
+            Enquire
+            <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
         
         <button 
