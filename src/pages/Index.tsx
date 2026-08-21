@@ -37,7 +37,7 @@ export default function Index() {
           ref={(el) => { if (el) el.playbackRate = 0.7; }}
           aria-label="Riman Fashion couture atelier showcase"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-onyx/70 via-onyx/40 to-onyx/80" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" aria-hidden="true" />
         <CalligraphicAccent
           word="أناقة"
           className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,30vw,28rem)]"
@@ -55,7 +55,7 @@ export default function Index() {
             ))}
           </h1>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/appointment" className="btn-luxury">
+            <Link to="/appointment" className="btn-luxury" aria-label={t('cta.viewing')}>
               {t('cta.viewing')}
             </Link>
             <a
@@ -75,7 +75,7 @@ export default function Index() {
       <section id="atelier" className="bg-bone py-24 md:py-36 px-6 md:px-12 lg:px-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16">
           <div className="md:col-span-4">
-            <div className="md:sticky md:top-32">
+            <div className="md:sticky md:top-40">
               <ChapterLabel numeral="I" titleKey="chapter.atelier" />
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function Index() {
             </blockquote>
           )}
           <div className="mt-12 flex flex-col items-center gap-6">
-            <Link to="/appointment" className="btn-luxury">
+            <Link to="/appointment" className="btn-luxury" aria-label={t('cta.viewing')}>
               {t('cta.viewing')}
             </Link>
             <p className="font-label text-[11px] tracking-[0.3em] uppercase text-stone-500">
