@@ -100,7 +100,7 @@ export default function AppointmentPage() {
           <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 className="w-10 h-10 text-gold" />
           </div>
-          <h1 className="font-heading text-4xl text-stone-800 tracking-wider uppercase mb-4">{t('appointment.booked')}</h1>
+          <h1 className="font-heading text-4xl font-light text-stone-800 mb-4">{t('appointment.booked')}</h1>
           <div className="w-12 h-px bg-gold mx-auto mb-6" />
           <p className="font-body text-stone-500 leading-relaxed mb-2">
             {t('appointment.thank_you')}, <span className="text-stone-800 font-semibold">{form.name}</span>.
@@ -117,7 +117,7 @@ export default function AppointmentPage() {
   }
 
   return (
-    <div className="pt-24 min-h-screen bg-ivory">
+    <div className="pt-24 min-h-screen bg-champagne">
       <div className="container mx-auto px-6 py-16 max-w-4xl">
         <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-400 mb-8">
           <Link to="/" className="hover:text-gold transition-colors">{t('nav.home')}</Link>
@@ -132,7 +132,7 @@ export default function AppointmentPage() {
               <Sparkles className="w-4 h-4 text-gold" />
               <span className="w-8 h-px bg-gold" />
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-wider uppercase mb-4">{t('appointment.heading')}</h1>
+            <h1 className="font-heading text-4xl md:text-5xl font-light text-stone-800 mb-4">{t('appointment.heading')}</h1>
             <p className="font-body text-stone-500 max-w-xl mx-auto leading-relaxed">
               {t('appointment.desc')}
             </p>
@@ -157,7 +157,7 @@ export default function AppointmentPage() {
             {step === 1 && (
               <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="bg-ivory p-8 md:p-12 border border-stone-100">
                 <div className="mb-8">
-                  <h2 className="font-heading text-xl text-stone-800 tracking-widest uppercase">{t('appointment.your_details')}</h2>
+                  <h2 className="font-heading text-2xl font-light text-stone-800">{t('appointment.your_details')}</h2>
                   <div className="w-8 h-px bg-gold mt-3" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -165,26 +165,26 @@ export default function AppointmentPage() {
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.full_name')}</label>
                     <div className="relative">
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full pl-11 pr-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:border-gold transition-colors text-sm" />
+                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.email')}</label>
                     <div className="relative">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full pl-11 pr-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:border-gold transition-colors text-sm" />
+                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.phone')}</label>
                     <div className="relative">
                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full pl-11 pr-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:border-gold transition-colors text-sm" />
+                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.service_type')}</label>
-                    <select value={form.service_type} onChange={e => updateForm('service_type', e.target.value)} className="w-full px-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 focus:outline-none focus:border-gold transition-colors text-sm appearance-none">
+                    <select value={form.service_type} onChange={e => updateForm('service_type', e.target.value)} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500">
                       <option value="">{t('appointment.select_service')}</option>
                       {SERVICE_TYPES.map(s => (
                         <option key={s.value} value={s.value}>{s.icon} {s.label}</option>
@@ -200,7 +200,7 @@ export default function AppointmentPage() {
             {step === 2 && (
               <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="bg-ivory p-8 md:p-12 border border-stone-100">
                 <div className="mb-8">
-                  <h2 className="font-heading text-xl text-stone-800 tracking-widest uppercase">{t('appointment.choose_datetime')}</h2>
+                  <h2 className="font-heading text-2xl font-light text-stone-800">{t('appointment.choose_datetime')}</h2>
                   <div className="w-8 h-px bg-gold mt-3" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -209,7 +209,7 @@ export default function AppointmentPage() {
                       <Calendar className="w-4 h-4 inline mr-2" />
                       {t('appointment.select_date')}
                     </label>
-                    <input type="date" value={form.date} onChange={e => updateForm('date', e.target.value)} min={today} className="w-full px-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 focus:outline-none focus:border-gold transition-colors text-sm" />
+                    <input type="date" value={form.date} onChange={e => updateForm('date', e.target.value)} min={today} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                   </div>
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-4">
@@ -236,7 +236,7 @@ export default function AppointmentPage() {
                     <MessageSquare className="w-4 h-4 inline mr-2" />
                     {t('appointment.special_requests')}
                   </label>
-                  <textarea value={form.notes} onChange={e => updateForm('notes', e.target.value)} rows={3} placeholder={t('appointment.notes_placeholder')} className="w-full px-4 py-4 border border-stone-200 bg-ivory/50 text-stone-800 placeholder:text-stone-300 focus:outline-none focus:border-gold transition-colors text-sm" />
+                  <textarea value={form.notes} onChange={e => updateForm('notes', e.target.value)} rows={3} placeholder={t('appointment.notes_placeholder')} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
                 </div>
                 {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
                 <div className="flex gap-4 mt-8">
@@ -249,7 +249,7 @@ export default function AppointmentPage() {
             {step === 3 && (
               <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="bg-ivory p-8 md:p-12 border border-stone-100">
                 <div className="mb-8">
-                  <h2 className="font-heading text-xl text-stone-800 tracking-widest uppercase">{t('appointment.review_confirm')}</h2>
+                  <h2 className="font-heading text-2xl font-light text-stone-800">{t('appointment.review_confirm')}</h2>
                   <div className="w-8 h-px bg-gold mt-3" />
                 </div>
                 <div className="bg-ivory p-8 border border-stone-100 mb-8">

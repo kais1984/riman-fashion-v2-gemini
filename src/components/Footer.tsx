@@ -18,7 +18,7 @@ function CollapsibleSection({ title, children, defaultOpen = false }: { title: s
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between py-4 md:py-0 md:cursor-default"
       >
-        <h4 className="font-body text-xs tracking-[0.3em] uppercase text-gold font-bold text-center md:text-left flex-1">{title}</h4>
+        <h4 className="font-label text-xs tracking-[0.3em] uppercase text-gold font-bold text-center md:text-left flex-1">{title}</h4>
         <ChevronDown className={cn(
           "w-4 h-4 text-stone-500 transition-transform md:hidden",
           isOpen && "rotate-180"
@@ -163,7 +163,7 @@ export default function Footer() {
 
         {/* Giant couture wordmark */}
         <div className="select-none pointer-events-none text-center overflow-hidden mb-8" aria-hidden="true">
-          <p className="font-heading font-bold text-[clamp(3.5rem,16vw,16rem)] leading-[0.8] tracking-[-0.02em] text-gold/10 whitespace-nowrap">
+          <p className="font-heading font-light text-[clamp(3.5rem,16vw,16rem)] leading-[0.8] tracking-[-0.02em] text-gold/10 whitespace-nowrap">
             RIMAN<sup className="text-[1.6vw] align-super">®</sup>
           </p>
         </div>
