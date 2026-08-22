@@ -124,6 +124,8 @@ export default function Footer() {
                 <FooterLink to="/collection/bridal">{t('nav.bridal')}</FooterLink>
                 <FooterLink to="/collection/evening">{t('nav.evening')}</FooterLink>
                 <FooterLink to="/collection/rental">{t('nav.rentals')}</FooterLink>
+                <FooterLink to="/blog">{t('nav.blog')}</FooterLink>
+                <FooterLink to="/gallery">{t('nav.gallery')}</FooterLink>
               </ul>
             </CollapsibleSection>
           </div>
