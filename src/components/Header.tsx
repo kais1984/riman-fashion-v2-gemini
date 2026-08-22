@@ -14,7 +14,6 @@ const navLinks = [
   { label: "Evening", path: "/collection/evening", key: 'nav.evening' },
   { label: "Rentals", path: "/collection/rental", key: 'nav.rentals' },
   { label: "Journal", path: "/blog", key: 'nav.blog' },
-  { label: "Gallery", path: "/gallery", key: 'nav.gallery' },
   { label: "Contact", path: "/contact", key: 'nav.contact' },
   { label: "Private Viewing", path: "/appointment", key: 'nav.private_viewing' },
 ];
@@ -139,7 +138,7 @@ export default function Header() {
         {/* Right Layer: Secondary Nav + Actions */}
         <div className="flex flex-1 items-center justify-end gap-4 md:gap-6">
           <nav className="hidden xl:flex items-center gap-4 mr-4 border-r border-stone-200 pr-4">
-            {navLinks.slice(4, 8).map((link) => (
+            {navLinks.slice(4, 7).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
