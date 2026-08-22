@@ -174,7 +174,7 @@ export function localBusinessSchema() {
 }
 
 export function productSchema(product: Product) {
-  const offers = [];
+  const offers: Array<Record<string, string | number>> = [];
   if (product.productType === 'sale' || product.productType === 'both') {
     offers.push({
       '@type': 'Offer',

@@ -13,8 +13,14 @@ export const supabase: SupabaseClient = isConfigured
         detectSessionInUrl: true,
       },
       global: {
-        fetch: (...args: [input: RequestInfo, init?: RequestInit]) => {
-          const url = typeof args[0] === 'string' ? args[0] : (args[0] as Request).url;
+        fetch: (...args: [input: RequestInfo | URL, init?: RequestInit]) => {
+          const arg = args[0];
+          const url =
+            typeof arg === 'string'
+              ? arg
+              : arg instanceof URL
+                ? arg.toString()
+                : (arg as Request).url;
           return fetch(...args).catch(err => {
             if (err instanceof TypeError && err.message === 'Failed to fetch') {
               console.error(
