@@ -204,7 +204,7 @@ function FooterLink({ to, children }: { to: string, children: React.ReactNode })
   );
 }
 
-function SocialLink({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) {
+function SocialLink({ href, icon, label }: { href: string; icon: React.ReactElement<{ className?: string }>; label: string }) {
   return (
     <a 
       href={href} 
@@ -213,7 +213,7 @@ function SocialLink({ href, icon, label }: { href: string, icon: React.ReactNode
       className="w-10 h-10 md:w-11 md:h-11 rounded-full border border-stone-800 flex items-center justify-center text-stone-400 hover:bg-gold hover:border-gold hover:text-white transition-all duration-500"
       aria-label={label}
     >
-      {React.cloneElement(icon as React.ReactElement, { className: "w-4 h-4" })}
+      {React.cloneElement(icon, { className: "w-4 h-4" })}
     </a>
   );
 }

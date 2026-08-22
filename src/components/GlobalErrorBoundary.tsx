@@ -41,7 +41,6 @@ export default class GlobalErrorBoundary extends Component<Props, State> {
       );
     }
 
-    // @ts-expect-error - TS5.8 class field handling
     return this.props.children;
   }
 }

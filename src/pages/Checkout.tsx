@@ -715,7 +715,7 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
   items: any[];
   subtotal: number;
   paymentMethod: string;
-  removeItem: (id: string, size?: string, intent?: string) => void;
+  removeItem: (id: string, size?: string, intent?: 'sale' | 'rent') => void;
   t: (key: string) => string;
 }) {
   return (

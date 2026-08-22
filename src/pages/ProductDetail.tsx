@@ -95,6 +95,7 @@ export default function ProductDetail() {
     }
     setIsAddingToCart(true);
     setTimeout(() => {
+      if (!product) return;
       const intent = isRent && bookingDate ? 'rent' : 'sale';
       addItem(product, intent, selectedSize, bookingDate || undefined);
       setIsAddingToCart(false);
@@ -179,7 +180,7 @@ export default function ProductDetail() {
                       <motion.img
                         src={product.images[product.videoUrl ? currentImageIndex - 1 : currentImageIndex]}
                         alt={product.name}
-                        fetchpriority="high"
+                        fetchPriority="high"
                         animate={{
                           scale: isZoomed ? 1.8 : 1,
                           x: isZoomed ? (zoomPos.x - 50) * -0.8 : 0,

@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { ReactNode } from 'react';
 import { useFeature } from '../hooks/useFeature';
 
@@ -14,7 +14,7 @@ export default function ScrollReveal({ children, direction = 'up', delay = 0 }: 
 
   if (!enabled || prefersReducedMotion) return <>{children}</>;
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === 'up' ? 50 : direction === 'down' ? -50 : 0,
@@ -27,7 +27,7 @@ export default function ScrollReveal({ children, direction = 'up', delay = 0 }: 
       transition: {
         duration: 1.2,
         delay,
-        ease: [0.16, 1, 0.3, 1]
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
       }
     }
   };

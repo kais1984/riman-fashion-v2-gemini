@@ -60,7 +60,7 @@ export default function AdminCalendar() {
           <div className="grid grid-cols-7 gap-px bg-stone-100">
             {days.map((day, i) => {
               const reservations = mockReservations.filter(res => isSameDay(res.date, day));
-              const isSelected = isSameDay(day, selectedDate);
+              const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
               const isCurrentMonth = isSameMonth(day, monthStart);
 
               return (

@@ -3,8 +3,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function PrivacyPage() {
-  const { t, lang } = useLanguage();
-  const dir = lang === 'ar' ? 'rtl' : 'ltr';
+  const { t, language } = useLanguage();
+  const dir = language === 'ar' ? 'rtl' : 'ltr';
 
   return (
     <div className={`pt-32 pb-20 px-6 bg-neutral-100 min-h-screen ${dir === 'rtl' ? 'text-right' : ''}`} dir={dir}>

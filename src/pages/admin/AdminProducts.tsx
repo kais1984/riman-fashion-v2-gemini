@@ -43,7 +43,7 @@ export default function AdminProducts() {
       if (editingProduct) {
         await editProduct(editingProduct.id, newProduct);
       } else {
-        await addProduct(newProduct);
+        await addProduct(newProduct as Product);
       }
       setIsFormOpen(false);
       setEditingProduct(null);

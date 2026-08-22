@@ -13,6 +13,6 @@ const DEFAULT_FEATURES: Record<string, boolean> = {
 
 export function useFeature(key: string): boolean {
   const { settings } = useSettings();
-  const features = { ...DEFAULT_FEATURES, ...settings.features };
+  const features: Record<string, boolean> = { ...DEFAULT_FEATURES, ...settings.features };
   return features[key] ?? true;
 }
