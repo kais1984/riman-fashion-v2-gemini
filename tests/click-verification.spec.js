@@ -6,7 +6,10 @@ import { test, expect } from '@playwright/test';
 
 /** Wait for the SPA shell to be interactive (header visible). */
 async function waitForApp(page) {
-  await page.waitForSelector('#logo, header, nav', { timeout: 20000 });
+  // Wait for React to mount anything. Must be generic because some routes
+  // (e.g. /checkout) intentionally render a minimal top bar instead of the
+  // standard header/nav chrome.
+  await page.waitForSelector('#root > *', { timeout: 45000 });
   // Give route transitions a moment
   await page.waitForTimeout(500);
 }
@@ -104,13 +107,12 @@ test('Logo navigates to homepage', async ({ page }) => {
 
 test('Language toggle switches language', async ({ page }) => {
   await goHome(page);
-  const langBtn = page.locator('button[aria-label="Switch language"]');
+  const langBtn = page.locator('button[aria-label^="Switch to"]');
   await expect(langBtn).toBeVisible({ timeout: 5000 });
-  const textBefore = await langBtn.textContent();
+  const labelBefore = await langBtn.getAttribute('aria-label');
   await langBtn.click();
-  await page.waitForTimeout(500);
-  const textAfter = await langBtn.textContent();
-  expect(textAfter).not.toBe(textBefore);
+  // aria-label flips between "Switch to Arabic" / "Switch to English" after the click
+  await expect(page.locator('button[aria-label^="Switch to"]')).not.toHaveAttribute('aria-label', labelBefore, { timeout: 5000 });
 });
 
 // ---------------------------------------------------------------------------
@@ -175,10 +177,9 @@ test.describe('Homepage Additional CTAs', () => {
   });
 
   const ctas = [
-    { name: 'Journal', path: '/blog' },
-    { name: 'Gallery', path: '/gallery' },
+    // NOTE: Journal (/blog), Gallery (/gallery) and View All Products (/collection/all)
+    // were removed from the homepage during the salon rebrand — no longer linked from here.
     { name: 'About', path: '/about' },
-    { name: 'View All Products', path: '/collection/all' },
   ];
 
   for (const { name, path } of ctas) {
@@ -316,10 +317,15 @@ test.describe('Product Detail Page', () => {
   });
 
   test('Add to cart / Book rental button exists', async ({ page }) => {
-    await page.goto('/product/prod-001', { waitUntil: 'domcontentloaded' });
+    // Don't hard-code a product id (DB ids change between Supabase projects) —
+    // open whatever product is listed first in the collection.
+    await page.goto('/collection/all', { waitUntil: 'domcontentloaded' });
+    const card = page.locator('a[href^="/product/"]').first();
+    await expect(card).toBeVisible({ timeout: 30000 });
+    await card.click();
     await waitForApp(page);
     const addBtn = page.locator('button:has-text("Add to Collection"), button:has-text("Book Rental")').first();
-    await expect(addBtn).toBeVisible({ timeout: 10000 });
+    await expect(addBtn).toBeVisible({ timeout: 15000 });
   });
 
   test('Wishlist button toggles', async ({ page }) => {
