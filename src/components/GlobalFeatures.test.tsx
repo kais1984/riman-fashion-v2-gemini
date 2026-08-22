@@ -1,41 +1,45 @@
-import { type ReactElement } from 'react';
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { type ReactElement, useEffect } from 'react';
+import { describe, it, expect } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
 import GlobalFeatures from './GlobalFeatures';
 import { BrowserRouter } from 'react-router-dom';
+import { SettingsProvider, useSettings } from '../contexts/SettingsContext';
+import { ToastProvider } from '../contexts/ToastContext';
 
-const SETTINGS_KEY = 'riman_admin_settings';
-
-function renderWithRouter(ui: ReactElement) {
-  return render(<BrowserRouter>{ui}</BrowserRouter>);
+function FeatureController({ feature, value }: { feature: string; value: boolean }) {
+  const { updateSetting } = useSettings();
+  useEffect(() => {
+    updateSetting('features', feature, value);
+  }, [feature, value]);
+  return null;
 }
 
-beforeEach(() => {
-  localStorage.clear();
-});
+function renderWithProviders(ui: ReactElement, feature: string, value: boolean) {
+  return render(
+    <BrowserRouter>
+      <ToastProvider>
+        <SettingsProvider>
+          <FeatureController feature={feature} value={value} />
+          {ui}
+        </SettingsProvider>
+      </ToastProvider>
+    </BrowserRouter>,
+  );
+}
 
 describe('GlobalFeatures', () => {
   it('renders WhatsApp button when enabled', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-      features: { whatsappBtn: true },
-    }));
-    renderWithRouter(<GlobalFeatures />);
+    renderWithProviders(<GlobalFeatures />, 'whatsappBtn', true);
     expect(screen.getByLabelText('Contact us on WhatsApp')).toBeDefined();
   });
 
-  it('hides WhatsApp button when disabled', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-      features: { whatsappBtn: false },
-    }));
-    renderWithRouter(<GlobalFeatures />);
-    expect(screen.queryByLabelText('Contact us on WhatsApp')).toBeNull();
+  it('hides WhatsApp button when disabled', async () => {
+    renderWithProviders(<GlobalFeatures />, 'whatsappBtn', false);
+    await waitFor(() => expect(screen.queryByLabelText('Contact us on WhatsApp')).toBeNull());
   });
 
   it('does not show newsletter popup on initial render', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-      features: { newsletter: true },
-    }));
-    renderWithRouter(<GlobalFeatures />);
+    renderWithProviders(<GlobalFeatures />, 'newsletter', true);
     expect(screen.queryByText('The Atelier Circle')).toBeNull();
   });
 });

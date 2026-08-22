@@ -1,57 +1,51 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { renderHook, act, waitFor } from '@testing-library/react';
+import { createElement, type ReactNode } from 'react';
 import { useFeature } from './useFeature';
+import { SettingsProvider, useSettings } from '../contexts/SettingsContext';
+import { ToastProvider } from '../contexts/ToastContext';
 
-const SETTINGS_KEY = 'riman_admin_settings';
-
-beforeEach(() => {
-  localStorage.clear();
-});
+function wrapper({ children }: { children: ReactNode }) {
+  return createElement(ToastProvider, null, createElement(SettingsProvider, null, children));
+}
 
 describe('useFeature', () => {
-  it('returns false for newsletter (disabled by default)', () => {
-    const { result } = renderHook(() => useFeature('newsletter'));
-    expect(result.current).toBe(false);
-  });
+  it('reflects admin-configured feature flags from the settings context', async () => {
+    const { result } = renderHook(
+      () => {
+        const { updateSetting } = useSettings();
+        const value = useFeature('newsletter');
+        return { value, updateSetting };
+      },
+      { wrapper },
+    );
 
-  it('returns false for disabled features', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-      features: { newsletter: false },
-    }));
-    const { result } = renderHook(() => useFeature('newsletter'));
-    expect(result.current).toBe(false);
-  });
-
-  it('returns true for unknown features', () => {
-    const { result } = renderHook(() => useFeature('unknownFeature'));
-    expect(result.current).toBe(true);
-  });
-
-  it('falls back to defaults when localStorage is corrupt', () => {
-    localStorage.setItem(SETTINGS_KEY, 'not-json');
-    const { result } = renderHook(() => useFeature('whatsappBtn'));
-    expect(result.current).toBe(true);
-  });
-
-  it('merges stored features with defaults', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-      features: { whatasappBtn: false },
-    }));
-    const { result } = renderHook(() => useFeature('preloader'));
-    expect(result.current).toBe(true);
-  });
-
-  it('responds to storage events', () => {
-    const { result } = renderHook(() => useFeature('cookieBanner'));
-    expect(result.current).toBe(true);
+    expect(result.current.value).toBe(true);
 
     act(() => {
-      localStorage.setItem(SETTINGS_KEY, JSON.stringify({
-        features: { cookieBanner: false },
-      }));
-      window.dispatchEvent(new StorageEvent('storage', { key: SETTINGS_KEY }));
+      result.current.updateSetting('features', 'newsletter', false);
     });
+    await waitFor(() => expect(result.current.value).toBe(false));
+  });
 
-    expect(result.current).toBe(false);
+  it('defaults unknown features to enabled', () => {
+    const { result } = renderHook(() => useFeature('unknownFeature'), { wrapper });
+    expect(result.current).toBe(true);
+  });
+
+  it('reflects admin-configured feature flags', async () => {
+    const { result } = renderHook(
+      () => {
+        const { updateSetting } = useSettings();
+        const value = useFeature('whatsappBtn');
+        return { value, updateSetting };
+      },
+      { wrapper },
+    );
+
+    act(() => {
+      result.current.updateSetting('features', 'whatsappBtn', false);
+    });
+    await waitFor(() => expect(result.current.value).toBe(false));
   });
 });

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useSettings } from '../contexts/SettingsContext';
 
-const SETTINGS_KEY = 'riman_admin_settings';
-const DEFAULT_FEATURES = {
+const DEFAULT_FEATURES: Record<string, boolean> = {
   newsletter: false,
   whatsappBtn: true,
   preloader: true,
@@ -12,25 +11,8 @@ const DEFAULT_FEATURES = {
   customCursor: true,
 };
 
-function loadFeatures(): Record<string, boolean> {
-  try {
-    const raw = localStorage.getItem(SETTINGS_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return { ...DEFAULT_FEATURES, ...parsed.features };
-    }
-  } catch {}
-  return { ...DEFAULT_FEATURES };
-}
-
 export function useFeature(key: string): boolean {
-  const [features, setFeatures] = useState(loadFeatures);
-
-  useEffect(() => {
-    const handler = () => setFeatures(loadFeatures());
-    window.addEventListener('storage', handler);
-    return () => window.removeEventListener('storage', handler);
-  }, []);
-
+  const { settings } = useSettings();
+  const features = { ...DEFAULT_FEATURES, ...settings.features };
   return features[key] ?? true;
 }

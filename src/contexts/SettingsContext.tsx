@@ -28,27 +28,10 @@ const defaultSettings: SiteSettings = {
   advanced: { metaDescription: "Atelier Riman — Sharjah's premier bridal and evening couture.", ogImageUrl: '', keywords: 'bridal gowns, evening dresses, couture, Sharjah, UAE', gaId: '', plausibleDomain: '', fathomSiteId: '', maintenanceMode: false, maintenanceMessage: 'Our atelier is currently being curated.', customHeadCode: '' },
 };
 
-const STORAGE_KEY = 'riman_admin_settings';
-
-function loadCachedSettings(): SiteSettings {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (parsed && typeof parsed === 'object') {
-        return { ...defaultSettings, ...parsed };
-      }
-    }
-  } catch {
-    localStorage.removeItem(STORAGE_KEY);
-  }
-  return defaultSettings;
-}
-
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<SiteSettings>(loadCachedSettings);
+  const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
   const [isLoading, setIsLoading] = useState(true);
   const { addToast } = useToast();
 
@@ -84,7 +67,6 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
               (merged as any)[key] = { ...(merged as any)[key], ...value };
             }
           }
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
           return merged;
         });
       }
@@ -100,14 +82,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   };
 
   const updateSetting = async <K extends keyof SiteSettings>(section: K, key: string, value: any) => {
-    setSettings(prev => {
-      const next = {
-        ...prev,
-        [section]: { ...(prev[section] as any), [key]: value },
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      return next;
-    });
+    setSettings(prev => ({
+      ...prev,
+      [section]: { ...(prev[section] as any), [key]: value },
+    }));
 
     if (isSupabaseConfigured) {
       try {
