@@ -1,14 +1,13 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '../types';
-
-const MAX_QUANTITY = 10;
-
-interface CartItem extends Product {
-  quantity: number;
-  selectedSize?: string;
-  selectedDate?: string;
-  intent: 'sale' | 'rent';
-}
+import {
+  addItemToCart,
+  removeItemFromCart,
+  updateQuantityInCart,
+  calculateSubtotal,
+  calculateTotalItems,
+  type CartItem,
+} from '../lib/cart';
 
 interface CartContextType {
   items: CartItem[];
@@ -40,59 +39,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const addItem = (product: Product, intent: 'sale' | 'rent', size?: string, date?: Date) => {
-    setItems(prev => {
-      const existingIndex = prev.findIndex(item => 
-        item.id === product.id && item.selectedSize === size && item.intent === intent
-      );
-
-      if (existingIndex > -1) {
-        const newItems = [...prev];
-        const newQty = newItems[existingIndex].quantity + 1;
-        if (newQty > MAX_QUANTITY) return prev;
-        newItems[existingIndex] = {
-          ...newItems[existingIndex],
-          quantity: newQty
-        };
-        return newItems;
-      }
-
-      return [...prev, { 
-        ...product, 
-        quantity: 1, 
-        selectedSize: size, 
-        intent,
-        selectedDate: date ? date.toISOString() : undefined 
-      }];
-    });
+    setItems(prev => addItemToCart(prev, product, intent, size, date));
   };
 
   const removeItem = (id: string, size?: string, intent?: 'sale' | 'rent') => {
-    setItems(prev => prev.filter(item => !(item.id === id && item.selectedSize === size && item.intent === intent)));
+    setItems(prev => removeItemFromCart(prev, id, size, intent));
   };
 
   const updateQuantity = (id: string, quantity: number, size?: string, intent?: 'sale' | 'rent') => {
-    if (quantity > MAX_QUANTITY) return;
-    setItems(prev => prev.map(item => 
-      (item.id === id && item.selectedSize === size && item.intent === intent) 
-        ? { ...item, quantity: Math.max(1, quantity) } 
-        : item
-    ));
+    setItems(prev => updateQuantityInCart(prev, id, quantity, size, intent));
   };
 
   const clearCart = () => setItems([]);
 
-  const subtotal = items.reduce((sum, item) => {
-    const price = item.intent === 'rent' ? (item.rentalPrice || 0) : (item.salePrice || 0);
-    return sum + price * item.quantity;
-  }, 0);
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = calculateSubtotal(items);
+  const totalItems = calculateTotalItems(items);
 
   return (
     <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, subtotal, totalItems, clearCart }}>
       {children}
     </CartContext.Provider>
   );
-};
+}
 
 export const useCart = () => {
   const context = useContext(CartContext);

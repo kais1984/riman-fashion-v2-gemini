@@ -8,7 +8,7 @@
     { "type": "action", "description": "Navigate to the homepage" },
     { "type": "action", "description": "Click the 'Sign Up' or account icon in the navigation" },
     { "type": "assertion", "description": "Verify a sign-up or login modal/form appears with email and password input fields" },
-    { "type": "action", "description": "Type 'admin@rimanfashion.com' into the email field" },
+     { "type": "action", "description": "Type 'riman4share@gmail.com' into the email field" },
     { "type": "action", "description": "Type 'REDACTED_ADMIN_PASSWORD' into the password field" },
     { "type": "action", "description": "Click the 'Sign In' or 'Login' button" },
     { "type": "assertion", "description": "Verify the user is logged in and redirected or the navigation shows a profile/admin link" },

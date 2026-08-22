@@ -5,7 +5,6 @@ import GlobalFeatures from './GlobalFeatures';
 import MobileBottomNav from './MobileBottomNav';
 import ImmersiveUI from './ImmersiveUI';
 import SEOHead from './SEOHead';
-import MaintenanceMode from './MaintenanceMode';
 import ToastContainer from './ToastContainer';
 
 const CHECKOUT_ROUTES = ['/checkout', '/payment/success', '/payment/cancel'];
@@ -17,7 +16,6 @@ export default function Layout() {
   return (
     <div id="layout-root" className="min-h-screen flex flex-col font-body pb-16 md:pb-0">
       <SEOHead />
-      <MaintenanceMode />
       <ImmersiveUI />
       {!isCheckout && <Header />}
       <main className="flex-grow">

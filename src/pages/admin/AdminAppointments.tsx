@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, User, Mail, Phone, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Mail, Phone, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { fetchAppointments, updateAppointmentStatus } from '../../services/appointments';

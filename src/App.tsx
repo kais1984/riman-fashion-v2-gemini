@@ -53,7 +53,7 @@ const AdminCalendar = lazy(() => import('./pages/admin/AdminCalendar'));
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
 const AdminContent = lazy(() => import('./pages/admin/AdminContent'));
-const AdminPlaceholder = lazy(() => import('./pages/admin/AdminPlaceholder'));
+
 const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
 const AdminAppointments = lazy(() => import('./pages/admin/AdminAppointments'));
 const AdminGallery = lazy(() => import('./pages/admin/AdminGallery'));
@@ -69,14 +69,14 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <GlobalErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <SettingsProvider>
-          <AuthProvider>
-            <WishlistProvider>
-              <LanguageProvider>
-                <CartProvider>
-                  <BrowserRouter>
-                    <ToastProvider>
+      <ToastProvider>
+        <QueryClientProvider client={queryClient}>
+          <SettingsProvider>
+            <AuthProvider>
+              <WishlistProvider>
+                <LanguageProvider>
+                  <CartProvider>
+                    <BrowserRouter>
                       <Suspense fallback={
                         <div className="min-h-screen bg-ivory flex items-center justify-center">
                           <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin" />
@@ -86,14 +86,14 @@ export default function App() {
                           <AnimatedRoutes />
                         </MaintenanceGate>
                       </Suspense>
-                    </ToastProvider>
-                  </BrowserRouter>
-                </CartProvider>
-              </LanguageProvider>
-            </WishlistProvider>
-          </AuthProvider>
-        </SettingsProvider>
-      </QueryClientProvider>
+                    </BrowserRouter>
+                  </CartProvider>
+                </LanguageProvider>
+              </WishlistProvider>
+            </AuthProvider>
+          </SettingsProvider>
+        </QueryClientProvider>
+      </ToastProvider>
     </GlobalErrorBoundary>
   );
 }

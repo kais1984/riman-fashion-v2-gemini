@@ -20,19 +20,23 @@ CREATE INDEX idx_gallery_sort ON gallery_items(sort_order);
 -- RLS policies
 ALTER TABLE gallery_items ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Public read access" ON gallery_items;
 CREATE POLICY "Public read access" ON gallery_items
   FOR SELECT USING (true);
 
+DROP POLICY IF EXISTS "Admin insert" ON gallery_items;
 CREATE POLICY "Admin insert" ON gallery_items
   FOR INSERT WITH CHECK (
     EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
   );
 
+DROP POLICY IF EXISTS "Admin update" ON gallery_items;
 CREATE POLICY "Admin update" ON gallery_items
   FOR UPDATE USING (
     EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
   );
 
+DROP POLICY IF EXISTS "Admin delete" ON gallery_items;
 CREATE POLICY "Admin delete" ON gallery_items
   FOR DELETE USING (
     EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')

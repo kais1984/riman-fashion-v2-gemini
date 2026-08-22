@@ -11,8 +11,10 @@ CREATE TABLE IF NOT EXISTS site_settings (
 ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Site settings are viewable by everyone" ON site_settings;
+DROP POLICY IF EXISTS "Site settings are viewable by everyone" ON site_settings;
 CREATE POLICY "Site settings are viewable by everyone" ON site_settings FOR SELECT USING (true);
 
+DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
 DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
 CREATE POLICY "Admins can manage site settings" ON site_settings FOR ALL USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
@@ -23,7 +25,7 @@ CREATE POLICY "Admins can manage site settings" ON site_settings FOR ALL USING (
 -- Seed default settings
 INSERT INTO site_settings (key, value) VALUES ('branding', '{
   "siteName": "Atelier Riman",
-  "tagline": "Sharjah'\''s Most Majestic Couture",
+  "tagline": "Sharjah''s Most Majestic Couture",
   "logoText": "Riman"
 }'::jsonb) ON CONFLICT (key) DO NOTHING;
 
@@ -55,7 +57,7 @@ INSERT INTO site_settings (key, value) VALUES ('features', '{
 }'::jsonb) ON CONFLICT (key) DO NOTHING;
 
 INSERT INTO site_settings (key, value) VALUES ('advanced', '{
-  "metaDescription": "Atelier Riman - Sharjah'\''s premier bridal and evening couture atelier.",
+  "metaDescription": "Atelier Riman - Sharjah''s premier bridal and evening couture atelier.",
   "ogImageUrl": "",
   "keywords": "bridal gowns, evening dresses, couture, Sharjah, UAE",
   "gaId": "",
@@ -74,3 +76,5 @@ INSERT INTO site_settings (key, value) VALUES ('policies', '{
   "shippingInfo": "Complimentary delivery within UAE and GCC.",
   "returnPolicy": "All sales are final. Rental items must be returned within the agreed period."
 }'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('admin_emails', '["riman4share@gmail.com"]'::jsonb) ON CONFLICT (key) DO NOTHING;

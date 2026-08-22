@@ -5,7 +5,6 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Mail, Lock, User, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { cn } from '../lib/utils';
 import Logo from '../components/Logo';
 
 export default function Auth() {

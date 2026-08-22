@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Clock, User, Tag } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function BlogPage() {

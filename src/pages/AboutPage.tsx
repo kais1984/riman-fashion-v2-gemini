@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Quote, Sparkles, Heart, Anchor, ShieldCheck, Map } from 'lucide-react';
+import { Quote, Sparkles, Heart, Anchor } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import ScrollReveal from '../components/ScrollReveal';
 

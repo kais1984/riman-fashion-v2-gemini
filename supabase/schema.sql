@@ -1,3 +1,4 @@
+/* Riman Fashion - combined schema. Paste ALL of this into the Supabase dashboard SQL Editor and click Run. Safe to re-run. */
 -- ============================================
 -- RIMAN FASHION - Complete Database Schema
 -- Idempotent version - safe to re-run
@@ -384,3 +385,314 @@ CREATE INDEX IF NOT EXISTS idx_rental_bookings_status ON rental_bookings(status)
 CREATE INDEX IF NOT EXISTS idx_wishlist_user ON wishlist_items(user_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_product ON reviews(product_id) WHERE is_approved = true;
 CREATE INDEX IF NOT EXISTS idx_contact_status ON contact_submissions(status);
+
+-- ============================================
+-- SITE SETTINGS - Persistent admin settings
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS site_settings (
+  key TEXT PRIMARY KEY,
+  value JSONB NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Site settings are viewable by everyone" ON site_settings;
+DROP POLICY IF EXISTS "Site settings are viewable by everyone" ON site_settings;
+CREATE POLICY "Site settings are viewable by everyone" ON site_settings FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
+DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
+CREATE POLICY "Admins can manage site settings" ON site_settings FOR ALL USING (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+) WITH CHECK (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+);
+
+-- Seed default settings
+INSERT INTO site_settings (key, value) VALUES ('branding', '{
+  "siteName": "Atelier Riman",
+  "tagline": "Sharjah''s Most Majestic Couture",
+  "logoText": "Riman"
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('contact', '{
+  "email": "hello@rimanfashion.com",
+  "phone": "+971 50 123 4567",
+  "address": "Al Zahra St, Sharjah, UAE",
+  "hours": "Sat-Thu, 10am - 8pm"
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('social', '{
+  "instagram": "@rimanfashion",
+  "whatsapp": "+971501234567",
+  "facebook": "rimanfashion",
+  "twitter": "rimanfashion",
+  "youtube": "rimanfashion",
+  "tiktok": "@rimanfashion",
+  "pinterest": "rimanfashion"
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('features', '{
+  "newsletter": true,
+  "whatsappBtn": true,
+  "preloader": true,
+  "instagramFeed": true,
+  "cookieBanner": true,
+  "scrollReveal": true,
+  "threeDViewer": true
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('advanced', '{
+  "metaDescription": "Atelier Riman - Sharjah''s premier bridal and evening couture atelier.",
+  "ogImageUrl": "",
+  "keywords": "bridal gowns, evening dresses, couture, Sharjah, UAE",
+  "gaId": "",
+  "plausibleDomain": "",
+  "fathomSiteId": "",
+  "maintenanceMode": false,
+  "maintenanceMessage": "Our atelier is currently being curated. We will return shortly.",
+  "customHeadCode": ""
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('policies', '{
+  "rentalPeriodDays": 7,
+  "depositAmount": 5000,
+  "insuranceText": "7-day hire period includes eco-friendly dry cleaning and couture insurance.",
+  "lateReturnFee": "AED 500 per day",
+  "shippingInfo": "Complimentary delivery within UAE and GCC.",
+  "returnPolicy": "All sales are final. Rental items must be returned within the agreed period."
+}'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+INSERT INTO site_settings (key, value) VALUES ('admin_emails', '["riman4share@gmail.com"]'::jsonb) ON CONFLICT (key) DO NOTHING;
+
+
+-- Appointments table
+CREATE TABLE IF NOT EXISTS appointments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  date DATE NOT NULL,
+  time TEXT NOT NULL,
+  service_type TEXT NOT NULL,
+  notes TEXT,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'cancelled', 'completed')),
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Enable RLS
+ALTER TABLE appointments ENABLE ROW LEVEL SECURITY;
+
+-- Anyone can create an appointment (for the booking form)
+DROP POLICY IF EXISTS "Anyone can create appointments" ON appointments;
+CREATE POLICY "Anyone can create appointments" ON appointments FOR INSERT WITH CHECK (true);
+
+-- Only admins can view/update/delete appointments
+DROP POLICY IF EXISTS "Admins can view appointments" ON appointments;
+CREATE POLICY "Admins can view appointments" ON appointments FOR SELECT USING (
+  EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
+);
+
+DROP POLICY IF EXISTS "Admins can update appointments" ON appointments;
+CREATE POLICY "Admins can update appointments" ON appointments FOR UPDATE USING (
+  EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
+);
+
+DROP POLICY IF EXISTS "Admins can delete appointments" ON appointments;
+CREATE POLICY "Admins can delete appointments" ON appointments FOR DELETE USING (
+  EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
+);
+
+-- Add collection_year and silhouette columns to products table
+ALTER TABLE products ADD COLUMN IF NOT EXISTS collection_year INTEGER;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS silhouette TEXT;
+
+-- Add index for filtering
+CREATE INDEX IF NOT EXISTS idx_products_collection_year ON products(collection_year);
+CREATE INDEX IF NOT EXISTS idx_products_silhouette ON products(silhouette);
+
+-- Add payment fields to orders table
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_method TEXT CHECK (payment_method IN ('atelier', 'card'));
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_status TEXT NOT NULL DEFAULT 'pending' CHECK (payment_status IN ('pending', 'processing', 'paid', 'failed', 'refunded'));
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS stripe_session_id TEXT;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS stripe_payment_intent_id TEXT;
+
+
+-- Gallery items table
+CREATE TABLE gallery_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL DEFAULT '',
+  description TEXT DEFAULT '',
+  category TEXT NOT NULL DEFAULT 'bridal',
+  media_url TEXT NOT NULL,
+  media_type TEXT NOT NULL DEFAULT 'photo',
+  thumbnail_url TEXT DEFAULT '',
+  sort_order INTEGER DEFAULT 0,
+  is_featured BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Indexes
+CREATE INDEX idx_gallery_category ON gallery_items(category);
+CREATE INDEX idx_gallery_featured ON gallery_items(is_featured) WHERE is_featured = true;
+CREATE INDEX idx_gallery_sort ON gallery_items(sort_order);
+
+-- RLS policies
+ALTER TABLE gallery_items ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public read access" ON gallery_items;
+CREATE POLICY "Public read access" ON gallery_items
+  FOR SELECT USING (true);
+
+DROP POLICY IF EXISTS "Admin insert" ON gallery_items;
+CREATE POLICY "Admin insert" ON gallery_items
+  FOR INSERT WITH CHECK (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+DROP POLICY IF EXISTS "Admin update" ON gallery_items;
+CREATE POLICY "Admin update" ON gallery_items
+  FOR UPDATE USING (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+DROP POLICY IF EXISTS "Admin delete" ON gallery_items;
+CREATE POLICY "Admin delete" ON gallery_items
+  FOR DELETE USING (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+-- Storage policies (run after creating 'gallery' bucket in Dashboard)
+-- CREATE POLICY "Public read access for gallery storage" ON storage.objects
+--   FOR SELECT USING (bucket_id = 'gallery');
+-- CREATE POLICY "Authenticated upload to gallery" ON storage.objects
+--   FOR INSERT WITH CHECK (bucket_id = 'gallery' AND auth.role() = 'authenticated');
+-- CREATE POLICY "Authenticated delete from gallery" ON storage.objects
+--   FOR DELETE USING (bucket_id = 'gallery' AND auth.role() = 'authenticated');
+
+
+-- Fix gallery RLS policies to require admin role (not just authenticated)
+-- This matches the pattern used by all other admin-managed tables
+
+-- Drop the overly permissive policies
+DROP POLICY IF EXISTS "Authenticated insert" ON gallery_items;
+DROP POLICY IF EXISTS "Authenticated update" ON gallery_items;
+DROP POLICY IF EXISTS "Authenticated delete" ON gallery_items;
+
+-- Create admin-only policies (matching products, categories, etc.)
+DROP POLICY IF EXISTS "Admin insert" ON gallery_items;
+CREATE POLICY "Admin insert" ON gallery_items
+  FOR INSERT WITH CHECK (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+DROP POLICY IF EXISTS "Admin update" ON gallery_items;
+CREATE POLICY "Admin update" ON gallery_items
+  FOR UPDATE USING (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+DROP POLICY IF EXISTS "Admin delete" ON gallery_items;
+CREATE POLICY "Admin delete" ON gallery_items
+  FOR DELETE USING (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+
+-- ============================================
+-- Restrict profiles SELECT policy
+-- Only expose safe columns (id, name, avatar_url) publicly
+-- Admins and the user themselves can see full profile
+-- ============================================
+
+-- Drop the overly permissive policy
+DROP POLICY IF EXISTS "Public profiles are viewable by everyone" ON profiles;
+
+-- Users can see their own full profile
+DROP POLICY IF EXISTS "Users can view their own profile" ON profiles;
+CREATE POLICY "Users can view their own profile" ON profiles
+  FOR SELECT USING (auth.uid() = id);
+
+-- Admins can see all profiles (for admin dashboard)
+DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
+CREATE POLICY "Admins can view all profiles" ON profiles
+  FOR SELECT USING (
+    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  );
+
+-- Public can only see safe columns via a view
+CREATE OR REPLACE VIEW profiles_public AS
+  SELECT id, name, avatar_url FROM profiles;
+
+GRANT SELECT ON profiles_public TO anon;
+GRANT SELECT ON profiles_public TO authenticated;
+
+
+-- Fix infinite recursion in admin RLS policy
+-- The old policy self-referenced profiles, causing infinite recursion.
+-- Using SECURITY DEFINER function breaks the cycle.
+
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE sql
+SECURITY DEFINER
+AS $$
+  SELECT EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin');
+$$;
+
+DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
+
+DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
+CREATE POLICY "Admins can view all profiles" ON profiles
+  FOR SELECT USING (public.is_admin());
+
+-- ============================================
+-- STORAGE - Buckets & policies for imagery
+-- ============================================
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('product-images', 'product-images', true),
+       ('gallery', 'gallery', true)
+ON CONFLICT (id) DO NOTHING;
+
+DROP POLICY IF EXISTS "Public read product-images" ON storage.objects;
+CREATE POLICY "Public read product-images"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'product-images');
+
+DROP POLICY IF EXISTS "Public read gallery" ON storage.objects;
+CREATE POLICY "Public read gallery"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'gallery');
+
+DROP POLICY IF EXISTS "Auth upload product-images" ON storage.objects;
+CREATE POLICY "Auth upload product-images"
+  ON storage.objects FOR INSERT TO authenticated
+  WITH CHECK (bucket_id = 'product-images');
+
+DROP POLICY IF EXISTS "Auth update product-images" ON storage.objects;
+CREATE POLICY "Auth update product-images"
+  ON storage.objects FOR UPDATE TO authenticated
+  USING (bucket_id = 'product-images');
+
+DROP POLICY IF EXISTS "Auth delete product-images" ON storage.objects;
+CREATE POLICY "Auth delete product-images"
+  ON storage.objects FOR DELETE TO authenticated
+  USING (bucket_id = 'product-images');
+
+DROP POLICY IF EXISTS "Auth upload gallery" ON storage.objects;
+CREATE POLICY "Auth upload gallery"
+  ON storage.objects FOR INSERT TO authenticated
+  WITH CHECK (bucket_id = 'gallery');
+
+DROP POLICY IF EXISTS "Auth update gallery" ON storage.objects;
+CREATE POLICY "Auth update gallery"
+  ON storage.objects FOR UPDATE TO authenticated
+  USING (bucket_id = 'gallery');
+
+DROP POLICY IF EXISTS "Auth delete gallery" ON storage.objects;
+CREATE POLICY "Auth delete gallery"
+  ON storage.objects FOR DELETE TO authenticated
+  USING (bucket_id = 'gallery');
+

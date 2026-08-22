@@ -5,9 +5,11 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { formatPrice } from '../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, ArrowLeft, ArrowRight, Check, ChevronDown, ChevronUp, X, Truck, Calendar, MessageSquare, CreditCard, Building2, Lock, RotateCcw, MessageCircle } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
-import { createOrder } from '../services/orders';
+import { deriveOrderType, validateCheckoutStep } from '../lib/checkout';
+import { getItemUnitPrice } from '../lib/pricing';
+import { createOrder, createOrderViaEdge } from '../services/orders';
 import { isSupabaseConfigured } from '../services/supabase';
 import { createCheckoutSession, isStripeConfigured } from '../services/payment';
 import { z } from 'zod';
@@ -19,7 +21,7 @@ const checkoutSchema = z.object({
   phone: z.string().trim().min(7),
   address: z.string().trim().min(1),
   city: z.string().trim().min(1),
-  country: z.string(),
+  country: z.string().min(1),
 });
 
 const WHATSAPP_NUMBER = '971553730792';
@@ -28,7 +30,6 @@ export default function Checkout() {
   const { items, subtotal, clearCart, removeItem } = useCart();
   const { user } = useAuth();
   const { t, isRtl } = useLanguage();
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -63,19 +64,23 @@ export default function Checkout() {
   }, [formData, t]);
 
   const validateStep = (currentStep: number) => {
+    const invalidFields = validateCheckoutStep(currentStep, formData);
+    const messageByField: Record<string, string> = {
+      firstName: t('checkout.val_name'),
+      lastName: t('checkout.val_name'),
+      email: t('checkout.val_email'),
+      phone: t('checkout.val_phone'),
+      address: t('checkout.val_address'),
+      city: t('checkout.val_city'),
+      country: t('checkout.val_country'),
+    };
     const newErrors: Record<string, string> = {};
-    if (currentStep === 1) {
-      if (!formData.firstName.trim()) newErrors.firstName = t('checkout.val_name');
-      if (!formData.lastName.trim()) newErrors.lastName = t('checkout.val_name');
-      if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = t('checkout.val_email');
-      if (!formData.phone.trim() || formData.phone.trim().length < 7) newErrors.phone = t('checkout.val_phone');
-    } else if (currentStep === 2) {
-      if (!formData.address.trim()) newErrors.address = t('checkout.val_address');
-      if (!formData.city.trim()) newErrors.city = t('checkout.val_city');
+    for (const field of invalidFields) {
+      newErrors[field] = messageByField[field] ?? t('checkout.required');
     }
     setErrors(newErrors);
-    setTouched(Object.keys(newErrors).reduce((acc, k) => ({ ...acc, [k]: true }), {}));
-    return Object.keys(newErrors).length === 0;
+    setTouched(invalidFields.reduce((acc, k) => ({ ...acc, [k]: true }), {}));
+    return invalidFields.length === 0;
   };
 
   const handleBlur = (name: string) => {
@@ -112,9 +117,10 @@ export default function Checkout() {
         product_id: item.id,
         product_name: item.name,
         product_type: item.productType,
+        intent: item.intent,
         size: item.selectedSize,
         quantity: item.quantity,
-        unit_price: item.rentalPrice || item.salePrice || 0,
+        unit_price: getItemUnitPrice(item),
         rental_start_date: item.selectedDate ? new Date(item.selectedDate).toISOString().split('T')[0] : undefined,
         rental_end_date: item.selectedDate
           ? new Date(new Date(item.selectedDate).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
@@ -122,16 +128,22 @@ export default function Checkout() {
         security_deposit: item.securityDeposit,
       }));
 
-      const orderType = items.some(i => i.productType === 'rent' || i.productType === 'both')
-        ? (items.some(i => i.productType === 'sale') ? 'mixed' : 'rental')
-        : 'sale';
+      const orderType = deriveOrderType(
+        items.map(i => ({
+          id: i.id,
+          name: i.name,
+          productType: i.productType,
+          quantity: i.quantity,
+          intent: i.intent,
+        })),
+      );
 
       if (paymentMethod === 'card' && isStripeConfigured()) {
         const url = await createCheckoutSession({
           items: items.map(i => ({
             product_id: i.id,
             name: i.name,
-            price: i.intent === 'rent' ? (i.rentalPrice || 0) : (i.salePrice || 0),
+            price: getItemUnitPrice(i),
             quantity: i.quantity,
             productType: i.productType,
             intent: i.intent,
@@ -157,18 +169,40 @@ export default function Checkout() {
       }
 
       if (isSupabaseConfigured) {
-        await createOrder({
-          status: 'pending',
-          type: orderType,
-          subtotal,
+        const edgeOrderId = await createOrderViaEdge({
+          items: orderItems.map(item => ({
+            product_id: item.product_id,
+            intent: item.intent ?? 'sale',
+            quantity: item.quantity,
+            size: item.size,
+            rental_start_date: item.rental_start_date,
+            rental_end_date: item.rental_end_date,
+            security_deposit: item.security_deposit,
+          })),
+          orderType,
+          customerName: `${formData.firstName} ${formData.lastName}`,
+          customerEmail: formData.email,
+          customerPhone: formData.phone,
+          customerAddress: formData.address,
+          customerCity: formData.city,
+          customerCountry: formData.country,
           notes: orderNotes,
-          customer_name: `${formData.firstName} ${formData.lastName}`,
-          customer_email: formData.email,
-          customer_phone: formData.phone,
-          customer_address: formData.address,
-          customer_city: formData.city,
-          customer_country: formData.country,
-        }, orderItems);
+        });
+
+        if (!edgeOrderId) {
+          await createOrder({
+            status: 'pending',
+            type: orderType,
+            subtotal,
+            notes: orderNotes,
+            customer_name: `${formData.firstName} ${formData.lastName}`,
+            customer_email: formData.email,
+            customer_phone: formData.phone,
+            customer_address: formData.address,
+            customer_city: formData.city,
+            customer_country: formData.country,
+          }, orderItems);
+        }
       } else {
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
@@ -248,7 +282,6 @@ export default function Checkout() {
                   label={s === 1 ? t('checkout.step_identity') : s === 2 ? t('checkout.step_logistics') : t('checkout.step_confirm')}
                   active={step >= s}
                   completed={step > s}
-                  isRtl={isRtl}
                 />
                 {i < 2 && (
                   <div className="flex-1 mx-3 h-px bg-stone-200 relative">
@@ -643,7 +676,7 @@ export default function Checkout() {
 
 /* ─── Sub-components ─── */
 
-function StepStep({ num, label, active, completed, isRtl }: { num: number; label: string; active: boolean; completed: boolean; isRtl: boolean }) {
+function StepStep({ num, label, active, completed }: { num: number; label: string; active: boolean; completed: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
       <div className={cn(

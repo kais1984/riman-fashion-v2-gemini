@@ -16,17 +16,21 @@ CREATE TABLE IF NOT EXISTS appointments (
 ALTER TABLE appointments ENABLE ROW LEVEL SECURITY;
 
 -- Anyone can create an appointment (for the booking form)
+DROP POLICY IF EXISTS "Anyone can create appointments" ON appointments;
 CREATE POLICY "Anyone can create appointments" ON appointments FOR INSERT WITH CHECK (true);
 
 -- Only admins can view/update/delete appointments
+DROP POLICY IF EXISTS "Admins can view appointments" ON appointments;
 CREATE POLICY "Admins can view appointments" ON appointments FOR SELECT USING (
   EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
 );
 
+DROP POLICY IF EXISTS "Admins can update appointments" ON appointments;
 CREATE POLICY "Admins can update appointments" ON appointments FOR UPDATE USING (
   EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
 );
 
+DROP POLICY IF EXISTS "Admins can delete appointments" ON appointments;
 CREATE POLICY "Admins can delete appointments" ON appointments FOR DELETE USING (
   EXISTS (SELECT 1 FROM profiles WHERE profiles.id = auth.uid() AND profiles.role = 'admin')
 );

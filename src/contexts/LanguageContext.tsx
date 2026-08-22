@@ -379,6 +379,7 @@ const translations: Record<Language, Record<string, string>> = {
     'checkout.val_name': 'Please enter your name',
     'checkout.val_address': 'Please enter your street address',
     'checkout.val_city': 'Please enter your city',
+    'checkout.val_country': 'Please select your country',
 
     // Auth
     'auth.signin': 'Sign In',
@@ -1076,6 +1077,7 @@ const translations: Record<Language, Record<string, string>> = {
     'checkout.val_name': 'يرجى إدخال اسمك',
     'checkout.val_address': 'يرجى إدخال عنوانك',
     'checkout.val_city': 'يرجى إدخال مدينتك',
+    'checkout.val_country': 'يرجى اختيار بلدك',
 
     // Auth
     'auth.signin': 'تسجيل الدخول',

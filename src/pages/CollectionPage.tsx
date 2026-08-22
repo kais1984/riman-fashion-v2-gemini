@@ -1,9 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useMemo } from 'react';
-import { Filter, ChevronDown, Grid, List as ListIcon, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, SlidersHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ProductCard from '../components/ProductCard';
-import { cn, categoryToSlug } from '../lib/utils';
+import { cn } from '../lib/utils';
 import { useData } from '../contexts/DataContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ProductGridSkeleton } from '../components/Skeleton';

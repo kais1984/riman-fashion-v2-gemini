@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, Heart, User, ShoppingBag, Menu, X, Globe, Sparkles, ChevronRight, Calendar, Scissors, HelpCircle, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -58,9 +58,9 @@ export default function Header() {
       {(!isHome) && (
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       )}
-      <div className="container mx-auto px-6 grid grid-cols-3 items-center">
-        {/* Left Layer: Mobile Menu / Mobile Nav Links */}
-        <div className="flex items-center gap-4">
+      <div className="container mx-auto px-6 relative flex items-center">
+        {/* Left Layer: Menu / Primary Nav / Language / Search */}
+        <div className="flex flex-1 items-center justify-start gap-4">
           <div className="xl:hidden">
             <button 
               onClick={() => setIsMenuOpen(true)}
@@ -72,7 +72,7 @@ export default function Header() {
           </div>
           
           {/* Desktop Nav On Left */}
-          <nav className={cn("hidden xl:flex items-center gap-6", isRtl && "flex-row-reverse")}>
+          <nav className="hidden xl:flex items-center gap-4">
             {navLinks.slice(0, 4).map((link) => (
               <Link
                 key={link.path}
@@ -88,10 +88,25 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+
+          {/* Language + Search on the left to balance the two sides */}
+          <button
+            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+            className={cn("hidden xl:flex items-center gap-1.5 font-body text-xs tracking-widest uppercase transition-colors ml-2",
+              (!isHome) ? "text-stone-800" : "text-white"
+            )}
+            aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
+          >
+            <Globe className="w-5 h-5" />
+            <span className="hidden lg:inline">{language === 'en' ? 'AR' : 'EN'}</span>
+          </button>
+          <Link to="/search" className="hidden xl:block hover:text-gold transition-colors" aria-label="Search">
+            <Search className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
+          </Link>
         </div>
 
-        {/* Center Layer: Logo with Magnetic Effect */}
-        <div className={cn("flex justify-center", isRtl && "order-2")}>
+        {/* Center Layer: Logo with Magnetic Effect (pinned to true center) */}
+        <div className="absolute left-1/2 top-0 h-full -translate-x-1/2 flex items-center">
           <motion.div
              onMouseMove={handleLogoMove}
              onMouseLeave={resetLogo}
@@ -119,9 +134,9 @@ export default function Header() {
           </motion.div>
         </div>
 
-        {/* Right Layer: Actions & Remaining Nav */}
-        <div className={cn("flex items-center justify-end gap-4 md:gap-6", isRtl && "order-1")}>
-          <nav className={cn("hidden xl:flex items-center gap-6 mr-6 border-r border-stone-200 pr-6", isRtl && "flex-row-reverse mr-0 ml-6 border-r-0 border-l pr-0 pl-6")}>
+        {/* Right Layer: Secondary Nav + Actions */}
+        <div className="flex flex-1 items-center justify-end gap-4 md:gap-6">
+          <nav className="hidden xl:flex items-center gap-4 mr-4 border-r border-stone-200 pr-4">
             {navLinks.slice(4, 7).map((link) => (
               <Link
                 key={link.path}
@@ -138,20 +153,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-5 md:gap-6">
-            <button 
-              onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-              className={cn("flex items-center gap-1.5 font-body text-xs tracking-widest uppercase transition-colors", 
-                (!isHome) ? "text-stone-800" : "text-white"
-              )}
-              aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
-            >
-              <Globe className="w-5 h-5" />
-              <span className="hidden lg:inline">{language === 'en' ? 'AR' : 'EN'}</span>
-            </button>
-            <Link to="/search" className="hidden md:block hover:text-gold transition-colors" aria-label="Search">
-              <Search className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
-            </Link>
+          <div className="flex items-center gap-3 md:gap-4">
             <Link to="/style-quiz" className="hover:text-gold transition-colors" aria-label="Style Quiz">
               <Sparkles className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
             </Link>

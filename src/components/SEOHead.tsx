@@ -2,6 +2,7 @@ import { useEffect, useRef, useMemo } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useData } from '../contexts/DataContext';
+import { useSettings } from '../contexts/SettingsContext';
 import { Product } from '../types';
 import {
   resolveRouteMeta,
@@ -27,17 +28,6 @@ interface SEOProps {
   breadcrumbs?: { name: string; url: string }[];
 }
 
-function getAdminSettings() {
-  try {
-    const raw = localStorage.getItem('riman_admin_settings');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return parsed.advanced || {};
-    }
-  } catch {}
-  return {};
-}
-
 /** Inject or update a <script> tag with the given JSON content. Tag identity is keyed by `id`. */
 function injectJsonLd(id: string, data: unknown) {
   const existing = document.getElementById(id);
@@ -53,9 +43,10 @@ export default function SEOHead({ title, description, image, noIndex, product: p
   const location = useLocation();
   const { language } = useLanguage();
   const { products } = useData();
+  const { settings } = useSettings();
   const params = useParams();
   const canonical = `${BASE_URL}${location.pathname}`;
-  const admin = getAdminSettings();
+  const admin = settings.advanced;
   const previousPathRef = useRef(location.pathname);
 
   // Resolve route metadata as fallback
@@ -70,35 +61,6 @@ export default function SEOHead({ title, description, image, noIndex, product: p
     }
     return undefined;
   }, [propProduct, isProductPage, params.id, products]);
-
-  // Auto-generate breadcrumbs when not explicitly provided
-  const resolvedBreadcrumbs = useMemo(() => {
-    if (breadcrumbs) return breadcrumbs;
-
-    const parts = location.pathname.split('/').filter(Boolean);
-    if (parts.length === 0) return [{ name: 'Home', url: '/' }];
-
-    const trail: { name: string; url: string }[] = [{ name: 'Home', url: '/' }];
-
-    if (parts[0] === 'collection' && parts[1]) {
-      trail.push({ name: 'Collection', url: '/collection/all' });
-      const categoryName = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
-      trail.push({ name: categoryName, url: `/collection/${parts[1]}` });
-    } else if (parts[0] === 'product' && product) {
-      // We need the category for the breadcrumb
-      const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
-      trail.push({ name: product.category, url: `/collection/${categorySlug}` });
-      trail.push({ name: product.name, url: location.pathname });
-    } else {
-      // Generic page breadcrumb
-      const label = parts[parts.length - 1]
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, c => c.toUpperCase());
-      trail.push({ name: label, url: location.pathname });
-    }
-
-    return trail;
-  }, [breadcrumbs, location.pathname, product]);
 
   const pageTitle = title
     ? `${title} | Atelier Riman`

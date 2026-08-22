@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { isSupabaseConfigured } from '../services/supabase';
+import { useToast } from './ToastContext';
 
 interface SiteSettings {
   branding: { siteName: string; tagline: string; logoText: string };
@@ -49,6 +50,7 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<SiteSettings>(loadCachedSettings);
   const [isLoading, setIsLoading] = useState(true);
+  const { addToast } = useToast();
 
   useEffect(() => {
     loadFromSupabase();
@@ -115,6 +117,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         await updateSiteSetting(section, updatedSection);
       } catch (err) {
         console.error(`[Riman] Failed to save setting ${section}.${key}:`, err);
+        addToast({ type: 'error', title: 'Save Failed', message: `Could not save ${section} setting to the server.` });
       }
     }
   };

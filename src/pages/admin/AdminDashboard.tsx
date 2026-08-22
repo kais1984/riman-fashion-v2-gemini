@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, Users, ShoppingCart, Calendar, ArrowUpRight, ArrowDownRight, ChevronRight, Loader2 } from 'lucide-react';
+import { TrendingUp, Users, ShoppingCart, Calendar, ChevronRight, Loader2 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
@@ -61,7 +61,7 @@ export default function AdminDashboard() {
         .sort(([a], [b]) => a.localeCompare(b))
         .slice(-6)
         .map(([key, revenue]) => {
-          const [y, m] = key.split('-');
+          const [, m] = key.split('-');
           const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
           return { name: monthNames[parseInt(m) - 1], revenue };
         });

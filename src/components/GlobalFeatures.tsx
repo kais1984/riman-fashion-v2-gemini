@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';

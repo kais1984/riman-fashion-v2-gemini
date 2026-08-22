@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@rimanfashion.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'riman4share@gmail.com';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 if (!ADMIN_PASSWORD) {

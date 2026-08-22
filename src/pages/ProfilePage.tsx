@@ -1,8 +1,7 @@
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Navigate, Link, useNavigate } from 'react-router-dom';
-import { ShoppingBag, Calendar, Settings, LogOut, User, Heart, ChevronRight, Package, Clock } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ShoppingBag, Calendar, Settings, LogOut, User, Heart, ChevronRight, Package } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { formatPrice, cn } from '../lib/utils';
 import { fetchOrders, type Order } from '../services/orders';

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
-import { Search, ShoppingCart, Eye, X, ChevronDown, CheckCircle2, Clock, Ban, Truck, RefreshCw, MessageSquare, Save, CreditCard, Building2 } from 'lucide-react';
+import { Search, ShoppingCart, Eye, X, CheckCircle2, Clock, Ban, Truck, RefreshCw, MessageSquare, Save, CreditCard, Building2 } from 'lucide-react';
 import { fetchOrders, updateOrderStatus, Order } from '../../services/orders';
 import { isSupabaseConfigured } from '../../services/supabase';
 import { formatPrice, cn } from '../../lib/utils';

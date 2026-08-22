@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { verifyOrderItems, isVerifyError, type ClientOrderItem, type DbProduct } from '../lib/orderPricing';
 
 export interface OrderItem {
   id?: string;
@@ -6,6 +7,7 @@ export interface OrderItem {
   product_id: string;
   product_name: string;
   product_type: string;
+  intent?: 'sale' | 'rent';
   size?: string;
   quantity: number;
   unit_price: number;
@@ -42,6 +44,30 @@ export interface Order {
 export async function createOrder(order: Order, items: OrderItem[]): Promise<Order> {
   const { data: { user } } = await supabase.auth.getUser();
 
+  // Server-side price verification: never trust client-computed prices.
+  const clientItems: ClientOrderItem[] = items.map(item => ({
+    product_id: item.product_id,
+    intent: item.intent ?? 'sale',
+    quantity: item.quantity,
+    size: item.size,
+    rental_start_date: item.rental_start_date,
+    rental_end_date: item.rental_end_date,
+    security_deposit: item.security_deposit,
+  }));
+
+  const { data: dbProducts, error: prodError } = await supabase
+    .from('products')
+    .select('id, name, product_type, sale_price, rental_price, is_active')
+    .in('id', [...new Set(clientItems.map(i => i.product_id))]);
+
+  if (prodError) throw prodError;
+
+  const verification = verifyOrderItems(clientItems, (dbProducts ?? []) as DbProduct[]);
+  if (isVerifyError(verification)) throw new Error(verification.error);
+
+  const verifiedItems = verification.items;
+  const verifiedSubtotal = verification.subtotal;
+
   let customerId: string | undefined;
 
   const { data: existingCustomer } = await supabase
@@ -77,7 +103,7 @@ export async function createOrder(order: Order, items: OrderItem[]): Promise<Ord
       user_id: user?.id,
       status: order.status || 'pending',
       type: order.type,
-      subtotal: order.subtotal,
+      subtotal: verifiedSubtotal,
       notes: order.notes,
     })
     .select()
@@ -85,7 +111,7 @@ export async function createOrder(order: Order, items: OrderItem[]): Promise<Ord
 
   if (orderError) throw orderError;
 
-  const orderItems = items.map(item => ({
+  const orderItems = verifiedItems.map(item => ({
     ...item,
     order_id: orderData.id,
   }));
@@ -115,6 +141,52 @@ export async function createOrder(order: Order, items: OrderItem[]): Promise<Ord
   }
 
   return { ...orderData, items: insertedItems };
+}
+
+export async function createOrderViaEdge(payload: {
+  items: Array<{
+    product_id: string;
+    intent: 'sale' | 'rent';
+    quantity: number;
+    size?: string;
+    rental_start_date?: string;
+    rental_end_date?: string;
+    security_deposit?: number;
+  }>;
+  orderType: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone?: string;
+  customerAddress?: string;
+  customerCity?: string;
+  customerCountry?: string;
+  notes?: string;
+}): Promise<string | null> {
+  const endpoint = import.meta.env.VITE_CREATE_ORDER_ENDPOINT || '';
+  if (!endpoint) {
+    console.info('[Riman] create-order endpoint not configured — falling back to client createOrder');
+    return null;
+  }
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const err = await response.text();
+      console.error('[Riman] create-order failed:', err);
+      return null;
+    }
+
+    const { orderId } = await response.json();
+    return orderId || null;
+  } catch (err) {
+    console.error('[Riman] Failed to create order via edge:', err);
+    return null;
+  }
 }
 
 export async function fetchOrders(): Promise<Order[]> {

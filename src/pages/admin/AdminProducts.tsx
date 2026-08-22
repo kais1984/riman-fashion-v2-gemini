@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
-import { Package, Plus, Search, Edit2, Trash2, X, Save, Upload, Link as LinkIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus, Search, Edit2, Trash2, X, Save, Link as LinkIcon } from 'lucide-react';
 import { uploadImage } from '../../services/upload';
 import { Product, Category, ProductType } from '../../types';
-import { formatPrice, cn } from '../../lib/utils';
+import { formatPrice } from '../../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { useData } from '../../contexts/DataContext';
 
@@ -215,7 +215,15 @@ export default function AdminProducts() {
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      <InputField label="Category" name="category" defaultValue={editingProduct?.category} required />
+                      <div className="flex flex-col gap-2">
+                        <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Category</label>
+                        <select name="category" defaultValue={editingProduct?.category || 'Bridal Gown'} required className="w-full bg-stone-50 border border-stone-100 p-4 text-[11px] tracking-widest outline-none focus:border-gold cursor-pointer">
+                          <option value="Bridal Gown">Bridal Gown</option>
+                          <option value="Evening Dress">Evening Dress</option>
+                          <option value="Accessory">Accessory</option>
+                          <option value="Fine Jewelry">Fine Jewelry</option>
+                        </select>
+                      </div>
                       <InputField label="Designer" name="designer" defaultValue={editingProduct?.designer || 'Riman Atelier'} />
                     </div>
                   </div>

@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useRef, ReactNode } fro
 import { supabase, isSupabaseConfigured } from '../services/supabase';
 import { getProfile } from '../services/auth';
 import { hashPassword } from '../lib/crypto';
+import { useToast } from './ToastContext';
 
 interface User {
   id: string;
@@ -71,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const signingOutRef = useRef(false);
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (isSupabaseConfigured) {
@@ -122,12 +124,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (profile) {
         setUser({ id: profile.id, name: profile.name, email: profile.email, role: profile.role });
       } else {
-        // Fallback for missing profile
+        addToast({ type: 'info', title: 'Profile not found', message: 'Some features may be limited.' });
         setUser({ id: userId, name: email.split('@')[0], email, role: 'client' });
       }
     } catch (err) {
       console.error('[Riman] Failed to load profile:', err);
-      // Fallback user object if profile fetch fails but session exists
+      addToast({ type: 'info', title: 'Could not load account', message: 'Some features may be limited.' });
       setUser({ id: userId, name: email.split('@')[0], email, role: 'client' });
     }
   };

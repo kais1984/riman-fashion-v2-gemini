@@ -8,7 +8,7 @@ import { cn } from '../../lib/utils';
 import { motion } from 'motion/react';
 
 export default function AdminSettings() {
-  const { content, updateContent } = useData();
+  const { updateContent } = useData();
   const { settings, updateSetting } = useSettings();
   const [saved, setSaved] = useState(false);
   const [tab, setTab] = useState<'brand' | 'homepage' | 'policies' | 'features' | 'advanced'>('brand');

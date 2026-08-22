@@ -15,7 +15,7 @@ const CATEGORIES = [
 export default function AdminGallery() {
   const { t } = useLanguage();
   const [items, setItems] = useState<GalleryItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ title: '', description: '', category: 'bridal', sort_order: 0, is_featured: false });

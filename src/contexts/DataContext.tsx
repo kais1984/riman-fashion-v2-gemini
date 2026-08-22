@@ -3,6 +3,7 @@ import { products as initialProducts } from '../data/products';
 import { Product } from '../types';
 import { isSupabaseConfigured } from '../services/supabase';
 import { fetchProducts } from '../services/products';
+import { useToast } from './ToastContext';
 
 interface SiteContent {
   hero: {
@@ -63,6 +64,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [products, setProducts] = useState<Product[]>(() => safeParse('riman_dynamic_products', initialProducts));
   const [content, setContent] = useState<SiteContent>(() => safeParse('riman_dynamic_site_content', defaultContent));
   const [isLoading, setIsLoading] = useState(true);
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (isSupabaseConfigured) {
@@ -81,7 +83,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         setProducts(data);
       }
     } catch {
-      // Fallback to local data already in state
+      // Transient/connection errors are non-fatal; catalog falls back to local data.
+      console.warn('[Riman] Could not load catalogue from server; using local collection.');
     }
 
     // Load site content
@@ -127,6 +130,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         if (updates.quote !== undefined) await updateSiteContentKey('quote', { value: updates.quote });
       } catch (err) {
         console.error('[Riman] Failed to save content to Supabase:', err);
+        addToast({ type: 'error', title: 'Could not save content', message: 'Changes kept locally only.' });
       }
     }
   };
@@ -145,12 +149,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         const created = await createProduct(product);
         await loadFromSupabase();
         return created;
-      } catch {
-        // Fallback to local
+      } catch (err) {
+        addToast({ type: 'error', title: 'Could not save to server', message: 'Saved locally only — not synced.' });
       }
     }
     const fallback = { ...product };
     setProducts(prev => [fallback, ...prev]);
+    if (!isSupabaseConfigured) addToast({ type: 'info', title: 'Saved locally', message: 'Backend not connected.' });
     return fallback;
   };
 
@@ -161,12 +166,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         const updated = await updateProduct(id, updates as Product);
         await loadFromSupabase();
         return updated;
-      } catch {
-        // Fallback to local
+      } catch (err) {
+        addToast({ type: 'error', title: 'Could not update on server', message: 'Changes saved locally only.' });
       }
     }
     setProducts(prev => prev.map(p => p.id === id ? { ...p, ...updates } : p));
     const updatedProduct = products.find(p => p.id === id);
+    if (!isSupabaseConfigured) addToast({ type: 'info', title: 'Saved locally', message: 'Backend not connected.' });
     return { ...updatedProduct, ...updates } as Product;
   };
 
@@ -177,11 +183,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         await deleteProduct(id);
         await loadFromSupabase();
         return;
-      } catch {
-        // Fallback to local
+      } catch (err) {
+        addToast({ type: 'error', title: 'Could not delete on server', message: 'Removed locally only.' });
       }
     }
     setProducts(prev => prev.filter(p => p.id !== id));
+    if (!isSupabaseConfigured) addToast({ type: 'info', title: 'Removed locally', message: 'Backend not connected.' });
   };
 
   return (

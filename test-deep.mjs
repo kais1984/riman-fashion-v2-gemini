@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 
 const BASE = 'https://riman-fashion-v2.netlify.app';
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@rimanfashion.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'riman4share@gmail.com';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const results = [];
 
