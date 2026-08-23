@@ -33,6 +33,13 @@ export interface Testimonial {
   rating: number;
 }
 
+export interface GownRef {
+  id: string;
+  name: string;
+  size?: string;
+  intent: 'sale' | 'rent';
+}
+
 export interface Appointment {
   id?: string;
   name: string;
@@ -44,4 +51,5 @@ export interface Appointment {
   notes?: string;
   status?: string;
   created_at?: string;
+  interested_gowns?: GownRef[] | null;
 }

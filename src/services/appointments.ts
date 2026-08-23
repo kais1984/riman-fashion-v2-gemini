@@ -32,6 +32,7 @@ export async function createAppointment(appointment: Omit<Appointment, 'id' | 's
         time: appointment.time,
         service_type: appointment.service_type,
         notes: appointment.notes,
+        interested_gowns: appointment.interested_gowns ?? null,
         status: 'pending',
       })
       .select()
