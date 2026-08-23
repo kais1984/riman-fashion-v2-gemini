@@ -26,7 +26,7 @@ export default function AlterationsPage() {
           >
             {t('alt.hero_title')}
           </motion.h1>
-          <p className="font-body text-stone-500 text-sm md:text-base tracking-widest uppercase mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-body text-stone-600 text-sm md:text-base tracking-widest uppercase mb-12 max-w-2xl mx-auto leading-relaxed">
             {t('alt.hero_desc')}
           </p>
           <div className="flex flex-wrap justify-center gap-6">
@@ -97,7 +97,7 @@ export default function AlterationsPage() {
             <h3 className="font-heading text-3xl md:text-4xl text-stone-800 mb-8 leading-tight">
               {t('alt.cta_heading')}
             </h3>
-            <p className="font-body text-stone-500 mb-10 text-sm leading-loose">
+            <p className="font-body text-stone-600 mb-10 text-sm leading-loose">
               {t('alt.cta_desc')}
             </p>
             <div className="space-y-4">
@@ -108,7 +108,7 @@ export default function AlterationsPage() {
                  <Ruler className="w-4 h-4 text-gold" /> {t('alt.guarantee')}
               </div>
             </div>
-            <Link to="/contact" className="mt-12 group flex items-center gap-4 text-[10px] uppercase tracking-[0.4em] text-gold font-black transition-all hover:gap-6">
+            <Link to="/contact" className="mt-12 group flex items-center gap-4 text-micro uppercase tracking-[0.4em] text-gold font-black transition-all hover:gap-6">
               {t('alt.inquire')} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -130,7 +130,7 @@ function ServiceCard({ icon: Icon, title, desc }: any) {
         <Icon className="w-5 h-5" />
       </div>
       <h3 className="font-heading text-xl mb-4 tracking-widest uppercase text-stone-800">{title}</h3>
-      <p className="font-body text-xs text-stone-400 leading-relaxed uppercase tracking-wider">{desc}</p>
+      <p className="font-body text-xs text-stone-600 leading-relaxed uppercase tracking-wider">{desc}</p>
     </div>
   );
 }

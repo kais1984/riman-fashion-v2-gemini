@@ -11,7 +11,7 @@ export default function WeddingChecklist() {
   return (
     <div className="pt-32 pb-20 container mx-auto px-6 max-w-4xl">
       <div className="text-center mb-20">
-        <h2 className="heading-editorial text-gold text-[10px] mb-4">The Road to I Do</h2>
+        <h2 className="heading-editorial text-gold text-micro mb-4">The Road to I Do</h2>
         <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-wider mb-6">Wedding Planning Checklist</h1>
         <div className="divider-gold" />
       </div>

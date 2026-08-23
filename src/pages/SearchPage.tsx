@@ -35,7 +35,7 @@ export default function SearchPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
              <div className="relative group">
-                <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-300 group-focus-within:text-gold transition-colors" />
+                <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-500 group-focus-within:text-gold transition-colors" />
                 <input 
                   type="text" 
                   value={query}
@@ -47,7 +47,7 @@ export default function SearchPage() {
                 {query && (
                   <button 
                     onClick={() => setQuery('')}
-                    className="absolute right-6 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-800"
+                    className="absolute right-6 top-1/2 -translate-y-1/2 text-stone-600 hover:text-stone-800"
                     aria-label="Clear search"
                   >
                     <X className="w-5 h-5" />
@@ -62,8 +62,8 @@ export default function SearchPage() {
                     key={cat}
                     onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
                     className={cn(
-                      "px-6 py-2 text-[10px] tracking-[0.2em] uppercase transition-all border",
-                      activeCategory === cat ? "bg-onyx text-white border-onyx" : "bg-ivory text-stone-400 border-stone-100 hover:border-gold"
+                      "px-6 py-2 text-micro tracking-[0.2em] uppercase transition-all border",
+                      activeCategory === cat ? "bg-onyx text-white border-onyx" : "bg-ivory text-stone-600 border-stone-100 hover:border-gold"
                     )}
                   >
                     {categoryLabel(cat)}
@@ -78,9 +78,9 @@ export default function SearchPage() {
       <section className="section-padding container mx-auto px-6">
         <div className="flex justify-between items-center mb-12 border-b border-stone-200 pb-6">
            <h2 className="font-heading text-lg text-stone-800 tracking-widest uppercase">
-             {t('search.results')} <span className="text-stone-300 font-normal ml-2">({filteredProducts.length})</span>
+             {t('search.results')} <span className="text-stone-500 font-normal ml-2">({filteredProducts.length})</span>
            </h2>
-           <button className="flex items-center gap-2 text-[10px] text-stone-400 tracking-widest uppercase hover:text-gold transition-colors">
+           <button className="flex items-center gap-2 text-micro text-stone-600 tracking-widest uppercase hover:text-gold transition-colors">
               <SlidersHorizontal className="w-3 h-3" /> {t('search.advanced_filters')}
            </button>
         </div>
@@ -109,11 +109,11 @@ export default function SearchPage() {
                 className="text-center py-20"
               >
                  <div className="w-20 h-20 bg-stone-50 flex items-center justify-center mx-auto mb-8 border border-stone-100">
-                   <SearchIcon className="w-8 h-8 text-stone-300" />
+                   <SearchIcon className="w-8 h-8 text-stone-500" />
                  </div>
                   <h3 className="font-heading text-2xl text-stone-800 mb-4 tracking-widest uppercase">{t('search.empty_heading')}</h3>
                  <div className="w-12 h-px bg-gold mx-auto mb-4" />
-                  <p className="font-body text-stone-400 text-xs uppercase tracking-widest mb-10 max-w-md mx-auto leading-relaxed italic">
+                   <p className="font-body text-stone-600 text-xs uppercase tracking-widest mb-10 max-w-md mx-auto leading-relaxed italic">
                     {t('search.empty_desc')}
                   </p>
                  <button

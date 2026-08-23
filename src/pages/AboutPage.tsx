@@ -23,7 +23,7 @@ export default function AboutPage() {
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-[10px] text-white/70 uppercase tracking-[0.5em] mb-6 block"
+            className="text-micro text-white/70 uppercase tracking-[0.5em] mb-6 block"
           >
             {t('about.hero_subtitle')}
           </motion.span>
@@ -79,7 +79,7 @@ export default function AboutPage() {
               <p className="font-body text-stone-800 italic text-sm mb-4">
                 "{t('about.quote')}"
               </p>
-              <span className="text-[10px] uppercase tracking-widest text-stone-400">{t('about.quote_author')}</span>
+              <span className="text-micro uppercase tracking-widest text-stone-600">{t('about.quote_author')}</span>
             </div>
           </motion.div>
         </div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
         <ScrollReveal>
           <div className="container mx-auto">
             <div className="flex flex-col items-center text-center mb-16">
-              <h2 className="heading-editorial text-stone-400 text-sm mb-4">{t('about.visionaries')}</h2>
+              <h2 className="heading-editorial text-stone-600 text-sm mb-4">{t('about.visionaries')}</h2>
               <h3 className="font-heading text-4xl text-stone-800 tracking-wide">{t('about.collective')}</h3>
               <div className="divider-gold mt-6" />
             </div>
@@ -156,12 +156,12 @@ export default function AboutPage() {
             <img src="/assets/rimanfashion_3542687554351211237_227867687_2_2025-01-10.jpg" className="w-full aspect-square object-cover" alt="Riman atelier beadwork detail" loading="lazy" />
             <div className="bg-ivory flex flex-col justify-center p-8 text-center border border-stone-50">
                <h4 className="font-heading text-3xl text-gold mb-2">10k+</h4>
-                <p className="text-[10px] text-stone-400 uppercase tracking-widest">{t('about.stat_beads')}</p>
+                <p className="text-micro text-stone-600 uppercase tracking-widest">{t('about.stat_beads')}</p>
             </div>
             <img src="/assets/rimanfashion_3638158883472325906_1739454936_2_2025-05-22.jpg" className="w-full aspect-square object-cover" alt="Riman couture runway collection" loading="lazy" />
             <div className="bg-stone-900 text-ivory flex flex-col justify-center p-8 text-center">
                <h4 className="font-heading text-3xl text-gold mb-2">120</h4>
-                <p className="text-[10px] text-ivory/40 uppercase tracking-widest">{t('about.stat_runways')}</p>
+                <p className="text-micro text-ivory/40 uppercase tracking-widest">{t('about.stat_runways')}</p>
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ function TeamMember({ name, role, image }: { name: string, role: string, image: 
         </div>
       </div>
       <h4 className="font-heading text-lg text-stone-800 mb-1">{name}</h4>
-      <p className="text-[10px] tracking-widest text-gold uppercase">{role}</p>
+      <p className="text-micro tracking-widest text-gold uppercase">{role}</p>
     </div>
   );
 }

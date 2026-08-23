@@ -26,8 +26,8 @@ export default function WishlistPage() {
       <div className="container mx-auto px-6">
         <header className="text-center mb-20">
            <h1 className="font-heading text-4xl md:text-6xl text-stone-800 tracking-wider uppercase mb-4">{t('selection.title')}</h1>
-           <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase italic">{t('selection.subtitle')}</p>
-           <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase italic">{wishlist.length} {t('selection.count')}</p>
+           <p className="font-body text-stone-600 text-micro tracking-[0.2em] uppercase italic">{t('selection.subtitle')}</p>
+           <p className="font-body text-stone-600 text-micro tracking-[0.2em] uppercase italic">{wishlist.length} {t('selection.count')}</p>
         </header>
 
         {isLoading ? (
@@ -61,7 +61,7 @@ export default function WishlistPage() {
                 >
                   <button 
                     onClick={() => removeFromWishlist(product.id)}
-                    className="absolute top-4 right-4 z-10 w-8 h-8 bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-stone-400 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
+                    className="absolute top-4 right-4 z-10 w-8 h-8 bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-stone-600 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -76,15 +76,15 @@ export default function WishlistPage() {
                   </Link>
 
                   <div className="p-8 text-center border-t border-stone-50">
-                    <span className="text-[10px] text-stone-300 uppercase tracking-widest mb-2 block">{product.category}</span>
+                    <span className="text-micro text-stone-500 uppercase tracking-widest mb-2 block">{product.category}</span>
                     <h3 className="font-heading text-lg text-stone-800 mb-4 tracking-wide group-hover:text-gold transition-colors">{product.name}</h3>
 <p className="font-body text-sm text-gold mb-8">{formatPrice(product.salePrice || product.rentalPrice || 0)}</p>
 
                      <div className="flex gap-2">
-                        <Link to={`/product/${product.id}`} className="flex-1 btn-luxury !py-3 !px-4 text-[10px]">{t('selection.view')}</Link>
+                        <Link to={`/product/${product.id}`} className="flex-1 btn-luxury !py-3 !px-4 text-micro">{t('selection.view')}</Link>
                         <button
                           onClick={() => handleMoveToBag(product)}
-                          className="flex-1 btn-luxury-outline !py-3 !px-4 text-[10px] flex items-center justify-center gap-2"
+                          className="flex-1 btn-luxury-outline !py-3 !px-4 text-micro flex items-center justify-center gap-2"
                         >
                           {addedId === product.id ? (
                             <><CheckCircle2 className="w-3.5 h-3.5" /> {t('product.added')}</>
@@ -115,7 +115,7 @@ export default function WishlistPage() {
           <div className="text-center py-32 bg-ivory border border-stone-100">
 <Heart className="w-16 h-16 text-stone-100 mx-auto mb-8" />
               <h3 className="font-heading text-2xl text-stone-800 mb-4 tracking-widest uppercase">{t('selection.empty')}</h3>
-              <p className="font-body text-stone-400 text-xs uppercase tracking-widest mb-10 italic">{t('selection.empty_desc')}</p>
+              <p className="font-body text-stone-600 text-xs uppercase tracking-widest mb-10 italic">{t('selection.empty_desc')}</p>
               <Link to="/search" className="btn-luxury px-12 group flex items-center gap-3 mx-auto w-fit">
                 {t('selection.explore')} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>

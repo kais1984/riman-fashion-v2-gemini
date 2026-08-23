@@ -133,7 +133,7 @@ export default function StyleQuiz() {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-widest uppercase mb-4">{t('quiz.title')}</h1>
-            <p className="font-body text-stone-500 text-[10px] tracking-[0.4em] uppercase">{t('quiz.subtitle')}</p>
+            <p className="font-body text-stone-600 text-micro tracking-[0.4em] uppercase">{t('quiz.subtitle')}</p>
             <div className="w-16 h-px bg-gold mx-auto mt-6" />
           </motion.div>
         </header>
@@ -160,11 +160,11 @@ export default function StyleQuiz() {
                 className="w-full"
               >
                 <div className="mb-8 flex items-center justify-between">
-                   <span className="text-[10px] tracking-widest text-gold font-bold uppercase">{t('quiz.progress')} {step + 1} / {questions.length}</span>
+                   <span className="text-micro tracking-widest text-gold font-bold uppercase">{t('quiz.progress')} {step + 1} / {questions.length}</span>
                    {step > 0 && (
                      <button 
                        onClick={() => setStep(step - 1)}
-                       className="text-stone-400 hover:text-stone-800 transition-colors"
+                       className="text-stone-600 hover:text-stone-800 transition-colors"
                      >
                        <ArrowLeft className="w-4 h-4" />
                      </button>
@@ -183,7 +183,7 @@ export default function StyleQuiz() {
                       className="group flex items-center justify-between p-6 border border-stone-100 bg-stone-50/50 hover:bg-ivory hover:border-gold hover:shadow-xl hover:shadow-gold/5 transition-all duration-300 text-left"
                     >
                       <span className="font-body text-sm text-stone-700 group-hover:text-stone-900 group-hover:pl-2 transition-all duration-300">{option}</span>
-                      <ChevronRight className="w-4 h-4 text-stone-300 group-hover:text-gold transition-colors" />
+                      <ChevronRight className="w-4 h-4 text-stone-500 group-hover:text-gold transition-colors" />
                     </button>
                   ))}
                 </div>
@@ -196,12 +196,12 @@ export default function StyleQuiz() {
                 className="w-full"
               >
                 <div className="text-center mb-12">
-                  <span className="text-[10px] tracking-[0.5em] uppercase text-gold font-bold">{t('quiz.your_aesthetic')}</span>
+                  <span className="text-micro tracking-[0.5em] uppercase text-gold font-bold">{t('quiz.your_aesthetic')}</span>
                   <h2 className="font-heading text-3xl md:text-4xl text-stone-800 mt-3 mb-4">
                     {recommendations.length > 0 ? t('quiz.your_matches') : t('quiz.no_matches')}
                   </h2>
                   <div className="w-16 h-px bg-gold mx-auto mb-5" />
-                  <p className="font-body text-sm text-stone-500">
+                  <p className="font-body text-sm text-stone-600">
                     {recommendations.length > 0 
                       ? t('quiz.based_on_answers')
                       : t('quiz.browse_collection')
@@ -217,7 +217,7 @@ export default function StyleQuiz() {
                   </div>
                 ) : (
                   <div className="text-center py-10">
-                    <p className="font-body text-stone-500 italic">{t('quiz.try_different')}</p>
+                    <p className="font-body text-stone-600 italic">{t('quiz.try_different')}</p>
                   </div>
                 )}
 

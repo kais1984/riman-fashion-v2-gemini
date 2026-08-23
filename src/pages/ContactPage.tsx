@@ -62,7 +62,7 @@ export default function ContactPage() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="font-heading text-5xl md:text-6xl text-stone-800 tracking-widest uppercase mb-4">{t('nav.contact')}</h1>
-          <p className="font-body text-stone-500 text-sm tracking-[0.2em] uppercase">{t('footer.consultation')}</p>
+          <p className="font-body text-stone-600 text-sm tracking-[0.2em] uppercase">{t('footer.consultation')}</p>
         </motion.div>
       </header>
 
@@ -93,7 +93,7 @@ export default function ContactPage() {
                 content={t('contact.hours_detail')}
               />
               <div className="bg-stone-50 p-6 border border-stone-100 flex flex-col justify-center">
-                <p className="font-body text-[10px] text-stone-400 uppercase tracking-widest mb-2 italic">{t('contact.special_note')}</p>
+                <p className="font-body text-micro text-stone-600 uppercase tracking-widest mb-2 italic">{t('contact.special_note')}</p>
                 <p className="font-body text-xs text-stone-600 leading-relaxed">{t('contact.special_note_desc')}</p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                   <form className="space-y-6 relative z-10" onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{t('form.name')}</label>
+                        <label className="text-micro font-bold text-stone-600 uppercase tracking-widest">{t('form.name')}</label>
                         <input 
                           {...register('name')}
                           disabled={isSubmitted}
@@ -122,10 +122,10 @@ export default function ContactPage() {
                           )} 
                           placeholder="Sarah Al-Maktoum" 
                         />
-                        {errors.name && <span className="text-red-500 text-[10px] tracking-widest uppercase">{errors.name.message}</span>}
+                        {errors.name && <span className="text-red-500 text-micro tracking-widest uppercase">{errors.name.message}</span>}
                       </div>
                       <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{t('form.email')}</label>
+                        <label className="text-micro font-bold text-stone-600 uppercase tracking-widest">{t('form.email')}</label>
                         <input 
                           {...register('email')}
                           type="email" 
@@ -137,11 +137,11 @@ export default function ContactPage() {
                           )}
                           placeholder="sarah@example.com" 
                         />
-                        {errors.email && <span className="text-red-500 text-[10px] tracking-widest uppercase">{errors.email.message}</span>}
+                        {errors.email && <span className="text-red-500 text-micro tracking-widest uppercase">{errors.email.message}</span>}
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{t('nav.contact')}</label>
+                      <label className="text-micro font-bold text-stone-600 uppercase tracking-widest">{t('nav.contact')}</label>
                       <input 
                         {...register('phone')}
                         type="tel" 
@@ -153,10 +153,10 @@ export default function ContactPage() {
                         )}
                         placeholder="+971 -- --- ----" 
                       />
-                      {errors.phone && <span className="text-red-500 text-[10px] tracking-widest uppercase">{errors.phone.message}</span>}
+                      {errors.phone && <span className="text-red-500 text-micro tracking-widest uppercase">{errors.phone.message}</span>}
                     </div>
                     <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{t('contact.inquiry_type')}</label>
+                      <label className="text-micro font-bold text-stone-600 uppercase tracking-widest">{t('contact.inquiry_type')}</label>
                       <div className="relative">
                         <select 
                           {...register('type')}
@@ -171,11 +171,11 @@ export default function ContactPage() {
                           <option value="Rental Booking">{t('contact.rental_booking')}</option>
                           <option value="Bespoke Alterations">{t('contact.bespoke_alterations')}</option>
                         </select>
-                        <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 rotate-90 text-stone-400 pointer-events-none" />
+                        <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 rotate-90 text-stone-600 pointer-events-none" />
                       </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">{t('contact.vision_prefs')}</label>
+                      <label className="text-micro font-bold text-stone-600 uppercase tracking-widest">{t('contact.vision_prefs')}</label>
                       <textarea 
                         {...register('message')}
                         rows={4} 
@@ -187,7 +187,7 @@ export default function ContactPage() {
                         )}
                         placeholder={t('contact.vision_placeholder')}
                       ></textarea>
-                      {errors.message && <span className="text-red-500 text-[10px] tracking-widest uppercase">{errors.message.message}</span>}
+                      {errors.message && <span className="text-red-500 text-micro tracking-widest uppercase">{errors.message.message}</span>}
                     </div>
 
                     <div className="pt-4">
@@ -219,7 +219,7 @@ export default function ContactPage() {
                           >
                             <div className="flex items-center justify-center gap-2 text-gold py-2">
                               <CheckCircle2 className="w-5 h-5" />
-                              <span className="font-body text-[10px] font-bold tracking-[0.3em] uppercase">{t('contact.success_title')}</span>
+                              <span className="font-body text-micro font-bold tracking-[0.3em] uppercase">{t('contact.success_title')}</span>
                             </div>
                             <button 
                               type="button"
@@ -268,7 +268,7 @@ function ContactInfoItem({ icon, title, content }: { icon: React.ReactNode, titl
         {icon}
       </div>
       <div>
-        <h4 className="font-body text-[10px] tracking-[0.3em] uppercase text-stone-400 mb-2 font-bold">{title}</h4>
+        <h4 className="font-body text-micro tracking-[0.3em] uppercase text-stone-600 mb-2 font-bold">{title}</h4>
         <div className="font-body text-sm text-stone-800 leading-relaxed italic">
           {content}
         </div>

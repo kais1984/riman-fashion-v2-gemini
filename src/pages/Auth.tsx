@@ -77,7 +77,7 @@ export default function Auth() {
             {isLogin ? t('auth.signin') : t('auth.signup')}
           </h1>
           <div className="w-12 h-px bg-gold mb-3" />
-          <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase">
+          <p className="font-body text-stone-600 text-micro tracking-[0.2em] uppercase">
             {isLogin ? t('auth.welcome_back') : t('auth.join')}
           </p>
         </div>
@@ -95,7 +95,7 @@ export default function Auth() {
               </div>
               <h3 className="font-heading text-xl text-stone-800 mb-2 uppercase tracking-widest">{t('auth.authenticated')}</h3>
               <div className="w-12 h-px bg-gold mx-auto mb-3" />
-              <p className="text-stone-400 text-[10px] tracking-widest uppercase">{t('auth.redirecting')}</p>
+              <p className="text-stone-600 text-micro tracking-widest uppercase">{t('auth.redirecting')}</p>
             </motion.div>
           ) : (
             <motion.form
@@ -108,7 +108,7 @@ export default function Auth() {
             >
               {!isLogin && (
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
+                  <label className="text-micro font-bold text-stone-600 uppercase tracking-widest flex items-center gap-2">
                     <User className="w-3 h-3 text-gold" /> {t('auth.full_name')}
                   </label>
                   <input
@@ -123,7 +123,7 @@ export default function Auth() {
               )}
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
+                <label className="text-micro font-bold text-stone-600 uppercase tracking-widest flex items-center gap-2">
                   <Mail className="w-3 h-3 text-gold" /> {t('auth.email')}
                 </label>
                 <input
@@ -137,7 +137,7 @@ export default function Auth() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
+                <label className="text-micro font-bold text-stone-600 uppercase tracking-widest flex items-center gap-2">
                   <Lock className="w-3 h-3 text-gold" /> {t('auth.password')}
                 </label>
                 <input
@@ -151,7 +151,7 @@ export default function Auth() {
                 />
               </div>
 
-              {displayError && <p className="text-[10px] text-rose-500 uppercase tracking-widest text-center">{displayError}</p>}
+              {displayError && <p className="text-micro text-rose-500 uppercase tracking-widest text-center">{displayError}</p>}
 
               <button type="submit" className="w-full btn-luxury group flex items-center justify-center gap-3 !py-5">
                 {isLogin ? t('auth.enter_atelier') : t('auth.create_profile')}
@@ -162,7 +162,7 @@ export default function Auth() {
                 <button
                   type="button"
                   onClick={() => { setIsLogin(!isLogin); setLocalError(''); }}
-                  className="text-[10px] text-stone-400 uppercase tracking-[0.2em] hover:text-gold transition-colors block w-full"
+                  className="text-micro text-stone-600 uppercase tracking-[0.2em] hover:text-gold transition-colors block w-full"
                 >
                   {isLogin ? t('auth.no_account') : t('auth.has_account')}
                 </button>
@@ -175,7 +175,7 @@ export default function Auth() {
                     navigate('/auth', { replace: true });
                     window.location.reload();
                   }}
-                  className="text-[8px] text-stone-300 uppercase tracking-[0.3em] hover:text-rose-400 transition-colors"
+                  className="text-micro text-stone-500 uppercase tracking-[0.3em] hover:text-rose-400 transition-colors"
                 >
                   {t('auth.clear_session')}
                 </button>

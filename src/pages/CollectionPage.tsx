@@ -105,13 +105,13 @@ export default function CollectionPage() {
     <div id="collection-page" className="pt-24 min-h-screen bg-ivory">
       <header className="section-padding !py-12 bg-ivory border-b border-stone-100">
         <div className="container mx-auto">
-          <nav className="flex gap-2 text-xs tracking-widest uppercase text-stone-400 mb-4">
+          <nav className="flex gap-2 text-xs tracking-widest uppercase text-stone-600 mb-4">
             <Link to="/" className="hover:text-gold transition-colors">{t('nav.home')}</Link>
             <span>/</span>
             <span className="text-stone-800 font-medium">{t('cat.collection')}</span>
           </nav>
           <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-wider uppercase mb-4 leading-tight">{categoryTitle}</h1>
-          <p className="text-stone-500 font-body text-base tracking-wide max-w-2xl italic leading-relaxed">
+          <p className="text-stone-600 font-body text-base tracking-wide max-w-2xl italic leading-relaxed">
             {t('cat.subtitle')}
           </p>
         </div>
@@ -128,8 +128,8 @@ export default function CollectionPage() {
                     key={year}
                     onClick={() => setSelectedYear(selectedYear === year ? null : year)}
                     className={cn(
-                      "px-4 py-2 text-[10px] tracking-widest uppercase font-bold transition-all border",
-                      selectedYear === year ? "border-gold text-gold" : "border-stone-200 text-stone-500 hover:border-gold hover:text-gold"
+                      "px-4 py-2 text-micro tracking-widest uppercase font-bold transition-all border",
+                      selectedYear === year ? "border-gold text-gold" : "border-stone-200 text-stone-600 hover:border-gold hover:text-gold"
                     )}
                   >
                     {year}
@@ -143,8 +143,8 @@ export default function CollectionPage() {
                     key={sil.value}
                     onClick={() => setSelectedSilhouette(sil.value === selectedSilhouette ? '' : sil.value)}
                     className={cn(
-                      "px-3 py-2 text-[10px] tracking-widest uppercase font-bold transition-all whitespace-nowrap",
-                      selectedSilhouette === sil.value ? "text-gold border-b-2 border-gold" : "text-stone-400 hover:text-gold"
+                      "px-3 py-2 text-micro tracking-widest uppercase font-bold transition-all whitespace-nowrap",
+                      selectedSilhouette === sil.value ? "text-gold border-b-2 border-gold" : "text-stone-600 hover:text-gold"
                     )}
                   >
                     {sil.label}
@@ -154,7 +154,7 @@ export default function CollectionPage() {
             </div>
 
             <div className="flex items-center gap-4 flex-shrink-0">
-              <button onClick={() => setShowFilters(!showFilters)} className={cn("p-2 transition-colors", showFilters ? "text-gold" : "text-stone-400 hover:text-gold")}>
+              <button onClick={() => setShowFilters(!showFilters)} className={cn("p-2 transition-colors", showFilters ? "text-gold" : "text-stone-600 hover:text-gold")}>
                 <SlidersHorizontal className="w-5 h-5" />
               </button>
 
@@ -207,7 +207,7 @@ export default function CollectionPage() {
               >
                 <div className="pt-4 pb-2 border-t border-stone-100 mt-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-xs tracking-widest uppercase text-stone-400 font-bold">{t('collection.colors')}</span>
+                    <span className="text-xs tracking-widest uppercase text-stone-600 font-bold">{t('collection.colors')}</span>
                     <div className="flex items-center gap-2.5 flex-wrap">
                       {allAvailableColors.map(color => (
                         <button
@@ -230,15 +230,15 @@ export default function CollectionPage() {
                     </div>
                   </div>
                   <div className="md:hidden mt-4">
-                    <span className="text-xs tracking-widest uppercase text-stone-400 font-bold block mb-2">{t('collection.silhouette')}</span>
+                    <span className="text-xs tracking-widest uppercase text-stone-600 font-bold block mb-2">{t('collection.silhouette')}</span>
                     <div className="flex flex-wrap gap-2">
                       {SILHOUETTES.map(sil => (
                         <button
                           key={sil.value}
                           onClick={() => setSelectedSilhouette(sil.value === selectedSilhouette ? '' : sil.value)}
                           className={cn(
-                            "px-3 py-2 text-[10px] tracking-widest uppercase font-bold transition-all border",
-                            selectedSilhouette === sil.value ? "bg-onyx text-white border-onyx" : "border-stone-200 text-stone-500 hover:border-gold"
+                            "px-3 py-2 text-micro tracking-widest uppercase font-bold transition-all border",
+                            selectedSilhouette === sil.value ? "bg-onyx text-white border-onyx" : "border-stone-200 text-stone-600 hover:border-gold"
                           )}
                         >
                           {sil.label}
@@ -253,8 +253,8 @@ export default function CollectionPage() {
 
           {hasActiveFilters && (
             <div className="flex items-center gap-4 mt-3 pt-3 border-t border-stone-100">
-              <span className="text-[10px] tracking-widest uppercase text-stone-500">{filteredProducts.length} {t('collection.results')}</span>
-              <button onClick={clearFilters} className="text-[10px] tracking-[0.2em] uppercase text-gold hover:text-stone-800 transition-colors font-bold">{t('collection.clear_all')}</button>
+              <span className="text-micro tracking-widest uppercase text-stone-600">{filteredProducts.length} {t('collection.results')}</span>
+              <button onClick={clearFilters} className="text-micro tracking-[0.2em] uppercase text-gold hover:text-stone-800 transition-colors font-bold">{t('collection.clear_all')}</button>
             </div>
           )}
         </div>
@@ -273,8 +273,8 @@ export default function CollectionPage() {
             <div className="col-span-full py-24 text-center">
               <div className="max-w-md mx-auto mb-10">
                 <div className="w-16 h-px bg-gold mx-auto mb-8" />
-                <p className="heading-editorial text-stone-400 text-2xl italic mb-4">{t('collection.empty_heading')}</p>
-                <p className="font-body text-xs text-stone-400 tracking-[0.2em] uppercase leading-relaxed">
+                <p className="heading-editorial text-stone-600 text-2xl italic mb-4">{t('collection.empty_heading')}</p>
+                <p className="font-body text-xs text-stone-600 tracking-[0.2em] uppercase leading-relaxed">
                   {t('collection.empty_desc')}
                 </p>
                 <div className="w-16 h-px bg-gold mx-auto mt-8" />

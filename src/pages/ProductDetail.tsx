@@ -150,7 +150,7 @@ export default function ProductDetail() {
       <div id="product-detail-page" className="pt-24 bg-ivory min-h-screen pb-24 lg:pb-12">
         <div className="container mx-auto px-5 py-10">
           {/* Breadcrumbs */}
-          <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-400 mb-10">
+          <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-600 mb-10">
             <Link to="/" className="hover:text-gold transition-colors">{t('nav.home')}</Link>
             <ChevronRight className="w-3 h-3" />
             <Link to={`/collection/${categoryToSlug(product.category)}`} className="hover:text-gold transition-colors">{product.category}</Link>
@@ -211,7 +211,7 @@ export default function ProductDetail() {
                 </AnimatePresence>
 
                 {/* Image Counter Badge */}
-                <div className="absolute bottom-5 left-5 z-20 bg-ivory/90 backdrop-blur-sm px-3 py-1.5 text-[10px] tracking-widest uppercase text-stone-700 font-bold">
+                <div className="absolute bottom-5 left-5 z-20 bg-ivory/90 backdrop-blur-sm px-3 py-1.5 text-micro tracking-widest uppercase text-stone-700 font-bold">
                   {currentImageIndex + 1} / {totalAssets}
                 </div>
 
@@ -230,11 +230,11 @@ export default function ProductDetail() {
                 {/* Perspective Toggle */}
                 {product.glbUrl && (
                   <div className="absolute top-5 right-5 z-30 flex gap-2">
-                    <button onClick={() => setIs3DMode(false)} className={cn("p-2.5 transition-all backdrop-blur border", !is3DMode ? "bg-gold text-white border-gold" : "bg-ivory/80 text-stone-500 border-stone-100 hover:border-stone-300")} title={t('product.classic_view')}>
+                    <button onClick={() => setIs3DMode(false)} className={cn("p-2.5 transition-all backdrop-blur border", !is3DMode ? "bg-gold text-white border-gold" : "bg-ivory/80 text-stone-600 border-stone-100 hover:border-stone-300")} title={t('product.classic_view')}>
                       <Search className="w-3.5 h-3.5" />
                     </button>
                     {threeDViewerEnabled && (
-                      <button onClick={() => setIs3DMode(true)} className={cn("p-2.5 transition-all backdrop-blur border", is3DMode ? "bg-gold text-white border-gold scale-105" : "bg-ivory/80 text-stone-500 border-stone-100 hover:border-stone-300")} title={t('product.view_3d')}>
+                      <button onClick={() => setIs3DMode(true)} className={cn("p-2.5 transition-all backdrop-blur border", is3DMode ? "bg-gold text-white border-gold scale-105" : "bg-ivory/80 text-stone-600 border-stone-100 hover:border-stone-300")} title={t('product.view_3d')}>
                         <Box className="w-3.5 h-3.5" />
                       </button>
                     )}
@@ -248,10 +248,10 @@ export default function ProductDetail() {
                   </button>
                   {showShareMenu && (
                     <div className="absolute bottom-12 right-0 bg-ivory border border-stone-100 p-2 w-44">
-                      <a href={`https://wa.me/?text=${encodeURIComponent(`Check out ${product.name} at Riman Fashion: ${window.location.origin}/product/${product.id}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2.5 text-[10px] tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
+                      <a href={`https://wa.me/?text=${encodeURIComponent(`Check out ${product.name} at Riman Fashion: ${window.location.origin}/product/${product.id}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2.5 text-micro tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
                         WhatsApp
                       </a>
-                      <button onClick={() => { navigator.clipboard.writeText(window.location.href); setShowShareMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-[10px] tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
+                      <button onClick={() => { navigator.clipboard.writeText(window.location.href); setShowShareMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-micro tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
                         {t('product.copy_link')}
                       </button>
                     </div>
@@ -283,18 +283,18 @@ export default function ProductDetail() {
               <div className="grid grid-cols-3 gap-3 pt-3 border-t border-stone-100">
                 <div className="flex flex-col items-center gap-1.5 py-3">
                   <Gem className="w-4 h-4 text-gold" />
-                  <span className="text-[9px] text-stone-400 uppercase tracking-widest font-bold">{t('product.fabric')}</span>
-                  <span className="text-[10px] text-stone-700 font-medium tracking-wide">{product.fabric || 'Luxury Blend'}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.fabric')}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.fabric || 'Luxury Blend'}</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5 py-3 border-x border-stone-100">
                   <Sparkles className="w-4 h-4 text-gold" />
-                  <span className="text-[9px] text-stone-400 uppercase tracking-widest font-bold">{t('product.silhouette')}</span>
-                  <span className="text-[10px] text-stone-700 font-medium tracking-wide">{product.category}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.silhouette')}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.category}</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5 py-3">
                   <Wind className="w-4 h-4 text-gold" />
-                  <span className="text-[9px] text-stone-400 uppercase tracking-widest font-bold">{t('product.color')}</span>
-                  <span className="text-[10px] text-stone-700 font-medium tracking-wide">{product.style[0] || 'Signature'}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.color')}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.style[0] || 'Signature'}</span>
                 </div>
               </div>
             </div>
@@ -302,17 +302,17 @@ export default function ProductDetail() {
             {/* Info — Sticky on Desktop */}
             <div className="flex flex-col lg:sticky lg:top-28 lg:self-start">
               <header className="mb-8">
-                <span className="text-[10px] tracking-[0.3em] uppercase text-gold block mb-2 font-bold">{product.designer || 'Riman Atelier'}</span>
+                <span className="text-micro tracking-[0.3em] uppercase text-gold block mb-2 font-bold">{product.designer || 'Riman Atelier'}</span>
                 <h1 className="font-heading text-3xl md:text-4xl text-stone-800 tracking-wider mb-3 leading-tight">{product.name}</h1>
                 <div className="flex gap-3">
-                  {product.isNew && <span className="text-gold text-[10px] uppercase tracking-widest border border-gold/30 px-3 py-1 font-bold">{t('product.limited_edition')}</span>}
-                  <span className="text-stone-400 text-[10px] uppercase tracking-widest border border-stone-200 px-3 py-1 font-medium">SKU: RF-{product.id.padStart(4, '0')}</span>
+                  {product.isNew && <span className="text-gold text-micro uppercase tracking-widest border border-gold/30 px-3 py-1 font-bold">{t('product.limited_edition')}</span>}
+                  <span className="text-stone-600 text-micro uppercase tracking-widest border border-stone-200 px-3 py-1 font-medium">SKU: RF-{product.id.padStart(4, '0')}</span>
                 </div>
               </header>
 
               {/* Editorial Quote */}
               <div className="mb-8 pl-5 border-l-2 border-gold/40">
-                <p className="font-editorial italic text-sm text-stone-500 leading-relaxed">
+                <p className="font-editorial italic text-sm text-stone-600 leading-relaxed">
                   "A study in refined elegance — where artisanal precision meets contemporary silhouette, crafted for the woman who commands quiet luxury."
                 </p>
               </div>
@@ -321,23 +321,23 @@ export default function ProductDetail() {
               <div className="mb-8 p-5 bg-gold/5 border border-gold/20 flex flex-col gap-4">
                 {isSale && (
                   <div className="flex justify-between items-baseline">
-                    <span className="font-body text-[10px] tracking-widest uppercase text-stone-500 font-medium">{t('product.purchase_value')}</span>
-                    <span className="font-heading text-3xl text-stone-800"><span className="text-sm font-body text-stone-500 uppercase tracking-widest me-2">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
+                    <span className="font-body text-micro tracking-widest uppercase text-stone-600 font-medium">{t('product.purchase_value')}</span>
+                    <span className="font-heading text-3xl text-stone-800"><span className="text-sm font-body text-stone-600 uppercase tracking-widest me-2">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
                   </div>
                 )}
                 {isRent && (
                   <div className="flex justify-between items-baseline pt-4 border-t border-stone-200/60">
                     <div>
-                      <span className="font-body text-[10px] tracking-widest uppercase text-stone-500 block font-medium">{t('product.rental_7day')}</span>
-                      <span className="text-[10px] text-stone-400 uppercase tracking-wider italic">({t('product.rental_includes')})</span>
+                      <span className="font-body text-micro tracking-widest uppercase text-stone-600 block font-medium">{t('product.rental_7day')}</span>
+                      <span className="text-micro text-stone-600 uppercase tracking-wider italic">({t('product.rental_includes')})</span>
                     </div>
                     <div className="text-right">
-                      <span className="font-heading text-3xl text-gold"><span className="text-sm font-body text-stone-500 uppercase tracking-widest me-2">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
-                      <p className="text-[10px] text-stone-400 uppercase tracking-widest mt-1">{t('product.refundable_deposit')}</p>
+                      <span className="font-heading text-3xl text-gold"><span className="text-sm font-body text-stone-600 uppercase tracking-widest me-2">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
+                      <p className="text-micro text-stone-600 uppercase tracking-widest mt-1">{t('product.refundable_deposit')}</p>
                     </div>
                   </div>
                 )}
-                <p className="font-body text-[11px] text-stone-400 italic mt-2 leading-relaxed">{t('pricing.consultation_note')}</p>
+                <p className="font-body text-micro text-stone-600 italic mt-2 leading-relaxed">{t('pricing.consultation_note')}</p>
               </div>
 
               <p className="font-body text-sm text-stone-600 leading-relaxed tracking-wide mb-8">
@@ -351,11 +351,11 @@ export default function ProductDetail() {
                 {isRent && (
                   <div className="p-5 bg-stone-50 border border-stone-200">
                     <div className="flex justify-between items-center mb-3">
-                      <span className="font-body text-[10px] tracking-[0.2em] uppercase text-stone-800">{t('product.rental_availability')}</span>
-                      <span className="text-[9px] text-gold uppercase tracking-widest font-bold">{t('product.fast_booking')}</span>
+                      <span className="font-body text-micro tracking-[0.2em] uppercase text-stone-800">{t('product.rental_availability')}</span>
+                      <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.fast_booking')}</span>
                     </div>
                     <AvailabilityCalendar productId={product.id} selectedDate={bookingDate} onDateSelect={setBookingDate} />
-                    <p className="text-[9px] text-stone-400 leading-relaxed italic text-center mt-3">
+                    <p className="text-micro text-stone-600 leading-relaxed italic text-center mt-3">
                       {bookingDate ? `${t('product.selected_date')}: ${bookingDate.toLocaleDateString()}` : t('product.select_date_hint')}
                     </p>
                   </div>
@@ -363,8 +363,8 @@ export default function ProductDetail() {
 
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <span className="font-body text-[10px] tracking-[0.2em] uppercase text-stone-800">{t('product.select_size_label')}</span>
-                    <button onClick={() => setShowSizeGuide(true)} className="flex items-center gap-2 text-[10px] tracking-widest text-gold uppercase hover:underline">
+                    <span className="font-body text-micro tracking-[0.2em] uppercase text-stone-800">{t('product.select_size_label')}</span>
+                    <button onClick={() => setShowSizeGuide(true)} className="flex items-center gap-2 text-micro tracking-widest text-gold uppercase hover:underline">
                       <Ruler className="w-3 h-3" /> {t('product.size_guide')}
                     </button>
                   </div>
@@ -372,7 +372,7 @@ export default function ProductDetail() {
                     {['XS', 'S', 'M', 'L', 'XL'].map((size) => {
                       const isAvailable = product.sizes.includes(size);
                       return (
-                        <button key={size} disabled={!isAvailable} onClick={() => setSelectedSize(size)} className={cn("w-11 h-11 flex items-center justify-center border text-[10px] tracking-widest transition-all", !isAvailable ? "border-stone-100 text-stone-200 cursor-not-allowed" : selectedSize === size ? "border-gold bg-gold text-white" : "border-stone-200 text-stone-600 hover:border-gold")}>
+                        <button key={size} disabled={!isAvailable} onClick={() => setSelectedSize(size)} className={cn("w-11 h-11 flex items-center justify-center border text-micro tracking-widest transition-all", !isAvailable ? "border-stone-100 text-stone-200 cursor-not-allowed" : selectedSize === size ? "border-gold bg-gold text-white" : "border-stone-200 text-stone-600 hover:border-gold")}>
                           {size}
                         </button>
                       );
@@ -397,12 +397,12 @@ export default function ProductDetail() {
                       )}
                     </button>
                     {errorMsg && (
-                      <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] text-rose-500 uppercase tracking-widest text-center font-bold">
+                      <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-micro text-rose-500 uppercase tracking-widest text-center font-bold">
                         {errorMsg}
                       </motion.p>
                     )}
                   </div>
-                  <button onClick={(e) => { e.preventDefault(); if (saved) { removeFromWishlist(product.id); } else { addToWishlist(product); } }} className={cn("w-12 h-12 flex items-center justify-center border transition-all", saved ? "border-rose-200 text-rose-500 bg-rose-50" : "border-stone-200 text-stone-500 hover:text-rose-500 hover:border-rose-200")} aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}>
+                  <button onClick={(e) => { e.preventDefault(); if (saved) { removeFromWishlist(product.id); } else { addToWishlist(product); } }} className={cn("w-12 h-12 flex items-center justify-center border transition-all", saved ? "border-rose-200 text-rose-500 bg-rose-50" : "border-stone-200 text-stone-600 hover:text-rose-500 hover:border-rose-200")} aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}>
                     <Heart className={cn("w-4 h-4", saved && "fill-current")} />
                   </button>
                 </div>
@@ -412,47 +412,47 @@ export default function ProductDetail() {
               <div className="grid grid-cols-3 gap-4 py-8 border-t border-b border-stone-100 mb-10 bg-gold/[0.03]">
                 <div className="flex flex-col items-center text-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-gold" />
-                  <span className="text-[9px] font-bold text-stone-800 tracking-wider leading-tight">{t('product.couture_care')}</span>
-                  <span className="text-[8px] text-stone-400 uppercase tracking-widest font-bold">{t('product.cleaning_included')}</span>
+                  <span className="text-micro font-bold text-stone-800 tracking-wider leading-tight">{t('product.couture_care')}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.cleaning_included')}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2 border-x border-stone-100">
                   <Truck className="w-5 h-5 text-gold" />
-                  <span className="text-[9px] font-bold text-stone-800 tracking-wider leading-tight">{t('product.secure_delivery')}</span>
-                  <span className="text-[8px] text-stone-400 uppercase tracking-widest font-bold">{t('product.uae_gcc')}</span>
+                  <span className="text-micro font-bold text-stone-800 tracking-wider leading-tight">{t('product.secure_delivery')}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.uae_gcc')}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-2">
                   <Ruler className="w-5 h-5 text-gold" />
-                  <span className="text-[9px] font-bold text-stone-800 tracking-wider leading-tight">{t('product.bespoke_fit')}</span>
-                  <span className="text-[8px] text-stone-400 uppercase tracking-widest font-bold">{t('product.custom_tailoring')}</span>
+                  <span className="text-micro font-bold text-stone-800 tracking-wider leading-tight">{t('product.bespoke_fit')}</span>
+                  <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.custom_tailoring')}</span>
                 </div>
               </div>
 
               {/* Specifications Accordion */}
               <div className="border border-stone-100 mb-4">
                 <button onClick={() => setShowDetails(!showDetails)} className="w-full flex items-center justify-between p-5 bg-ivory hover:bg-ivory transition-colors">
-                  <span className="font-body text-[10px] font-bold tracking-widest uppercase text-stone-800">{t('product.specifications')}</span>
-                  <ChevronDown className={cn("w-4 h-4 text-stone-400 transition-transform duration-300", showDetails && "rotate-180")} />
+                  <span className="font-body text-micro font-bold tracking-widest uppercase text-stone-800">{t('product.specifications')}</span>
+                  <ChevronDown className={cn("w-4 h-4 text-stone-600 transition-transform duration-300", showDetails && "rotate-180")} />
                 </button>
                 <AnimatePresence>
                   {showDetails && (
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                       <div className="border-t border-stone-100">
                         <div className="flex justify-between py-3.5 px-5 bg-ivory">
-                          <span className="text-[10px] text-gold uppercase tracking-widest font-bold">{t('product.fabric')}</span>
+                          <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.fabric')}</span>
                           <span className="text-xs text-stone-800 font-medium tracking-wide">{product.fabric || 'Luxury Blend'}</span>
                         </div>
                         <div className="flex justify-between py-3.5 px-5 bg-stone-50/50">
-                          <span className="text-[10px] text-gold uppercase tracking-widest font-bold">{t('product.designer')}</span>
+                          <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.designer')}</span>
                           <span className="text-xs text-stone-800 font-medium tracking-wide">{product.designer || 'Riman Atelier'}</span>
                         </div>
                         <div className="py-3.5 px-5 bg-ivory">
-                          <span className="text-[10px] text-gold uppercase tracking-widest font-bold block mb-2">{t('product.style_elements')}</span>
+                          <span className="text-micro text-gold uppercase tracking-widest font-bold block mb-2">{t('product.style_elements')}</span>
                           <div className="flex flex-wrap gap-2">
                             {product.style.map((tag, i) => (
-                              <span key={i} className="text-[10px] px-3 py-1 bg-stone-50 border border-stone-100 text-stone-500 uppercase tracking-[0.15em] font-medium">{tag}</span>
+                              <span key={i} className="text-micro px-3 py-1 bg-stone-50 border border-stone-100 text-stone-600 uppercase tracking-[0.15em] font-medium">{tag}</span>
                             ))}
                             {product.category && (
-                              <span className="text-[10px] px-3 py-1 bg-gold/5 border border-gold/10 text-gold uppercase tracking-[0.15em] font-bold">{product.category}</span>
+                              <span className="text-micro px-3 py-1 bg-gold/5 border border-gold/10 text-gold uppercase tracking-[0.15em] font-bold">{product.category}</span>
                             )}
                           </div>
                         </div>
@@ -465,8 +465,8 @@ export default function ProductDetail() {
               {/* Care Instructions Accordion */}
               <div className="border border-stone-100 mb-4">
                 <button onClick={() => setShowCare(!showCare)} className="w-full flex items-center justify-between p-5 bg-ivory hover:bg-ivory transition-colors">
-                  <span className="font-body text-[10px] font-bold tracking-widest uppercase text-stone-800">{t('product.care_instructions')}</span>
-                  <ChevronDown className={cn("w-4 h-4 text-stone-400 transition-transform duration-300", showCare && "rotate-180")} />
+                  <span className="font-body text-micro font-bold tracking-widest uppercase text-stone-800">{t('product.care_instructions')}</span>
+                  <ChevronDown className={cn("w-4 h-4 text-stone-600 transition-transform duration-300", showCare && "rotate-180")} />
                 </button>
                 <AnimatePresence>
                   {showCare && (
@@ -475,29 +475,29 @@ export default function ProductDetail() {
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.care_dry_clean')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.care_dry_clean_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.care_dry_clean')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.care_dry_clean_desc')}</p>
                           </div>
                         </div>
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.care_store')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.care_store_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.care_store')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.care_store_desc')}</p>
                           </div>
                         </div>
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.care_handle')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.care_handle_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.care_handle')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.care_handle_desc')}</p>
                           </div>
                         </div>
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.care_steam')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.care_steam_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.care_steam')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.care_steam_desc')}</p>
                           </div>
                         </div>
                       </div>
@@ -514,7 +514,7 @@ export default function ProductDetail() {
                   </div>
                   <div>
                     <h4 className="font-heading text-xs tracking-[0.15em] uppercase text-stone-800 mb-1 group-hover:text-gold transition-colors">{t('product.ask_stylist')}</h4>
-                    <p className="text-[10px] text-stone-500 tracking-wide">{t('product.ask_stylist_desc')}</p>
+                    <p className="text-micro text-stone-600 tracking-wide">{t('product.ask_stylist_desc')}</p>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gold ml-auto group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -523,8 +523,8 @@ export default function ProductDetail() {
               {/* Artistry & Essence — collapsible */}
               <div className="border border-stone-100">
                 <button onClick={() => setShowDetails(!showDetails)} className="w-full flex items-center justify-between p-5 bg-ivory hover:bg-ivory transition-colors">
-                  <span className="font-body text-[10px] font-bold tracking-widest uppercase text-stone-800">{t('product.artistry_essence')}</span>
-                  <ChevronDown className={cn("w-4 h-4 text-stone-400 transition-transform duration-300", showDetails && "rotate-180")} />
+                  <span className="font-body text-micro font-bold tracking-widest uppercase text-stone-800">{t('product.artistry_essence')}</span>
+                  <ChevronDown className={cn("w-4 h-4 text-stone-600 transition-transform duration-300", showDetails && "rotate-180")} />
                 </button>
                 <AnimatePresence>
                   {showDetails && (
@@ -533,15 +533,15 @@ export default function ProductDetail() {
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.fitting_title')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.fitting_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.fitting_title')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.fitting_desc')}</p>
                           </div>
                         </div>
                         <div className="flex gap-4">
                           <div className="w-px h-auto bg-gold/30 shrink-0" />
                           <div>
-                            <h5 className="font-body text-[10px] font-bold tracking-widest uppercase mb-1">{t('product.texture_title')}</h5>
-                            <p className="text-[11px] text-stone-500 leading-relaxed italic">{t('product.texture_desc')}</p>
+                            <h5 className="font-body text-micro font-bold tracking-widest uppercase mb-1">{t('product.texture_title')}</h5>
+                            <p className="text-micro text-stone-600 leading-relaxed italic">{t('product.texture_desc')}</p>
                           </div>
                         </div>
                       </div>
@@ -563,9 +563,9 @@ export default function ProductDetail() {
                       <Star key={star} className={cn("w-4 h-4", star <= 4.5 ? "text-gold fill-gold" : "text-stone-200")} />
                     ))}
                   </div>
-                  <span className="text-xs text-stone-500 font-bold tracking-widest">(4.8)</span>
+                  <span className="text-xs text-stone-600 font-bold tracking-widest">(4.8)</span>
                 </div>
-                <ChevronDown className={cn("w-5 h-5 text-stone-400 transition-transform duration-300", showReviews && "rotate-180")} />
+                <ChevronDown className={cn("w-5 h-5 text-stone-600 transition-transform duration-300", showReviews && "rotate-180")} />
               </div>
             </button>
             <AnimatePresence>
@@ -578,14 +578,14 @@ export default function ProductDetail() {
                           <div key={review.id} className="pb-8 border-b border-stone-50 last:border-0">
                             <div className="flex justify-between items-start mb-3">
                               <div>
-                                <p className="text-[10px] font-bold text-stone-800 uppercase tracking-widest mb-1">{review.name}</p>
+                                <p className="text-micro font-bold text-stone-800 uppercase tracking-widest mb-1">{review.name}</p>
                                 <div className="flex gap-1 mb-2">
                                   {[1, 2, 3, 4, 5].map((star) => (
                                     <Star key={star} className={cn("w-3 h-3", star <= review.rating ? "text-gold fill-gold" : "text-stone-200")} />
                                   ))}
                                 </div>
                               </div>
-                              <span className="text-[9px] text-stone-400 uppercase tracking-widest">{review.date}</span>
+                              <span className="text-micro text-stone-600 uppercase tracking-widest">{review.date}</span>
                             </div>
                             <p className="text-sm text-stone-600 leading-relaxed italic">"{review.comment}"</p>
                           </div>
@@ -600,8 +600,8 @@ export default function ProductDetail() {
                         {reviewSuccess ? (
                           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
                             <CheckCircle2 className="w-12 h-12 text-green-500" />
-                            <p className="text-[10px] tracking-widest text-stone-600 uppercase font-bold">{t('product.reflection_curated')}</p>
-                            <button onClick={() => setReviewSuccess(false)} className="text-[9px] text-gold uppercase tracking-widest border-b border-gold/30 pb-1">{t('product.write_another')}</button>
+                            <p className="text-micro tracking-widest text-stone-600 uppercase font-bold">{t('product.reflection_curated')}</p>
+                            <button onClick={() => setReviewSuccess(false)} className="text-micro text-gold uppercase tracking-widest border-b border-gold/30 pb-1">{t('product.write_another')}</button>
                           </motion.div>
                         ) : (
                           <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6" onSubmit={(e) => {
@@ -613,7 +613,7 @@ export default function ProductDetail() {
                             setReviewSuccess(true);
                           }}>
                             <div>
-                              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">{t('product.rating')}</label>
+                              <label className="block text-micro font-bold text-stone-600 uppercase tracking-widest mb-2">{t('product.rating')}</label>
                               <div className="flex gap-2">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                   <button key={star} type="button" onClick={() => setNewReview({ ...newReview, rating: star })} className="transition-transform hover:scale-110">
@@ -623,11 +623,11 @@ export default function ProductDetail() {
                               </div>
                             </div>
                             <div>
-                              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">{t('product.your_name')}</label>
+                              <label className="block text-micro font-bold text-stone-600 uppercase tracking-widest mb-2">{t('product.your_name')}</label>
                               <input type="text" value={newReview.name} onChange={(e) => setNewReview({ ...newReview, name: e.target.value })} className="w-full px-5 py-4 bg-ivory border border-stone-100 text-xs tracking-widest outline-none focus:border-gold transition-colors" placeholder={t('product.enter_name')} />
                             </div>
                             <div>
-                              <label className="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">{t('product.your_reflection')}</label>
+                              <label className="block text-micro font-bold text-stone-600 uppercase tracking-widest mb-2">{t('product.your_reflection')}</label>
                               <textarea rows={4} value={newReview.comment} onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })} className="w-full px-5 py-4 bg-ivory border border-stone-100 text-xs tracking-widest outline-none focus:border-gold transition-colors resize-none" placeholder={t('product.share_experience')}></textarea>
                             </div>
                             <button type="submit" className="w-full btn-luxury">{t('product.submit_review')}</button>
@@ -645,7 +645,7 @@ export default function ProductDetail() {
           {relatedProducts.length > 0 && (
             <section className="pt-16 border-t border-stone-100">
               <div className="flex flex-col items-center text-center mb-12">
-                <h2 className="heading-editorial text-stone-400 text-sm mb-3">{t('product.complementary_picks')}</h2>
+                <h2 className="heading-editorial text-stone-600 text-sm mb-3">{t('product.complementary_picks')}</h2>
                 <h3 className="font-heading text-3xl text-stone-800 tracking-wide">{t('product.curated_for_you')}</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -658,20 +658,20 @@ export default function ProductDetail() {
         {/* Mobile Sticky Bottom Bar */}
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-ivory border-t border-stone-200 p-4 flex items-center gap-4 lg:hidden">
           <div className="flex-1 min-w-0">
-            <p className="font-heading text-[11px] tracking-wider uppercase text-stone-800 truncate">{product.name}</p>
-            <p className="font-heading text-sm text-gold"><span className="text-[10px] font-body text-stone-400 uppercase tracking-wider me-1">{t('pricing.from')}</span>{formatPrice(isSale ? (product.salePrice || 0) : (isRent ? (product.rentalPrice || 0) : 0))}</p>
+            <p className="font-heading text-micro tracking-wider uppercase text-stone-800 truncate">{product.name}</p>
+            <p className="font-heading text-sm text-gold"><span className="text-micro font-body text-stone-600 uppercase tracking-wider me-1">{t('pricing.from')}</span>{formatPrice(isSale ? (product.salePrice || 0) : (isRent ? (product.rentalPrice || 0) : 0))}</p>
           </div>
           <div className="flex flex-col gap-1.5 shrink-0">
-            <button onClick={reserveViewing} className="btn-luxury !py-2.5 !px-5 text-[10px] flex items-center justify-center gap-2 whitespace-nowrap">
+            <button onClick={reserveViewing} className="btn-luxury !py-2.5 !px-5 text-micro flex items-center justify-center gap-2 whitespace-nowrap">
               <Sparkles className="w-3.5 h-3.5" />
               {t('product.reserve_viewing')}
             </button>
-            <button onClick={handleAddToCart} disabled={isAddingToCart} className="btn-luxury-outline !py-2.5 !px-5 text-[10px] flex items-center justify-center gap-2 whitespace-nowrap">
+            <button onClick={handleAddToCart} disabled={isAddingToCart} className="btn-luxury-outline !py-2.5 !px-5 text-micro flex items-center justify-center gap-2 whitespace-nowrap">
               {isAddingToCart ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShoppingBag className="w-3.5 h-3.5" />}
               {isRent ? t('product.book_rental') : t('product.add_to_collection')}
             </button>
           </div>
-          <button onClick={(e) => { e.preventDefault(); if (saved) { removeFromWishlist(product.id); } else { addToWishlist(product); } }} className={cn("w-10 h-10 flex items-center justify-center border transition-all shrink-0", saved ? "border-rose-200 text-rose-500 bg-rose-50" : "border-stone-200 text-stone-500")} aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}>
+          <button onClick={(e) => { e.preventDefault(); if (saved) { removeFromWishlist(product.id); } else { addToWishlist(product); } }} className={cn("w-10 h-10 flex items-center justify-center border transition-all shrink-0", saved ? "border-rose-200 text-rose-500 bg-rose-50" : "border-stone-200 text-stone-600")} aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}>
             <Heart className={cn("w-4 h-4", saved && "fill-current")} />
           </button>
         </div>
@@ -706,7 +706,7 @@ function BookingConfirmationModal({ product, date, onClose }: { product: Product
         role="dialog"
         aria-modal="true"
       >
-        <button onClick={onClose} className="sticky top-0 float-right p-2 text-stone-400 hover:text-stone-800 transition-colors">
+        <button onClick={onClose} className="sticky top-0 float-right p-2 text-stone-600 hover:text-stone-800 transition-colors">
           <X className="w-5 h-5" />
         </button>
 
@@ -717,15 +717,15 @@ function BookingConfirmationModal({ product, date, onClose }: { product: Product
 
           <h3 className="font-heading text-3xl text-stone-800 mb-2 uppercase tracking-widest">{t('product.reservation_secured')}</h3>
           <div className="w-12 h-px bg-gold mx-auto my-4" />
-          <p className="text-stone-400 text-[10px] tracking-widest uppercase mb-10">{t('product.atelier_moment_booked')}</p>
+          <p className="text-stone-600 text-micro tracking-widest uppercase mb-10">{t('product.atelier_moment_booked')}</p>
 
           <div className="bg-stone-50 p-6 mb-10 text-left space-y-4">
             <div className="flex justify-between items-center text-xs pb-4 border-b border-stone-100">
-              <span className="text-stone-400 uppercase tracking-widest">{t('product.selection')}</span>
+              <span className="text-stone-600 uppercase tracking-widest">{t('product.selection')}</span>
               <span className="font-bold text-stone-800">{product.name}</span>
             </div>
             <div className="flex justify-between items-center text-xs pb-4 border-b border-stone-100">
-              <span className="text-stone-400 uppercase tracking-widest">{t('product.period_starts')}</span>
+              <span className="text-stone-600 uppercase tracking-widest">{t('product.period_starts')}</span>
               <div className="flex items-center gap-2 font-bold text-stone-800">
                 <Calendar className="w-3 h-3 text-gold" />
                 {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
@@ -737,22 +737,22 @@ function BookingConfirmationModal({ product, date, onClose }: { product: Product
             <div className="flex gap-3">
               <Info className="w-4 h-4 text-gold shrink-0 mt-0.5" />
               <div>
-                <p className="text-[10px] font-bold text-stone-800 uppercase tracking-widest mb-1">{t('product.rental_policy')}</p>
-                <p className="text-xs text-stone-500 leading-relaxed italic">{t('product.rental_policy_desc')}</p>
+                <p className="text-micro font-bold text-stone-800 uppercase tracking-widest mb-1">{t('product.rental_policy')}</p>
+                <p className="text-xs text-stone-600 leading-relaxed italic">{t('product.rental_policy_desc')}</p>
               </div>
             </div>
             <div className="flex gap-3">
               <ShieldCheck className="w-4 h-4 text-gold shrink-0 mt-0.5" />
               <div>
-                <p className="text-[10px] font-bold text-stone-800 uppercase tracking-widest mb-1">{t('product.security_deposit')}</p>
-                <p className="text-xs text-stone-500 leading-relaxed italic">{t('product.security_deposit_desc')} {formatPrice(product.securityDeposit || 5000)} {t('product.will_be_held')}</p>
+                <p className="text-micro font-bold text-stone-800 uppercase tracking-widest mb-1">{t('product.security_deposit')}</p>
+                <p className="text-xs text-stone-600 leading-relaxed italic">{t('product.security_deposit_desc')} {formatPrice(product.securityDeposit || 5000)} {t('product.will_be_held')}</p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button onClick={onClose} className="btn-luxury-outline w-full !py-4 text-[10px]">{t('product.continue_exploring')}</button>
-            <Link to="/checkout" className="btn-luxury w-full !py-4 text-[10px] flex items-center justify-center gap-2">
+            <button onClick={onClose} className="btn-luxury-outline w-full !py-4 text-micro">{t('product.continue_exploring')}</button>
+            <Link to="/checkout" className="btn-luxury w-full !py-4 text-micro flex items-center justify-center gap-2">
               <ShoppingBag className="w-4 h-4" /> {t('product.go_to_checkout')}
             </Link>
           </div>

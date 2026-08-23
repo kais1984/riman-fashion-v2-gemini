@@ -262,7 +262,7 @@ export default function Checkout() {
       <div className="pt-8 pb-20 px-6 min-h-[60vh] flex flex-col items-center justify-center text-center bg-ivory">
         <h1 className="font-heading text-4xl text-stone-800 uppercase mb-4">{t('checkout.empty')}</h1>
         <div className="w-12 h-px bg-gold mx-auto mb-6" />
-        <p className="font-body text-stone-500 text-sm tracking-widest uppercase mb-12 italic">{t('checkout.empty_desc')}</p>
+        <p className="font-body text-stone-600 text-sm tracking-widest uppercase mb-12 italic">{t('checkout.empty_desc')}</p>
         <Link to="/search" className="btn-luxury px-12">{t('checkout.explore')}</Link>
       </div>
     );
@@ -280,9 +280,9 @@ export default function Checkout() {
         </motion.div>
         <h1 className="font-heading text-4xl md:text-6xl text-stone-800 uppercase mb-4">{t('checkout.order_received')}</h1>
         <div className="w-12 h-px bg-gold mx-auto mb-6" />
-        <p className="font-body text-stone-500 text-sm tracking-widest uppercase mb-4">{t('checkout.order_preparing')}</p>
-        <p className="font-body text-stone-400 text-xs mb-4 uppercase italic">{t('checkout.confirmation_email')} {formData.email}</p>
-        <p className="font-body text-stone-400 text-xs mb-12 uppercase tracking-widest max-w-md">{t('checkout.contact_24h')}</p>
+        <p className="font-body text-stone-600 text-sm tracking-widest uppercase mb-4">{t('checkout.order_preparing')}</p>
+        <p className="font-body text-stone-600 text-xs mb-4 uppercase italic">{t('checkout.confirmation_email')} {formData.email}</p>
+        <p className="font-body text-stone-600 text-xs mb-12 uppercase tracking-widest max-w-md">{t('checkout.contact_24h')}</p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link to="/profile" className="btn-luxury px-12 italic">{t('checkout.view_dashboard')}</Link>
           <Link to="/search" className="btn-luxury-outline px-12">{t('checkout.back_to_shop')}</Link>
@@ -296,9 +296,9 @@ export default function Checkout() {
       {/* Minimal top bar (replaces header on checkout) */}
       <div className="sticky top-0 z-40 bg-ivory/95 backdrop-blur-sm border-b border-stone-100">
         <div className="max-w-6xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          <Link to="/search" className="flex items-center gap-2 text-stone-500 hover:text-stone-800 transition-colors">
+          <Link to="/search" className="flex items-center gap-2 text-stone-600 hover:text-stone-800 transition-colors">
             <ArrowLeft className={cn("w-4 h-4", isRtl && "rotate-180")} />
-            <span className="text-[10px] tracking-[0.2em] uppercase font-bold hidden sm:inline">{t('checkout.back_to_shop')}</span>
+            <span className="text-micro tracking-[0.2em] uppercase font-bold hidden sm:inline">{t('checkout.back_to_shop')}</span>
           </Link>
           <Link to="/" className="font-heading text-sm tracking-[0.3em] uppercase text-stone-800">Atelier Riman</Link>
           <div className="w-20" />
@@ -457,25 +457,25 @@ export default function Checkout() {
                     <div className="bg-ivory/50 p-5 border border-gold/10 space-y-4">
                       <div className="flex items-center justify-between">
                         <h3 className="font-heading text-xs tracking-[0.2em] uppercase text-stone-600">{t('checkout.your_details')}</h3>
-                        <button onClick={() => setStep(1)} className="text-[10px] tracking-widest uppercase text-gold font-bold hover:text-gold-dark transition-colors">
+                        <button onClick={() => setStep(1)} className="text-micro tracking-widest uppercase text-gold font-bold hover:text-gold-dark transition-colors">
                           {t('checkout.previous')}
                         </button>
                       </div>
-                      <div className="grid grid-cols-2 gap-4 text-[11px] tracking-wider uppercase">
+                      <div className="grid grid-cols-2 gap-4 text-micro tracking-wider uppercase">
                         <div>
-                          <span className="text-stone-400 block mb-0.5">{t('checkout.name_label')}</span>
+                          <span className="text-stone-600 block mb-0.5">{t('checkout.name_label')}</span>
                           <span className="text-stone-800 font-medium">{formData.firstName} {formData.lastName}</span>
                         </div>
                         <div>
-                          <span className="text-stone-400 block mb-0.5">{t('checkout.email')}</span>
+                          <span className="text-stone-600 block mb-0.5">{t('checkout.email')}</span>
                           <span className="text-stone-800 font-medium">{formData.email}</span>
                         </div>
                         <div>
-                          <span className="text-stone-400 block mb-0.5">{t('checkout.address')}</span>
+                          <span className="text-stone-600 block mb-0.5">{t('checkout.address')}</span>
                           <span className="text-stone-800 font-medium">{formData.address}</span>
                         </div>
                         <div>
-                          <span className="text-stone-400 block mb-0.5">{t('checkout.city')}</span>
+                          <span className="text-stone-600 block mb-0.5">{t('checkout.city')}</span>
                           <span className="text-stone-800 font-medium">{formData.city}, {formData.country}</span>
                         </div>
                       </div>
@@ -490,10 +490,10 @@ export default function Checkout() {
                             <img src={item.images?.[0]} className="w-full h-full object-cover" alt={item.name} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[10px] text-stone-400 uppercase tracking-widest">{item.category}</p>
+                            <p className="text-micro text-stone-600 uppercase tracking-widest">{item.category}</p>
                             <p className="text-xs uppercase tracking-wider font-bold truncate">{item.name}</p>
-                            {item.selectedSize && <p className="text-[9px] text-stone-400 uppercase">{t('checkout.size')}: {item.selectedSize}</p>}
-                            {item.selectedDate && <p className="text-[9px] text-gold uppercase">{t('checkout.date')}: {new Date(item.selectedDate).toLocaleDateString()}</p>}
+                            {item.selectedSize && <p className="text-micro text-stone-600 uppercase">{t('checkout.size')}: {item.selectedSize}</p>}
+                            {item.selectedDate && <p className="text-micro text-gold uppercase">{t('checkout.date')}: {new Date(item.selectedDate).toLocaleDateString()}</p>}
                           </div>
                           <p className="text-xs text-gold font-medium">{formatPrice((item.rentalPrice || item.salePrice || 0) * item.quantity)}</p>
                         </div>
@@ -502,11 +502,11 @@ export default function Checkout() {
 
                     {/* Pricing (visible on mobile, hidden on desktop where sidebar shows it) */}
                     <div className="lg:hidden space-y-2 pt-4 border-t border-stone-100">
-                      <div className="flex justify-between text-[10px] tracking-widest uppercase text-stone-400">
+                      <div className="flex justify-between text-micro tracking-widest uppercase text-stone-600">
                         <span>{t('checkout.subtotal')}</span>
                         <span>{formatPrice(subtotal)}</span>
                       </div>
-                      <div className="flex justify-between text-[10px] tracking-widest uppercase text-stone-400">
+                      <div className="flex justify-between text-micro tracking-widest uppercase text-stone-600">
                         <span>{t('checkout.delivery')}</span>
                         <span>{t('checkout.complimentary')}</span>
                       </div>
@@ -518,7 +518,7 @@ export default function Checkout() {
 
                     {/* Order notes */}
                     <div className="space-y-3">
-                      <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold flex items-center gap-2">
+                      <label className="text-micro uppercase tracking-widest text-stone-600 font-bold flex items-center gap-2">
                         <MessageSquare className="w-3 h-3 text-gold" /> {t('checkout.order_notes')}
                       </label>
                       <textarea
@@ -541,13 +541,13 @@ export default function Checkout() {
                             "flex items-center gap-4 p-4 border text-left transition-all",
                             paymentMethod === 'atelier'
                               ? "bg-gold/5 border-gold/30 text-stone-800"
-                              : "bg-ivory border-stone-100 text-stone-400 hover:border-stone-300"
+                              : "bg-ivory border-stone-100 text-stone-600 hover:border-stone-300"
                           )}
                         >
-                          <Building2 className={cn("w-5 h-5 shrink-0", paymentMethod === 'atelier' ? 'text-gold' : 'text-stone-300')} />
+                          <Building2 className={cn("w-5 h-5 shrink-0", paymentMethod === 'atelier' ? 'text-gold' : 'text-stone-500')} />
                           <div>
-                            <p className="text-[10px] tracking-widest uppercase font-bold">{t('checkout.pay_atelier')}</p>
-                            <p className="text-[9px] text-stone-400 mt-0.5 tracking-wide">{t('checkout.pay_atelier_desc')}</p>
+                            <p className="text-micro tracking-widest uppercase font-bold">{t('checkout.pay_atelier')}</p>
+                            <p className="text-micro text-stone-600 mt-0.5 tracking-wide">{t('checkout.pay_atelier_desc')}</p>
                           </div>
                         </button>
                         <button
@@ -557,13 +557,13 @@ export default function Checkout() {
                             "flex items-center gap-4 p-4 border text-left transition-all",
                             paymentMethod === 'card'
                               ? "bg-gold/5 border-gold/30 text-stone-800"
-                              : "bg-ivory border-stone-100 text-stone-400 hover:border-stone-300"
+                              : "bg-ivory border-stone-100 text-stone-600 hover:border-stone-300"
                           )}
                         >
-                          <CreditCard className={cn("w-5 h-5 shrink-0", paymentMethod === 'card' ? 'text-gold' : 'text-stone-300')} />
+                          <CreditCard className={cn("w-5 h-5 shrink-0", paymentMethod === 'card' ? 'text-gold' : 'text-stone-500')} />
                           <div>
-                            <p className="text-[10px] tracking-widest uppercase font-bold">{t('checkout.pay_online')}</p>
-                            <p className="text-[9px] text-stone-400 mt-0.5 tracking-wide">{t('checkout.pay_online_desc')}</p>
+                            <p className="text-micro tracking-widest uppercase font-bold">{t('checkout.pay_online')}</p>
+                            <p className="text-micro text-stone-600 mt-0.5 tracking-wide">{t('checkout.pay_online_desc')}</p>
                           </div>
                         </button>
                       </div>
@@ -573,10 +573,10 @@ export default function Checkout() {
                     <div className={cn("p-4 border flex items-start gap-3", paymentMethod === 'card' ? 'bg-emerald-50/50 border-emerald-200/50' : 'bg-gold/5 border-gold/10')}>
                       {paymentMethod === 'card' ? <CreditCard className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" /> : <Truck className="w-5 h-5 text-gold shrink-0 mt-0.5" />}
                       <div>
-                        <p className="text-[10px] tracking-widest text-stone-600 uppercase font-bold">
+                        <p className="text-micro tracking-widest text-stone-600 uppercase font-bold">
                           {paymentMethod === 'card' ? t('checkout.secure_online') : t('checkout.instore_payment')}
                         </p>
-                        <p className="text-[10px] text-stone-400 mt-1">
+                        <p className="text-micro text-stone-600 mt-1">
                           {paymentMethod === 'card'
                             ? t('checkout.secure_online_desc')
                             : t('checkout.instore_desc')}
@@ -589,7 +589,7 @@ export default function Checkout() {
                       href={`https://wa.me/${WHATSAPP_NUMBER}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-center gap-2 py-3 border border-stone-200 text-[10px] tracking-[0.2em] uppercase text-stone-500 font-bold hover:border-gold/30 hover:text-gold transition-all"
+                      className="flex items-center justify-center gap-2 py-3 border border-stone-200 text-micro tracking-[0.2em] uppercase text-stone-600 font-bold hover:border-gold/30 hover:text-gold transition-all"
                     >
                       <MessageCircle className="w-3.5 h-3.5" />
                       {t('checkout.whatsapp_support')}
@@ -614,12 +614,12 @@ export default function Checkout() {
                     </div>
                     {submitError && (
                       <div className="p-4 border border-rose-200 bg-rose-50/50 text-center">
-                        <p className="text-rose-600 text-[10px] tracking-widest uppercase font-bold mb-2">{submitError}</p>
+                        <p className="text-rose-600 text-micro tracking-widest uppercase font-bold mb-2">{submitError}</p>
                         <a
                           href={`https://wa.me/${WHATSAPP_NUMBER}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-[10px] tracking-widest uppercase text-gold font-bold hover:text-gold-dark transition-colors"
+                          className="text-micro tracking-widest uppercase text-gold font-bold hover:text-gold-dark transition-colors"
                         >
                           {t('checkout.whatsapp_support')} &rarr;
                         </a>
@@ -641,10 +641,10 @@ export default function Checkout() {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-1 h-5 bg-gold" />
-                  <span className="text-[10px] tracking-[0.2em] uppercase font-bold">
+                  <span className="text-micro tracking-[0.2em] uppercase font-bold">
                     {t('checkout.order_summary')}
                   </span>
-                  <span className="text-[10px] text-stone-400">
+                  <span className="text-micro text-stone-400">
                     ({t('checkout.items_count').replace('{count}', String(items.length))})
                   </span>
                 </div>
@@ -668,22 +668,22 @@ export default function Checkout() {
                             <img src={item.images?.[0]} className="w-full h-full object-cover grayscale-[0.3]" alt={item.name} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[9px] text-stone-500 uppercase tracking-widest">{item.category}</p>
-                            <p className="text-[11px] uppercase tracking-wider font-bold truncate text-white">{item.name}</p>
+                            <p className="text-micro text-stone-500 uppercase tracking-widest">{item.category}</p>
+                            <p className="text-micro uppercase tracking-wider font-bold truncate text-white">{item.name}</p>
                             <div className="flex flex-wrap gap-1.5 mt-1">
-                              {item.selectedSize && <span className="text-[9px] border border-stone-700 px-1.5 py-0.5 text-stone-400">{item.selectedSize}</span>}
-                              {item.selectedDate && <span className="text-[9px] border border-gold/30 px-1.5 py-0.5 text-gold">{new Date(item.selectedDate).toLocaleDateString()}</span>}
+                              {item.selectedSize && <span className="text-micro border border-stone-700 px-1.5 py-0.5 text-stone-400">{item.selectedSize}</span>}
+                              {item.selectedDate && <span className="text-micro border border-gold/30 px-1.5 py-0.5 text-gold">{new Date(item.selectedDate).toLocaleDateString()}</span>}
                             </div>
                           </div>
-                          <p className="text-[11px] text-gold font-medium">{formatPrice((item.rentalPrice || item.salePrice || 0) * item.quantity)}</p>
+                          <p className="text-micro text-gold font-medium">{formatPrice((item.rentalPrice || item.salePrice || 0) * item.quantity)}</p>
                         </div>
                       ))}
                       <div className="space-y-2 pt-3 border-t border-stone-800">
-                        <div className="flex justify-between text-[9px] tracking-widest uppercase text-stone-400">
+                        <div className="flex justify-between text-micro tracking-widest uppercase text-stone-400">
                           <span>{t('checkout.subtotal')}</span>
                           <span>{formatPrice(subtotal)}</span>
                         </div>
-                        <div className="flex justify-between text-[9px] tracking-widest uppercase text-stone-400">
+                        <div className="flex justify-between text-micro tracking-widest uppercase text-stone-400">
                           <span>{t('checkout.delivery')}</span>
                           <span>{t('checkout.complimentary')}</span>
                         </div>
@@ -722,13 +722,13 @@ function StepStep({ num, label, active, completed }: { num: number; label: strin
     <div className="flex items-center gap-2.5">
       <div className={cn(
         "w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs transition-all duration-300 font-bold shrink-0",
-        completed ? "bg-gold border-gold text-white" : active ? "bg-gold/10 border-gold text-gold" : "border-stone-200 text-stone-300"
+        completed ? "bg-gold border-gold text-white" : active ? "bg-gold/10 border-gold text-gold" : "border-stone-200 text-stone-500"
       )}>
         {completed ? <Check className="w-4 h-4" /> : num}
       </div>
       <span className={cn(
-        "text-[10px] tracking-[0.15em] uppercase font-bold transition-colors hidden sm:inline",
-        active ? "text-stone-800" : "text-stone-300"
+        "text-micro tracking-[0.15em] uppercase font-bold transition-colors hidden sm:inline",
+        active ? "text-stone-800" : "text-stone-500"
       )}>{label}</span>
     </div>
   );
@@ -745,9 +745,9 @@ function SectionHeading({ title }: { title: string }) {
 
 function TrustBadge({ icon, label }: { icon: ReactNode; label: string }) {
   return (
-    <div className="flex items-center gap-2 text-stone-400">
+    <div className="flex items-center gap-2 text-stone-600">
       <div className="text-gold">{icon}</div>
-      <span className="text-[9px] tracking-[0.2em] uppercase font-bold">{label}</span>
+      <span className="text-micro tracking-[0.2em] uppercase font-bold">{label}</span>
     </div>
   );
 }
@@ -778,15 +778,15 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
                 <img src={item.images?.[0]} className="w-full h-full object-cover grayscale-[0.3]" alt={item.name} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[9px] text-stone-500 uppercase tracking-widest mb-0.5">{item.category}</p>
-                <h4 className="text-[11px] uppercase tracking-wider font-bold mb-1 truncate">{item.name}</h4>
+                <p className="text-micro text-stone-500 uppercase tracking-widest mb-0.5">{item.category}</p>
+                <h4 className="text-micro uppercase tracking-wider font-bold mb-1 truncate">{item.name}</h4>
                 <div className="flex flex-wrap gap-1.5 mb-1.5">
-                  {item.selectedSize && <span className="text-[9px] border border-stone-700 px-1.5 py-0.5 text-stone-400">{t('checkout.size')}: {item.selectedSize}</span>}
-                  {item.selectedDate && <span className="text-[9px] border border-gold/30 px-1.5 py-0.5 text-gold"><Calendar className="w-2 h-2 inline mr-0.5" />{new Date(item.selectedDate).toLocaleDateString()}</span>}
+                  {item.selectedSize && <span className="text-micro border border-stone-700 px-1.5 py-0.5 text-stone-400">{t('checkout.size')}: {item.selectedSize}</span>}
+                  {item.selectedDate && <span className="text-micro border border-gold/30 px-1.5 py-0.5 text-gold"><Calendar className="w-2 h-2 inline mr-0.5" />{new Date(item.selectedDate).toLocaleDateString()}</span>}
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-[11px] text-gold font-medium">{formatPrice((item.rentalPrice || item.salePrice || 0) * item.quantity)}</p>
-                  {item.quantity > 1 && <span className="text-[9px] text-stone-500">{t('checkout.qty')}: {item.quantity}</span>}
+                  <p className="text-micro text-gold font-medium">{formatPrice((item.rentalPrice || item.salePrice || 0) * item.quantity)}</p>
+                  {item.quantity > 1 && <span className="text-micro text-stone-500">{t('checkout.qty')}: {item.quantity}</span>}
                 </div>
               </div>
               <button
@@ -801,15 +801,15 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
       </div>
 
       <div className="space-y-3 border-t border-stone-800 pt-6">
-        <div className="flex justify-between text-[10px] tracking-widest uppercase text-stone-400">
+        <div className="flex justify-between text-micro tracking-widest uppercase text-stone-400">
           <span>{t('checkout.subtotal')}</span>
           <span>{formatPrice(subtotal)}</span>
         </div>
-        <div className="flex justify-between text-[10px] tracking-widest uppercase text-stone-400">
+        <div className="flex justify-between text-micro tracking-widest uppercase text-stone-400">
           <span>{t('checkout.delivery')}</span>
           <span>{t('checkout.complimentary')}</span>
         </div>
-        <div className="flex justify-between text-[10px] tracking-widest uppercase text-stone-400">
+        <div className="flex justify-between text-micro tracking-widest uppercase text-stone-400">
           <span>{t('checkout.vat')}</span>
           <span>{t('checkout.included')}</span>
         </div>
@@ -821,7 +821,7 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
 
       <div className="mt-8 flex items-center gap-3 p-3 border border-white/5 bg-white/5">
         <ShieldCheck className="w-4 h-4 text-gold shrink-0" />
-        <p className="text-[9px] tracking-widest leading-relaxed text-stone-400 uppercase">
+        <p className="text-micro tracking-widest leading-relaxed text-stone-400 uppercase">
           {paymentMethod === 'card' ? 'Secured by Stripe' : 'Secure Order — Payment at Atelier'}
         </p>
       </div>
@@ -844,8 +844,8 @@ function Input({ label, value, onChange, onBlur, placeholder, className, disable
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="flex justify-between items-center">
-        <label className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block">{label}</label>
-        {error && <span className="text-[9px] text-rose-500 uppercase tracking-widest font-bold">{error}</span>}
+        <label className="text-micro tracking-widest uppercase font-bold text-stone-600 block">{label}</label>
+        {error && <span className="text-micro text-rose-500 uppercase tracking-widest font-bold">{error}</span>}
       </div>
       <input
         type={type}

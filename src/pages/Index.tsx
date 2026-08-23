@@ -43,7 +43,7 @@ export default function Index() {
           className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,30vw,28rem)]"
         />
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto animate-fade-in">
-          <p className="font-label text-[11px] md:text-xs tracking-[0.35em] uppercase text-white/90 mb-8">
+          <p className="font-label text-micro md:text-xs tracking-[0.35em] uppercase text-white/90 mb-8">
             {t('hero.subtitle')}
           </p>
           <h1 className="font-heading text-white font-light leading-[0.95] text-[clamp(3.5rem,11vw,9rem)] mb-12">
@@ -66,7 +66,7 @@ export default function Index() {
             </a>
           </div>
         </div>
-        <span className="absolute bottom-8 left-1/2 -translate-x-1/2 font-label text-[10px] tracking-[0.3em] uppercase text-white/60">
+        <span className="absolute bottom-8 left-1/2 -translate-x-1/2 font-label text-micro tracking-[0.3em] uppercase text-white/60">
           {t('hero.discover')}
         </span>
       </section>
@@ -183,7 +183,7 @@ export default function Index() {
             <Link to="/appointment" className="btn-luxury" aria-label={t('cta.viewing')}>
               {t('cta.viewing')}
             </Link>
-            <p className="font-label text-[11px] tracking-[0.3em] uppercase text-stone-500">
+            <p className="font-label text-micro tracking-[0.3em] uppercase text-stone-600">
               {t('invitation.contact_line')}
             </p>
           </div>

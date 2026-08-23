@@ -112,14 +112,14 @@ export default function AppointmentPage() {
           </div>
           <h1 className="font-heading text-4xl font-light text-stone-800 mb-4">{t('appointment.booked')}</h1>
           <div className="w-12 h-px bg-gold mx-auto mb-6" />
-          <p className="font-body text-stone-500 leading-relaxed mb-2">
+          <p className="font-body text-stone-600 leading-relaxed mb-2">
             {t('appointment.thank_you')}, <span className="text-stone-800 font-semibold">{form.name}</span>.
           </p>
-          <p className="font-body text-stone-500 leading-relaxed mb-8">
+          <p className="font-body text-stone-600 leading-relaxed mb-8">
             {t('appointment.appointment_booked_for')} <span className="text-stone-800 font-semibold">{new Date(form.date).toLocaleDateString(isRtl ? 'ar-AE' : 'en-AE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span> {t('appointment.at')} <span className="text-stone-800 font-semibold">{form.time}</span>.
           </p>
           <div className="w-12 h-px bg-gold mx-auto mb-6" />
-          <p className="font-body text-sm text-stone-400 mb-10">{t('appointment.confirmation_sent')} {form.email}. {t('appointment.our_team_reach')}</p>
+          <p className="font-body text-sm text-stone-600 mb-10">{t('appointment.confirmation_sent')} {form.email}. {t('appointment.our_team_reach')}</p>
           <a
             href={buildWhatsAppUrl(
               incomingGowns.length
@@ -141,7 +141,7 @@ export default function AppointmentPage() {
   return (
     <div className="pt-24 min-h-screen bg-champagne">
       <div className="container mx-auto px-6 py-16 max-w-4xl">
-        <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-400 mb-8">
+        <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-600 mb-8">
           <Link to="/" className="hover:text-gold transition-colors">{t('nav.home')}</Link>
           <span>/</span>
           <span className="text-stone-800 font-medium">{t('cta.appointment')}</span>
@@ -155,7 +155,7 @@ export default function AppointmentPage() {
               <span className="w-8 h-px bg-gold" />
             </div>
             <h1 className="font-heading text-4xl md:text-5xl font-light text-stone-800 mb-4">{t('appointment.heading')}</h1>
-            <p className="font-body text-stone-500 max-w-xl mx-auto leading-relaxed">
+            <p className="font-body text-stone-600 max-w-xl mx-auto leading-relaxed">
               {t('appointment.desc')}
             </p>
           </div>
@@ -164,10 +164,10 @@ export default function AppointmentPage() {
           <div className="flex items-center justify-center gap-4 mb-12">
             {[1, 2, 3].map(s => (
               <button key={s} onClick={() => { if (s < step) setStep(s); }} className="flex items-center gap-3">
-                <div className={step >= s ? "w-10 h-10 bg-gold text-white flex items-center justify-center text-xs font-bold transition-all" : "w-10 h-10 border border-stone-200 text-stone-400 flex items-center justify-center text-xs font-bold"}>
+                <div className={step >= s ? "w-10 h-10 bg-gold text-white flex items-center justify-center text-xs font-bold transition-all" : "w-10 h-10 border border-stone-200 text-stone-600 flex items-center justify-center text-xs font-bold"}>
                   {step > s ? <CheckCircle2 className="w-4 h-4" /> : s}
                 </div>
-                <span className={step >= s ? "text-xs tracking-widest uppercase font-bold text-stone-800 hidden md:block" : "text-xs tracking-widest uppercase text-stone-400 hidden md:block"}>
+                <span className={step >= s ? "text-xs tracking-widest uppercase font-bold text-stone-800 hidden md:block" : "text-xs tracking-widest uppercase text-stone-600 hidden md:block"}>
                   {s === 1 ? t('appointment.step_details') : s === 2 ? t('appointment.step_schedule') : t('appointment.step_confirm')}
                 </span>
                 {s < 3 && <div className={step > s ? "w-12 h-px bg-gold hidden md:block" : "w-12 h-px bg-stone-200 hidden md:block"} />}
@@ -184,7 +184,7 @@ export default function AppointmentPage() {
                 </div>
                 {incomingGowns.length > 0 && (
                   <div className="mb-6 p-4 border border-gold/30 bg-gold/[0.04]">
-                    <p className="text-[10px] tracking-widest uppercase text-stone-800 font-bold mb-2">{t('appointment.your_gowns')}</p>
+                    <p className="text-micro tracking-widest uppercase text-stone-800 font-bold mb-2">{t('appointment.your_gowns')}</p>
                     <ul className="space-y-1">
                       {incomingGowns.map((g, i) => (
                         <li key={`${g.id}-${i}`} className="text-xs text-stone-600 italic">{g.name}{g.size ? ` · ${g.size}` : ''}</li>
@@ -194,29 +194,29 @@ export default function AppointmentPage() {
                 )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.full_name')}</label>
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-2">{t('appointment.full_name')}</label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+                      <input type="text" value={form.name} onChange={e => updateForm('name', e.target.value)} placeholder="Your full name" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.email')}</label>
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-2">{t('appointment.email')}</label>
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+                      <input type="email" value={form.email} onChange={e => updateForm('email', e.target.value)} placeholder="your@email.com" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.phone')}</label>
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-2">{t('appointment.phone')}</label>
                     <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-300" />
-                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-500" />
+                      <input type="tel" value={form.phone} onChange={e => updateForm('phone', e.target.value)} placeholder="+971 50 000 0000" className="w-full pl-11 bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.service_type')}</label>
-                    <select value={form.service_type} onChange={e => updateForm('service_type', e.target.value)} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500">
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-2">{t('appointment.service_type')}</label>
+                    <select value={form.service_type} onChange={e => updateForm('service_type', e.target.value)} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600">
                       <option value="">{t('appointment.select_service')}</option>
                       {SERVICE_TYPES.map(s => (
                         <option key={s.value} value={s.value}>{s.icon} {s.label}</option>
@@ -237,14 +237,14 @@ export default function AppointmentPage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-4">
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-4">
                       <Calendar className="w-4 h-4 inline mr-2" />
                       {t('appointment.select_date')}
                     </label>
-                    <input type="date" value={form.date} onChange={e => updateForm('date', e.target.value)} min={today} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                    <input type="date" value={form.date} onChange={e => updateForm('date', e.target.value)} min={today} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600" />
                   </div>
                   <div>
-                    <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-4">
+                    <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-4">
                       <Clock className="w-4 h-4 inline mr-2" />
                       {t('appointment.select_time')}
                     </label>
@@ -264,11 +264,11 @@ export default function AppointmentPage() {
                   </div>
                 </div>
                 <div className="mt-6">
-                  <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">
+                  <label className="block text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-2">
                     <MessageSquare className="w-4 h-4 inline mr-2" />
                     {t('appointment.special_requests')}
                   </label>
-                  <textarea value={form.notes} onChange={e => updateForm('notes', e.target.value)} rows={3} placeholder={t('appointment.notes_placeholder')} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-500" />
+                  <textarea value={form.notes} onChange={e => updateForm('notes', e.target.value)} rows={3} placeholder={t('appointment.notes_placeholder')} className="w-full bg-transparent border-0 border-b border-stone-300 focus:border-gold focus:ring-0 rounded-none py-3 outline-none transition-colors duration-500 text-stone-800 placeholder:text-stone-600" />
                 </div>
                 {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
                 <div className="flex gap-4 mt-8">
@@ -287,33 +287,33 @@ export default function AppointmentPage() {
                 <div className="bg-ivory p-8 border border-stone-100 mb-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.name')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.name')}</p>
                       <p className="font-heading text-stone-800">{form.name}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.email_label')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.email_label')}</p>
                       <p className="font-heading text-stone-800">{form.email}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.phone_label')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.phone_label')}</p>
                       <p className="font-heading text-stone-800">{form.phone}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.service_label')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.service_label')}</p>
                       <p className="font-heading text-stone-800">{SERVICE_TYPES.find(s => s.value === form.service_type)?.label}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.date_label')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.date_label')}</p>
                       <p className="font-heading text-stone-800">{form.date ? new Date(form.date).toLocaleDateString(isRtl ? 'ar-AE' : 'en-AE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : ''}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.time_label')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.time_label')}</p>
                       <p className="font-heading text-stone-800">{form.time}</p>
                     </div>
                   </div>
                   {form.notes && (
                     <div className="mt-6 pt-6 border-t border-stone-200">
-                      <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.special_requests')}</p>
+                      <p className="text-micro tracking-[0.3em] uppercase text-stone-600 font-bold mb-1">{t('appointment.special_requests')}</p>
                       <p className="font-body text-stone-600 text-sm">{form.notes}</p>
                     </div>
                   )}

@@ -125,7 +125,7 @@ function MaintenanceGate({ children }: { children: React.ReactNode }) {
           <p className="font-body text-ivory/60 text-sm tracking-widest uppercase mb-2">
             {settings.advanced.maintenanceMessage || 'We are currently updating our atelier.'}
           </p>
-          <p className="font-body text-ivory/30 text-[10px] tracking-widest uppercase mt-6">
+          <p className="font-body text-ivory/30 text-micro tracking-widest uppercase mt-6">
             Please check back soon.
           </p>
         </div>

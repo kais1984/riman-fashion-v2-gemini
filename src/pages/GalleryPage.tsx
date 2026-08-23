@@ -34,7 +34,7 @@ export default function GalleryPage() {
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="heading-editorial text-gold text-[10px] mb-4 uppercase tracking-[0.4em]"
+            className="heading-editorial text-gold text-micro mb-4 uppercase tracking-[0.4em]"
           >
             {t('gallery.title')}
           </motion.h2>
@@ -47,7 +47,7 @@ export default function GalleryPage() {
             {t('gallery.subtitle')}
           </motion.h1>
           <div className="w-16 h-px bg-gold mx-auto mb-8" />
-          <p className="text-stone-500 text-sm tracking-wide max-w-xl mx-auto">
+          <p className="text-stone-600 text-sm tracking-wide max-w-xl mx-auto">
             {t('gallery.description')}
           </p>
         </div>
@@ -66,11 +66,11 @@ export default function GalleryPage() {
           </div>
         ) : error ? (
           <div className="text-center py-20">
-            <p className="text-stone-500 text-sm">{error}</p>
+            <p className="text-stone-600 text-sm">{error}</p>
           </div>
         ) : items.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-stone-500 text-sm">{t('gallery.no_items')}</p>
+            <p className="text-stone-600 text-sm">{t('gallery.no_items')}</p>
           </div>
         ) : (
           <>
