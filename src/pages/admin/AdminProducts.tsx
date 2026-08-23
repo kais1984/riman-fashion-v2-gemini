@@ -285,7 +285,7 @@ export default function AdminProducts() {
                     ))}
                     <div className="w-20 h-24 border-2 border-dashed border-stone-200 flex flex-col items-center justify-center text-stone-600 gap-1 cursor-pointer hover:border-gold/50 transition-colors relative" onClick={() => document.getElementById('product-image-upload')?.click()}>
                       <Plus className="w-4 h-4" />
-                      <span className="text-[7px] tracking-widest uppercase">Upload</span>
+                      <span className="text-micro tracking-widest uppercase">Upload</span>
                     </div>
                   </div>
                   <input
