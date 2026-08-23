@@ -1412,7 +1412,7 @@ const translations: Record<Language, Record<string, string>> = {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
-    return (localStorage.getItem('riman_lang') as Language) || 'en';
+    return (localStorage.getItem('riman_lang') as Language) || 'ar';
   });
 
   useEffect(() => {

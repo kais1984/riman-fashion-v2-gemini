@@ -34,7 +34,7 @@ const formatSlot = (slot: string) => `${slot} ${SLOT_PERIOD[slot]}`;
 
 export default function AppointmentPage() {
   const [step, setStep] = useState(1);
-  const { t } = useLanguage();
+  const { t, isRtl } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -106,7 +106,7 @@ export default function AppointmentPage() {
             {t('appointment.thank_you')}, <span className="text-stone-800 font-semibold">{form.name}</span>.
           </p>
           <p className="font-body text-stone-500 leading-relaxed mb-8">
-            {t('appointment.appointment_booked_for')} <span className="text-stone-800 font-semibold">{new Date(form.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span> {t('appointment.at')} <span className="text-stone-800 font-semibold">{form.time}</span>.
+            {t('appointment.appointment_booked_for')} <span className="text-stone-800 font-semibold">{new Date(form.date).toLocaleDateString(isRtl ? 'ar-AE' : 'en-AE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span> {t('appointment.at')} <span className="text-stone-800 font-semibold">{form.time}</span>.
           </p>
           <div className="w-12 h-px bg-gold mx-auto mb-6" />
           <p className="font-body text-sm text-stone-400 mb-10">{t('appointment.confirmation_sent')} {form.email}. {t('appointment.our_team_reach')}</p>
@@ -272,7 +272,7 @@ export default function AppointmentPage() {
                     </div>
                     <div>
                       <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.date_label')}</p>
-                      <p className="font-heading text-stone-800">{form.date ? new Date(form.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : ''}</p>
+                      <p className="font-heading text-stone-800">{form.date ? new Date(form.date).toLocaleDateString(isRtl ? 'ar-AE' : 'en-AE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : ''}</p>
                     </div>
                     <div>
                       <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-1">{t('appointment.time_label')}</p>
