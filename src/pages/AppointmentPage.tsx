@@ -5,6 +5,7 @@ import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle2, Loader
 import { motion, AnimatePresence } from 'motion/react';
 import { createAppointment } from '../services/appointments';
 import { sendAppointmentConfirmationEmail, sendAppointmentAdminAlert } from '../lib/email';
+import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const SERVICE_TYPES = [
@@ -119,6 +120,18 @@ export default function AppointmentPage() {
           </p>
           <div className="w-12 h-px bg-gold mx-auto mb-6" />
           <p className="font-body text-sm text-stone-400 mb-10">{t('appointment.confirmation_sent')} {form.email}. {t('appointment.our_team_reach')}</p>
+          <a
+            href={buildWhatsAppUrl(
+              incomingGowns.length
+                ? `${t('appointment.booked')} — ${form.name}, ${form.date} ${form.time}. ${t('appointment.your_gowns')}: ${gownNames.join(', ')}`
+                : `${t('appointment.booked')} — ${form.name}, ${form.date} ${form.time}`
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-luxury-outline inline-block mt-4 px-10"
+          >
+            {t('appointment.whatsapp_continue')}
+          </a>
           <Link to="/collection/all" className="btn-luxury">{t('appointment.explore_collection')}</Link>
         </motion.div>
       </div>
