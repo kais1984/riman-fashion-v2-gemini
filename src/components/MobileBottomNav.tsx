@@ -28,7 +28,7 @@ export default function MobileBottomNav() {
             to={item.path}
             className={cn(
               "flex flex-col items-center justify-center gap-1 transition-colors relative",
-              isActive ? "text-gold" : "text-stone-400"
+              isActive ? "text-gold" : "text-stone-600"
             )}
           >
             <Icon className="w-5 h-5" />
