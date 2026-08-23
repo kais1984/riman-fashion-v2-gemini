@@ -70,7 +70,7 @@ function GalleryVideoItem({ item, onClick, index }: { item: GalleryItem; onClick
       <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-colors duration-300" />
       <div className="absolute bottom-3 left-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <Play className="w-4 h-4 text-white fill-white" />
-        <span className="text-white text-[10px] tracking-widest uppercase font-bold">{item.title}</span>
+        <span className="text-white text-micro tracking-widest uppercase font-bold">{item.title}</span>
       </div>
     </motion.div>
   );
@@ -95,7 +95,7 @@ function GalleryPhotoItem({ item, onClick, index }: { item: GalleryItem; onClick
       <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-colors duration-300" />
       <div className="absolute bottom-3 left-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <ImageIcon className="w-4 h-4 text-white" />
-        <span className="text-white text-[10px] tracking-widest uppercase font-bold">{item.title}</span>
+        <span className="text-white text-micro tracking-widest uppercase font-bold">{item.title}</span>
       </div>
     </motion.div>
   );

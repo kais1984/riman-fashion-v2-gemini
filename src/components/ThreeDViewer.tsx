@@ -120,7 +120,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
                         className="h-full bg-gold"
                       />
                     </div>
-                    <span className="mt-2 text-[10px] uppercase tracking-[0.2em] text-stone-400 font-bold">
+                    <span className="mt-2 text-micro uppercase tracking-[0.2em] text-stone-600 font-bold">
                       Loading detail {Math.round(loadingProgress)}%
                     </span>
                   </div>
@@ -140,12 +140,12 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
                       <AlertTriangle className="w-6 h-6 text-rose-400" />
                     </div>
                     <p className="text-sm font-semibold text-stone-700 mb-2">3D viewer unavailable</p>
-                    <p className="text-[11px] text-stone-400 leading-relaxed mb-4">
+                    <p className="text-micro text-stone-600 leading-relaxed mb-4">
                       {errorMessage}
                     </p>
                     <button
                       onClick={handleRetry}
-                      className="btn-luxury !py-2 !px-6 text-[10px]"
+                      className="btn-luxury !py-2 !px-6 text-micro"
                     >
                       Retry
                     </button>
@@ -160,7 +160,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
             ) : (
               <div className="flex flex-col items-center gap-3">
                 <Box className="w-8 h-8 text-gold/30 animate-pulse" />
-                <span className="text-[10px] uppercase tracking-[0.2em] text-stone-400">Initializing 3D Detail</span>
+                <span className="text-micro uppercase tracking-[0.2em] text-stone-600">Initializing 3D Detail</span>
               </div>
             )}
           </div>
@@ -187,7 +187,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
           <div className="absolute top-6 left-6 pointer-events-none">
             <div className="flex items-center gap-2 px-3 py-1 bg-gold/10 backdrop-blur-sm border border-gold/20 rounded-full">
               <div className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">3D Perspective</span>
+              <span className="text-micro font-bold uppercase tracking-[0.2em] text-gold">3D Perspective</span>
             </div>
           </div>
         </model-viewer>

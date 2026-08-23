@@ -93,9 +93,9 @@ export default function Footer() {
                 className="w-full bg-transparent border-b border-stone-800 focus:border-gold py-3 md:py-4 pr-12 text-sm font-body tracking-[0.15em] outline-none transition-all placeholder:text-stone-700"
               />
               <button type="submit" className="absolute right-0 bottom-3 md:bottom-4 text-gold hover:translate-x-1 transition-transform">
-                {isSubmitSuccessful ? <span className="text-[10px] tracking-widest">{t('footer.submitted')}</span> : <ArrowRight className="w-5 h-5" />}
+                {isSubmitSuccessful ? <span className="text-micro tracking-widest">{t('footer.submitted')}</span> : <ArrowRight className="w-5 h-5" />}
               </button>
-              {errors.email && <p className="absolute top-full mt-2 text-red-500 text-[10px] uppercase tracking-widest">{errors.email.message}</p>}
+              {errors.email && <p className="absolute top-full mt-2 text-red-500 text-micro uppercase tracking-widest">{errors.email.message}</p>}
             </form>
           </div>
         </div>
@@ -181,12 +181,12 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-body text-[10px] text-stone-600 uppercase tracking-[0.2em] text-center md:text-left">
+          <p className="font-body text-micro text-stone-600 uppercase tracking-[0.2em] text-center md:text-left">
             © {new Date().getFullYear()} ATELIER RIMAN. {t('footer.rights')}
           </p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="font-body text-[10px] text-stone-600 hover:text-white uppercase tracking-[0.2em] transition-colors">{t('footer.privacy')}</Link>
-            <Link to="/terms" className="font-body text-[10px] text-stone-600 hover:text-white uppercase tracking-[0.2em] transition-colors">{t('footer.legal')}</Link>
+            <Link to="/privacy" className="font-body text-micro text-stone-600 hover:text-white uppercase tracking-[0.2em] transition-colors">{t('footer.privacy')}</Link>
+            <Link to="/terms" className="font-body text-micro text-stone-600 hover:text-white uppercase tracking-[0.2em] transition-colors">{t('footer.legal')}</Link>
           </div>
         </div>
       </div>

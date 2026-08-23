@@ -60,7 +60,7 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
     return (
       <div className="grid grid-cols-7 mb-2">
         {days.map(day => (
-          <div key={day} className="text-[8px] font-bold text-stone-400 uppercase tracking-widest text-center py-2">
+          <div key={day} className="text-micro font-bold text-stone-600 uppercase tracking-widest text-center py-2">
             {day}
           </div>
         ))}
@@ -92,10 +92,10 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
               key={i}
               onClick={() => !isBooked && !isPast && isCurrentMonth && onDateSelect?.(date)}
               className={cn(
-                "relative aspect-square flex flex-col items-center justify-center text-[10px] transition-all bg-ivory",
+                "relative aspect-square flex flex-col items-center justify-center text-micro transition-all bg-ivory",
                 loading && "opacity-50",
                 !isCurrentMonth && "text-stone-200",
-                (isBooked || isPast) && isCurrentMonth && "bg-stone-50 text-stone-300 cursor-not-allowed",
+                (isBooked || isPast) && isCurrentMonth && "bg-stone-50 text-stone-500 cursor-not-allowed",
                 isCurrentMonth && !isBooked && !isPast && "hover:bg-ivory cursor-pointer text-stone-700",
                 isSelected && "bg-gold text-white hover:bg-gold-dark"
               )}
@@ -119,11 +119,11 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
       <div className="mt-6 flex flex-wrap gap-4 justify-center">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-gold rounded-full" />
-          <span className="text-[8px] uppercase tracking-widest text-stone-400">Available</span>
+          <span className="text-micro uppercase tracking-widest text-stone-600">Available</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-stone-100 rounded-full" />
-          <span className="text-[8px] uppercase tracking-widest text-stone-400">Booked</span>
+          <span className="text-micro uppercase tracking-widest text-stone-600">Booked</span>
         </div>
       </div>
     </div>

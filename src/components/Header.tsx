@@ -129,7 +129,7 @@ export default function Header() {
               />
               <span className={cn(
                 "text-xs tracking-[0.5em] uppercase mt-2 transition-all duration-700 font-heading font-bold",
-                (!isHome) ? "text-stone-500 opacity-100" : "text-white/60 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-1"
+                (!isHome) ? "text-stone-600 opacity-100" : "text-white/60 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-1"
               )}>
                 {isHome ? 'Atelier' : 'Riman'}
               </span>
@@ -163,7 +163,7 @@ export default function Header() {
             <Link to="/wishlist" className="hidden lg:block relative group/wishlist hover:text-gold transition-colors" aria-label="Your Selection">
               <Heart className={cn("w-6 h-6 transition-transform group-hover/wishlist:scale-110", (!isHome) ? "text-stone-800" : "text-white")} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-white text-[9px] w-4 h-4 flex items-center justify-center font-bold shadow-sm">
+                <span className="absolute -top-1 -right-1 bg-gold text-white text-micro min-w-4 h-4 px-0.5 flex items-center justify-center font-bold shadow-sm rounded-full leading-none">
                   {wishlistCount}
                 </span>
               )}
@@ -174,7 +174,7 @@ export default function Header() {
             <Link to="/checkout" className="hidden md:block relative group/cart">
               <ShoppingBag className={cn("w-6 h-6 transition-transform group-hover/cart:scale-110", (!isHome) ? "text-stone-800" : "text-white")} />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-white text-[9px] w-4 h-4 flex items-center justify-center font-bold shadow-sm">
+                <span className="absolute -top-1 -right-1 bg-gold text-white text-micro min-w-4 h-4 px-0.5 flex items-center justify-center font-bold shadow-sm rounded-full leading-none">
                   {totalItems}
                 </span>
               )}
@@ -222,7 +222,7 @@ export default function Header() {
                <div className="flex-1 overflow-y-auto px-5 py-6">
                 {/* Primary Navigation */}
                 <div className="mb-5">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.collections')}</p>
+                  <p className="text-micro tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.collections')}</p>
                   <nav className="flex flex-col gap-1">
                     {[
                       { label: 'Bridal', path: '/collection/bridal', key: 'nav.bridal' },
@@ -241,7 +241,7 @@ export default function Header() {
                           className="group flex items-center justify-between font-heading text-xs tracking-wide text-stone-800 py-2.5 px-3 border border-stone-100 hover:border-gold hover:bg-gold/5 transition-all"
                         >
                           <span>{link.key ? t(link.key) : link.label}</span>
-                          <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-gold transition-colors" />
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-gold transition-colors" />
                         </Link>
                       </motion.div>
                     ))}
@@ -250,7 +250,7 @@ export default function Header() {
 
                 {/* Atelier Links */}
                 <div className="mb-5">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.atelier')}</p>
+                  <p className="text-micro tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.atelier')}</p>
                   <nav className="flex flex-col gap-1">
                     {[
                       { label: 'Our Story', path: '/about', key: 'nav.about' },
@@ -272,7 +272,7 @@ export default function Header() {
                             {link.icon && <link.icon className="w-3.5 h-3.5 text-gold" />}
                             {link.key ? t(link.key) : link.label}
                           </span>
-                          <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-gold transition-colors" />
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-gold transition-colors" />
                         </Link>
                       </motion.div>
                     ))}
@@ -281,7 +281,7 @@ export default function Header() {
 
                 {/* Services */}
                 <div className="mb-5">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.services')}</p>
+                  <p className="text-micro tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.services')}</p>
                   <nav className="flex flex-col gap-1">
                     {[
                       { label: 'Book Appointment', path: '/appointment', key: 'nav.appointment', icon: Calendar },
@@ -304,7 +304,7 @@ export default function Header() {
                             {link.icon && <link.icon className="w-3.5 h-3.5 text-gold" />}
                             {link.key ? t(link.key) : link.label}
                           </span>
-                          <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-gold transition-colors" />
+                          <ChevronRight className="w-3.5 h-3.5 text-stone-500 group-hover:text-gold transition-colors" />
                         </Link>
                       </motion.div>
                     ))}
@@ -322,7 +322,7 @@ export default function Header() {
               </div>
 
               <div className="p-4 mt-auto bg-ivory border-t border-stone-100">
-                <span className="text-[9px] tracking-widest uppercase text-stone-400 block text-center">{t('header.tagline')}</span>
+                <span className="text-micro tracking-widest uppercase text-stone-600 block text-center">{t('header.tagline')}</span>
               </div>
             </motion.div>
           </>

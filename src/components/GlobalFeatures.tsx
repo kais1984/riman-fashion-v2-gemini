@@ -68,7 +68,7 @@ export default function GlobalFeatures() {
                  aria-modal="true">
               <button 
                 onClick={handleDismissNewsletter}
-                className="absolute top-4 right-4 text-stone-400 hover:text-stone-800 transition-colors"
+                className="absolute top-4 right-4 text-stone-600 hover:text-stone-800 transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
@@ -79,7 +79,7 @@ export default function GlobalFeatures() {
                   <Mail className="w-8 h-8" />
                 </div>
                 <h3 className="font-heading text-3xl text-stone-800 mb-4 tracking-wider uppercase">The Atelier Circle</h3>
-                <p className="text-stone-500 text-sm mb-8 leading-relaxed italic">Join for exclusive previews of our new bridal collections and private viewings in Sharjah.</p>
+                <p className="text-stone-600 text-sm mb-8 leading-relaxed italic">Join for exclusive previews of our new bridal collections and private viewings in Sharjah.</p>
                 
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleDismissNewsletter(); }}>
                   <input 
@@ -107,13 +107,13 @@ export default function GlobalFeatures() {
           >
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-center md:text-left">
-                <p className="text-[10px] tracking-widest uppercase text-stone-500 mb-1">Privacy & Elegance</p>
+                <p className="text-micro tracking-widest uppercase text-stone-600 mb-1">Privacy & Elegance</p>
                 <p className="text-xs text-stone-800 tracking-wide">We use cookies to curate a personalized atelier experience. <Link to="/privacy" className="underline hover:text-gold">Learn details</Link>.</p>
               </div>
               <div className="flex gap-4">
                 <button 
                   onClick={handleAcceptCookies}
-                  className="px-8 py-3 bg-stone-900 text-white text-[10px] tracking-[0.2em] uppercase hover:bg-stone-800 transition-all font-bold"
+                  className="px-8 py-3 bg-stone-900 text-white text-micro tracking-[0.2em] uppercase hover:bg-stone-800 transition-all font-bold"
                 >
                   Accept & Explore
                 </button>

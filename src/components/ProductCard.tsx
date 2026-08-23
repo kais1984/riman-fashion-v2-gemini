@@ -101,17 +101,17 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
         {/* Badges — above link, pointer-events-none so clicks pass through */}
         <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none z-10">
           {product.isNew && (
-            <span className="bg-gold text-white text-[9px] tracking-[0.3em] uppercase px-4 py-1.5 font-bold">
+            <span className="bg-gold text-white text-micro tracking-[0.3em] uppercase px-4 py-1.5 font-bold">
               {t('badge.new')}
             </span>
           )}
           {product.isFeatured && (
-            <span className="bg-onyx text-white text-[9px] tracking-[0.3em] uppercase px-4 py-1.5 font-bold">
+            <span className="bg-onyx text-white text-micro tracking-[0.3em] uppercase px-4 py-1.5 font-bold">
               {t('badge.featured')}
             </span>
           )}
           {product.glbUrl && (
-            <span className="bg-ivory/90 backdrop-blur-md text-onyx text-[9px] tracking-[0.3em] uppercase px-4 py-1.5 flex items-center gap-2 font-bold border border-onyx/10">
+            <span className="bg-ivory/90 backdrop-blur-md text-onyx text-micro tracking-[0.3em] uppercase px-4 py-1.5 flex items-center gap-2 font-bold border border-onyx/10">
               <Box className="w-3 h-3 text-gold" />
               {t('badge.3d')}
             </span>
@@ -126,7 +126,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             setShowMobileActions(!showMobileActions);
           }}
           className={cn(
-            "md:hidden absolute bottom-0 left-0 right-0 z-20 py-3 text-[10px] tracking-[0.2em] uppercase font-body flex items-center justify-center gap-2 transition-all duration-300",
+            "md:hidden absolute bottom-0 left-0 right-0 z-20 py-3 text-micro tracking-[0.2em] uppercase font-body flex items-center justify-center gap-2 transition-all duration-300",
             showMobileActions 
               ? "bg-onyx text-white" 
               : "bg-gold/90 text-white backdrop-blur-sm"
@@ -152,9 +152,9 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
               className="w-full bg-ivory/95 backdrop-blur-sm p-3 flex flex-col gap-2"
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[9px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('product.select_size')}</span>
-                <button onClick={cancelSizeSelection} className="text-stone-400 hover:text-stone-800 transition-colors">
-                  <span className="text-[9px] tracking-widest uppercase">{t('product.cancel')}</span>
+                <span className="text-micro tracking-[0.2em] uppercase text-stone-600 font-bold">{t('product.select_size')}</span>
+                <button onClick={cancelSizeSelection} className="text-stone-600 hover:text-stone-800 transition-colors">
+                  <span className="text-micro tracking-widest uppercase">{t('product.cancel')}</span>
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -163,7 +163,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
                     key={size}
                     onClick={(e) => handleSizeSelect(size, e)}
                     className={cn(
-                      "min-w-[2.5rem] h-9 px-2 flex items-center justify-center border text-[10px] tracking-wider transition-all",
+                      "min-w-[2.5rem] h-9 px-2 flex items-center justify-center border text-micro tracking-wider transition-all",
                       selectedSize === size
                         ? "border-gold bg-gold text-white"
                         : "border-stone-300 text-stone-600 hover:border-gold hover:text-gold"
@@ -185,7 +185,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             <button
               onClick={handleQuickAdd}
               className={cn(
-                "flex-1 py-3 text-[10px] tracking-[0.2em] uppercase font-body transition-all duration-300 flex items-center justify-center gap-1.5",
+                "flex-1 py-3 text-micro tracking-[0.2em] uppercase font-body transition-all duration-300 flex items-center justify-center gap-1.5",
                 isAdded
                   ? "text-emerald-400"
                   : "text-white hover:text-gold"
@@ -207,7 +207,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             <button
               onClick={toggleWishlist}
               className={cn(
-                "flex-1 py-3 text-[10px] tracking-[0.2em] uppercase font-body transition-colors duration-300 flex items-center justify-center gap-1.5",
+                "flex-1 py-3 text-micro tracking-[0.2em] uppercase font-body transition-colors duration-300 flex items-center justify-center gap-1.5",
                 saved
                   ? "text-rose-400"
                   : "text-white/70 hover:text-rose-400"
@@ -222,9 +222,9 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
 
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-[10px] tracking-widest text-stone-500 uppercase mb-1">{product.category}</p>
+          <p className="text-micro tracking-widest text-stone-600 uppercase mb-1">{product.category}</p>
         {lookNumber && (
-          <span className="font-label text-[10px] tracking-[0.3em] uppercase text-gold">
+          <span className="font-label text-micro tracking-[0.3em] uppercase text-gold">
             {t('silhouettes.look')} {lookNumber}
           </span>
         )}
@@ -232,7 +232,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             {product.name}
         </Link>
         {product.fabric && (
-          <p className="font-editorial italic text-sm text-stone-500">{product.fabric}</p>
+          <p className="font-editorial italic text-sm text-stone-600">{product.fabric}</p>
         )}
 
         {/* Expanding gold frame — couture hover detail */}
@@ -241,19 +241,19 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           <div className="mt-2 flex flex-col gap-1">
             {isSale && (
               <p className="text-xs tracking-wider text-stone-600">
-                {t('product.purchase')}: <span className="font-semibold text-stone-800"><span className="me-1 text-[9px] uppercase tracking-wider text-stone-400">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
+                {t('product.purchase')}: <span className="font-semibold text-stone-800"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
               </p>
             )}
             {isRent && (
-              <p className="text-xs tracking-wider text-stone-500">
-                {t('product.rent')}: <span className="text-stone-700"><span className="me-1 text-[9px] uppercase tracking-wider text-stone-400">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
+              <p className="text-xs tracking-wider text-stone-600">
+                {t('product.rent')}: <span className="text-stone-700"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
               </p>
             )}
           </div>
 
           <Link
             to={`/product/${product.id}`}
-            className="inline-flex items-center gap-1.5 font-label text-[10px] tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
+            className="inline-flex items-center gap-1.5 font-label text-micro tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
           >
             {t('silhouettes.enquire')}
             <ArrowRight className="w-3 h-3" />
@@ -264,7 +264,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           onClick={toggleWishlist}
           className={cn(
             "p-2 transition-colors",
-            saved ? "text-rose-400" : "text-stone-300 hover:text-rose-400"
+            saved ? "text-rose-400" : "text-stone-500 hover:text-rose-400"
           )}
           aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}
         >

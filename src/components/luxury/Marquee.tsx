@@ -26,10 +26,10 @@ export default function Marquee({ items, className }: MarqueeProps) {
       aria-hidden="true"
     >
       <div className="marquee-track flex w-max">
-        <div className="flex items-center text-[11px] uppercase tracking-[0.35em] whitespace-nowrap text-ivory/80">
+        <div className="flex items-center text-micro uppercase tracking-[0.35em] whitespace-nowrap text-ivory/80">
           {half}
         </div>
-        <div className="flex items-center text-[11px] uppercase tracking-[0.35em] whitespace-nowrap text-ivory/80">
+        <div className="flex items-center text-micro uppercase tracking-[0.35em] whitespace-nowrap text-ivory/80">
           {half}
         </div>
       </div>

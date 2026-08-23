@@ -40,13 +40,13 @@ export default function SizeGuide({ isOpen, onClose }: SizeGuideProps) {
           >
             <div className="sticky top-0 bg-ivory border-b border-stone-100 px-6 py-4 flex items-center justify-between z-10">
               <h3 className="font-heading text-lg text-stone-800 tracking-widest uppercase">{t('size_guide.title')}</h3>
-              <button onClick={onClose} className="p-2 text-stone-400 hover:text-stone-800 transition-colors" aria-label="Close size guide">
+              <button onClick={onClose} className="p-2 text-stone-600 hover:text-stone-800 transition-colors" aria-label="Close size guide">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="p-6">
-              <p className="font-body text-stone-500 text-sm leading-relaxed mb-6">
+              <p className="font-body text-stone-600 text-sm leading-relaxed mb-6">
                 {t('size_guide.desc')}
               </p>
 
@@ -54,10 +54,10 @@ export default function SizeGuide({ isOpen, onClose }: SizeGuideProps) {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-stone-200">
-                      <th className="text-left py-3 px-2 font-heading text-[10px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('size_guide.size')}</th>
-                      <th className="text-left py-3 px-2 font-heading text-[10px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('size_guide.bust')}</th>
-                      <th className="text-left py-3 px-2 font-heading text-[10px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('size_guide.waist')}</th>
-                      <th className="text-left py-3 px-2 font-heading text-[10px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('size_guide.hips')}</th>
+                      <th className="text-left py-3 px-2 font-heading text-micro tracking-[0.2em] uppercase text-stone-600 font-bold">{t('size_guide.size')}</th>
+                      <th className="text-left py-3 px-2 font-heading text-micro tracking-[0.2em] uppercase text-stone-600 font-bold">{t('size_guide.bust')}</th>
+                      <th className="text-left py-3 px-2 font-heading text-micro tracking-[0.2em] uppercase text-stone-600 font-bold">{t('size_guide.waist')}</th>
+                      <th className="text-left py-3 px-2 font-heading text-micro tracking-[0.2em] uppercase text-stone-600 font-bold">{t('size_guide.hips')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -78,15 +78,15 @@ export default function SizeGuide({ isOpen, onClose }: SizeGuideProps) {
                 <div className="space-y-3">
                   <div className="flex gap-3">
                     <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
-                    <p className="font-body text-stone-500 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_bust')}</span> {t('size_guide.measure_bust_desc')}</p>
+                    <p className="font-body text-stone-600 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_bust')}</span> {t('size_guide.measure_bust_desc')}</p>
                   </div>
                   <div className="flex gap-3">
                     <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
-                    <p className="font-body text-stone-500 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_waist')}</span> {t('size_guide.measure_waist_desc')}</p>
+                    <p className="font-body text-stone-600 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_waist')}</span> {t('size_guide.measure_waist_desc')}</p>
                   </div>
                   <div className="flex gap-3">
                     <span className="w-6 h-6 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
-                    <p className="font-body text-stone-500 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_hips')}</span> {t('size_guide.measure_hips_desc')}</p>
+                    <p className="font-body text-stone-600 text-sm"><span className="text-stone-800 font-semibold">{t('size_guide.measure_hips')}</span> {t('size_guide.measure_hips_desc')}</p>
                   </div>
                 </div>
               </div>

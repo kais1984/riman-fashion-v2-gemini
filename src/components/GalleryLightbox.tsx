@@ -140,7 +140,7 @@ export default function GalleryLightbox({ items, currentIndex, isOpen, onClose, 
             <h3 className="text-white font-heading text-lg tracking-widest uppercase mb-1">
               {currentItem.title}
             </h3>
-            <p className="text-gold text-[10px] tracking-[0.3em] uppercase">
+            <p className="text-gold text-micro tracking-[0.3em] uppercase">
               {currentItem.category.replace('_', ' ')}
             </p>
           </div>

@@ -32,9 +32,9 @@ export default function MobileBottomNav() {
             )}
           >
             <Icon className="w-5 h-5" />
-            <span className="text-[10px] uppercase tracking-tighter font-black">{item.label}</span>
+            <span className="text-micro uppercase tracking-tighter font-black">{item.label}</span>
             {item.badge !== undefined && item.badge > 0 && (
-              <span className="absolute top-2 right-4 bg-gold text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full leading-none font-bold">
+              <span className="absolute top-2 right-4 bg-gold text-white text-micro min-w-4 h-4 px-0.5 flex items-center justify-center rounded-full leading-none font-bold">
                 {item.badge}
               </span>
             )}

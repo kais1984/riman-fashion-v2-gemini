@@ -26,7 +26,7 @@ export default function GalleryFilters({ activeCategory, onCategoryChange, class
           key={cat.key}
           onClick={() => onCategoryChange(cat.key)}
           className={cn(
-            'relative px-5 py-2 text-[10px] tracking-[0.3em] uppercase font-bold transition-all duration-300 border overflow-hidden',
+            'relative px-5 py-2 text-micro tracking-[0.3em] uppercase font-bold transition-all duration-300 border overflow-hidden',
             activeCategory === cat.key
               ? 'bg-gold text-onyx border-gold'
               : 'border-stone-200 text-stone-600 hover:border-gold hover:text-gold'

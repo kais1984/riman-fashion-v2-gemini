@@ -134,7 +134,7 @@ export default function ImmersiveUI() {
                 ))}
               </h1>
             </div>
-            <div className="absolute bottom-8 left-8 text-[10px] uppercase tracking-[0.35em] text-gold/60">
+            <div className="absolute bottom-8 left-8 text-micro uppercase tracking-[0.35em] text-gold/60">
               Maison de Couture
             </div>
             <div className="absolute bottom-8 right-8 text-sm tabular-nums text-ivory">

@@ -44,8 +44,8 @@ export default function ToastContainer() {
             >
               <Icon className={cn("w-5 h-5 shrink-0 mt-0.5", ICON_COLORS[toast.type])} />
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-bold uppercase tracking-widest">{toast.title}</p>
-                {toast.message && <p className="text-[10px] mt-0.5 opacity-70">{toast.message}</p>}
+                <p className="text-micro font-bold uppercase tracking-widest">{toast.title}</p>
+                {toast.message && <p className="text-micro mt-0.5 opacity-70">{toast.message}</p>}
               </div>
               <button
                 onClick={() => removeToast(toast.id)}

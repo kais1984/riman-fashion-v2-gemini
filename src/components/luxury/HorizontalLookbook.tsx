@@ -15,7 +15,7 @@ function Panel({ item, offset }: { item: GalleryItem; offset?: boolean }) {
           className="h-[52vh] md:h-[62vh] w-full md:w-[32vw] object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
         />
       </div>
-      <figcaption className="flex justify-between mt-4 text-[10px] uppercase tracking-[0.3em] text-ivory">
+      <figcaption className="flex justify-between mt-4 text-micro uppercase tracking-[0.3em] text-ivory">
         <span>{item.title}</span>
         <span className="text-ivory/40">{item.category}</span>
       </figcaption>
@@ -45,13 +45,13 @@ function LookbookContent({ items }: { items: GalleryItem[] }) {
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           <motion.div style={{ x }} className="flex items-center gap-[6vw] px-[8vw] will-change-transform">
             <div className="shrink-0 w-[34vw]">
-              <p className="text-[10px] uppercase tracking-[0.35em] text-ivory/40 mb-6">
+              <p className="text-micro uppercase tracking-[0.35em] text-ivory/40 mb-6">
                 ( 02 ) — {t('lookbook.eyebrow')}
               </p>
               <h2 className="font-heading font-medium text-6xl md:text-[5.5vw] leading-[0.9] text-white mb-8">
                 {t('lookbook.heading')}
               </h2>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-ivory/40">
+              <span className="text-micro uppercase tracking-[0.3em] text-ivory/40">
                 {t('hero.discover')} →
               </span>
             </div>
@@ -80,7 +80,7 @@ function LookbookContent({ items }: { items: GalleryItem[] }) {
 
       {/* Mobile: vertical stack */}
       <section className="md:hidden bg-onyx px-6 py-24">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-ivory/40 mb-4">( 02 ) — {t('lookbook.eyebrow')}</p>
+        <p className="text-micro uppercase tracking-[0.35em] text-ivory/40 mb-4">( 02 ) — {t('lookbook.eyebrow')}</p>
         <h2 className="font-heading font-medium text-5xl leading-[0.9] text-white mb-10">{t('lookbook.heading')}</h2>
         <div className="flex flex-col gap-14">
           {items.map((item) => (
@@ -89,7 +89,7 @@ function LookbookContent({ items }: { items: GalleryItem[] }) {
             </div>
           ))}
         </div>
-        <Link to="/collection/all" className="inline-block mt-12 text-gold text-[11px] uppercase tracking-[0.3em] border-b border-gold/40 pb-1">
+        <Link to="/collection/all" className="inline-block mt-12 text-gold text-micro uppercase tracking-[0.3em] border-b border-gold/40 pb-1">
           {t('lookbook.cta')} →
         </Link>
       </section>

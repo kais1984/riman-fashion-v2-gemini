@@ -19,7 +19,7 @@ export default function InstagramSection() {
       <div className="container mx-auto px-6 mb-16 text-center">
         <div className="flex items-center justify-center gap-3 text-gold mb-4">
            <Instagram className="w-5 h-5" />
-           <span className="text-[12px] tracking-[0.4em] uppercase font-bold">@rimanfashion</span>
+           <span className="text-caption tracking-[0.4em] uppercase font-bold">@rimanfashion</span>
         </div>
         <h2 className="heading-display text-4xl md:text-6xl text-stone-900 tracking-tight">{t('instagram.title')}</h2>
         <div className="flex justify-center mt-10">
@@ -30,7 +30,7 @@ export default function InstagramSection() {
             className="group flex items-center gap-3 px-10 py-4 bg-onyx text-white hover:text-gold transition-all duration-500"
           >
             <Instagram className="w-4 h-4" />
-            <span className="text-[10px] tracking-[0.3em] uppercase font-bold transition-colors">
+            <span className="text-micro tracking-[0.3em] uppercase font-bold transition-colors">
               {t('instagram.follow')}
             </span>
           </a>
@@ -61,7 +61,7 @@ export default function InstagramSection() {
               />
               <div className="absolute inset-0 bg-stone-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
                  <Instagram className="text-white w-8 h-8" />
-                 <span className="text-[10px] text-white uppercase tracking-[0.2em] font-bold">{t('instagram.view_aura')}</span>
+                 <span className="text-micro text-white uppercase tracking-[0.2em] font-bold">{t('instagram.view_aura')}</span>
               </div>
             </a>
           ))}
