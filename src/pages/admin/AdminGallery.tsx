@@ -167,7 +167,7 @@ export default function AdminGallery() {
       <div className="bg-white border border-stone-200 overflow-hidden">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-stone-200 text-[10px] tracking-widest uppercase text-stone-500">
+            <tr className="border-b border-stone-200 text-micro tracking-widest uppercase text-stone-600">
               <th className="text-left p-4 w-16"></th>
               <th className="text-left p-4">Media</th>
               <th className="text-left p-4">Title</th>
@@ -214,13 +214,13 @@ export default function AdminGallery() {
                       ))}
                     </select>
                   ) : (
-                    <span className="inline-block px-2 py-1 bg-stone-100 text-[10px] tracking-widest uppercase">
+                    <span className="inline-block px-2 py-1 bg-stone-100 text-micro tracking-widest uppercase">
                       {item.category.replace('_', ' ')}
                     </span>
                   )}
                 </td>
                 <td className="p-4">
-                  <span className="text-[10px] tracking-widest uppercase">{item.media_type}</span>
+                  <span className="text-micro tracking-widest uppercase">{item.media_type}</span>
                 </td>
                 <td className="p-4">
                   {editingId === item.id ? (
@@ -244,7 +244,7 @@ export default function AdminGallery() {
                     {editingId === item.id ? (
                       <>
                         <button onClick={handleSave} className="text-xs text-gold hover:text-gold/70 font-bold">Save</button>
-                        <button onClick={() => setEditingId(null)} className="text-xs text-stone-400 hover:text-stone-600">Cancel</button>
+                        <button onClick={() => setEditingId(null)} className="text-xs text-stone-600 hover:text-stone-800">Cancel</button>
                       </>
                     ) : (
                       <>
@@ -281,7 +281,7 @@ export default function AdminGallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="font-heading text-lg tracking-widest uppercase mb-4">Delete Item?</h3>
-              <p className="text-stone-500 text-sm mb-6">This action cannot be undone.</p>
+              <p className="text-stone-600 text-sm mb-6">This action cannot be undone.</p>
               <div className="flex gap-4">
                 <button onClick={() => setDeleteConfirm(null)} className="flex-1 px-4 py-2 border border-stone-200 text-xs tracking-widest uppercase hover:border-gold">
                   Cancel

@@ -26,7 +26,7 @@ function SidebarContent({ onNav }: { onNav: () => void }) {
         <Link to="/" onClick={onNav} className="font-heading text-xl tracking-[0.2em] uppercase text-gold block">
           Riman Admin
         </Link>
-        <p className="text-[8px] tracking-[0.3em] text-stone-500 uppercase mt-2">Boutique Management</p>
+        <p className="text-micro tracking-[0.3em] text-stone-500 uppercase mt-2">Boutique Management</p>
       </div>
 
       <nav className="flex-grow py-6 px-4 space-y-1 overflow-y-auto">
@@ -118,7 +118,7 @@ export default function AdminLayout() {
                 <path d="m14 9-3 3 3 3"/>
               </svg>
             </button>
-            <div className="flex items-center gap-2 text-[10px] tracking-widest uppercase text-stone-400">
+            <div className="flex items-center gap-2 text-micro tracking-widest uppercase text-stone-600">
               <span className="hidden sm:inline">Admin</span>
               <ChevronRight className="w-3 h-3 hidden sm:inline" />
               <span className="text-stone-800 font-bold truncate max-w-[200px]">{adminNav.find(n => n.path === location.pathname)?.label || 'Overview'}</span>
@@ -127,8 +127,8 @@ export default function AdminLayout() {
 
           <div className="flex items-center gap-4 shrink-0">
             <div className="text-right hidden sm:block">
-              <p className="text-[10px] font-bold text-stone-800 uppercase tracking-wider">{user?.name || 'Admin'}</p>
-              <p className="text-[8px] text-stone-400 uppercase tracking-widest">{user?.role === 'admin' ? 'Administrator' : 'Manager'}</p>
+              <p className="text-micro font-bold text-stone-800 uppercase tracking-wider">{user?.name || 'Admin'}</p>
+              <p className="text-micro text-stone-600 uppercase tracking-widest">{user?.role === 'admin' ? 'Administrator' : 'Manager'}</p>
             </div>
             <div className="w-10 h-10 bg-ivory border border-stone-200 flex items-center justify-center text-gold font-heading font-bold text-sm">
               {(user?.name || 'R')[0].toUpperCase()}

@@ -45,13 +45,13 @@ export default function AdminCalendar() {
             <div className="flex gap-2">
               <button onClick={() => navigateMonth(-1)} className="px-3 py-2 border border-stone-200 hover:bg-stone-50 transition-colors"><ChevronLeft className="w-4 h-4" /></button>
               <button onClick={() => navigateMonth(1)} className="px-3 py-2 border border-stone-200 hover:bg-stone-50 transition-colors"><ChevronRight className="w-4 h-4" /></button>
-              <button onClick={() => { setCurrentMonth(new Date()); setSelectedDate(new Date()); }} className="px-4 py-2 text-[10px] tracking-widest uppercase border border-stone-200 hover:bg-stone-50 transition-colors">Today</button>
+              <button onClick={() => { setCurrentMonth(new Date()); setSelectedDate(new Date()); }} className="px-4 py-2 text-micro tracking-widest uppercase border border-stone-200 hover:bg-stone-50 transition-colors">Today</button>
             </div>
           </div>
           
           <div className="grid grid-cols-7 border-b border-stone-100 bg-stone-50">
             {dayLabels.map(label => (
-              <div key={label} className="py-3 text-[10px] font-bold text-stone-400 uppercase tracking-widest text-center border-r border-stone-100 last:border-r-0">
+              <div key={label} className="py-3 text-micro font-bold text-stone-600 uppercase tracking-widest text-center border-r border-stone-100 last:border-r-0">
                 {label}
               </div>
             ))}
@@ -74,15 +74,15 @@ export default function AdminCalendar() {
                   )}
                 >
                   <span className={cn(
-                    "text-[10px] font-bold px-2 py-1",
-                    isSelected ? "bg-gold text-white" : "text-stone-400 group-hover:text-stone-800"
+                    "text-micro font-bold px-2 py-1",
+                    isSelected ? "bg-gold text-white" : "text-stone-600 group-hover:text-stone-800"
                   )}>
                     {format(day, 'd')}
                   </span>
                   
                   <div className="mt-2 space-y-1">
                     {reservations.map(res => (
-                      <div key={res.id} className="text-[8px] bg-gold/5 border border-gold/10 px-2 py-1 flex items-center justify-between">
+                      <div key={res.id} className="text-micro bg-gold/5 border border-gold/10 px-2 py-1 flex items-center justify-between">
                          <span className="font-bold text-stone-800 truncate">{res.customer}</span>
                          <span className={cn(
                            "px-1",
@@ -101,27 +101,27 @@ export default function AdminCalendar() {
         <div className="space-y-6">
           <div className="bg-ivory border border-stone-200 p-8">
             <h4 className="font-heading text-lg text-stone-800 uppercase tracking-widest mb-6">Day Agenda</h4>
-            <p className="text-[10px] tracking-widest text-stone-400 uppercase mb-8">{selectedDate ? format(selectedDate, 'EEEE, MMM d') : 'No date selected'}</p>
+            <p className="text-micro tracking-widest text-stone-600 uppercase mb-8">{selectedDate ? format(selectedDate, 'EEEE, MMM d') : 'No date selected'}</p>
             
             <div className="space-y-6">
               {selectionsForDay.length > 0 ? selectionsForDay.map(res => (
                 <div key={res.id} className="p-4 bg-ivory border-l-2 border-gold space-y-3">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-stone-800 uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-micro font-bold text-stone-800 uppercase tracking-widest">
                     <User className="w-3 h-3 text-gold" /> {res.customer}
                   </div>
-                  <div className="flex items-center gap-2 text-[9px] text-stone-500 uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-micro text-stone-600 uppercase tracking-widest">
                     <Clock className="w-3 h-3" /> 10:30 AM - {res.service}
                   </div>
-                  <div className="flex items-center gap-2 text-[9px] text-stone-500 uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-micro text-stone-600 uppercase tracking-widest">
                     <Package className="w-3 h-3" /> {res.item}
                   </div>
-                  <button onClick={() => setSelectedDate(null)} className="w-full mt-2 py-2 text-[8px] tracking-[0.2em] font-bold uppercase border border-gold/20 text-gold hover:bg-gold hover:text-white transition-all">
+                  <button onClick={() => setSelectedDate(null)} className="w-full mt-2 py-2 text-micro tracking-[0.2em] font-bold uppercase border border-gold/20 text-gold hover:bg-gold hover:text-white transition-all">
                     View Dossier
                   </button>
                 </div>
               )) : (
                 <div className="py-20 text-center">
-                  <p className="text-[10px] text-stone-400 uppercase tracking-widest italic">No bookings on this date</p>
+                  <p className="text-micro text-stone-600 uppercase tracking-widest italic">No bookings on this date</p>
                 </div>
               )}
             </div>
@@ -132,10 +132,10 @@ export default function AdminCalendar() {
           </div>
 
           <div className="bg-stone-900 p-8 text-white">
-            <h4 className="text-[10px] tracking-widest uppercase text-gold mb-4">Capacity Insight</h4>
+            <h4 className="text-micro tracking-widest uppercase text-gold mb-4">Capacity Insight</h4>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between text-[8px] uppercase tracking-widest mb-2 font-bold">
+                <div className="flex justify-between text-micro uppercase tracking-widest mb-2 font-bold">
                   <span>Atelier Slots</span>
                   <span>80%</span>
                 </div>
@@ -143,7 +143,7 @@ export default function AdminCalendar() {
                   <div className="h-full bg-gold w-4/5" />
                 </div>
               </div>
-              <p className="text-[9px] text-stone-400 leading-relaxed italic">The Sharjah boutique is nearing capacity for bridal consultations in April.</p>
+              <p className="text-micro text-stone-400 leading-relaxed italic">The Sharjah boutique is nearing capacity for bridal consultations in April.</p>
             </div>
           </div>
         </div>

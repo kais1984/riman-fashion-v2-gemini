@@ -98,7 +98,7 @@ export default function AdminDashboard() {
       <div className="flex flex-col items-center justify-center h-[60vh] text-center">
         <ShoppingCart className="w-12 h-12 text-stone-300 mb-4" />
         <h3 className="font-heading text-xl text-stone-800 uppercase tracking-widest mb-2">Dashboard Requires Backend</h3>
-        <p className="text-sm text-stone-400">Connect Supabase to see real analytics.</p>
+        <p className="text-sm text-stone-600">Connect Supabase to see real analytics.</p>
       </div>
     );
   }
@@ -115,7 +115,7 @@ export default function AdminDashboard() {
     return (
       <div className="flex flex-col items-center justify-center h-[60vh] text-center">
         <p className="text-rose-500 text-sm mb-4">{error}</p>
-        <button onClick={loadDashboard} className="btn-luxury text-[10px]">Retry</button>
+        <button onClick={loadDashboard} className="btn-luxury text-micro">Retry</button>
       </div>
     );
   }
@@ -136,7 +136,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center mb-10">
             <div>
               <h3 className="font-heading text-xl text-stone-800 tracking-wide uppercase">Performance Overview</h3>
-              <p className="text-[10px] tracking-widest text-stone-400 uppercase mt-1">Monthly Revenue (Paid Orders)</p>
+              <p className="text-micro tracking-widest text-stone-600 uppercase mt-1">Monthly Revenue (Paid Orders)</p>
             </div>
           </div>
           <div className="h-[350px] w-full">
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
               <div key={cat.name} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3" style={{ backgroundColor: cat.color }} />
-                  <span className="text-[10px] tracking-widest text-stone-600 uppercase font-bold">{cat.name}</span>
+                  <span className="text-micro tracking-widest text-stone-600 uppercase font-bold">{cat.name}</span>
                 </div>
                 <span className="text-xs text-stone-800">{cat.value}%</span>
               </div>
@@ -192,26 +192,26 @@ export default function AdminDashboard() {
         <div className="p-8 border-b border-stone-100 flex justify-between items-center bg-stone-50/50">
           <div>
             <h3 className="font-heading text-xl text-stone-800 tracking-wide uppercase">Recent Orders</h3>
-            <p className="text-[10px] tracking-widest text-stone-400 uppercase mt-1">Latest order activity</p>
+            <p className="text-micro tracking-widest text-stone-600 uppercase mt-1">Latest order activity</p>
           </div>
-          <Link to="/admin/orders" className="group flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-gold hover:text-stone-800 transition-colors">
+          <Link to="/admin/orders" className="group flex items-center gap-2 text-micro tracking-[0.2em] uppercase text-gold hover:text-stone-800 transition-colors">
             Manage All Orders <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
         <div className="overflow-x-auto">
           {s.recentOrders.length === 0 ? (
             <div className="p-12 text-center">
-              <p className="text-stone-400 text-sm">No orders yet.</p>
+              <p className="text-stone-600 text-sm">No orders yet.</p>
             </div>
           ) : (
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-ivory border-b border-stone-100">
-                  <th className="px-8 py-5 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Client</th>
-                  <th className="px-8 py-5 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Items</th>
-                  <th className="px-8 py-5 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Type</th>
-                  <th className="px-8 py-5 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Amount</th>
-                  <th className="px-8 py-5 text-[10px] tracking-widest text-stone-400 uppercase font-bold text-center">Status</th>
+                  <th className="px-8 py-5 text-micro tracking-widest text-stone-600 uppercase font-bold">Client</th>
+                  <th className="px-8 py-5 text-micro tracking-widest text-stone-600 uppercase font-bold">Items</th>
+                  <th className="px-8 py-5 text-micro tracking-widest text-stone-600 uppercase font-bold">Type</th>
+                  <th className="px-8 py-5 text-micro tracking-widest text-stone-600 uppercase font-bold">Amount</th>
+                  <th className="px-8 py-5 text-micro tracking-widest text-stone-600 uppercase font-bold text-center">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
@@ -235,7 +235,7 @@ function StatCard({ title, value, icon: Icon }: { title: string; value: string; 
           <Icon className="w-5 h-5" />
         </div>
       </div>
-      <p className="text-[10px] tracking-widest text-stone-400 uppercase mb-1">{title}</p>
+      <p className="text-micro tracking-widest text-stone-600 uppercase mb-1">{title}</p>
       <h4 className="text-xl font-heading text-stone-800 tracking-wide">{value}</h4>
     </div>
   );
@@ -258,20 +258,20 @@ function OrderRow({ order }: { key?: React.Key; order: Order }) {
     <tr className="hover:bg-stone-50 transition-colors">
       <td className="px-8 py-5">
         <p className="text-xs font-bold text-stone-800">{order.customer_name || 'Guest'}</p>
-        <p className="text-[8px] text-stone-400 uppercase tracking-widest mt-1">{shortDate}</p>
+        <p className="text-micro text-stone-600 uppercase tracking-widest mt-1">{shortDate}</p>
       </td>
       <td className="px-8 py-5 text-stone-600 text-xs max-w-[200px] truncate">{itemNames}</td>
       <td className="px-8 py-5 translate-y-[2px]">
         <span className={cn(
-          "text-[8px] tracking-[0.2em] uppercase px-2 py-1 border",
-          order.type === 'sale' ? "border-gold text-gold" : "border-stone-300 text-stone-400"
+          "text-micro tracking-[0.2em] uppercase px-2 py-1 border",
+          order.type === 'sale' ? "border-gold text-gold" : "border-stone-300 text-stone-600"
         )}>
           {order.type}
         </span>
       </td>
       <td className="px-8 py-5 text-xs text-stone-800 font-medium">AED {(order.subtotal || 0).toLocaleString()}</td>
       <td className="px-8 py-5 text-center">
-        <span className={cn("inline-block text-[8px] tracking-widest uppercase px-3 py-1 font-bold", statusColors[order.status] || 'bg-stone-100 text-stone-600')}>
+        <span className={cn("inline-block text-micro tracking-widest uppercase px-3 py-1 font-bold", statusColors[order.status] || 'bg-stone-100 text-stone-600')}>
           {order.status}
         </span>
       </td>

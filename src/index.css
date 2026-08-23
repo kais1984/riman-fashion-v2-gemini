@@ -99,12 +99,6 @@
   [dir="rtl"] .text-7xl { font-size: 5rem; }
   [dir="rtl"] .text-8xl { font-size: 6.5rem; }
   [dir="rtl"] .text-9xl { font-size: 8.5rem; }
-  /* Pixel-based sizes: enlarge by ~25% */
-  [dir="rtl"] .text-\[8px\] { font-size: 11px; }
-  [dir="rtl"] .text-\[9px\] { font-size: 12px; }
-  [dir="rtl"] .text-\[10px\] { font-size: 13px; }
-  [dir="rtl"] .text-\[11px\] { font-size: 14px; }
-  [dir="rtl"] .text-\[12px\] { font-size: 15px; }
   [dir="rtl"] .text-micro { font-size: 14px; }
   [dir="rtl"] .text-caption { font-size: 15px; }
   /* Tracking is meaningless in Arabic and causes rendering issues */

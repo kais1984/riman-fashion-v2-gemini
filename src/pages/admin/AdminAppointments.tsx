@@ -71,7 +71,7 @@ export default function AdminAppointments() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="font-heading text-2xl text-stone-800 tracking-wider uppercase">Appointments</h1>
-          <p className="text-stone-500 text-sm mt-1">{appointments.length} total bookings</p>
+          <p className="text-stone-600 text-sm mt-1">{appointments.length} total bookings</p>
         </div>
       </div>
 
@@ -85,8 +85,8 @@ export default function AdminAppointments() {
       {appointments.length === 0 ? (
         <div className="text-center py-20 bg-ivory border border-stone-100">
           <Calendar className="w-12 h-12 text-stone-300 mx-auto mb-4" />
-          <p className="font-heading text-stone-400">No appointments yet</p>
-          <p className="text-stone-400 text-sm mt-2">Bookings from the appointment page will appear here.</p>
+          <p className="font-heading text-stone-600">No appointments yet</p>
+          <p className="text-stone-600 text-sm mt-2">Bookings from the appointment page will appear here.</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -101,13 +101,13 @@ export default function AdminAppointments() {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className={cn("text-[10px] tracking-widest uppercase font-bold px-3 py-1 border", STATUS_COLORS[appt.status || 'pending'])}>
+                    <span className={cn("text-micro tracking-widest uppercase font-bold px-3 py-1 border", STATUS_COLORS[appt.status || 'pending'])}>
                       {appt.status || 'pending'}
                     </span>
-                    <span className="text-[10px] tracking-widest uppercase text-gold font-bold">{SERVICE_LABELS[appt.service_type] || appt.service_type}</span>
+                    <span className="text-micro tracking-widest uppercase text-gold font-bold">{SERVICE_LABELS[appt.service_type] || appt.service_type}</span>
                   </div>
                   <h3 className="font-heading text-stone-800 text-lg">{appt.name}</h3>
-                  <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-stone-500">
+                  <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-stone-600">
                     <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {appt.date}</span>
                     <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {appt.time}</span>
                     <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {appt.email}</span>
@@ -143,18 +143,18 @@ export default function AdminAppointments() {
               <h2 className="font-heading text-xl text-stone-800 tracking-wider uppercase mb-6">Appointment Details</h2>
               <div className="space-y-4 text-sm">
                 <div className="grid grid-cols-2 gap-4">
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Client</span><span className="text-stone-800 font-medium">{selectedAppt.name}</span></div>
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Service</span><span className="text-stone-800 font-medium">{SERVICE_LABELS[selectedAppt.service_type] || selectedAppt.service_type}</span></div>
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Date</span><span className="text-stone-800 font-medium">{selectedAppt.date}</span></div>
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Time</span><span className="text-stone-800 font-medium">{selectedAppt.time}</span></div>
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Email</span><span className="text-stone-800 font-medium">{selectedAppt.email}</span></div>
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Phone</span><span className="text-stone-800 font-medium">{selectedAppt.phone}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Client</span><span className="text-stone-800 font-medium">{selectedAppt.name}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Service</span><span className="text-stone-800 font-medium">{SERVICE_LABELS[selectedAppt.service_type] || selectedAppt.service_type}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Date</span><span className="text-stone-800 font-medium">{selectedAppt.date}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Time</span><span className="text-stone-800 font-medium">{selectedAppt.time}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Email</span><span className="text-stone-800 font-medium">{selectedAppt.email}</span></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Phone</span><span className="text-stone-800 font-medium">{selectedAppt.phone}</span></div>
                 </div>
                 {selectedAppt.notes && (
-                  <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Notes</span><p className="text-stone-600">{selectedAppt.notes}</p></div>
+                  <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Notes</span><p className="text-stone-600">{selectedAppt.notes}</p></div>
                 )}
-                <div><span className="text-[10px] tracking-widest uppercase text-stone-400 font-bold block mb-1">Status</span>
-                  <span className={cn("text-[10px] tracking-widest uppercase font-bold px-3 py-1 border", STATUS_COLORS[selectedAppt.status || 'pending'])}>
+                <div><span className="text-micro tracking-widest uppercase text-stone-600 font-bold block mb-1">Status</span>
+                  <span className={cn("text-micro tracking-widest uppercase font-bold px-3 py-1 border", STATUS_COLORS[selectedAppt.status || 'pending'])}>
                     {selectedAppt.status || 'pending'}
                   </span>
                 </div>

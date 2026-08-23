@@ -51,7 +51,7 @@ export default function AdminContent() {
       <div className="flex justify-between items-center bg-ivory p-8 border border-stone-200 shrink-0">
         <div>
           <h2 className="font-heading text-2xl text-stone-800 tracking-wide uppercase">Artisan CMS</h2>
-          <p className="text-[10px] tracking-[0.3em] text-stone-400 uppercase mt-1">Curation & Creative Control</p>
+          <p className="text-micro tracking-[0.3em] text-stone-600 uppercase mt-1">Curation & Creative Control</p>
         </div>
         <div className="flex items-center gap-4">
           <AnimatePresence>
@@ -63,7 +63,7 @@ export default function AdminContent() {
                 className="flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 border border-green-100"
               >
                 <CheckCircle2 className="w-4 h-4" />
-                <span className="text-[10px] uppercase tracking-widest font-bold">Changes Published</span>
+                <span className="text-micro uppercase tracking-widest font-bold">Changes Published</span>
               </motion.div>
             )}
             {saveError && (
@@ -73,7 +73,7 @@ export default function AdminContent() {
                 exit={{ opacity: 0, x: 20 }}
                 className="flex items-center gap-2 text-rose-600 bg-rose-50 px-4 py-2 border border-rose-100"
               >
-                <span className="text-[10px] uppercase tracking-widest font-bold">{saveError}</span>
+                <span className="text-micro uppercase tracking-widest font-bold">{saveError}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -161,8 +161,8 @@ function CMSNavLink({ label, active, onClick, icon: Icon }: CMSNavLinkProps) {
     <button 
       onClick={onClick}
       className={cn(
-        "w-full flex items-center justify-between px-4 py-3 text-[10px] tracking-widest uppercase transition-all group",
-        active ? "bg-stone-900 text-white font-bold" : "text-stone-400 hover:text-stone-800 hover:bg-stone-50"
+        "w-full flex items-center justify-between px-4 py-3 text-micro tracking-widest uppercase transition-all group",
+        active ? "bg-stone-900 text-white font-bold" : "text-stone-600 hover:text-stone-800 hover:bg-stone-50"
       )}
     >
       <div className="flex items-center gap-3">
@@ -183,7 +183,7 @@ function EditorHeader({ title, subtitle }: EditorHeaderProps) {
   return (
     <div className="border-b border-stone-100 pb-4">
       <h4 className="font-heading text-lg text-stone-800 tracking-wide uppercase">{title}</h4>
-      <p className="text-[10px] text-stone-400 uppercase tracking-[0.2em] italic mt-1">{subtitle}</p>
+      <p className="text-micro text-stone-600 uppercase tracking-[0.2em] italic mt-1">{subtitle}</p>
     </div>
   );
 }
@@ -197,7 +197,7 @@ interface CMSInputProps {
 function CMSInput({ label, name, defaultValue }: CMSInputProps) {
   return (
     <div className="space-y-2">
-      <label className="text-[9px] font-black text-stone-400 uppercase tracking-widest">{label}</label>
+      <label className="text-micro font-black text-stone-600 uppercase tracking-widest">{label}</label>
       <input 
         type="text" 
         name={name}
@@ -217,7 +217,7 @@ interface CMSTextareaProps {
 function CMSTextarea({ label, name, defaultValue }: CMSTextareaProps) {
   return (
     <div className="space-y-2">
-      <label className="text-[9px] font-black text-stone-400 uppercase tracking-widest">{label}</label>
+      <label className="text-micro font-black text-stone-600 uppercase tracking-widest">{label}</label>
       <textarea 
         name={name}
         defaultValue={defaultValue}

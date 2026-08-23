@@ -72,7 +72,7 @@ export default function AdminProducts() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-ivory p-8 border border-stone-200">
         <div>
           <h2 className="font-heading text-2xl text-stone-800 tracking-wide uppercase">Collection Inventory</h2>
-          <p className="text-[10px] tracking-[0.3em] text-stone-400 uppercase mt-1">Manage physical & digital assets</p>
+          <p className="text-micro tracking-[0.3em] text-stone-600 uppercase mt-1">Manage physical & digital assets</p>
         </div>
         <button 
           onClick={() => {
@@ -104,12 +104,12 @@ export default function AdminProducts() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-stone-50/50 border-b border-stone-100">
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Image</th>
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Design Details</th>
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Category</th>
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Tags</th>
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Sale/Rent</th>
-                <th className="px-8 py-4 text-[10px] tracking-widest text-stone-400 uppercase font-bold">Management</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Image</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Design Details</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Category</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Tags</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Sale/Rent</th>
+                <th className="px-8 py-4 text-micro tracking-widest text-stone-600 uppercase font-bold">Management</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-100">
@@ -122,24 +122,24 @@ export default function AdminProducts() {
                   </td>
                   <td className="px-8 py-4">
                     <p className="text-xs font-bold text-stone-800 uppercase tracking-widest">{p.name}</p>
-                    <p className="text-[9px] text-stone-400 mt-1 italic">{p.fabric}</p>
+                    <p className="text-micro text-stone-600 mt-1 italic">{p.fabric}</p>
                   </td>
                   <td className="px-8 py-4">
-                    <span className="text-[10px] tracking-widest uppercase text-stone-500 font-medium">{p.category}</span>
+                    <span className="text-micro tracking-widest uppercase text-stone-600 font-medium">{p.category}</span>
                   </td>
                   <td className="px-8 py-4">
                     <div className="flex flex-wrap gap-1">
                       {p.tags?.map(tag => (
-                        <span key={tag} className="text-[8px] bg-stone-100 text-stone-500 px-1.5 py-0.5 tracking-tighter uppercase">
+                        <span key={tag} className="text-micro bg-stone-100 text-stone-600 px-1.5 py-0.5 tracking-tighter uppercase">
                           {tag}
                         </span>
-                      )) || <span className="text-[8px] text-stone-300 italic">No tags</span>}
+                      )) || <span className="text-micro text-stone-500 italic">No tags</span>}
                     </div>
                   </td>
                   <td className="px-8 py-4">
                     <div className="space-y-1">
-                      {p.salePrice && <p className="text-[10px] font-bold text-stone-800">{formatPrice(p.salePrice)}</p>}
-                      {p.rentalPrice && <p className="text-[10px] text-gold uppercase tracking-widest">Rent: {formatPrice(p.rentalPrice)}</p>}
+                      {p.salePrice && <p className="text-micro font-bold text-stone-800">{formatPrice(p.salePrice)}</p>}
+                      {p.rentalPrice && <p className="text-micro text-gold uppercase tracking-widest">Rent: {formatPrice(p.rentalPrice)}</p>}
                     </div>
                   </td>
                   <td className="px-8 py-4">
@@ -203,21 +203,21 @@ export default function AdminProducts() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Basic Info */}
                   <div className="space-y-6">
-                    <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Artistry Details</h4>
+                    <h4 className="text-micro font-black text-stone-600 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Artistry Details</h4>
                     <InputField label="Piece Name" name="name" defaultValue={editingProduct?.name} required />
                     <div className="flex flex-col gap-2">
-                      <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Description</label>
+                      <label className="text-micro uppercase tracking-widest text-stone-600 font-bold">Description</label>
                       <textarea 
                         name="description" 
                         defaultValue={editingProduct?.description}
                         required
-                        className="w-full bg-stone-50 border border-stone-100 p-4 text-[11px] tracking-widest outline-none focus:border-gold transition-colors resize-none h-32"
+                        className="w-full bg-stone-50 border border-stone-100 p-4 text-micro tracking-widest outline-none focus:border-gold transition-colors resize-none h-32"
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Category</label>
-                        <select name="category" defaultValue={editingProduct?.category || 'Bridal Gown'} required className="w-full bg-stone-50 border border-stone-100 p-4 text-[11px] tracking-widest outline-none focus:border-gold cursor-pointer">
+                        <label className="text-micro uppercase tracking-widest text-stone-600 font-bold">Category</label>
+                        <select name="category" defaultValue={editingProduct?.category || 'Bridal Gown'} required className="w-full bg-stone-50 border border-stone-100 p-4 text-micro tracking-widest outline-none focus:border-gold cursor-pointer">
                           <option value="Bridal Gown">Bridal Gown</option>
                           <option value="Evening Dress">Evening Dress</option>
                           <option value="Accessory">Accessory</option>
@@ -230,7 +230,7 @@ export default function AdminProducts() {
 
                   {/* Pricing & Types */}
                   <div className="space-y-6">
-                    <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Investment & Types</h4>
+                    <h4 className="text-micro font-black text-stone-600 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Investment & Types</h4>
                     <div className="grid grid-cols-2 gap-4">
                       <InputField label="Sale Price (AED)" name="salePrice" type="number" defaultValue={editingProduct?.salePrice} />
                       <InputField label="Rental Price (AED)" name="rentalPrice" type="number" defaultValue={editingProduct?.rentalPrice} />
@@ -238,8 +238,8 @@ export default function AdminProducts() {
                     <InputField label="Refundable Deposit (AED)" name="securityDeposit" type="number" defaultValue={editingProduct?.securityDeposit} />
                     
                     <div className="flex flex-col gap-2">
-                      <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Service Type</label>
-                      <select name="productType" defaultValue={editingProduct?.productType || 'both'} className="w-full bg-stone-50 border border-stone-100 p-4 text-[11px] tracking-widest outline-none focus:border-gold cursor-pointer">
+                      <label className="text-micro uppercase tracking-widest text-stone-600 font-bold">Service Type</label>
+                      <select name="productType" defaultValue={editingProduct?.productType || 'both'} className="w-full bg-stone-50 border border-stone-100 p-4 text-micro tracking-widest outline-none focus:border-gold cursor-pointer">
                         <option value="both">Sale & Rental</option>
                         <option value="sale">Exclusive Sale</option>
                         <option value="rent">Boutique Rental</option>
@@ -252,13 +252,13 @@ export default function AdminProducts() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
-                     <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Configuration</h4>
+                     <h4 className="text-micro font-black text-stone-600 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Configuration</h4>
                      <InputField label="Available Sizes (comma separated)" name="sizes" defaultValue={editingProduct?.sizes.join(', ') || 'XS, S, M, L, XL'} />
                      <InputField label="Style Tags (comma separated)" name="style" defaultValue={editingProduct?.style.join(', ') || 'Modern, Luxury'} />
                      <InputField label="Product Tags (comma separated)" name="tags" defaultValue={editingProduct?.tags?.join(', ') || ''} placeholder="e.g. Vintage, Hand-stitched, Cathedral" />
                   </div>
                   <div className="space-y-6">
-                     <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Flags</h4>
+                     <h4 className="text-micro font-black text-stone-600 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Flags</h4>
                      <div className="flex items-center gap-8 pt-4">
                         <Checkbox label="Featured Design" name="isFeatured" defaultChecked={editingProduct?.isFeatured} />
                         <Checkbox label="New Arrival" name="isNew" defaultChecked={editingProduct?.isNew} />
@@ -268,7 +268,7 @@ export default function AdminProducts() {
 
                 {/* Images */}
                 <div className="space-y-6">
-                  <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Images</h4>
+                  <h4 className="text-micro font-black text-stone-600 uppercase tracking-[0.3em] border-b border-stone-100 pb-2">Images</h4>
                   <div className="flex flex-wrap gap-3">
                     {productImages.map((url, i) => (
                       <div key={i} className="relative group w-20 h-24 bg-stone-100 border border-stone-200 overflow-hidden">
@@ -283,7 +283,7 @@ export default function AdminProducts() {
                         </button>
                       </div>
                     ))}
-                    <div className="w-20 h-24 border-2 border-dashed border-stone-200 flex flex-col items-center justify-center text-stone-400 gap-1 cursor-pointer hover:border-gold/50 transition-colors relative" onClick={() => document.getElementById('product-image-upload')?.click()}>
+                    <div className="w-20 h-24 border-2 border-dashed border-stone-200 flex flex-col items-center justify-center text-stone-600 gap-1 cursor-pointer hover:border-gold/50 transition-colors relative" onClick={() => document.getElementById('product-image-upload')?.click()}>
                       <Plus className="w-4 h-4" />
                       <span className="text-[7px] tracking-widest uppercase">Upload</span>
                     </div>
@@ -314,7 +314,7 @@ export default function AdminProducts() {
                       value={imageUrlInput}
                       onChange={e => setImageUrlInput(e.target.value)}
                       placeholder="Paste image URL..."
-                      className="flex-1 bg-stone-50 border border-stone-100 p-3 text-[10px] tracking-widest outline-none focus:border-gold transition-colors"
+                      className="flex-1 bg-stone-50 border border-stone-100 p-3 text-micro tracking-widest outline-none focus:border-gold transition-colors"
                     />
                     <button
                       type="button"
@@ -325,25 +325,25 @@ export default function AdminProducts() {
                         }
                       }}
                       disabled={!imageUrlInput.trim()}
-                      className="px-4 py-3 bg-stone-800 text-white text-[10px] tracking-widest uppercase hover:bg-gold transition-colors disabled:opacity-40 flex items-center gap-2"
+                      className="px-4 py-3 bg-stone-800 text-white text-micro tracking-widest uppercase hover:bg-gold transition-colors disabled:opacity-40 flex items-center gap-2"
                     >
                       <LinkIcon className="w-3 h-3" /> Add
                     </button>
                   </div>
-                  {isUploading && <p className="text-[9px] text-stone-400 italic">Uploading image...</p>}
+                  {isUploading && <p className="text-micro text-stone-600 italic">Uploading image...</p>}
                 </div>
 
                 <div className="p-8 bg-onyx border-t border-stone-100 flex justify-end gap-4 -mx-8 -mb-8 mt-12">
                    <button 
                     type="button" 
                     onClick={() => setIsFormOpen(false)}
-                    className="px-8 py-3 text-[10px] tracking-widest uppercase text-stone-400 hover:text-white transition-colors"
+                    className="px-8 py-3 text-micro tracking-widest uppercase text-stone-400 hover:text-white transition-colors"
                   >
                     Cancel
                   </button>
                   <button 
                     type="submit" 
-                    className="bg-gold text-white px-10 py-3 text-[10px] tracking-[0.2em] font-bold uppercase hover:bg-gold-dark transition-all flex items-center gap-2"
+                    className="bg-gold text-white px-10 py-3 text-micro tracking-[0.2em] font-bold uppercase hover:bg-gold-dark transition-all flex items-center gap-2"
                   >
                     {isUploading ? (
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -373,14 +373,14 @@ interface InputFieldProps {
 function InputField({ label, name, type = "text", defaultValue, required, placeholder }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">{label}</label>
+      <label className="text-micro uppercase tracking-widest text-stone-600 font-bold">{label}</label>
       <input 
         type={type}
         name={name}
         defaultValue={defaultValue}
         required={required}
         placeholder={placeholder}
-        className="w-full bg-stone-50 border border-stone-100 p-4 text-[11px] tracking-widest outline-none focus:border-gold transition-colors"
+        className="w-full bg-stone-50 border border-stone-100 p-4 text-micro tracking-widest outline-none focus:border-gold transition-colors"
       />
     </div>
   );
@@ -405,7 +405,7 @@ function Checkbox({ label, name, defaultChecked }: CheckboxProps) {
         <div className="w-5 h-5 border border-stone-300 bg-white group-hover:border-gold transition-all peer-checked:bg-gold peer-checked:border-gold" />
         <Plus className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
       </div>
-      <span className="text-[10px] uppercase tracking-widest text-stone-500 font-bold">{label}</span>
+      <span className="text-micro uppercase tracking-widest text-stone-600 font-bold">{label}</span>
     </label>
   );
 }
