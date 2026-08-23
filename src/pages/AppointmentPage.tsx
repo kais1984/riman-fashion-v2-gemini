@@ -4,6 +4,7 @@ import type { GownRef } from '../types';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle2, Loader2, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createAppointment } from '../services/appointments';
+import { sendAppointmentConfirmationEmail, sendAppointmentAdminAlert } from '../lib/email';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const SERVICE_TYPES = [
@@ -85,6 +86,9 @@ export default function AppointmentPage() {
         notes: form.notes,
         interested_gowns: incomingGowns.length ? incomingGowns : null,
       });
+      const gownList = gownNames.length ? gownNames : [];
+      sendAppointmentConfirmationEmail({ name: form.name, email: form.email, date: form.date, time: form.time, gowns: gownList }).catch(err => console.error('Confirmation email failed:', err));
+      sendAppointmentAdminAlert({ name: form.name, email: form.email, phone: form.phone, date: form.date, time: form.time, gowns: gownList }).catch(err => console.error('Admin alert failed:', err));
       setIsSubmitted(true);
     } catch (err) {
       console.error('[Riman] Appointment booking failed:', err);
