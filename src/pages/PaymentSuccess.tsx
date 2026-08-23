@@ -3,12 +3,15 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { verifyCheckoutSession } from '../services/payment';
+import { sendOrderConfirmationEmail } from '../lib/email';
+import { useCart } from '../contexts/CartContext';
 
 export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const [status, setStatus] = useState<'verifying' | 'success' | 'error'>('verifying');
   const [email, setEmail] = useState('');
+  const { clearCart } = useCart();
 
   useEffect(() => {
     if (!sessionId) {
@@ -19,11 +22,34 @@ export default function PaymentSuccess() {
       if (result?.paid) {
         setStatus('success');
         setEmail(result.customerEmail || '');
+        // Send confirmation email with available info
+        if (result.orderId && result.customerEmail) {
+          sendOrderConfirmationEmail({
+            orderId: result.orderId,
+            customerName: 'Customer',
+            customerEmail: result.customerEmail,
+            items: [],
+            subtotal: 0,
+            shipping: 0,
+            tax: 0,
+            total: 0,
+            shippingAddress: { name: '', line1: '', city: '', state: '', postalCode: '', country: '' },
+            paymentMethod: 'Card (Stripe)',
+            createdAt: new Date().toISOString(),
+          }).catch(err => console.error('Order confirmation email failed:', err));
+        }
       } else {
         setStatus('error');
       }
     });
   }, [sessionId]);
+
+  // Clear cart after successful verification (once)
+  useEffect(() => {
+    if (status === 'success') {
+      clearCart();
+    }
+  }, [status, clearCart]);
 
   return (
     <div className="pt-40 pb-20 px-6 min-h-screen flex flex-col items-center justify-center text-center bg-ivory">

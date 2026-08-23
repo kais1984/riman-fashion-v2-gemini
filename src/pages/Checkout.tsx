@@ -12,6 +12,7 @@ import { getItemUnitPrice } from '../lib/pricing';
 import { createOrder, createOrderViaEdge } from '../services/orders';
 import { isSupabaseConfigured } from '../services/supabase';
 import { createCheckoutSession, isStripeConfigured } from '../services/payment';
+import { sendOrderConfirmationEmail, sendAdminOrderAlert } from '../lib/email';
 import { z } from 'zod';
 
 const checkoutSchema = z.object({
@@ -38,6 +39,7 @@ export default function Checkout() {
   const [orderNotes, setOrderNotes] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<'atelier' | 'card'>('atelier');
   const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
+  let orderId: string | null = null;
 
   const [formData, setFormData] = useState({
     firstName: user?.name?.split(' ')[0] || '',
@@ -190,7 +192,7 @@ export default function Checkout() {
         });
 
         if (!edgeOrderId) {
-          await createOrder({
+          const createdOrder = await createOrder({
             status: 'pending',
             type: orderType,
             subtotal,
@@ -202,9 +204,48 @@ export default function Checkout() {
             customer_city: formData.city,
             customer_country: formData.country,
           }, orderItems);
+          orderId = createdOrder.id ?? null;
+        } else {
+          orderId = edgeOrderId ?? null;
         }
       } else {
         await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      // Send confirmation emails
+      if (orderId) {
+        const customerName = `${formData.firstName} ${formData.lastName}`;
+        const orderData = {
+          orderId,
+          customerName,
+          customerEmail: formData.email,
+          items: orderItems.map(item => ({
+            name: item.product_name,
+            quantity: item.quantity,
+            price: getItemUnitPrice(item),
+            size: item.size,
+            intent: item.intent,
+            rental_start_date: item.rental_start_date,
+            rental_end_date: item.rental_end_date,
+          })),
+          subtotal,
+          shipping: 0,
+          tax: 0,
+          total: subtotal,
+          shippingAddress: {
+            name: `${formData.firstName} ${formData.lastName}`,
+            line1: formData.address,
+            city: formData.city,
+            postalCode: '',
+            country: formData.country,
+          },
+          paymentMethod: paymentMethod === 'card' ? 'Card (Stripe)' : 'Atelier (Pay on Delivery)',
+          createdAt: new Date().toISOString(),
+        };
+
+        // Send emails (fire-and-forget, don't block UI)
+        sendOrderConfirmationEmail(orderData).catch(err => console.error('Order confirmation email failed:', err));
+        sendAdminOrderAlert(orderData).catch(err => console.error('Admin order alert failed:', err));
       }
 
       setOrderComplete(true);
