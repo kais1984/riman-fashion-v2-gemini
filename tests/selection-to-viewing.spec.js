@@ -36,11 +36,13 @@ test.describe('Booking-first conversion', () => {
     const cards = page.locator('a[href^="/product/"]');
     await cards.nth(0).click();
     const heart = page.locator('button[aria-label="Add to wishlist"]').first();
-    if (await heart.isVisible()) await heart.click();
+    await expect(heart).toBeVisible({ timeout: 15000 });
+    await heart.click();
     await page.goBack();
     await cards.nth(1).click();
     const heart2 = page.locator('button[aria-label="Add to wishlist"]').first();
-    if (await heart2.isVisible()) await heart2.click();
+    await expect(heart2).toBeVisible({ timeout: 15000 });
+    await heart2.click();
 
     await page.goto('/wishlist');
     const req = page.getByRole('button', { name: /request private viewing|طلب مشاهدة خاصة/i }).first();
