@@ -241,12 +241,12 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           <div className="mt-2 flex flex-col gap-1">
             {isSale && (
               <p className="text-xs tracking-wider text-stone-600">
-                {t('product.purchase')}: <span className="font-semibold text-stone-800">{formatPrice(product.salePrice || 0)}</span>
+                {t('product.purchase')}: <span className="font-semibold text-stone-800"><span className="me-1 text-[9px] uppercase tracking-wider text-stone-400">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
               </p>
             )}
             {isRent && (
               <p className="text-xs tracking-wider text-stone-500">
-                {t('product.rent')}: <span className="text-stone-700">{formatPrice(product.rentalPrice || 0)}</span>
+                {t('product.rent')}: <span className="text-stone-700"><span className="me-1 text-[9px] uppercase tracking-wider text-stone-400">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
               </p>
             )}
           </div>

@@ -277,6 +277,11 @@ const translations: Record<Language, Record<string, string>> = {
     'product.ask_stylist': 'Ask a Stylist',
     'product.ask_stylist_desc': 'Book a complimentary consultation with our styling experts.',
 
+    // Pricing
+    'pricing.from': 'From',
+    'pricing.rental_period': '3-day rental',
+    'pricing.consultation_note': 'Final quote confirmed at your consultation — fitting and alterations included.',
+
     // Badges
     'badge.new': 'Majestic New',
     'badge.featured': 'Atelier Choice',
@@ -974,6 +979,11 @@ const translations: Record<Language, Record<string, string>> = {
     'product.care_steam_desc': 'استخدمي البخار منخفض الحرارة لإزالة التجاعيد. لا تكوي مباشرة على التطريز.',
     'product.ask_stylist': 'اسألي الخبيرة',
     'product.ask_stylist_desc': 'احجزي استشارة مجانية مع خبراء التصميم لدينا.',
+
+    // Pricing
+    'pricing.from': 'يبدأ من',
+    'pricing.rental_period': 'تأجير ٣ أيام',
+    'pricing.consultation_note': 'يتم تأكيد السعر النهائي في موعد الاستشارة — يشمل التفصيل والتعديلات.',
 
     // Badges
     'badge.new': 'جديد مهيب',
