@@ -134,7 +134,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           aria-label={showMobileActions ? 'Close quick shop' : 'Open quick shop'}
         >
           <ShoppingBag className="w-3 h-3" />
-          {showMobileActions ? 'Close' : 'Quick Shop'}
+          {showMobileActions ? 'Close' : t('product.quick_shop')}
         </button>
 
         {/* Quick Actions — slim slide-up bar on hover */}
@@ -152,9 +152,9 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
               className="w-full bg-ivory/95 backdrop-blur-sm p-3 flex flex-col gap-2"
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[9px] tracking-[0.2em] uppercase text-stone-500 font-bold">Select Size</span>
+                <span className="text-[9px] tracking-[0.2em] uppercase text-stone-500 font-bold">{t('product.select_size')}</span>
                 <button onClick={cancelSizeSelection} className="text-stone-400 hover:text-stone-800 transition-colors">
-                  <span className="text-[9px] tracking-widest uppercase">Cancel</span>
+                  <span className="text-[9px] tracking-widest uppercase">{t('product.cancel')}</span>
                 </button>
               </div>
               <div className="flex flex-wrap gap-1.5">

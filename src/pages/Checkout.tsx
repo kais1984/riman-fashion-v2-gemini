@@ -463,7 +463,7 @@ export default function Checkout() {
                       </div>
                       <div className="grid grid-cols-2 gap-4 text-[11px] tracking-wider uppercase">
                         <div>
-                          <span className="text-stone-400 block mb-0.5">Name</span>
+                          <span className="text-stone-400 block mb-0.5">{t('checkout.name_label')}</span>
                           <span className="text-stone-800 font-medium">{formData.firstName} {formData.lastName}</span>
                         </div>
                         <div>

@@ -277,6 +277,9 @@ const translations: Record<Language, Record<string, string>> = {
     'product.care_steam_desc': 'Use low-heat steaming to remove wrinkles. Never iron directly on embellishments.',
     'product.ask_stylist': 'Ask a Stylist',
     'product.ask_stylist_desc': 'Book a complimentary consultation with our styling experts.',
+    'product.select_size': 'Select Size',
+    'product.cancel': 'Cancel',
+    'product.quick_shop': 'Quick Shop',
 
     // Pricing
     'pricing.from': 'From',
@@ -397,6 +400,20 @@ const translations: Record<Language, Record<string, string>> = {
     'checkout.val_address': 'Please enter your street address',
     'checkout.val_city': 'Please enter your city',
     'checkout.val_country': 'Please select your country',
+    'checkout.name_label': 'Name',
+
+    // Payment
+    'payment.verifying': 'Verifying Payment',
+    'payment.please_wait': 'Please wait a moment...',
+    'payment.success_title': 'Payment Successful',
+    'payment.success_sub': 'Your investment has been received.',
+    'payment.sent_to': 'Confirmation sent to',
+    'payment.success_body': 'Our team will contact you within 24 hours to arrange fitting and delivery details.',
+    'payment.dashboard': 'View My Dashboard',
+    'payment.error_title': 'Payment Not Verified',
+    'payment.error_body': 'Please contact our atelier to confirm your order.',
+    'payment.contact': 'Contact Us',
+    'payment.home': 'Return Home',
 
     // Auth
     'auth.signin': 'Sign In',
@@ -994,6 +1011,9 @@ const translations: Record<Language, Record<string, string>> = {
     'product.care_steam_desc': 'استخدمي البخار منخفض الحرارة لإزالة التجاعيد. لا تكوي مباشرة على التطريز.',
     'product.ask_stylist': 'اسألي الخبيرة',
     'product.ask_stylist_desc': 'احجزي استشارة مجانية مع خبراء التصميم لدينا.',
+    'product.select_size': 'اختاري المقاس',
+    'product.cancel': 'إلغاء',
+    'product.quick_shop': 'تسوق سريع',
 
     // Pricing
     'pricing.from': 'يبدأ من',
@@ -1114,6 +1134,20 @@ const translations: Record<Language, Record<string, string>> = {
     'checkout.val_address': 'يرجى إدخال عنوانك',
     'checkout.val_city': 'يرجى إدخال مدينتك',
     'checkout.val_country': 'يرجى اختيار بلدك',
+    'checkout.name_label': 'الاسم',
+
+    // Payment
+    'payment.verifying': 'جارٍ تأكيد الدفع',
+    'payment.please_wait': 'الرجاء الانتظار قليلاً...',
+    'payment.success_title': 'تم الدفع بنجاح',
+    'payment.success_sub': 'لقد استلمنا طلبك.',
+    'payment.sent_to': 'تم إرسال التأكيد إلى',
+    'payment.success_body': 'سيتواصل معك فريقنا خلال ٢٤ ساعة لترتيب التفصيل والتوصيل.',
+    'payment.dashboard': 'لوحة حسابي',
+    'payment.error_title': 'لم يتم تأكيد الدفع',
+    'payment.error_body': 'الرجاء التواصل مع الدار لتأكيد طلبك.',
+    'payment.contact': 'تواصلي معنا',
+    'payment.home': 'العودة للرئيسية',
 
     // Auth
     'auth.signin': 'تسجيل الدخول',
