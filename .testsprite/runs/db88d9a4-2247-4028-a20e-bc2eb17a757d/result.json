@@ -1,0 +1,20 @@
+{
+  "testId": "834bb34f-cf75-48b0-bfe7-d24fefc7334b",
+  "status": "failed",
+  "startedAt": "2026-08-22T13:39:48.042Z",
+  "finishedAt": "2026-08-22T13:42:21.540Z",
+  "videoUrl": "https://testsprite-videos.s3.us-east-1.amazonaws.com/24b814e8-3071-70e0-1f57-cf88b8408083/1787406139558989//tmp/27d75864-abe9-4c7e-9559-bd5c1c9716d9/result.webm",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_b5f9c8d5f8c2fe69",
+  "runIdIfAvailable": "db88d9a4-2247-4028-a20e-bc2eb17a757d",
+  "codeVersion": "v1",
+  "targetUrl": "https://riman-fashion-v2.netlify.app",
+  "targetUrlSource": "run",
+  "failedStepIndex": 5,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion) on step 5: TEST FAILURE\n\nThe product detail page does not provide an 'Add to cart' or 'Add to collection' button as expected.\n\nObservations:\n- The product title \"L'Aube Majestic Gown\" is displayed on the product detail page.\n- Prices are displayed: Purchase Value AED 45,000 and 7-Day Premium Rental AED 4,500.\n- No 'Add to cart' or 'Add to collection' button was found; visible actions are 'Book Rental' and an 'Add to wishlist' control.",
+  "apiOutput": null,
+  "trace": null
+}

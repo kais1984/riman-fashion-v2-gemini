@@ -1,0 +1,12 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Cart — add to cart shows line item",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /collection/all and open the first product card" },
+    { "type": "action", "description": "Click an enabled size button (e.g. 'M' or 'S') so a size becomes selected" },
+    { "type": "action", "description": "If an availability/date calendar is visible, click the first enabled (not greyed-out) future date cell, then confirm a 'Selected Date' label appears" },
+    { "type": "action", "description": "Click the primary 'Book Rental' / 'Add to collection' button, then navigate to /checkout" },
+    { "type": "assertion", "description": "The checkout page shows the product as a cart line item with its name and price (i.e. NOT the 'Your Bag is Empty' message)" }
+  ]
+}

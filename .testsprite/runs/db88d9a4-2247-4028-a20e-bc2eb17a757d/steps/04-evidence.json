@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 4,
+    "summary": "Step 4 'Open the first product card on the 'All Designs' collection page by clicking the first product image/link' passed.",
+    "path": "steps/04-snapshot.html"
+  }
+]

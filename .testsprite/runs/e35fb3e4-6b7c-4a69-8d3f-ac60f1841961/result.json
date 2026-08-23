@@ -1,0 +1,20 @@
+{
+  "testId": "04dd4240-983b-4e4b-9d84-98c4c7934cb2",
+  "status": "failed",
+  "startedAt": "2026-08-22T13:49:18.745Z",
+  "finishedAt": "2026-08-22T13:52:23.398Z",
+  "videoUrl": "https://testsprite-videos.s3.us-east-1.amazonaws.com/24b814e8-3071-70e0-1f57-cf88b8408083/1787406740395261//tmp/30e625b9-5f2a-49d1-a530-530db7922828/result.webm",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_19d2677105c66e35",
+  "runIdIfAvailable": "e35fb3e4-6b7c-4a69-8d3f-ac60f1841961",
+  "codeVersion": "v1",
+  "targetUrl": "https://riman-fashion-v2.netlify.app",
+  "targetUrlSource": "run",
+  "failedStepIndex": 7,
+  "failureKind": "network",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (network): TEST FAILURE\n\nAdding the selected product to the cart did not work — the checkout page does not contain the expected cart line item after clicking 'Book Rental'.\n\nObservations:\n- The checkout page displays the message 'Your Bag is Empty' and the prompt 'Please select pieces from our collection first.'\n- No cart line items are visible; the product name 'L'Aube Majestic Gown' and any price are absent from the page.\n- The page shows an 'Explore Collection' button instead of cart …",
+  "apiOutput": null,
+  "trace": null
+}

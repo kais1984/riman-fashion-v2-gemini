@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Collection — product grid renders",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /collection/all" },
+    { "type": "assertion", "description": "The collection page displays a grid of product cards, with at least one product name and a price visible" }
+  ]
+}

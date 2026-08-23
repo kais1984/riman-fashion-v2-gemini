@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 5,
+    "summary": "Step 5 'Expected the product page to display the product name L'Aube Majestic Gown.' failed. Error: TEST FAILURE\n\nThe product detail page does not provide an 'Add to cart' or 'Add to collection' button as expected.\n\nObservations:\n- The product title \"L'Aube Majestic Gown\" is displayed on the product detail page.\n- Prices are displayed: Purchase Value AED 45,000 and 7-Day Premium Rental AED 4,500.\n- No 'Add to cart' or 'Add to collection' button was found; visible actions are 'Book Rental' and an 'Add to wishlist' control.",
+    "path": "steps/05-snapshot.html"
+  }
+]

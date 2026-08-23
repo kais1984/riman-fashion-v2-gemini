@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 7,
+    "summary": "Step 7 'Navigate to https://riman-fashion-v2.netlify.app/cart' passed.",
+    "path": "steps/07-snapshot.html"
+  }
+]

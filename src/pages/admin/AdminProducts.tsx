@@ -32,7 +32,7 @@ export default function AdminProducts() {
       designer: (formData.get('designer') as string) || undefined,
       sizes: (formData.get('sizes') as string).split(',').map(s => s.trim()).filter(Boolean),
       style: (formData.get('style') as string).split(',').map(s => s.trim()).filter(Boolean),
-      images: productImages.length > 0 ? productImages : ['https://images.unsplash.com/photo-1594462250122-b130a08f2441?auto=format&fit=crop&w=1200&q=80'],
+      images: productImages.length > 0 ? productImages : ['/images/journal-rental.jpg'],
       tags: (formData.get('tags') as string).split(',').map(s => s.trim()).filter(s => s !== ''),
       color: [],
       isFeatured: formData.get('isFeatured') === 'on',

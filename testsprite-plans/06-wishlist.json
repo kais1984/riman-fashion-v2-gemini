@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Wishlist — page renders",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /wishlist" },
+    { "type": "assertion", "description": "The wishlist page renders with its heading and either an empty-state message or a saved-items area visible" }
+  ]
+}

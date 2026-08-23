@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Language — toggle switches to Arabic/RTL",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to / and activate the language switcher to switch the site to Arabic" },
+    { "type": "assertion", "description": "The page direction becomes right-to-left (rtl) and Arabic-language text is displayed" }
+  ]
+}

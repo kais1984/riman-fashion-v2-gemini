@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Admin — product inventory table",
+  "planSteps": [
+    { "type": "action", "description": "Sign in as admin with the configured credentials and navigate to /admin/products" },
+    { "type": "assertion", "description": "The product inventory table shows at least one product row displaying a product name and a category" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "rootCauseHypothesis": null,
+  "recommendedFixTarget": null,
+  "evidence": [
+    {
+      "kind": "snapshot",
+      "stepIndex": 21,
+      "url": "https://frontend-test-recordings-production.s3.us-east-1.amazonaws.com/raw_html/a09f91c3-48f1-471f-938c-150946941826/029.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZQ3DRZAIID7LDSJT%2F20260822%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260822T151050Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQColSJohat04GSiT2HzxXWSfGzNw0jKuqHzBWUnQCmWdgIgP1IoZuJTKtFm%2FahVVUP8qKibSekSlEh9LaumyA92BEgqhAQIvP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2NTQ2NTQ0MjUxMDQiDBHhv7%2BMPWD8DwBrayrYA1wznfJVtil3Pd%2BU1%2BuUARJnf3FRPu94QqhldEXXMqGyEujFID7V7KTIZ7lmsmINZ1MknoSTnafIJN5GGdvdjdO7HrzhMlnWVXgpPjJcW%2FP%2Bi%2FFxmeOjVeLurU9NFc%2BAlC4xVkEJGW9E5JFC5rJl9aaqfja2u6meAh9dJ45m1Kdrw7FMtrENLGsGWvwzjLgb8PemYGvfh7UjqiV%2FkMQejdjy5XKiQcB452cskFYvqd%2FYIV2fcqFGEQ%2F8TWkxey7zimvcy3CX1EKM07jGt%2B2EPOQiTVU9WClqiCKnZ0l4bZpKJ6SAS1jq2qOAnEI2wuGCuCcZ9dgDafikfjKsWXKVDiZTNGChTSxpaVUovoUow4nviS54Q8xrGyNqvB%2BmbuwHVcfj9fv7zbSDKkpqWPUb7RKRdHB9%2B4ePbgh0Gz4u587KFnHrpPXiTcI5HkbIPb6HYn1hkLucYlNWitltKdj84X84BixS5nwP6w%2B2c9153AcsI5olL%2BauusmUId2Gj%2BjfEWMlJyKaQJCUVUn0YKaRRd1HvpWiro122f%2BLaP1t5mjo3CE%2F0HK2xCISrG6Gz76ZN6btj9ohgyDm8VQtGb8mNrBc3YOJal8BZ0LfQH9vvVdCWOuWXvYwUf4wsfOl1AY6pQEwKxiiyKf4ESLpgSReiAhUqwJ7VU%2Byv7FrSgnHQ3xJkNxCS%2FXJAHifXjzBLtLeAuQhm6n54A%2FP%2Bvp1yQkhhW8n5XOdy2a32IrcXVy3p5TRS2ybqiU%2BkAUoWLkSjinGw46PB1jdjdsm9ChlzYDELcKlocTxK49OYWqqrciZ9joBo%2BUgxlL6lk4ii6CSe%2BZ2awddkyTijxmk8IVmHs%2BWQvDLuCv40f4%3D&X-Amz-Signature=ac032c091c70902ced37ba55ded147b4c4ce13ebb1b984a56fe52ab87886601b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+      "summary": "Step 21 'Click 'Trouble connecting? Clear Session button'' passed."
+    },
+    {
+      "kind": "snapshot",
+      "stepIndex": 22,
+      "url": "https://frontend-test-recordings-production.s3.us-east-1.amazonaws.com/raw_html/a09f91c3-48f1-471f-938c-150946941826/031.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZQ3DRZAIID7LDSJT%2F20260822%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260822T151050Z&X-Amz-Expires=900&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQColSJohat04GSiT2HzxXWSfGzNw0jKuqHzBWUnQCmWdgIgP1IoZuJTKtFm%2FahVVUP8qKibSekSlEh9LaumyA92BEgqhAQIvP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2NTQ2NTQ0MjUxMDQiDBHhv7%2BMPWD8DwBrayrYA1wznfJVtil3Pd%2BU1%2BuUARJnf3FRPu94QqhldEXXMqGyEujFID7V7KTIZ7lmsmINZ1MknoSTnafIJN5GGdvdjdO7HrzhMlnWVXgpPjJcW%2FP%2Bi%2FFxmeOjVeLurU9NFc%2BAlC4xVkEJGW9E5JFC5rJl9aaqfja2u6meAh9dJ45m1Kdrw7FMtrENLGsGWvwzjLgb8PemYGvfh7UjqiV%2FkMQejdjy5XKiQcB452cskFYvqd%2FYIV2fcqFGEQ%2F8TWkxey7zimvcy3CX1EKM07jGt%2B2EPOQiTVU9WClqiCKnZ0l4bZpKJ6SAS1jq2qOAnEI2wuGCuCcZ9dgDafikfjKsWXKVDiZTNGChTSxpaVUovoUow4nviS54Q8xrGyNqvB%2BmbuwHVcfj9fv7zbSDKkpqWPUb7RKRdHB9%2B4ePbgh0Gz4u587KFnHrpPXiTcI5HkbIPb6HYn1hkLucYlNWitltKdj84X84BixS5nwP6w%2B2c9153AcsI5olL%2BauusmUId2Gj%2BjfEWMlJyKaQJCUVUn0YKaRRd1HvpWiro122f%2BLaP1t5mjo3CE%2F0HK2xCISrG6Gz76ZN6btj9ohgyDm8VQtGb8mNrBc3YOJal8BZ0LfQH9vvVdCWOuWXvYwUf4wsfOl1AY6pQEwKxiiyKf4ESLpgSReiAhUqwJ7VU%2Byv7FrSgnHQ3xJkNxCS%2FXJAHifXjzBLtLeAuQhm6n54A%2FP%2Bvp1yQkhhW8n5XOdy2a32IrcXVy3p5TRS2ybqiU%2BkAUoWLkSjinGw46PB1jdjdsm9ChlzYDELcKlocTxK49OYWqqrciZ9joBo%2BUgxlL6lk4ii6CSe%2BZ2awddkyTijxmk8IVmHs%2BWQvDLuCv40f4%3D&X-Amz-Signature=1a9d778de303823f0dbea7ca75a9603e24f91a0072144263060885d941b3f16a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
+      "summary": "Step 22 'Click 'button'' failed. (no captured error text on the test row)"
+    }
+  ]
+}

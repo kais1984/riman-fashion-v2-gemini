@@ -10,7 +10,7 @@ export default function BlogPage() {
       id: 1,
       title: t('blog.article1_title'),
       excerpt: t('blog.article1_excerpt'),
-      image: "https://images.unsplash.com/photo-1594553323242-c1947d4c4ef4?auto=format&fit=crop&q=80",
+      image: "/images/journal-featured.jpg",
       date: "April 15, 2026",
       author: "Fatma Al-Zahra",
       category: t('blog.article1_category')
@@ -19,7 +19,7 @@ export default function BlogPage() {
       id: 2,
       title: t('blog.article2_title'),
       excerpt: t('blog.article2_excerpt'),
-      image: "https://images.unsplash.com/photo-1518049360731-32823f28f70d?auto=format&fit=crop&q=80",
+      image: "/images/journal-rental.jpg",
       date: "March 28, 2026",
       author: "Sarah Mansour",
       category: t('blog.article2_category')
@@ -28,7 +28,7 @@ export default function BlogPage() {
       id: 3,
       title: t('blog.article3_title'),
       excerpt: t('blog.article3_excerpt'),
-      image: "https://images.unsplash.com/photo-1594553323242-c1947d4c4ef4?auto=format&fit=crop&q=80",
+      image: "/images/journal-craft.jpg",
       date: "March 10, 2026",
       author: "Atelier Team",
       category: t('blog.article3_category')

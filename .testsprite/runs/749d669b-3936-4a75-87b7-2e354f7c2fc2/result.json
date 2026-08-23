@@ -1,0 +1,20 @@
+{
+  "testId": "400a83fd-ab91-4e9a-b32c-2643676a61f3",
+  "status": "failed",
+  "startedAt": "2026-08-22T13:56:21.096Z",
+  "finishedAt": "2026-08-22T14:00:13.424Z",
+  "videoUrl": "https://testsprite-videos.s3.us-east-1.amazonaws.com/24b814e8-3071-70e0-1f57-cf88b8408083/1787407210125555//tmp/647b6d76-d845-45a0-81e2-b6ac1a9bc1a8/result.webm",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_7d827478efd6840e",
+  "runIdIfAvailable": "749d669b-3936-4a75-87b7-2e354f7c2fc2",
+  "codeVersion": "v1",
+  "targetUrl": "https://riman-fashion-v2.netlify.app",
+  "targetUrlSource": "run",
+  "failedStepIndex": 9,
+  "failureKind": "assertion",
+  "verdict": "failed",
+  "executionStatus": "completed",
+  "summary": "Failed (assertion): TEST FAILURE\n\nAdding a selected product to the cart did not work — the Checkout page shows an empty bag after the booking flow.\n\nObservations:\n- After selecting a size and date and clicking \"Book Rental\", the app navigated to the Checkout page.\n- The Checkout page displays the message \"YOUR BAG IS EMPTY\" and an \"Explore Collection\" button instead of any cart line items.\n- No product name or price line item is visible on the Checkout page (the expected product 'L'Aube Majesti…",
+  "apiOutput": null,
+  "trace": null
+}

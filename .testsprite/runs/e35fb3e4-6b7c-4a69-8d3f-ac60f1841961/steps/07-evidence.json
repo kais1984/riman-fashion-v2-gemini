@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 7,
+    "summary": "Step 7 'Expected checkout to contain a cart line item with the selected product name and price.' failed. Error: TEST FAILURE\n\nAdding the selected product to the cart did not work — the checkout page does not contain the expected cart line item after clicking 'Book Rental'.\n\nObservations:\n- The checkout page displays the message 'Your Bag is Empty' and the prompt 'Please select pieces from our collection first.'\n- No cart line items are visible; the product name 'L'Aube Majestic Gown' and any price are absent from the page.\n- The page shows an 'Explore Collection' button instead of cart contents, indicating no item was added.\n\nConclusion: The application did not add the product to the cart after the 'Book Rental' action. This is a failure of the expected checkout flow. If reproduction is required, further investigation should capture console/network logs or attempt the add-to-cart action again, but per test instructions the issue is reported and the run is finished.",
+    "path": "steps/07-snapshot.html"
+  }
+]

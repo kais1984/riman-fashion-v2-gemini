@@ -36,7 +36,7 @@ const defaultContent: SiteContent = {
     title: "Reverie & Essence",
     subtitle: "Sharjah's Most Majestic Couture",
     cta: "Request A Private Viewing",
-    bgImage: "https://images.unsplash.com/photo-1594553423282-55ad0c034431?auto=format&fit=crop&w=2000&q=80",
+    bgImage: "/images/hero-default.jpg",
   },
   about: {
     title: "The Riman Legacy",

@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 9,
+    "summary": "Step 9 'Expected checkout to show one cart line item for the added product, not the 'Your Bag is Empty' message.' failed. Error: TEST FAILURE\n\nAdding a selected product to the cart did not work — the Checkout page shows an empty bag after the booking flow.\n\nObservations:\n- After selecting a size and date and clicking \"Book Rental\", the app navigated to the Checkout page.\n- The Checkout page displays the message \"YOUR BAG IS EMPTY\" and an \"Explore Collection\" button instead of any cart line items.\n- No product name or price line item is visible on the Checkout page (the expected product 'L'Aube Majestic Gown' and its price are absent).",
+    "path": "steps/09-snapshot.html"
+  }
+]

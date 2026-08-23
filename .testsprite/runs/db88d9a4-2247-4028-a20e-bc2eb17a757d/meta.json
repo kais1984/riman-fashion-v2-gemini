@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "cli-v1",
+  "snapshotId": "snap_b5f9c8d5f8c2fe69",
+  "testId": "834bb34f-cf75-48b0-bfe7-d24fefc7334b",
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "codeVersion": "v1",
+  "runIdIfAvailable": "db88d9a4-2247-4028-a20e-bc2eb17a757d",
+  "targetUrl": "https://riman-fashion-v2.netlify.app",
+  "failedStepIndex": 5,
+  "failureKind": "assertion",
+  "capturedAt": "2026-08-22T13:42:21.540Z",
+  "fetchedAt": "2026-08-22T13:45:33.253Z"
+}

@@ -1,0 +1,8 @@
+[
+  {
+    "kind": "snapshot",
+    "stepIndex": 8,
+    "summary": "Step 8 'Expected the cart page to load instead of showing the 'Beyond Our Collection' 404 message.' failed. Error: TEST BLOCKED\n\nThe cart page could not be verified because it is not accessible — the application returned a 404 / \"Beyond Our Collection\" page instead of a cart view.\n\nObservations:\n- Navigating to https://riman-fashion-v2.netlify.app/cart displayed a 'BEYOND OUR COLLECTION' 404 page with the message 'The page you are looking for does not exist or has been moved to a new location within our atelier.'\n- No cart line items, product name, or price are visible on the page; only navigation links like 'Return Home' and 'Browse Collection' are present.\n- Because the cart page is unreachable, the assertion that the cart shows exactly 1 line item with the product name and price cannot be performed.",
+    "path": "steps/08-snapshot.html"
+  }
+]

@@ -88,7 +88,7 @@ export default function AlterationsPage() {
       <section className="section-padding container mx-auto">
         <div className="bg-ivory grid grid-cols-1 lg:grid-cols-2 overflow-hidden border border-stone-100">
 <img 
-             src="https://images.unsplash.com/photo-1594553323242-c1947d4c4ef4?auto=format&fit=crop&q=80" 
+             src="/images/alterations-detail.jpg" 
              alt="Tailoring details" 
              className="w-full h-full object-cover min-h-[400px]"
              loading="lazy"

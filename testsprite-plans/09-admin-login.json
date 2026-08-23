@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Admin — login reveals dashboard",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /admin" },
+    { "type": "assertion", "description": "The admin dashboard loads and displays the 'Collection Inventory' heading" }
+  ]
+}

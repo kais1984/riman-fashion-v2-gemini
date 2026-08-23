@@ -1,0 +1,20 @@
+{
+  "testId": "075936ab-676b-44bb-99e7-b587cee61569",
+  "status": "blocked",
+  "startedAt": "2026-08-22T13:39:56.016Z",
+  "finishedAt": "2026-08-22T13:42:58.830Z",
+  "videoUrl": "https://testsprite-videos.s3.us-east-1.amazonaws.com/24b814e8-3071-70e0-1f57-cf88b8408083/1787406178572858//tmp/b59da315-2ced-4fff-a548-7cbddfc81ca2/result.webm",
+  "failureAnalysisUrl": null,
+  "snapshotId": "snap_f853b183a17ee53d",
+  "runIdIfAvailable": "eab87fb8-c570-44b1-b083-d2088f9d8f30",
+  "codeVersion": "v1",
+  "targetUrl": "https://riman-fashion-v2.netlify.app",
+  "targetUrlSource": "run",
+  "failedStepIndex": 8,
+  "failureKind": null,
+  "verdict": "blocked",
+  "executionStatus": "completed",
+  "summary": "Blocked before a verdict could be produced: TEST BLOCKED\n\nThe cart page could not be verified because it is not accessible — the application returned a 404 / \"Beyond Our Collection\" page instead of a cart view.\n\nObservations:\n- Navigating to https://riman-fashion-v2.netlify.app/cart displayed a 'BEYOND OUR COLLECTION' 404 page with the message 'The page you are looking for does not exist or has been moved to a new location within our atelier.'\n- No cart line items, product name, or price are vi…",
+  "apiOutput": null,
+  "trace": null
+}

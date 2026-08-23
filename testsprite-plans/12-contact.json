@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Contact — contact form renders",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /contact" },
+    { "type": "assertion", "description": "The contact page renders a contact form with name, email, and message fields and a submit button" }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "projectId": "8f8aaccd-f2a7-41c9-bb20-6144f29ba1c8",
+  "type": "frontend",
+  "name": "Product detail — name, price, add-to-cart",
+  "planSteps": [
+    { "type": "action", "description": "Navigate to /collection/all and open the first product card" },
+    { "type": "assertion", "description": "The product detail page shows the product name, a price, and a 'Book Rental' button and an 'Add to wishlist' control" }
+  ]
+}
