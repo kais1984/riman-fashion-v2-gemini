@@ -50,11 +50,6 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     title: 'Contact | Atelier Riman',
     description: 'Visit our Sharjah atelier for a private consultation. Book an appointment to explore our bridal and evening collections with our master stylists.',
   },
-  '/blog': {
-    title: 'Journal | Atelier Riman',
-    description: 'Explore the Atelier Riman journal — bridal style guides, fashion insights, and the stories behind our collections.',
-    ogType: 'article',
-  },
   '/faq': {
     title: 'FAQ | Atelier Riman',
     description: 'Find answers to common questions about Atelier Riman\'s bridal and evening wear, including sizing, rentals, alterations, and ordering.',

@@ -21,7 +21,6 @@ import ContactPage from './pages/ContactPage';
 import SearchPage from './pages/SearchPage';
 import WishlistPage from './pages/WishlistPage';
 import ProfilePage from './pages/ProfilePage';
-import BlogPage from './pages/BlogPage';
 import FaqPage from './pages/FaqPage';
 import AlterationsPage from './pages/AlterationsPage';
 import PrivacyPage from './pages/PrivacyPage';
@@ -203,7 +202,6 @@ function AnimatedRoutes() {
           <Route path="search" element={<PageWrapper><SearchPage /></PageWrapper>} />
           <Route path="wishlist" element={<PageWrapper><WishlistPage /></PageWrapper>} />
           <Route path="profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
-          <Route path="blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
           <Route path="faq" element={<PageWrapper><FaqPage /></PageWrapper>} />
           <Route path="alterations" element={<PageWrapper><AlterationsPage /></PageWrapper>} />
           <Route path="privacy" element={<PageWrapper><PrivacyPage /></PageWrapper>} />

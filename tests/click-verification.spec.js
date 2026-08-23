@@ -178,7 +178,7 @@ test.describe('Homepage Additional CTAs', () => {
   });
 
   const ctas = [
-    // NOTE: Journal (/blog), Gallery (/gallery) and View All Products (/collection/all)
+    // NOTE: Gallery (/gallery) and View All Products (/collection/all)
     // were removed from the homepage during the salon rebrand — no longer linked from here.
     { name: 'About', path: '/about' },
   ];
@@ -395,7 +395,6 @@ test.describe('Direct Route Navigation', () => {
     { path: '/search', name: 'Search' },
     { path: '/wishlist', name: 'Wishlist' },
     { path: '/profile', name: 'Profile' },
-    { path: '/blog', name: 'Blog' },
     { path: '/faq', name: 'FAQ' },
     { path: '/alterations', name: 'Alterations' },
     { path: '/gallery', name: 'Gallery' },

@@ -14,7 +14,6 @@ const navLinks = [
   { label: "Bridal", path: "/collection/bridal", key: 'nav.bridal' },
   { label: "Evening", path: "/collection/evening", key: 'nav.evening' },
   { label: "Rentals", path: "/collection/rental", key: 'nav.rentals' },
-  { label: "Journal", path: "/blog", key: 'nav.blog' },
   { label: "Contact", path: "/contact", key: 'nav.contact' },
   { label: "Private Viewing", path: "/appointment", key: 'nav.private_viewing' },
 ];
@@ -255,7 +254,6 @@ export default function Header() {
                   <nav className="flex flex-col gap-1">
                     {[
                       { label: 'Our Story', path: '/about', key: 'nav.about' },
-                      { label: 'Blog', path: '/blog', key: 'nav.blog' },
                       { label: 'Gallery', path: '/gallery', key: 'nav.gallery' },
                       { label: 'Style Quiz', path: '/style-quiz', key: 'nav.style_quiz', icon: Sparkles },
                     ].map((link, idx) => (

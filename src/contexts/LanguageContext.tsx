@@ -25,7 +25,6 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.style_quiz': 'Style Quiz',
     'nav.jewelry': 'Fine Jewelry',
     'nav.accessories': 'Accessories',
-    'nav.blog': 'Journal',
     'nav.gallery': 'Gallery',
     'nav.alterations': 'Alterations',
     'nav.faq': 'FAQ',
@@ -47,18 +46,6 @@ const translations: Record<Language, Record<string, string>> = {
     'cat.jewelry_title': 'Majestic Jewelry',
     'cat.accessories_title': 'Accessories',
     'cat.subtitle': 'Exquisite silhouettes and premium fabrics selected for the modern visionary.',
-
-    // Journal / Atelier
-    'journal.title': 'The Riman Journal',
-    'journal.finding': 'Finding Your Silhouette',
-    'journal.guide': 'Royal Geometry & Proportion Guide',
-    'journal.btn': 'Read The Full Guide',
-    'journal.heading': 'Mastering The Legacy Icon',
-    'journal.quote': 'Exquisitely crafted for the modern muse. Each piece is a woven story of elegance and royal substance.',
-    'journal.fabric_title': 'The Fabric of Dreams',
-    'journal.fabric_desc': 'Understanding the drape of Mikado Silk versus the airy lightness of French Tulle.',
-    'journal.artisan_title': 'Artisan Details',
-    'journal.artisan_desc': 'How hand-sewn Swarovski elements catch the light for a radiant glow.',
 
     // Hero
     'hero.title': 'Reverie & Essence',
@@ -598,27 +585,6 @@ const translations: Record<Language, Record<string, string>> = {
     'quiz.try_different': 'Try different options to discover more styles.',
     'quiz.view_all': 'View Full Collection',
 
-    // Blog
-    'blog.title': 'The Riman Journal',
-    'blog.subtitle': 'Style & Substance',
-    'blog.latest': 'Latest Release',
-    'blog.min_read': 'min read',
-    'blog.read_editorial': 'Read Editorial',
-    'blog.view_journal': 'View Journal',
-    'blog.join_circle': 'Join the Circle',
-    'blog.newsletter_desc': 'Receive exclusive invitations to atelier reveals and seasonal style insights.',
-    'blog.email_placeholder': 'EMAIL ADDRESS',
-    'blog.subscribe': 'Subscribe',
-    'blog.article1_title': 'The Rise of Minimalist Sharjah Couture',
-    'blog.article1_excerpt': 'Exploring the shift towards clean lines and architectural silhouettes in the 2026 bridal season.',
-    'blog.article1_category': 'Trends',
-    'blog.article2_title': 'Gala Ready: The Rental Revolution',
-    'blog.article2_excerpt': 'How premium rental collections are changing the high-fashion landscape for evening wear.',
-    'blog.article2_category': 'Insights',
-    'blog.article3_title': 'Crafting the Noor Kaftan',
-    'blog.article3_excerpt': 'A behind-the-scenes look at the 400 hours of hand-embroidery required for our latest masterpiece.',
-    'blog.article3_category': 'Craftsmanship',
-
     // FAQ
     'faq.category_rental': 'Rental Services',
     'faq.q_rental_1': 'How long is the standard rental period?',
@@ -742,9 +708,6 @@ const translations: Record<Language, Record<string, string>> = {
     'gallery.admin_delete': 'Delete Item',
     'gallery.admin_featured': 'Featured',
     'gallery.admin_sort': 'Sort Order',
-
-    // Misc
-    'section.journal': 'The Riman Journal',
   },
 
   ar: {
@@ -759,7 +722,6 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.style_quiz': 'اختبار الأناقة',
     'nav.jewelry': 'المجوهرات الراقية',
     'nav.accessories': 'الإكسسوارات',
-    'nav.blog': 'المجلة',
     'nav.gallery': 'المعرض',
     'nav.alterations': 'التعديلات',
     'nav.faq': 'الأسئلة الشائعة',
@@ -781,18 +743,6 @@ const translations: Record<Language, Record<string, string>> = {
     'cat.jewelry_title': 'المجوهرات المهيبة',
     'cat.accessories_title': 'الإكسسوارات',
     'cat.subtitle': 'تصاميم راقية وأقمشة فاخرة مختارة بعناية للمرأة العصرية الواعية.',
-
-    // Journal / Atelier
-    'journal.title': 'مجلة ريمان',
-    'journal.finding': 'اكتشاف طلتك المثالية',
-    'journal.guide': 'دليل الهندسة الملكية والتناسب',
-    'journal.btn': 'اقرأ الدليل الكامل',
-    'journal.heading': 'إتقان أيقونة الإرث',
-    'journal.quote': 'مصنوعة بإتقان للملهمة العصرية. كل قطعة هي قصة منسوجة من الأناقة والجوهر الملكي.',
-    'journal.fabric_title': 'نسيج الأحلام',
-    'journal.fabric_desc': 'فهم تدفق حرير الميكادو مقابل خفة التول الفرنسي.',
-    'journal.artisan_title': 'تفاصيل الحرفية',
-    'journal.artisan_desc': 'كيف تلتقط عناصر السواروفسكي المخيطة يدوياً الضوء لتوهج مشرق.',
 
     // Hero
     'hero.title': 'حلمٌ وجوهر',
@@ -1332,27 +1282,6 @@ const translations: Record<Language, Record<string, string>> = {
     'quiz.try_different': 'جرّب خيارات مختلفة لاكتشاف المزيد من الأنماط.',
     'quiz.view_all': 'عرض المجموعة الكاملة',
 
-    // Blog
-    'blog.title': 'مجلة ريمان',
-    'blog.subtitle': 'الأناقة والمحتوى',
-    'blog.latest': 'أحدث إصدار',
-    'blog.min_read': 'دقائق قراءة',
-    'blog.read_editorial': 'اقرأ المقال',
-    'blog.view_journal': 'عرض المجلة',
-    'blog.join_circle': 'انضم للدائرة',
-    'blog.newsletter_desc': 'تلقى دعوات حصرية لكشف المجموعات وأفكار الموضة الموسمية.',
-    'blog.email_placeholder': 'البريد الإلكتروني',
-    'blog.subscribe': 'اشترك',
-    'blog.article1_title': 'صعود أزياء الشارقة البسيطة',
-    'blog.article1_excerpt': 'استكشاف التحول نحو الخطوط النظيفة والقصات المعمارية في موسم عرائس ٢٠٢٦.',
-    'blog.article1_category': 'اتجاهات',
-    'blog.article2_title': 'جاهزة للحفل: ثورة الإيجار',
-    'blog.article2_excerpt': 'كيف تغير مجموعات الإيجار الفاخرة مشهد الأزياء الراقية للسهرة.',
-    'blog.article2_category': 'رؤى',
-    'blog.article3_title': 'صناعة كفتان نور',
-    'blog.article3_excerpt': 'نظرة خلف الكواليس على ٤٠٠ ساعة من التطريز اليدوي المطلوبة ل latest تحفتنا.',
-    'blog.article3_category': 'الحرفية',
-
     // FAQ
     'faq.category_rental': 'خدمات الإيجار',
     'faq.q_rental_1': 'ما مدة الإيجار المعيارية؟',
@@ -1476,9 +1405,6 @@ const translations: Record<Language, Record<string, string>> = {
     'gallery.admin_delete': 'حذف العنصر',
     'gallery.admin_featured': 'مميز',
     'gallery.admin_sort': 'ترتيب العرض',
-
-    // Misc
-    'section.journal': 'مجلة ريمان',
   }
 };
 
