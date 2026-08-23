@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import type { GownRef } from '../types';
 import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle2, Loader2, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createAppointment } from '../services/appointments';
@@ -35,18 +36,21 @@ const formatSlot = (slot: string) => `${slot} ${SLOT_PERIOD[slot]}`;
 export default function AppointmentPage() {
   const [step, setStep] = useState(1);
   const { t, isRtl } = useLanguage();
+  const location = useLocation();
+  const incomingGowns: GownRef[] = (location.state as { gowns?: GownRef[] } | null)?.gowns ?? [];
+  const gownNames = incomingGowns.map(g => `${g.name}${g.size ? ` (${g.size})` : ''}`);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const [form, setForm] = useState({
+  const [form, setForm] = useState(() => ({
     name: '',
     email: '',
     phone: '',
     date: '',
     time: '',
-    service_type: '',
-    notes: '',
-  });
+    service_type: incomingGowns.some(g => g.intent === 'rent') ? 'rental' : incomingGowns.length ? 'bridal' : '',
+    notes: gownNames.length ? `Interested in: ${gownNames.join(', ')}` : '',
+  }));
 
   const updateForm = (field: string, value: string) => {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -79,6 +83,7 @@ export default function AppointmentPage() {
         time: form.time,
         service_type: form.service_type,
         notes: form.notes,
+        interested_gowns: incomingGowns.length ? incomingGowns : null,
       });
       setIsSubmitted(true);
     } catch (err) {
@@ -160,6 +165,16 @@ export default function AppointmentPage() {
                   <h2 className="font-heading text-2xl font-light text-stone-800">{t('appointment.your_details')}</h2>
                   <div className="w-8 h-px bg-gold mt-3" />
                 </div>
+                {incomingGowns.length > 0 && (
+                  <div className="mb-6 p-4 border border-gold/30 bg-gold/[0.04]">
+                    <p className="text-[10px] tracking-widest uppercase text-stone-800 font-bold mb-2">{t('appointment.your_gowns')}</p>
+                    <ul className="space-y-1">
+                      {incomingGowns.map((g, i) => (
+                        <li key={`${g.id}-${i}`} className="text-xs text-stone-600 italic">{g.name}{g.size ? ` · ${g.size}` : ''}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold mb-2">{t('appointment.full_name')}</label>

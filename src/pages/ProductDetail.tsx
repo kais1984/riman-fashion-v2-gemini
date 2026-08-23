@@ -1,10 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useMemo, useRef, MouseEvent, Suspense, lazy, useEffect } from 'react';
 import { ShoppingBag, Heart, ChevronRight, ChevronLeft, ChevronDown, Share2, Ruler, ShieldCheck, Truck, Search, Star, CheckCircle2, X, Calendar, Info, Loader2, RotateCcw, Box, Sparkles, MessageCircle, Gem, Wind } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products } from '../data/products';
 import { formatPrice, cn, categoryToSlug } from '../lib/utils';
-import { Product } from '../types';
+import { Product, type GownRef } from '../types';
 import { useData } from '../contexts/DataContext';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
@@ -33,6 +33,7 @@ export default function ProductDetail() {
   const { addItem } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const threeDViewerEnabled = useFeature('threeDViewer');
   const { addToast } = useToast();
   const [selectedSize, setSelectedSize] = useState('');
@@ -130,6 +131,19 @@ export default function ProductDetail() {
 
   const isRent = product.productType === 'rent' || product.productType === 'both';
   const isSale = product.productType === 'sale' || product.productType === 'both';
+
+  const reserveViewing = () => {
+    if (product) {
+      if (!isInWishlist(product.id)) addToWishlist(product);
+      const gowns: GownRef[] = [{
+        id: product.id,
+        name: product.name,
+        size: selectedSize || undefined,
+        intent: isRent ? 'rent' : 'sale',
+      }];
+      navigate('/appointment', { state: { gowns } });
+    }
+  };
 
   return (
     <>
@@ -368,12 +382,16 @@ export default function ProductDetail() {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="flex-1 flex flex-col gap-2">
-                    <button onClick={handleAddToCart} disabled={isAddingToCart} className="w-full btn-luxury flex items-center justify-center gap-3 relative overflow-hidden">
+                    <button onClick={reserveViewing} className="w-full btn-luxury flex items-center justify-center gap-3">
+                      <Sparkles className="w-4 h-4" />
+                      {t('product.reserve_viewing')}
+                    </button>
+                    <button onClick={handleAddToCart} disabled={isAddingToCart} className="w-full btn-luxury-outline !py-3 flex items-center justify-center gap-3">
                       {isAddingToCart ? (
-                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                        <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
                         <>
-                          <ShoppingBag className="w-4 h-4" />
+                          <ShoppingBag className="w-3.5 h-3.5" />
                           {isRent ? t('product.book_rental') : t('product.add_to_collection')}
                         </>
                       )}
@@ -643,10 +661,16 @@ export default function ProductDetail() {
             <p className="font-heading text-[11px] tracking-wider uppercase text-stone-800 truncate">{product.name}</p>
             <p className="font-heading text-sm text-gold"><span className="text-[10px] font-body text-stone-400 uppercase tracking-wider me-1">{t('pricing.from')}</span>{formatPrice(isSale ? (product.salePrice || 0) : (isRent ? (product.rentalPrice || 0) : 0))}</p>
           </div>
-          <button onClick={handleAddToCart} disabled={isAddingToCart} className="btn-luxury !py-3 !px-5 text-[10px] flex items-center gap-2 whitespace-nowrap">
-            {isAddingToCart ? <Loader2 className="w-3.5 h-3.5 animate-spin text-white" /> : <ShoppingBag className="w-3.5 h-3.5" />}
-            {isRent ? t('product.book_rental') : t('product.add_to_collection')}
-          </button>
+          <div className="flex flex-col gap-1.5 shrink-0">
+            <button onClick={reserveViewing} className="btn-luxury !py-2.5 !px-5 text-[10px] flex items-center justify-center gap-2 whitespace-nowrap">
+              <Sparkles className="w-3.5 h-3.5" />
+              {t('product.reserve_viewing')}
+            </button>
+            <button onClick={handleAddToCart} disabled={isAddingToCart} className="btn-luxury-outline !py-2.5 !px-5 text-[10px] flex items-center justify-center gap-2 whitespace-nowrap">
+              {isAddingToCart ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShoppingBag className="w-3.5 h-3.5" />}
+              {isRent ? t('product.book_rental') : t('product.add_to_collection')}
+            </button>
+          </div>
           <button onClick={(e) => { e.preventDefault(); if (saved) { removeFromWishlist(product.id); } else { addToWishlist(product); } }} className={cn("w-10 h-10 flex items-center justify-center border transition-all shrink-0", saved ? "border-rose-200 text-rose-500 bg-rose-50" : "border-stone-200 text-stone-500")} aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}>
             <Heart className={cn("w-4 h-4", saved && "fill-current")} />
           </button>
