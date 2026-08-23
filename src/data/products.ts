@@ -347,6 +347,111 @@ export const products: Product[] = [
     isFeatured: true,
     collectionYear: 2024,
     silhouette: 'Kaftan'
+  },
+  {
+    id: '17',
+    name: 'The Signature Couture Gown',
+    description: 'The centerpiece of our 2025 atelier collection. A hand-finished couture creation photographed across sixteen studio angles — every seam, drape, and embellishment placed by hand in our Sharjah atelier. Reserve a private viewing to experience it in person.',
+    productType: 'both',
+    salePrice: 42000,
+    rentalPrice: 4200,
+    securityDeposit: 8400,
+    images: [
+      '/assets/rimanfashion_3678245315913995332_6730733643_1_2025-07-16.jpg',
+      '/assets/rimanfashion_3678245315913995332_6730733643_2_2025-07-16.jpg',
+      '/assets/rimanfashion_3678245315913995332_6730733643_3_2025-07-16.jpg',
+      '/assets/rimanfashion_3678245315913995332_6730733643_4_2025-07-16.jpg'
+    ],
+    category: 'Bridal Gown',
+    style: ['Couture', 'Signature'],
+    color: [],
+    designer: 'Riman Atelier',
+    sizes: ['XS', 'S', 'M', 'L'],
+    isFeatured: true,
+    isNew: true,
+    collectionYear: 2025
+  },
+  {
+    id: '18',
+    name: 'Atelier Muse Gown',
+    description: 'A sculpted atelier creation from our August 2025 sessions, captured across eight angles to honour its construction. Hand-finished in Sharjah and available for private viewing, purchase, or rental.',
+    productType: 'both',
+    salePrice: 32000,
+    rentalPrice: 3200,
+    securityDeposit: 6400,
+    images: [
+      '/assets/rimanfashion_3697095665609781601_6730733643_1_2025-08-11.jpg',
+      '/assets/rimanfashion_3697095665609781601_6730733643_2_2025-08-11.jpg',
+      '/assets/rimanfashion_3697095665609781601_6730733643_3_2025-08-11.jpg'
+    ],
+    category: 'Bridal Gown',
+    style: ['Couture', 'Modern'],
+    color: [],
+    designer: 'Riman Atelier',
+    sizes: ['XS', 'S', 'M', 'L'],
+    isNew: true,
+    collectionYear: 2025
+  },
+  {
+    id: '19',
+    name: 'Soirée Royale Dress',
+    description: 'An evening creation from our July 2025 atelier sessions, photographed across six angles. Designed for grand entrances at galas and celebrations, with the option to rent for a single unforgettable night.',
+    productType: 'both',
+    salePrice: 24000,
+    rentalPrice: 2400,
+    securityDeposit: 4800,
+    images: [
+      '/assets/rimanfashion_3689099455082854747_6730733643_1_2025-07-31.jpg',
+      '/assets/rimanfashion_3689099455082854747_6730733643_2_2025-07-31.jpg',
+      '/assets/rimanfashion_3689099455082854747_6730733643_3_2025-07-31.jpg'
+    ],
+    category: 'Evening Dress',
+    style: ['Elegant', 'Grand'],
+    color: [],
+    designer: 'Riman Atelier',
+    sizes: ['S', 'M', 'L'],
+    isNew: true,
+    collectionYear: 2025
+  },
+  {
+    id: '20',
+    name: 'Layali Bridal Gown',
+    description: 'A bridal piece from our late-August 2025 sessions, presented in two studio portraits. Hand-finished in our Sharjah atelier — reserve a private viewing to see the full detail up close.',
+    productType: 'both',
+    salePrice: 28000,
+    rentalPrice: 2800,
+    securityDeposit: 5600,
+    images: [
+      '/assets/rimanfashion_3705450535693995034_353452888_1_2025-08-23.jpg',
+      '/assets/rimanfashion_3705450535693995034_353452888_2_2025-08-23.jpg'
+    ],
+    category: 'Bridal Gown',
+    style: ['Romantic', 'Couture'],
+    color: [],
+    designer: 'Riman Atelier',
+    sizes: ['XS', 'S', 'M', 'L'],
+    isNew: true,
+    collectionYear: 2025
+  },
+  {
+    id: '21',
+    name: 'Nocturne Evening Gown',
+    description: 'Captured in motion — this September 2025 evening creation comes with two atelier films showing its drape and movement. Rent it for the season or make it yours.',
+    productType: 'both',
+    salePrice: 22000,
+    rentalPrice: 2200,
+    securityDeposit: 4400,
+    images: [
+      '/assets/rimanfashion_3723761629122488075_227867687_1_2025-09-17.jpg'
+    ],
+    videoUrl: '/assets/rimanfashion_3723761629122488075_227867687_2_2025-09-17.mp4',
+    category: 'Evening Dress',
+    style: ['Elegant', 'Cinematic'],
+    color: [],
+    designer: 'Riman Atelier',
+    sizes: ['S', 'M', 'L'],
+    isNew: true,
+    collectionYear: 2025
   }
 ];
 
