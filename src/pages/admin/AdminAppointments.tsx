@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Clock, Mail, Phone, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Mail, Phone, Heart, CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../../lib/utils';
 import { fetchAppointments, updateAppointmentStatus } from '../../services/appointments';
@@ -112,6 +112,12 @@ export default function AdminAppointments() {
                     <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {appt.time}</span>
                     <span className="flex items-center gap-1"><Mail className="w-3 h-3" /> {appt.email}</span>
                     <span className="flex items-center gap-1"><Phone className="w-3 h-3" /> {appt.phone}</span>
+                    {(appt.interested_gowns?.length ?? 0) > 0 && (
+                      <span className="flex items-start gap-1 basis-full">
+                        <Heart className="w-3 h-3 mt-0.5 shrink-0" />
+                        <span className="italic">{appt.interested_gowns!.map(g => `${g.name}${g.size ? ` (${g.size})` : ''}`).join(' · ')}</span>
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex gap-2" onClick={e => e.stopPropagation()}>
