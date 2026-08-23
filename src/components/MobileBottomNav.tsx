@@ -2,16 +2,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { Home, Search, Heart, User, ShoppingBag } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useCart } from '../contexts/CartContext';
+import { useWishlist } from '../contexts/WishlistContext';
 
 export default function MobileBottomNav() {
   const location = useLocation();
   const { totalItems } = useCart();
+  const { wishlist } = useWishlist();
 
   const navItems = [
     { label: 'Home', path: '/', icon: Home },
     { label: 'Search', path: '/search', icon: Search },
-    { label: 'Wishlist', path: '/wishlist', icon: Heart },
-    { label: 'Cart', path: '/checkout', icon: ShoppingBag, badge: totalItems },
+    { label: 'Selection', path: '/wishlist', icon: Heart, badge: wishlist.length },
+    { label: 'Bag', path: '/checkout', icon: ShoppingBag, badge: totalItems },
     { label: 'You', path: '/profile', icon: User },
   ];
 

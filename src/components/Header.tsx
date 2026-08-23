@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useCart } from '../contexts/CartContext';
+import { useWishlist } from '../contexts/WishlistContext';
 import { useScrollLock } from '../hooks/useScrollLock';
 import Logo from './Logo';
 
@@ -21,6 +22,8 @@ const navLinks = [
 export default function Header() {
   const { language, setLanguage, t, isRtl } = useLanguage();
   const { totalItems } = useCart();
+  const { wishlist } = useWishlist();
+  const wishlistCount = wishlist.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoPos, setLogoPos] = useState({ x: 0, y: 0 });
 
@@ -158,8 +161,13 @@ export default function Header() {
             <Link to="/style-quiz" className="hover:text-gold transition-colors" aria-label="Style Quiz">
               <Sparkles className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
             </Link>
-            <Link to="/wishlist" className="hidden lg:block hover:text-gold transition-colors" aria-label="Wishlist">
-              <Heart className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
+            <Link to="/wishlist" className="hidden lg:block relative group/wishlist hover:text-gold transition-colors" aria-label="Your Selection">
+              <Heart className={cn("w-6 h-6 transition-transform group-hover/wishlist:scale-110", (!isHome) ? "text-stone-800" : "text-white")} />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gold text-white text-[9px] w-4 h-4 flex items-center justify-center font-bold shadow-sm">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
             <Link to="/profile" className="hidden md:block hover:text-gold transition-colors" aria-label="Account">
               <User className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
