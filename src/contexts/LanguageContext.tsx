@@ -322,6 +322,17 @@ const translations: Record<Language, Record<string, string>> = {
     'wishlist.view': 'View',
     'wishlist.add_to_bag': 'Add to Bag',
 
+    // Selection
+    'selection.title': 'Your Selection',
+    'selection.subtitle': 'Pieces kept aside for your private viewing',
+    'selection.empty': 'Your selection is empty',
+    'selection.empty_desc': 'Save the silhouettes that catch your eye — we will have them ready for your visit.',
+    'selection.explore': 'Explore Atelier',
+    'selection.view': 'View',
+    'selection.add_to_bag': 'Add to Bag',
+    'selection.request_viewing': 'Request Private Viewing',
+    'selection.count': 'pieces selected',
+
     // Checkout
     'checkout.empty': 'Your Bag is Empty',
     'checkout.empty_desc': 'Please select pieces from our collection first.',
@@ -1026,6 +1037,17 @@ const translations: Record<Language, Record<string, string>> = {
     'wishlist.explore': 'استكشف الدار',
     'wishlist.view': 'عرض',
     'wishlist.add_to_bag': 'أضف للحقيبة',
+
+    // Selection
+    'selection.title': 'مختاراتك',
+    'selection.subtitle': 'قطع انتظرناها لمشاهدتك الخاصة',
+    'selection.empty': 'مختاراتك فارغة',
+    'selection.empty_desc': 'احفظي التصاميم التي أسرت قلبك — وستكون جاهزة عند زيارتك.',
+    'selection.explore': 'استكشفي الدار',
+    'selection.view': 'عرض',
+    'selection.add_to_bag': 'أضف للحقيبة',
+    'selection.request_viewing': 'طلب مشاهدة خاصة',
+    'selection.count': 'قطعة مختارة',
 
     // Checkout
     'checkout.empty': 'حقيبتك فارغة',

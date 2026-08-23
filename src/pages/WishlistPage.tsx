@@ -3,7 +3,7 @@ import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ShoppingBag, X, Heart, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
 import { formatPrice } from '../lib/utils';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 
@@ -11,6 +11,7 @@ export default function WishlistPage() {
   const { wishlist, removeFromWishlist, isLoading } = useWishlist();
   const { addItem } = useCart();
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [addedId, setAddedId] = useState<string | null>(null);
 
   const handleMoveToBag = (product: any) => {
@@ -24,8 +25,9 @@ export default function WishlistPage() {
     <div className="pt-32 pb-20 bg-ivory min-h-screen">
       <div className="container mx-auto px-6">
         <header className="text-center mb-20">
-           <h1 className="font-heading text-4xl md:text-6xl text-stone-800 tracking-wider uppercase mb-4">{t('wishlist.title')}</h1>
-           <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase italic">{t('wishlist.subtitle')}</p>
+           <h1 className="font-heading text-4xl md:text-6xl text-stone-800 tracking-wider uppercase mb-4">{t('selection.title')}</h1>
+           <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase italic">{t('selection.subtitle')}</p>
+           <p className="font-body text-stone-400 text-[10px] tracking-[0.2em] uppercase italic">{wishlist.length} {t('selection.count')}</p>
         </header>
 
         {isLoading ? (
@@ -33,6 +35,19 @@ export default function WishlistPage() {
             <Loader2 className="w-8 h-8 text-gold animate-spin" />
           </div>
         ) : wishlist.length > 0 ? (
+          <>
+          <div className="flex justify-center mb-12">
+            <button
+              onClick={() => navigate('/appointment', {
+                state: {
+                  gowns: wishlist.map(p => ({ id: p.id, name: p.name, intent: (p.productType === 'rent' ? 'rent' : 'sale') as 'rent' | 'sale' })),
+                },
+              })}
+              className="btn-luxury px-12 w-full sm:w-auto"
+            >
+              {t('selection.request_viewing')}
+            </button>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <AnimatePresence mode="popLayout">
               {wishlist.map((product) => (
@@ -66,7 +81,7 @@ export default function WishlistPage() {
 <p className="font-body text-sm text-gold mb-8">{formatPrice(product.salePrice || product.rentalPrice || 0)}</p>
 
                      <div className="flex gap-2">
-                        <Link to={`/product/${product.id}`} className="flex-1 btn-luxury !py-3 !px-4 text-[10px]">{t('wishlist.view')}</Link>
+                        <Link to={`/product/${product.id}`} className="flex-1 btn-luxury !py-3 !px-4 text-[10px]">{t('selection.view')}</Link>
                         <button
                           onClick={() => handleMoveToBag(product)}
                           className="flex-1 btn-luxury-outline !py-3 !px-4 text-[10px] flex items-center justify-center gap-2"
@@ -74,7 +89,7 @@ export default function WishlistPage() {
                           {addedId === product.id ? (
                             <><CheckCircle2 className="w-3.5 h-3.5" /> {t('product.added')}</>
                           ) : (
-                            <><ShoppingBag className="w-3.5 h-3.5" /> {t('wishlist.add_to_bag')}</>
+                            <><ShoppingBag className="w-3.5 h-3.5" /> {t('selection.add_to_bag')}</>
                           )}
                         </button>
                      </div>
@@ -83,13 +98,26 @@ export default function WishlistPage() {
               ))}
             </AnimatePresence>
           </div>
+          <div className="flex justify-center mt-12">
+            <button
+              onClick={() => navigate('/appointment', {
+                state: {
+                  gowns: wishlist.map(p => ({ id: p.id, name: p.name, intent: (p.productType === 'rent' ? 'rent' : 'sale') as 'rent' | 'sale' })),
+                },
+              })}
+              className="btn-luxury px-12 w-full sm:w-auto"
+            >
+              {t('selection.request_viewing')}
+            </button>
+          </div>
+          </>
         ) : (
           <div className="text-center py-32 bg-ivory border border-stone-100">
 <Heart className="w-16 h-16 text-stone-100 mx-auto mb-8" />
-              <h3 className="font-heading text-2xl text-stone-800 mb-4 tracking-widest uppercase">{t('wishlist.empty')}</h3>
-              <p className="font-body text-stone-400 text-xs uppercase tracking-widest mb-10 italic">{t('wishlist.empty_desc')}</p>
+              <h3 className="font-heading text-2xl text-stone-800 mb-4 tracking-widest uppercase">{t('selection.empty')}</h3>
+              <p className="font-body text-stone-400 text-xs uppercase tracking-widest mb-10 italic">{t('selection.empty_desc')}</p>
               <Link to="/search" className="btn-luxury px-12 group flex items-center gap-3 mx-auto w-fit">
-                {t('wishlist.explore')} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                {t('selection.explore')} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
           </div>
         )}
