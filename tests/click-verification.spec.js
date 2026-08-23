@@ -66,7 +66,8 @@ test.describe('Header Icon Links', () => {
 
   const iconLinks = [
     { name: 'Search', path: '/search', ariaLabel: 'Search' },
-    { name: 'Wishlist', path: '/wishlist', ariaLabel: 'Wishlist' },
+    // Wishlist icon was rebranded to "Your Selection" — match by href instead of aria-label.
+    { name: 'Wishlist', path: '/wishlist', ariaLabel: null },
     { name: 'Account', path: '/profile', ariaLabel: 'Account' },
     { name: 'Cart', path: '/checkout', ariaLabel: null },
   ];
@@ -324,7 +325,8 @@ test.describe('Product Detail Page', () => {
     await expect(card).toBeVisible({ timeout: 30000 });
     await card.click();
     await waitForApp(page);
-    const addBtn = page.locator('button:has-text("Add to Collection"), button:has-text("Book Rental")').first();
+    // Bag-secondary CTA — bilingual (site defaults to Arabic).
+    const addBtn = page.getByRole('button', { name: /book rental|add to collection|احجز الإيجار|أضف للمجموعة/i }).first();
     await expect(addBtn).toBeVisible({ timeout: 15000 });
   });
 
