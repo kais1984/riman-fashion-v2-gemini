@@ -1,18 +1,21 @@
+import { useLanguage } from '../contexts/LanguageContext';
+
 export default function WeddingChecklist() {
+  const { t } = useLanguage();
   const steps = [
-    { month: "12 Months Before", task: "Set your wedding date and venue." },
-    { month: "11 Months Before", task: "Book your first Riman Atelier consultation." },
-    { month: "9 Months Before", task: "Finalize your silhouette and fabric selection." },
-    { month: "6 Months Before", task: "First fitting and embroidery details." },
-    { month: "3 Months Before", task: "Accessorize with veils and headpieces." },
-    { month: "1 Month Before", task: "Final fitting and secure collection." },
+    { month: t('wedding.checklist.m12'), task: t('wedding.checklist.t12') },
+    { month: t('wedding.checklist.m11'), task: t('wedding.checklist.t11') },
+    { month: t('wedding.checklist.m9'), task: t('wedding.checklist.t9') },
+    { month: t('wedding.checklist.m6'), task: t('wedding.checklist.t6') },
+    { month: t('wedding.checklist.m3'), task: t('wedding.checklist.t3') },
+    { month: t('wedding.checklist.m1'), task: t('wedding.checklist.t1') },
   ];
 
   return (
     <div className="pt-32 pb-20 container mx-auto px-6 max-w-4xl">
       <div className="text-center mb-20">
-        <h2 className="heading-editorial text-gold text-micro mb-4">The Road to I Do</h2>
-        <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-wider mb-6">Wedding Planning Checklist</h1>
+        <h2 className="heading-editorial text-gold text-micro mb-4">{t('wedding.checklist.eyebrow')}</h2>
+        <h1 className="font-heading text-4xl md:text-5xl text-stone-800 tracking-wider mb-6">{t('wedding.checklist.title')}</h1>
         <div className="divider-gold" />
       </div>
 
