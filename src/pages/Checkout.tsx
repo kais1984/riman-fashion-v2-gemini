@@ -15,6 +15,7 @@ import { createCheckoutSession, isStripeConfigured } from '../services/payment';
 import { sendOrderConfirmationEmail, sendAdminOrderAlert } from '../lib/email';
 import { z } from 'zod';
 import { analytics } from '../services/analytics';
+import { translateProductValue } from '../lib/productVocab';
 
 const checkoutSchema = z.object({
   firstName: z.string().trim().min(1),
@@ -496,7 +497,7 @@ export default function Checkout() {
                             <img src={item.images?.[0]} className="w-full h-full object-cover" alt={item.name} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-micro text-stone-600 uppercase tracking-widest">{item.category}</p>
+                            <p className="text-micro text-stone-600 uppercase tracking-widest">{translateProductValue('category', item.category, language)}</p>
                             <p className="text-xs uppercase tracking-wider font-bold truncate">{item.name}</p>
                             {item.selectedSize && <p className="text-micro text-stone-600 uppercase">{t('checkout.size')}: {item.selectedSize}</p>}
                             {item.selectedDate && <p className="text-micro text-gold uppercase">{t('checkout.date')}: {new Date(item.selectedDate).toLocaleDateString()}</p>}
@@ -674,7 +675,7 @@ export default function Checkout() {
                             <img src={item.images?.[0]} className="w-full h-full object-cover grayscale-[0.3]" alt={item.name} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-micro text-stone-500 uppercase tracking-widest">{item.category}</p>
+                            <p className="text-micro text-stone-500 uppercase tracking-widest">{translateProductValue('category', item.category, language)}</p>
                             <p className="text-micro uppercase tracking-wider font-bold truncate text-white">{item.name}</p>
                             <div className="flex flex-wrap gap-1.5 mt-1">
                               {item.selectedSize && <span className="text-micro border border-stone-700 px-1.5 py-0.5 text-stone-400">{item.selectedSize}</span>}
@@ -712,6 +713,7 @@ export default function Checkout() {
                 paymentMethod={paymentMethod}
                 removeItem={removeItem}
                 t={t}
+                language={language}
               />
             </div>
           </div>
@@ -758,12 +760,13 @@ function TrustBadge({ icon, label }: { icon: ReactNode; label: string }) {
   );
 }
 
-function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
+function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t, language }: {
   items: any[];
   subtotal: number;
   paymentMethod: string;
   removeItem: (id: string, size?: string, intent?: 'sale' | 'rent') => void;
   t: (key: string) => string;
+  language: 'en' | 'ar';
 }) {
   return (
     <div className="bg-onyx text-white p-6 border border-stone-800">
@@ -784,7 +787,7 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
                 <img src={item.images?.[0]} className="w-full h-full object-cover grayscale-[0.3]" alt={item.name} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-micro text-stone-500 uppercase tracking-widest mb-0.5">{item.category}</p>
+                <p className="text-micro text-stone-500 uppercase tracking-widest mb-0.5">{translateProductValue('category', item.category, language)}</p>
                 <h4 className="text-micro uppercase tracking-wider font-bold mb-1 truncate">{item.name}</h4>
                 <div className="flex flex-wrap gap-1.5 mb-1.5">
                   {item.selectedSize && <span className="text-micro border border-stone-700 px-1.5 py-0.5 text-stone-400">{t('checkout.size')}: {item.selectedSize}</span>}
