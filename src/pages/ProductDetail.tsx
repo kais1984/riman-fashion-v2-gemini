@@ -417,9 +417,11 @@ export default function ProductDetail() {
                       <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.fast_booking')}</span>
                     </div>
                     <AvailabilityCalendar productId={product.id} selectedDate={bookingDate} onDateSelect={setBookingDate} />
-                    <p className="text-micro text-stone-600 leading-relaxed italic text-center mt-3">
-                      {bookingDate ? `${t('product.selected_date')}: ${bookingDate.toLocaleDateString(language === 'ar' ? 'ar-AE' : 'en-AE')}` : t('product.select_date_hint')}
-                    </p>
+                    {!bookingDate && (
+                      <p className="text-micro text-stone-600 leading-relaxed italic text-center mt-3">
+                        {t('product.select_date_hint')}
+                      </p>
+                    )}
                   </div>
                 )}
 
