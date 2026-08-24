@@ -67,6 +67,15 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
     [dayNames, months]
   );
 
+  const statusLabelFor = useCallback(
+    (d: Date) => {
+      if (isBefore(d, today)) return t('calendar.statusPast');
+      if (bookedSet.has(isoKey(d))) return t('calendar.statusBooked');
+      return t('calendar.statusAvailable');
+    },
+    [bookedSet, t, today]
+  );
+
   const goToMonth = (delta: number) => {
     const next = delta < 0 ? subMonths(currentMonth, 1) : addMonths(currentMonth, 1);
     setCurrentMonth(next);
@@ -92,7 +101,7 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
         e.preventDefault();
         interactedRef.current = true;
         if (!canSelect(focusedDate)) {
-          setAnnouncement(describe(focusedDate));
+          setAnnouncement(`${describe(focusedDate)}, ${statusLabelFor(focusedDate)}`);
           return;
         }
         onDateSelect?.(focusedDate);
@@ -198,11 +207,7 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
               const booked = bookedSet.has(isoKey(date));
               const selectable = inMonth && !past && !booked;
               const isSelected = !!selectedDate && isSameDay(date, selectedDate);
-              const statusLabel = past
-                ? t('calendar.statusPast')
-                : booked
-                  ? t('calendar.statusBooked')
-                  : t('calendar.statusAvailable');
+              const statusLabel = statusLabelFor(date);
               return (
                 <div
                   role="gridcell"

@@ -69,6 +69,16 @@ describe('AvailabilityCalendar', () => {
     expect(onDateSelect).toHaveBeenCalled();
   });
 
+  it('announces the day status when pressing Enter on a blocked day', async () => {
+    mockedFetch.mockResolvedValue([format(TODAY, 'yyyy-MM-dd')]);
+    renderCalendar();
+    const grid = screen.getByTestId('availability-grid');
+    const todayCell = await waitFor(() => document.querySelector(`[data-date="${format(TODAY, 'yyyy-MM-dd')}"]`) as HTMLButtonElement);
+    todayCell.focus();
+    fireEvent.keyDown(grid, { key: 'Enter' });
+    expect(screen.getByRole('status').textContent).toMatch(/, booked$/);
+  });
+
   it('pages months with PageUp/PageDown keeping the focused day', async () => {
     renderCalendar();
     const grid = screen.getByTestId('availability-grid');
