@@ -36,10 +36,9 @@ describe('AvailabilityCalendar', () => {
   it('renders an ARIA grid with labelled day buttons', async () => {
     renderCalendar();
     expect(screen.getByRole('grid')).toBeDefined();
-    await waitFor(() => {
-      expect(document.querySelector(`[data-date="${format(addDays(TODAY, 1), 'yyyy-MM-dd')}"]`)).toBeTruthy();
-    });
-    const future = screen.getByRole('button', { name: new RegExp(`${format(addDays(TODAY, 1), 'd')}`) });
+    const futureIso = format(addDays(TODAY, 1), 'yyyy-MM-dd');
+    const future = await waitFor(() => document.querySelector(`[data-date="${futureIso}"]`) as HTMLButtonElement);
+    expect(future).toBeTruthy();
     expect(future.getAttribute('aria-label')).toContain(', available');
   });
 
