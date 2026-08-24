@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart, ShoppingBag, Box, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Heart, ShoppingBag, Box, CheckCircle2, ArrowRight, Calendar, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
 import React from 'react';
@@ -8,8 +8,11 @@ import { cn, formatPrice } from '../lib/utils';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { translateProductValue } from '../lib/productVocab';
 import { useFeature } from '../hooks/useFeature';
 import { Skeleton } from './Skeleton';
+import { useProductAvailability } from '../hooks/useProductAvailability';
+import { format } from 'date-fns';
 
 interface ProductCardProps {
   product: Product;
@@ -26,12 +29,14 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
   const scrollRevealEnabled = useFeature('scrollReveal');
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addItem } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const isSale = product.productType === 'sale' || product.productType === 'both';
   const isRent = product.productType === 'rent' || product.productType === 'both';
   const saved = isInWishlist(product.id);
   const hasSizes = product.sizes && product.sizes.length > 0;
+
+  const { start, end, isAvailable } = useProductAvailability(isRent ? product.id : undefined);
 
   const toggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -232,7 +237,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             {product.name}
         </Link>
         {product.fabric && (
-          <p className="font-editorial italic text-sm text-stone-600">{product.fabric}</p>
+          <p className="font-editorial italic text-sm text-stone-600">{translateProductValue('fabric', product.fabric, language)}</p>
         )}
 
         {/* Expanding gold frame — couture hover detail */}
@@ -241,13 +246,29 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           <div className="mt-2 flex flex-col gap-1">
             {isSale && (
               <p className="text-xs tracking-wider text-stone-600">
-                {t('product.purchase')}: <span className="font-semibold text-stone-800"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{formatPrice(product.salePrice || 0)}</span>
+                {t('product.purchase')}: <span className="font-semibold text-stone-800"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{' '}{formatPrice(product.salePrice || 0)}</span>
               </p>
             )}
             {isRent && (
-              <p className="text-xs tracking-wider text-stone-600">
-                {t('product.rent')}: <span className="text-stone-700"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{formatPrice(product.rentalPrice || 0)}</span>
-              </p>
+              <>
+                <p className="text-xs tracking-wider text-stone-600">
+                  {t('product.rent')}: <span className="text-stone-700"><span className="me-1 text-micro uppercase tracking-wider text-stone-600">{t('pricing.from')}</span>{' '}{formatPrice(product.rentalPrice || 0)}</span>
+                </p>
+                {isAvailable && start && end && (
+                  <p className="flex items-center gap-1 text-micro text-gold/80 tracking-wider">
+                    <Calendar className="w-3 h-3" />
+                    <span className="tracking-widest uppercase font-medium">
+                      {format(start, 'MMM d')}–{format(end, 'd')} {t('product.available')}
+                    </span>
+                  </p>
+                )}
+                {!isAvailable && (
+                  <p className="flex items-center gap-1 text-micro text-rose-500/80 tracking-wider">
+                    <X className="w-3 h-3" />
+                    <span className="tracking-widest uppercase font-medium">{t('product.fully_booked')}</span>
+                  </p>
+                )}
+              </>
             )}
           </div>
 
@@ -259,17 +280,6 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
-        
-        <button 
-          onClick={toggleWishlist}
-          className={cn(
-            "p-2 transition-colors",
-            saved ? "text-rose-400" : "text-stone-500 hover:text-rose-400"
-          )}
-          aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          <Heart className={cn("w-5 h-5", saved && "fill-current")} />
-        </button>
       </div>
     </motion.div>
   );

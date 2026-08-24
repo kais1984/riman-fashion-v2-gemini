@@ -418,6 +418,9 @@ const translations: Record<Language, Record<string, string>> = {
     'auth.profile_missing_title': 'Profile not found',
     'auth.load_fail_title': 'Could not load account',
     'auth.limited_msg': 'Some features may be limited.',
+    'threed.unavailable': '3D viewer unavailable',
+    'threed.reset_view': 'Reset View',
+    'common.whatsapp_label': 'Chat with us on WhatsApp',
 
     // Checkout
     'checkout.empty': 'Your Bag is Empty',
@@ -1226,6 +1229,9 @@ const translations: Record<Language, Record<string, string>> = {
     'auth.profile_missing_title': 'لم يتم العثور على الملف الشخصي',
     'auth.load_fail_title': 'تعذر تحميل الحساب',
     'auth.limited_msg': 'قد تكون بعض الميزات محدودة.',
+    'threed.unavailable': 'عارض المجسمات غير متاح',
+    'threed.reset_view': 'إعادة ضبط العرض',
+    'common.whatsapp_label': 'تواصلي معنا عبر واتساب',
 
     // Checkout
     'checkout.empty': 'حقيبتك فارغة',

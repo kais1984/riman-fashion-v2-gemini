@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { translateProductValue } from '../../lib/productVocab';
 import { Product } from '../../types';
 
 interface EditorialPlateProps {
@@ -11,7 +12,7 @@ interface EditorialPlateProps {
 }
 
 export default function EditorialPlate({ product, index, reverse }: EditorialPlateProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const lookNumber = String(index + 1).padStart(2, '0');
 
   return (
@@ -33,7 +34,7 @@ export default function EditorialPlate({ product, index, reverse }: EditorialPla
         </span>
         <h3 className="font-heading text-2xl md:text-3xl font-light text-stone-800">{product.name}</h3>
         {product.fabric && (
-          <p className="font-editorial italic text-stone-600">{product.fabric}</p>
+          <p className="font-editorial italic text-stone-600">{translateProductValue('fabric', product.fabric, language)}</p>
         )}
         <Link
           to={`/product/${product.id}`}

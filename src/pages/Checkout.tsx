@@ -14,6 +14,7 @@ import { isSupabaseConfigured } from '../services/supabase';
 import { createCheckoutSession, isStripeConfigured } from '../services/payment';
 import { sendOrderConfirmationEmail, sendAdminOrderAlert } from '../lib/email';
 import { z } from 'zod';
+import { analytics } from '../services/analytics';
 
 const checkoutSchema = z.object({
   firstName: z.string().trim().min(1),
@@ -30,7 +31,7 @@ const WHATSAPP_NUMBER = '971553730792';
 export default function Checkout() {
   const { items, subtotal, clearCart, removeItem } = useCart();
   const { user } = useAuth();
-  const { t, isRtl } = useLanguage();
+  const { t, isRtl, language } = useLanguage();
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -98,9 +99,13 @@ export default function Checkout() {
 
   const nextStep = () => {
     if (validateStep(step)) {
-      setStep(prev => prev + 1);
+      const nextStepNum = step + 1;
+      setStep(nextStepNum);
       setMobileSummaryOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (nextStepNum === 3) {
+        analytics.beginCheckout(subtotal, 'AED', items.length);
+      }
     }
   };
   const prevStep = () => {
@@ -249,9 +254,10 @@ export default function Checkout() {
       }
 
       setOrderComplete(true);
+      analytics.orderComplete(orderId || 'unknown', subtotal, 'AED', items.length);
       clearCart();
     } catch (err: any) {
-      setSubmitError(err.message || 'Failed to place order. Please try again.');
+      setSubmitError(err.message || t('checkout.order_failed'));
     } finally {
       setIsProcessing(false);
     }
@@ -425,7 +431,7 @@ export default function Checkout() {
                         />
                         <Input
                           label={t('checkout.country')}
-                          value={formData.country}
+                          value={formData.country === 'United Arab Emirates' && language === 'ar' ? t('checkout.country_default') : formData.country}
                           onChange={(v: string) => setFormData({...formData, country: v})}
                           disabled
                           autoComplete="country-name"
@@ -476,7 +482,7 @@ export default function Checkout() {
                         </div>
                         <div>
                           <span className="text-stone-600 block mb-0.5">{t('checkout.city')}</span>
-                          <span className="text-stone-800 font-medium">{formData.city}, {formData.country}</span>
+                          <span className="text-stone-800 font-medium">{formData.city}, {formData.country === 'United Arab Emirates' && language === 'ar' ? t('checkout.country_default') : formData.country}</span>
                         </div>
                       </div>
                     </div>
@@ -822,7 +828,7 @@ function OrderSidebar({ items, subtotal, paymentMethod, removeItem, t }: {
       <div className="mt-8 flex items-center gap-3 p-3 border border-white/5 bg-white/5">
         <ShieldCheck className="w-4 h-4 text-gold shrink-0" />
         <p className="text-micro tracking-widest leading-relaxed text-stone-400 uppercase">
-          {paymentMethod === 'card' ? 'Secured by Stripe' : 'Secure Order — Payment at Atelier'}
+          {paymentMethod === 'card' ? t('checkout.secured_stripe') : t('checkout.secure_order_atelier')}
         </p>
       </div>
     </div>

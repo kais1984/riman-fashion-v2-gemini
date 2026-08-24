@@ -12,29 +12,29 @@ function ScrollToTop() {
 }
 import Layout from './components/Layout';
 
-// Pages - to be created
-import Home from './pages/Index';
-import CollectionPage from './pages/CollectionPage';
-import ProductDetail from './pages/ProductDetail';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import SearchPage from './pages/SearchPage';
-import WishlistPage from './pages/WishlistPage';
-import ProfilePage from './pages/ProfilePage';
-import FaqPage from './pages/FaqPage';
-import AlterationsPage from './pages/AlterationsPage';
-import PrivacyPage from './pages/PrivacyPage';
-import TermsPage from './pages/TermsPage';
-import Auth from './pages/Auth';
-import Checkout from './pages/Checkout';
-import PaymentSuccess from './pages/PaymentSuccess';
-import PaymentCancel from './pages/PaymentCancel';
-import StyleQuiz from './pages/StyleQuiz';
-import AppointmentPage from './pages/AppointmentPage';
-import WeddingTimeline from './pages/WeddingTimeline';
-import WeddingChecklist from './pages/WeddingChecklist';
-import GalleryPage from './pages/GalleryPage';
-import NotFound from './pages/NotFound';
+// Pages - Lazy Loaded
+const Home = lazy(() => import('./pages/Index'));
+const CollectionPage = lazy(() => import('./pages/CollectionPage'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const SearchPage = lazy(() => import('./pages/SearchPage'));
+const WishlistPage = lazy(() => import('./pages/WishlistPage'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const FaqPage = lazy(() => import('./pages/FaqPage'));
+const AlterationsPage = lazy(() => import('./pages/AlterationsPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+const Auth = lazy(() => import('./pages/Auth'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
+const PaymentCancel = lazy(() => import('./pages/PaymentCancel'));
+const StyleQuiz = lazy(() => import('./pages/StyleQuiz'));
+const AppointmentPage = lazy(() => import('./pages/AppointmentPage'));
+const WeddingTimeline = lazy(() => import('./pages/WeddingTimeline'));
+const WeddingChecklist = lazy(() => import('./pages/WeddingChecklist'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Contexts
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -52,6 +52,7 @@ const AdminCalendar = lazy(() => import('./pages/admin/AdminCalendar'));
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings'));
 const AdminProducts = lazy(() => import('./pages/admin/AdminProducts'));
 const AdminContent = lazy(() => import('./pages/admin/AdminContent'));
+const AdminReviews = lazy(() => import('./pages/admin/AdminReviews'));
 
 const AdminOrders = lazy(() => import('./pages/admin/AdminOrders'));
 const AdminAppointments = lazy(() => import('./pages/admin/AdminAppointments'));
@@ -71,9 +72,9 @@ export default function App() {
       <ToastProvider>
         <QueryClientProvider client={queryClient}>
           <SettingsProvider>
-            <AuthProvider>
-              <WishlistProvider>
-                <LanguageProvider>
+            <LanguageProvider>
+              <AuthProvider>
+                <WishlistProvider>
                   <CartProvider>
                     <BrowserRouter>
                       <Suspense fallback={
@@ -87,9 +88,9 @@ export default function App() {
                       </Suspense>
                     </BrowserRouter>
                   </CartProvider>
-                </LanguageProvider>
-              </WishlistProvider>
-            </AuthProvider>
+                </WishlistProvider>
+              </AuthProvider>
+            </LanguageProvider>
           </SettingsProvider>
         </QueryClientProvider>
       </ToastProvider>
@@ -233,6 +234,7 @@ function AnimatedRoutes() {
           <Route path="appointments" element={<AdminAppointments />} />
           <Route path="content" element={<AdminContent />} />
           <Route path="gallery" element={<AdminGallery />} />
+          <Route path="reviews" element={<AdminReviews />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>

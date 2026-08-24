@@ -14,6 +14,7 @@ import { useFeature } from '../hooks/useFeature';
 import { useToast } from '../contexts/ToastContext';
 import { fetchApprovedReviews, submitReview, type Review } from '../services/reviews';
 import { uploadImage } from '../services/upload';
+import { translateProductValue } from '../lib/productVocab';
 import ProductCard from '../components/ProductCard';
 import AvailabilityCalendar from '../components/AvailabilityCalendar';
 import SizeGuide from '../components/SizeGuide';
@@ -165,7 +166,7 @@ export default function ProductDetail() {
       addToast({
         type: 'success',
         title: intent === 'rent' ? t('product.toast_rental') : t('product.toast_added'),
-        message: `${product.name} — ${intent === 'rent' ? 'rental booked' : 'added to your collection'}`
+        message: `${product.name} — ${intent === 'rent' ? t('product.toast_suffix_rental') : t('product.toast_suffix_added')}`
       });
       if (intent === 'rent') setShowConfirmation(true);
     }, 600);
@@ -215,7 +216,7 @@ export default function ProductDetail() {
           <nav className="flex gap-2 text-xs tracking-[0.2em] uppercase text-stone-600 mb-10">
             <Link to="/" className="hover:text-gold transition-colors">{t('nav.home')}</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link to={`/collection/${categoryToSlug(product.category)}`} className="hover:text-gold transition-colors">{product.category}</Link>
+            <Link to={`/collection/${categoryToSlug(product.category)}`} className="hover:text-gold transition-colors">{translateProductValue('category', product.category, language)}</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-stone-800 font-medium">{product.name}</span>
           </nav>
@@ -346,12 +347,12 @@ export default function ProductDetail() {
                 <div className="flex flex-col items-center gap-1.5 py-3">
                   <Gem className="w-4 h-4 text-gold" />
                   <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.fabric')}</span>
-                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.fabric || 'Luxury Blend'}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{translateProductValue('fabric', product.fabric, language) || t('product.fabric_default')}</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5 py-3 border-x border-stone-100">
                   <Sparkles className="w-4 h-4 text-gold" />
                   <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.silhouette')}</span>
-                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.silhouette || product.category}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{translateProductValue('silhouette', product.silhouette, language) || translateProductValue('category', product.category, language)}</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5 py-3">
                   <Wind className="w-4 h-4 text-gold" />
@@ -503,7 +504,7 @@ export default function ProductDetail() {
                       <div className="border-t border-stone-100">
                         <div className="flex justify-between py-3.5 px-5 bg-ivory">
                           <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.fabric')}</span>
-                          <span className="text-xs text-stone-800 font-medium tracking-wide">{product.fabric || 'Luxury Blend'}</span>
+                          <span className="text-xs text-stone-800 font-medium tracking-wide">{translateProductValue('fabric', product.fabric, language) || t('product.fabric_default')}</span>
                         </div>
                         <div className="flex justify-between py-3.5 px-5 bg-stone-50/50">
                           <span className="text-micro text-gold uppercase tracking-widest font-bold">{t('product.designer')}</span>
@@ -516,7 +517,7 @@ export default function ProductDetail() {
                               <span key={i} className="text-micro px-3 py-1 bg-stone-50 border border-stone-100 text-stone-600 uppercase tracking-[0.15em] font-medium">{tag}</span>
                             ))}
                             {product.category && (
-                              <span className="text-micro px-3 py-1 bg-gold/5 border border-gold/10 text-gold uppercase tracking-[0.15em] font-bold">{product.category}</span>
+                              <span className="text-micro px-3 py-1 bg-gold/5 border border-gold/10 text-gold uppercase tracking-[0.15em] font-bold">{translateProductValue('category', product.category, language)}</span>
                             )}
                           </div>
                         </div>

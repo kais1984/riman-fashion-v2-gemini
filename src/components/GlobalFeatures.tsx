@@ -4,8 +4,10 @@ import { MessageCircle, X, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useFeature } from '../hooks/useFeature';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function GlobalFeatures() {
+  const { t } = useLanguage();
   const whatsappEnabled = useFeature('whatsappBtn');
   const newsletterEnabled = useFeature('newsletter');
   const cookieEnabled = useFeature('cookieBanner');
@@ -47,8 +49,8 @@ export default function GlobalFeatures() {
           href="https://wa.me/971553730792" 
           target="_blank" 
           rel="noreferrer"
-          className="fixed bottom-20 right-4 md:bottom-10 md:right-10 z-[100] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform animate-bounce"
-          aria-label="Contact us on WhatsApp"
+          className="fixed bottom-20 right-4 md:bottom-10 md:right-10 z-[100] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
+          aria-label={t('common.whatsapp_label')}
         >
           <MessageCircle className="w-8 h-8 fill-current" />
         </a>
@@ -69,7 +71,7 @@ export default function GlobalFeatures() {
               <button 
                 onClick={handleDismissNewsletter}
                 className="absolute top-4 right-4 text-stone-600 hover:text-stone-800 transition-colors"
-                aria-label="Close"
+                aria-label={t('common.close')}
               >
                 <X className="w-5 h-5" />
               </button>
@@ -78,17 +80,17 @@ export default function GlobalFeatures() {
                 <div className="w-16 h-16 bg-ivory rounded-full flex items-center justify-center mx-auto mb-6 text-gold">
                   <Mail className="w-8 h-8" />
                 </div>
-                <h3 className="font-heading text-3xl text-stone-800 mb-4 tracking-wider uppercase">The Atelier Circle</h3>
-                <p className="text-stone-600 text-sm mb-8 leading-relaxed italic">Join for exclusive previews of our new bridal collections and private viewings in Sharjah.</p>
+                <h3 className="font-heading text-3xl text-stone-800 mb-4 tracking-wider uppercase">{t('newsletter.title')}</h3>
+                <p className="text-stone-600 text-sm mb-8 leading-relaxed italic">{t('newsletter.body')}</p>
                 
                 <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleDismissNewsletter(); }}>
                   <input 
                     type="email" 
-                    placeholder="E-mail Address" 
+                    placeholder={t('newsletter.email_placeholder')} 
                     className="w-full px-6 py-4 bg-stone-50 border border-stone-200 text-xs tracking-widest uppercase outline-none focus:border-gold"
-                    aria-label="Email address"
+                    aria-label={t('newsletter.email_aria')}
                   />
-                  <button className="w-full btn-luxury">Join The Society</button>
+                  <button className="w-full btn-luxury">{t('newsletter.cta')}</button>
                 </form>
               </div>
             </div>
@@ -107,15 +109,15 @@ export default function GlobalFeatures() {
           >
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-center md:text-left">
-                <p className="text-micro tracking-widest uppercase text-stone-600 mb-1">Privacy & Elegance</p>
-                <p className="text-xs text-stone-800 tracking-wide">We use cookies to curate a personalized atelier experience. <Link to="/privacy" className="underline hover:text-gold">Learn details</Link>.</p>
+                <p className="text-micro tracking-widest uppercase text-stone-600 mb-1">{t('cookies.heading')}</p>
+                <p className="text-xs text-stone-800 tracking-wide">{t('cookies.body')} <Link to="/privacy" className="underline hover:text-gold">{t('cookies.learn')}</Link>.</p>
               </div>
               <div className="flex gap-4">
                 <button 
                   onClick={handleAcceptCookies}
                   className="px-8 py-3 bg-stone-900 text-white text-micro tracking-[0.2em] uppercase hover:bg-stone-800 transition-all font-bold"
                 >
-                  Accept & Explore
+                  {t('cookies.accept')}
                 </button>
               </div>
             </div>

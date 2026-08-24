@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '@google/model-viewer';
 import { motion, AnimatePresence } from 'motion/react';
 import { Maximize2, RotateCcw, Box, Loader2, AlertTriangle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ThreeDViewerProps {
   src: string;
@@ -16,6 +17,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const { t } = useLanguage();
 
   useEffect(() => {
     const model = modelRef.current;
@@ -139,7 +141,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
                     <div className="w-14 h-14 rounded-full bg-rose-50 flex items-center justify-center mb-4">
                       <AlertTriangle className="w-6 h-6 text-rose-400" />
                     </div>
-                    <p className="text-sm font-semibold text-stone-700 mb-2">3D viewer unavailable</p>
+                    <p className="text-sm font-semibold text-stone-700 mb-2">{t('threed.unavailable')}</p>
                     <p className="text-micro text-stone-600 leading-relaxed mb-4">
                       {errorMessage}
                     </p>
@@ -147,7 +149,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
                       onClick={handleRetry}
                       className="btn-luxury !py-2 !px-6 text-micro"
                     >
-                      Retry
+                      {t('common.retry')}
                     </button>
                   </div>
                 </motion.div>
@@ -160,7 +162,7 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
             ) : (
               <div className="flex flex-col items-center gap-3">
                 <Box className="w-8 h-8 text-gold/30 animate-pulse" />
-                <span className="text-micro uppercase tracking-[0.2em] text-stone-600">Initializing 3D Detail</span>
+                <span className="text-micro uppercase tracking-[0.2em] text-stone-600">{t('threed.initializing')}</span>
               </div>
             )}
           </div>
@@ -169,8 +171,8 @@ const ThreeDViewer: React.FC<ThreeDViewerProps> = ({ src, poster, alt, className
             <button 
               onClick={handleReset}
               className="p-3 bg-ivory/80 backdrop-blur border border-stone-100 hover:bg-gold hover:text-white transition-all rounded-full"
-              title="Reset View"
-              aria-label="Reset view"
+              title={t('threed.reset_view')}
+              aria-label={t('threed.reset_view')}
             >
               <RotateCcw className="w-4 h-4" />
             </button>

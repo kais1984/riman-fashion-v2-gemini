@@ -3,6 +3,7 @@ import { supabase, isSupabaseConfigured } from '../services/supabase';
 import { getProfile } from '../services/auth';
 import { hashPassword } from '../lib/crypto';
 import { useToast } from './ToastContext';
+import { useLanguage } from './LanguageContext';
 
 interface User {
   id: string;
@@ -73,6 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const signingOutRef = useRef(false);
   const { addToast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (isSupabaseConfigured) {
@@ -124,12 +126,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (profile) {
         setUser({ id: profile.id, name: profile.name, email: profile.email, role: profile.role });
       } else {
-        addToast({ type: 'info', title: 'Profile not found', message: 'Some features may be limited.' });
+        addToast({ type: 'info', title: t('auth.profile_missing_title'), message: t('auth.limited_msg') });
         setUser({ id: userId, name: email.split('@')[0], email, role: 'client' });
       }
     } catch (err) {
       console.error('[Riman] Failed to load profile:', err);
-      addToast({ type: 'info', title: 'Could not load account', message: 'Some features may be limited.' });
+      addToast({ type: 'info', title: t('auth.load_fail_title'), message: t('auth.limited_msg') });
       setUser({ id: userId, name: email.split('@')[0], email, role: 'client' });
     }
   };
