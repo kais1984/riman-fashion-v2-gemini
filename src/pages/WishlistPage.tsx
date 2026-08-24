@@ -124,7 +124,7 @@ export default function WishlistPage() {
                     <button
                       onClick={() => removeFromWishlist(product.id)}
                       className="absolute top-4 right-4 z-10 w-8 h-8 bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-stone-600 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
-                      aria-label="Remove from selection"
+                      aria-label={t('wishlist.remove_aria')}
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -180,7 +180,7 @@ export default function WishlistPage() {
                 {isSharedView ? t('product.not_found') : t('selection.empty')}
               </h3>
               <p className="font-body text-stone-600 text-xs uppercase tracking-widest mb-10 italic">
-                {isSharedView ? t('selection.empty_desc') : t('selection.empty_desc')}
+                {t('selection.empty_desc')}
               </p>
               <Link to="/search" className="btn-luxury px-12 group flex items-center gap-3 mx-auto w-fit">
                 {t('selection.explore')} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

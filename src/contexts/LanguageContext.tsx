@@ -9,8 +9,6 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
 // Complete translation map for all UI elements
 const translations: Record<Language, Record<string, string>> = {
   en: {
@@ -421,6 +419,7 @@ const translations: Record<Language, Record<string, string>> = {
     'threed.unavailable': '3D viewer unavailable',
     'threed.reset_view': 'Reset View',
     'common.whatsapp_label': 'Chat with us on WhatsApp',
+    'wishlist.remove_aria': 'Remove from selection',
 
     // Checkout
     'checkout.empty': 'Your Bag is Empty',
@@ -1232,6 +1231,7 @@ const translations: Record<Language, Record<string, string>> = {
     'threed.unavailable': 'عارض المجسمات غير متاح',
     'threed.reset_view': 'إعادة ضبط العرض',
     'common.whatsapp_label': 'تواصلي معنا عبر واتساب',
+    'wishlist.remove_aria': 'إزالة من المختارات',
 
     // Checkout
     'checkout.empty': 'حقيبتك فارغة',
@@ -1636,6 +1636,15 @@ const translations: Record<Language, Record<string, string>> = {
   }
 };
 
+const fallbackValue: LanguageContextType = {
+  language: 'en',
+  isRtl: false,
+  setLanguage: () => {},
+  t: (key: string) => translations.en[key] || key,
+};
+
+const LanguageContext = createContext<LanguageContextType>(fallbackValue);
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     return (localStorage.getItem('riman_lang') as Language) || 'ar';
@@ -1661,8 +1670,4 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) throw new Error('useLanguage must be used within LanguageProvider');
-  return context;
-};
+export const useLanguage = () => useContext(LanguageContext);

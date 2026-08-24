@@ -12,7 +12,6 @@ import { translateProductValue } from '../lib/productVocab';
 import { useFeature } from '../hooks/useFeature';
 import { Skeleton } from './Skeleton';
 import { useProductAvailability } from '../hooks/useProductAvailability';
-import { format } from 'date-fns';
 
 interface ProductCardProps {
   product: Product;
@@ -37,6 +36,10 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
   const hasSizes = product.sizes && product.sizes.length > 0;
 
   const { start, end, isAvailable } = useProductAvailability(isRent ? product.id : undefined);
+
+  const availabilityLocale = language === 'ar' ? 'ar' : 'en';
+  const availabilityDateFormatter = new Intl.DateTimeFormat(availabilityLocale, { day: 'numeric', month: 'short' });
+  const availabilityDayFormatter = new Intl.DateTimeFormat(availabilityLocale, { day: 'numeric' });
 
   const toggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -258,7 +261,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
                   <p className="flex items-center gap-1 text-micro text-gold/80 tracking-wider">
                     <Calendar className="w-3 h-3" />
                     <span className="tracking-widest uppercase font-medium">
-                      {format(start, 'MMM d')}–{format(end, 'd')} {t('product.available')}
+                      {availabilityDateFormatter.format(start)}–{availabilityDayFormatter.format(end)} {t('product.available')}
                     </span>
                   </p>
                 )}
