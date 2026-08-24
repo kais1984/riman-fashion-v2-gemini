@@ -348,6 +348,14 @@ const translations: Record<Language, Record<string, string>> = {
     'calendar.booked': 'Booked',
     'calendar.prev': 'Previous month',
     'calendar.next': 'Next month',
+    'calendar.nextAvailable': 'Next available date',
+    'calendar.statusAvailable': 'available',
+    'calendar.statusBooked': 'booked',
+    'calendar.statusPast': 'past',
+    'calendar.selectedPrefix': 'Selected:',
+    'calendar.noAvailability': 'No availability in the next 6 months.',
+    'calendar.fallbackNotice': "Availability couldn't be loaded — showing approximate data.",
+    'calendar.retry': 'Retry',
 
     // Checkout
     'checkout.empty': 'Your Bag is Empty',
@@ -1086,6 +1094,14 @@ const translations: Record<Language, Record<string, string>> = {
     'calendar.booked': 'محجوز',
     'calendar.prev': 'الشهر السابق',
     'calendar.next': 'الشهر التالي',
+    'calendar.nextAvailable': 'أقرب تاريخ متاح',
+    'calendar.statusAvailable': 'متاح',
+    'calendar.statusBooked': 'محجوز',
+    'calendar.statusPast': 'ماضٍ',
+    'calendar.selectedPrefix': 'المحدد:',
+    'calendar.noAvailability': 'لا توجد مواعيد متاحة خلال الأشهر الستة القادمة.',
+    'calendar.fallbackNotice': 'تعذّر تحميل التوفر — تُعرض بيانات تقريبية.',
+    'calendar.retry': 'إعادة المحاولة',
 
     // Checkout
     'checkout.empty': 'حقيبتك فارغة',
