@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, isBefore, startOfToday, parseISO } from 'date-fns';
+import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, isBefore, startOfToday, parseISO, format } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { fetchBookedDates } from '../services/rentals';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface AvailabilityCalendarProps {
   productId?: string;
@@ -16,6 +17,10 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
   const [bookedDates, setBookedDates] = useState<Date[]>(initialBookedDates);
   const [loading, setLoading] = useState(false);
   const today = startOfToday();
+  const { t, isRtl } = useLanguage();
+  const months = t('calendar.months').split(',');
+  const PrevIcon = isRtl ? ChevronRight : ChevronLeft;
+  const NextIcon = isRtl ? ChevronLeft : ChevronRight;
 
   useEffect(() => {
     if (productId) {
@@ -35,20 +40,22 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
     return (
       <div className="flex items-center justify-between px-2 mb-6">
         <span className="font-heading text-lg text-stone-800 uppercase tracking-widest">
-          {format(currentMonth, 'MMMM yyyy')}
+          {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
         </span>
         <div className="flex gap-2">
           <button 
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
             className="p-1 hover:text-gold transition-colors"
+            aria-label={t('calendar.prev')}
           >
-            <ChevronLeft className="w-4 h-4" />
+            <PrevIcon className="w-4 h-4" />
           </button>
           <button 
             onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
             className="p-1 hover:text-gold transition-colors"
+            aria-label={t('calendar.next')}
           >
-            <ChevronRight className="w-4 h-4" />
+            <NextIcon className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -56,7 +63,7 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
   };
 
   const renderDays = () => {
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const days = t('calendar.days').split(',');
     return (
       <div className="grid grid-cols-7 mb-2">
         {days.map(day => (
@@ -119,11 +126,11 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
       <div className="mt-6 flex flex-wrap gap-4 justify-center">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-gold rounded-full" />
-          <span className="text-micro uppercase tracking-widest text-stone-600">Available</span>
+          <span className="text-micro uppercase tracking-widest text-stone-600">{t('calendar.available')}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-stone-100 rounded-full" />
-          <span className="text-micro uppercase tracking-widest text-stone-600">Booked</span>
+          <span className="text-micro uppercase tracking-widest text-stone-600">{t('calendar.booked')}</span>
         </div>
       </div>
     </div>

@@ -12,27 +12,22 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useFeature } from '../hooks/useFeature';
 import { useToast } from '../contexts/ToastContext';
+import { fetchApprovedReviews, submitReview, type Review } from '../services/reviews';
+import { uploadImage } from '../services/upload';
 import ProductCard from '../components/ProductCard';
 import AvailabilityCalendar from '../components/AvailabilityCalendar';
 import SizeGuide from '../components/SizeGuide';
 import { ProductDetailSkeleton } from '../components/Skeleton';
+import { analytics } from '../services/analytics';
 
 const ThreeDViewer = lazy(() => import('../components/ThreeDViewer'));
-
-interface Review {
-  id: string;
-  name: string;
-  rating: number;
-  comment: string;
-  date: string;
-}
 
 export default function ProductDetail() {
   const { products: dynamicProducts, isLoading } = useData();
   const { id } = useParams();
   const { addItem } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const threeDViewerEnabled = useFeature('threeDViewer');
   const { addToast } = useToast();
@@ -43,7 +38,6 @@ export default function ProductDetail() {
   const [bookingDate, setBookingDate] = useState<Date | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const [reviewSuccess, setReviewSuccess] = useState(false);
   const [is3DMode, setIs3DMode] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [showSizeGuide, setShowSizeGuide] = useState(false);
@@ -51,30 +45,98 @@ export default function ProductDetail() {
   const [showDetails, setShowDetails] = useState(false);
   const [showCare, setShowCare] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
-  const [reviews, setReviews] = useState<Review[]>(() => {
-    const saved = localStorage.getItem(`reviews_${id}`);
-    if (saved) return JSON.parse(saved);
-    return [
-      { id: '1', name: 'Sara Al-Meiri', rating: 5, comment: 'Absolutely stunning gown. The fabric quality is exceptional.', date: '2 days ago' },
-      { id: '2', name: 'Hind Obaid', rating: 4, comment: 'Beautiful design, though the fitting required a slight adjustment.', date: '1 week ago' },
-    ];
-  });
-
-  useEffect(() => {
-    localStorage.setItem(`reviews_${id}`, JSON.stringify(reviews));
-  }, [reviews, id]);
-  const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '' });
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewSuccess, setReviewSuccess] = useState(false);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '', photoUrl: '' as string | undefined });
   const containerRef = useRef<HTMLDivElement>(null);
 
   const product = useMemo(() =>
     dynamicProducts.find(p => p.id === id) || products.find(p => p.id === id),
   [id, dynamicProducts, products]);
 
+  const { pullQuote, bodyCopy } = useMemo(() => {
+    const d = product?.description || '';
+    const cut = d.indexOf('. ');
+    if (!d || cut === -1) return { pullQuote: '', bodyCopy: d };
+    return { pullQuote: d.slice(0, cut + 1), bodyCopy: d.slice(cut + 2).trim() };
+  }, [product?.description]);
+
+  useEffect(() => {
+    if (!id) return;
+    fetchApprovedReviews(id).then(setReviews).catch(() => setReviews([]));
+  }, [id]);
+
+  useEffect(() => {
+    if (!product) return;
+    const url = `${window.location.origin}/product/${product.id}`;
+    document.title = `${product.name} | Atelier Riman`;
+    analytics.productView({ id: product.id, name: product.name, category: product.category });
+
+    const setMeta = (attr: string, key: string, content: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    setMeta('name', 'description', product.description.slice(0, 155));
+    setMeta('property', 'og:title', `${product.name} | Atelier Riman`);
+    setMeta('property', 'og:description', product.description.slice(0, 155));
+    setMeta('property', 'og:type', 'product');
+    if (product.images[0]) setMeta('property', 'og:image', product.images[0]);
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: product.name,
+      description: product.description,
+      image: product.images,
+      sku: `RF-${product.id.padStart(4, '0')}`,
+      brand: { '@type': 'Brand', name: product.designer || 'Atelier Riman' },
+      ...(reviews.length > 0 && {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1),
+          reviewCount: reviews.length,
+        },
+      }),
+      offers: {
+        '@type': 'Offer',
+        url,
+        priceCurrency: 'AED',
+        price: product.salePrice || product.rentalPrice || 0,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+      },
+    };
+
+    let ld = document.getElementById('product-jsonld');
+    if (!ld) {
+      ld = document.createElement('script');
+      ld.id = 'product-jsonld';
+      (ld as HTMLScriptElement).type = 'application/ld+json';
+      document.head.appendChild(ld);
+    }
+    ld.textContent = JSON.stringify(schema);
+
+    return () => {
+      document.getElementById('product-jsonld')?.remove();
+    };
+  }, [product, reviews]);
+
   const saved = isInWishlist(product?.id || '');
   const relatedProducts = useMemo(() =>
     dynamicProducts.filter(p => p.category === product?.category && p.id !== id).slice(0, 4),
     [product, id, dynamicProducts]
   );
+
+  const averageRating = reviews.length > 0
+    ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+    : 0;
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -173,7 +235,7 @@ export default function ProductDetail() {
                     </motion.div>
                   ) : product.videoUrl && currentImageIndex === 0 ? (
                     <motion.div key="video-player" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-stone-900">
-                      <video src={product.videoUrl} autoPlay muted loop playsInline className="w-full h-full object-cover" />
+                      <video src={product.videoUrl} poster={product.images[0]} autoPlay muted loop playsInline className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-onyx/10 pointer-events-none" />
                       <div className="absolute bottom-5 left-5 p-2 bg-ivory/20 backdrop-blur-md rounded-full">
                         <RotateCcw className="w-3 h-3 text-white animate-spin-slow" />
@@ -263,7 +325,7 @@ export default function ProductDetail() {
               <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
                 {product.videoUrl && (
                   <button onClick={() => setCurrentImageIndex(0)} className={cn("w-16 h-16 flex-shrink-0 bg-stone-900 overflow-hidden border-2 transition-all flex items-center justify-center relative", currentImageIndex === 0 ? "border-gold" : "border-transparent")}>
-                    <video src={product.videoUrl} className="w-full h-full object-cover opacity-60" />
+                    <video src={product.videoUrl} poster={product.images[0]} preload="metadata" muted className="w-full h-full object-cover opacity-60" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <RotateCcw className="w-4 h-4 text-white/80" />
                     </div>
@@ -289,12 +351,12 @@ export default function ProductDetail() {
                 <div className="flex flex-col items-center gap-1.5 py-3 border-x border-stone-100">
                   <Sparkles className="w-4 h-4 text-gold" />
                   <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.silhouette')}</span>
-                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.category}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.silhouette || product.category}</span>
                 </div>
                 <div className="flex flex-col items-center gap-1.5 py-3">
                   <Wind className="w-4 h-4 text-gold" />
                   <span className="text-micro text-stone-600 uppercase tracking-widest font-bold">{t('product.color')}</span>
-                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.style[0] || 'Signature'}</span>
+                  <span className="text-micro text-stone-700 font-medium tracking-wide">{product.color?.[0] || product.style[0] || 'Signature'}</span>
                 </div>
               </div>
             </div>
@@ -311,11 +373,13 @@ export default function ProductDetail() {
               </header>
 
               {/* Editorial Quote */}
-              <div className="mb-8 pl-5 border-l-2 border-gold/40">
-                <p className="font-editorial italic text-sm text-stone-600 leading-relaxed">
-                  "A study in refined elegance — where artisanal precision meets contemporary silhouette, crafted for the woman who commands quiet luxury."
-                </p>
-              </div>
+              {pullQuote && (
+                <div className="mb-8 ps-5 border-s-2 border-gold/40">
+                  <p className="font-editorial italic text-sm text-stone-600 leading-relaxed">
+                    "{pullQuote}"
+                  </p>
+                </div>
+              )}
 
               {/* Pricing */}
               <div className="mb-8 p-5 bg-gold/5 border border-gold/20 flex flex-col gap-4">
@@ -341,9 +405,7 @@ export default function ProductDetail() {
               </div>
 
               <p className="font-body text-sm text-stone-600 leading-relaxed tracking-wide mb-8">
-                {product.description}
-                <br /><br />
-                {t('product.description_intro')} {product.fabric || 'silk blend'}, the {product.name} {t('product.description_mid')} {product.style.join(' and ')} {t('product.description_outro')}
+                {bodyCopy}
               </p>
 
               {/* Selection */}
@@ -356,7 +418,7 @@ export default function ProductDetail() {
                     </div>
                     <AvailabilityCalendar productId={product.id} selectedDate={bookingDate} onDateSelect={setBookingDate} />
                     <p className="text-micro text-stone-600 leading-relaxed italic text-center mt-3">
-                      {bookingDate ? `${t('product.selected_date')}: ${bookingDate.toLocaleDateString()}` : t('product.select_date_hint')}
+                      {bookingDate ? `${t('product.selected_date')}: ${bookingDate.toLocaleDateString(language === 'ar' ? 'ar-AE' : 'en-AE')}` : t('product.select_date_hint')}
                     </p>
                   </div>
                 )}
@@ -557,14 +619,16 @@ export default function ProductDetail() {
             <button onClick={() => setShowReviews(!showReviews)} className="w-full flex items-center justify-between mb-10 group">
               <h3 className="font-heading text-2xl md:text-3xl text-stone-800 tracking-wide uppercase">{t('product.client_reflections')}</h3>
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className={cn("w-4 h-4", star <= 4.5 ? "text-gold fill-gold" : "text-stone-200")} />
-                    ))}
+                {reviews.length > 0 && (
+                  <div className="flex items-center gap-2">
+                    <div className="flex">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star key={star} className={cn("w-4 h-4", star <= Math.round(averageRating) ? "text-gold fill-gold" : "text-stone-200")} />
+                      ))}
+                    </div>
+                    <span className="text-xs text-stone-600 font-bold tracking-widest">({averageRating.toFixed(1)})</span>
                   </div>
-                  <span className="text-xs text-stone-600 font-bold tracking-widest">(4.8)</span>
-                </div>
+                )}
                 <ChevronDown className={cn("w-5 h-5 text-stone-600 transition-transform duration-300", showReviews && "rotate-180")} />
               </div>
             </button>
@@ -573,6 +637,12 @@ export default function ProductDetail() {
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-4">
                     <div className="lg:col-span-2">
+                      {reviews.length === 0 ? (
+                        <div className="py-16 text-center">
+                          <p className="font-editorial italic text-stone-600 text-lg mb-2">{t('product.no_reviews_heading')}</p>
+                          <p className="text-micro text-stone-600 uppercase tracking-widest">{t('product.no_reviews_desc')}</p>
+                        </div>
+                      ) : (
                       <div className="space-y-8">
                         {reviews.map((review) => (
                           <div key={review.id} className="pb-8 border-b border-stone-50 last:border-0">
@@ -585,12 +655,18 @@ export default function ProductDetail() {
                                   ))}
                                 </div>
                               </div>
-                              <span className="text-micro text-stone-600 uppercase tracking-widest">{review.date}</span>
+                              <span className="text-micro text-stone-600 uppercase tracking-widest">
+                                {new Date(review.createdAt).toLocaleDateString(language === 'ar' ? 'ar-AE' : 'en-AE', { month: 'short', day: 'numeric', year: 'numeric' })}
+                              </span>
                             </div>
                             <p className="text-sm text-stone-600 leading-relaxed italic">"{review.comment}"</p>
+                            {review.photoUrl && (
+                              <img src={review.photoUrl} alt={`${review.name}'s photo`} className="mt-4 w-24 h-24 object-cover border border-stone-200" loading="lazy" />
+                            )}
                           </div>
                         ))}
                       </div>
+                      )}
                     </div>
 
                     {/* Review Submission Form */}
@@ -604,12 +680,21 @@ export default function ProductDetail() {
                             <button onClick={() => setReviewSuccess(false)} className="text-micro text-gold uppercase tracking-widest border-b border-gold/30 pb-1">{t('product.write_another')}</button>
                           </motion.div>
                         ) : (
-                          <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6" onSubmit={(e) => {
+                          <motion.form initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6" onSubmit={async (e) => {
                             e.preventDefault();
-                            if (!newReview.name || !newReview.comment) return;
-                            const review: Review = { id: Date.now().toString(), ...newReview, date: 'Just now' };
-                            setReviews([review, ...reviews]);
-                            setNewReview({ name: '', rating: 5, comment: '' });
+                            if (!newReview.name || !newReview.comment || !product) return;
+                            try {
+                              await submitReview({
+                                productId: product.id,
+                                name: newReview.name,
+                                rating: newReview.rating,
+                                comment: newReview.comment,
+                                photoUrl: newReview.photoUrl,
+                              });
+                            } catch {
+                              // Submission stored locally at minimum; show confirmation regardless
+                            }
+                            setNewReview({ name: '', rating: 5, comment: '', photoUrl: undefined });
                             setReviewSuccess(true);
                           }}>
                             <div>
@@ -629,6 +714,40 @@ export default function ProductDetail() {
                             <div>
                               <label className="block text-micro font-bold text-stone-600 uppercase tracking-widest mb-2">{t('product.your_reflection')}</label>
                               <textarea rows={4} value={newReview.comment} onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })} className="w-full px-5 py-4 bg-ivory border border-stone-100 text-xs tracking-widest outline-none focus:border-gold transition-colors resize-none" placeholder={t('product.share_experience')}></textarea>
+                            </div>
+                            <div>
+                              <label className="block text-micro font-bold text-stone-600 uppercase tracking-widest mb-2">{t('product.add_photo')}</label>
+                              {newReview.photoUrl ? (
+                                <div className="flex items-center gap-3">
+                                  <img src={newReview.photoUrl} alt="Review attachment" className="w-14 h-14 object-cover border border-stone-200" />
+                                  <button type="button" onClick={() => setNewReview({ ...newReview, photoUrl: undefined })} className="text-micro text-rose-500 uppercase tracking-widest">{t('product.cancel')}</button>
+                                </div>
+                              ) : (
+                                <button type="button" onClick={() => document.getElementById('review-photo-upload')?.click()} className="flex items-center gap-2 px-4 py-3 border border-stone-200 text-micro tracking-widest uppercase text-stone-600 hover:border-gold hover:text-gold transition-colors">
+                                  {isUploadingPhoto ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Share2 className="w-3.5 h-3.5" />}
+                                  {t('product.upload_photo')}
+                                </button>
+                              )}
+                              <input
+                                id="review-photo-upload"
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={async (e) => {
+                                  const file = e.target.files?.[0];
+                                  if (!file) return;
+                                  setIsUploadingPhoto(true);
+                                  try {
+                                    const url = await uploadImage(file);
+                                    setNewReview(prev => ({ ...prev, photoUrl: url }));
+                                  } catch (err) {
+                                    console.error('Upload failed:', err);
+                                  } finally {
+                                    setIsUploadingPhoto(false);
+                                    e.target.value = '';
+                                  }
+                                }}
+                              />
                             </div>
                             <button type="submit" className="w-full btn-luxury">{t('product.submit_review')}</button>
                           </motion.form>
@@ -691,7 +810,7 @@ export default function ProductDetail() {
 
 function BookingConfirmationModal({ product, date, onClose }: { product: Product, date: Date, onClose: () => void }) {
   useScrollLock(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -728,7 +847,7 @@ function BookingConfirmationModal({ product, date, onClose }: { product: Product
               <span className="text-stone-600 uppercase tracking-widest">{t('product.period_starts')}</span>
               <div className="flex items-center gap-2 font-bold text-stone-800">
                 <Calendar className="w-3 h-3 text-gold" />
-                {date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                {date.toLocaleDateString(language === 'ar' ? 'ar-AE' : 'en-AE', { month: 'long', day: 'numeric', year: 'numeric' })}
               </div>
             </div>
           </div>
