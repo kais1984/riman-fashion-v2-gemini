@@ -106,6 +106,14 @@ describe('AvailabilityCalendar', () => {
     await waitFor(() => expect(screen.queryByRole('button', { name: /retry/i })).toBeNull());
   });
 
+  it('clears the selection and announces when a refetch reveals it booked', async () => {
+    const d = addDays(TODAY, 10);
+    mockedFetch.mockResolvedValue([format(d, 'yyyy-MM-dd')]);
+    const onDateSelect = renderCalendar({ productId: 'p1', selectedDate: d });
+    await waitFor(() => expect(onDateSelect).toHaveBeenCalledWith(null));
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain('booked'));
+  });
+
   it('flips horizontal arrow direction under RTL', async () => {
     localStorage.setItem('riman_lang', 'ar');
     renderCalendar();

@@ -44,7 +44,10 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
           setAnnouncement(t('calendar.statusBooked'));
         }
       })
-      .catch(() => setStale(true))
+      .catch(() => {
+        setStale(true);
+        setAnnouncement(t('calendar.fallbackNotice'));
+      })
       .finally(() => setLoading(false));
   }, [productId, onDateSelect, t]);
 
@@ -182,14 +185,6 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
         </p>
       )}
 
-      <div className="grid grid-cols-7 mb-2">
-        {dayNames.map(day => (
-          <div key={day} className="text-micro font-bold text-stone-600 uppercase tracking-widest text-center py-2">
-            {day}
-          </div>
-        ))}
-      </div>
-
       <div
         ref={gridRef}
         role="grid"
@@ -199,6 +194,13 @@ export default function AvailabilityCalendar({ productId, bookedDates: initialBo
         onKeyDown={handleKeyDown}
         className="grid grid-cols-7 gap-px bg-stone-100 border border-stone-100"
       >
+        <div role="row" className="contents">
+          {dayNames.map(day => (
+            <div key={day} role="columnheader" className="text-micro font-bold text-stone-600 uppercase tracking-widest text-center py-2 bg-ivory">
+              {day}
+            </div>
+          ))}
+        </div>
         {weeks.map((week, wi) => (
           <div role="row" key={`w${wi}`} className="contents">
             {week.map(date => {
