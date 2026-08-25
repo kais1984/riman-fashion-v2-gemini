@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /auth
 Disallow: /admin
 Disallow: /checkout
 Disallow: /profile
-Disallow: /wishlist
+Disallow: /auth
 
-Sitemap: https://rimanfashion.com/sitemap.xml
+Sitemap: https://www.rimanfashion.com/sitemap.xml

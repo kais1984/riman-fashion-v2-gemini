@@ -126,6 +126,24 @@ export default function ProductDetail() {
     }
     ld.textContent = JSON.stringify(schema);
 
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
+        { '@type': 'ListItem', position: 2, name: product.category, item: `${window.location.origin}/collection` },
+        { '@type': 'ListItem', position: 3, name: productName },
+      ],
+    };
+    let bc = document.getElementById('breadcrumb-jsonld');
+    if (!bc) {
+      bc = document.createElement('script');
+      bc.id = 'breadcrumb-jsonld';
+      (bc as HTMLScriptElement).type = 'application/ld+json';
+      document.head.appendChild(bc);
+    }
+    bc.textContent = JSON.stringify(breadcrumbSchema);
+
     return () => {
       document.getElementById('product-jsonld')?.remove();
     };
