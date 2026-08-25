@@ -7,8 +7,7 @@ test('logo keeps clearance from both header navs (EN)', async ({ page }) => {
   for (const width of [1280, 1366, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#root > *', { timeout: 45000 });
-    await page.waitForTimeout(600);
+    await page.waitForSelector('#logo', { timeout: 45000 });
     const gap = await page.evaluate(() => {
       const logo = document.querySelector('#logo')!.getBoundingClientRect();
       const navs = Array.from(document.querySelectorAll('header nav'))
