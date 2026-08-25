@@ -59,3 +59,11 @@ export function translateProductValue(field: VocabField, value: string | undefin
   if (language !== 'ar') return value;
   return AR_VOCAB[field][value] ?? value;
 }
+
+export function localizedContent(product: { name: string; nameAr?: string; description: string; descriptionAr?: string }, language: 'en' | 'ar'): { name: string; description: string } {
+  if (language !== 'ar') return { name: product.name, description: product.description };
+  return {
+    name: product.nameAr || product.name,
+    description: product.descriptionAr || product.description,
+  };
+}

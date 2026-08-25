@@ -8,7 +8,7 @@ import { cn, formatPrice } from '../lib/utils';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translateProductValue } from '../lib/productVocab';
+import { translateProductValue, localizedContent } from '../lib/productVocab';
 import { useFeature } from '../hooks/useFeature';
 import { Skeleton } from './Skeleton';
 import { useProductAvailability } from '../hooks/useProductAvailability';
@@ -29,6 +29,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addItem } = useCart();
   const { t, language } = useLanguage();
+  const { name: productName } = localizedContent(product, language);
 
   const isSale = product.productType === 'sale' || product.productType === 'both';
   const isRent = product.productType === 'rent' || product.productType === 'both';
@@ -95,7 +96,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           {!imageLoaded && <Skeleton className="absolute inset-0 w-full h-full rounded-none" />}
           <img 
             src={product.images[0]} 
-            alt={product.name}
+            alt={productName}
             loading="lazy"
             referrerPolicy="no-referrer"
             onLoad={() => setImageLoaded(true)}
@@ -237,7 +238,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
           </span>
         )}
           <Link to={`/product/${product.id}`} className="block font-heading text-xl text-stone-900 tracking-tight hover:text-gold transition-colors leading-[1.1]">
-            {product.name}
+            {productName}
         </Link>
         {product.fabric && (
           <p className="font-editorial italic text-sm text-stone-600">{translateProductValue('fabric', product.fabric, language)}</p>

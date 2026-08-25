@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { translateProductValue } from '../../lib/productVocab';
+import { translateProductValue, localizedContent } from '../../lib/productVocab';
 import { Product } from '../../types';
 
 interface EditorialPlateProps {
@@ -13,6 +13,7 @@ interface EditorialPlateProps {
 
 export default function EditorialPlate({ product, index, reverse }: EditorialPlateProps) {
   const { t, language } = useLanguage();
+  const { name: productName } = localizedContent(product, language);
   const lookNumber = String(index + 1).padStart(2, '0');
 
   return (
@@ -20,7 +21,7 @@ export default function EditorialPlate({ product, index, reverse }: EditorialPla
       <div className={cn('relative overflow-hidden md:col-span-7', reverse && 'md:order-2')}>
         <img
           src={product.images[0]}
-          alt={product.name}
+          alt={productName}
           loading="lazy"
           className="aspect-[3/4] w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.04]"
         />
@@ -32,7 +33,7 @@ export default function EditorialPlate({ product, index, reverse }: EditorialPla
         <span className="font-label text-xs tracking-[0.3em] uppercase text-gold">
           {t('silhouettes.look')} {lookNumber}
         </span>
-        <h3 className="font-heading text-2xl md:text-3xl font-light text-stone-800">{product.name}</h3>
+        <h3 className="font-heading text-2xl md:text-3xl font-light text-stone-800">{productName}</h3>
         {product.fabric && (
           <p className="font-editorial italic text-stone-600">{translateProductValue('fabric', product.fabric, language)}</p>
         )}

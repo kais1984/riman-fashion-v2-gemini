@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { useData } from '../contexts/DataContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import { localizedContent } from '../lib/productVocab';
 
 export default function SearchPage() {
   const { products } = useData();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
@@ -18,15 +19,16 @@ export default function SearchPage() {
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
       const q = query.toLowerCase();
+      const { name, description } = localizedContent(product, language);
       const matchesQuery = !q ||
-        product.name.toLowerCase().includes(q) ||
-        product.description.toLowerCase().includes(q) ||
+        name.toLowerCase().includes(q) ||
+        description.toLowerCase().includes(q) ||
         product.category.toLowerCase().includes(q) ||
         (product.style || []).some((s: string) => s.toLowerCase().includes(q));
       const matchesCategory = !activeCategory || product.category === activeCategory;
       return matchesQuery && matchesCategory;
     });
-  }, [query, activeCategory, products]);
+  }, [query, activeCategory, products, language]);
 
   return (
     <div className="pt-24 bg-ivory min-h-screen">

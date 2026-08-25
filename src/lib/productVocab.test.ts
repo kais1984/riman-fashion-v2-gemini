@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { products } from '../data/products';
-import { AR_VOCAB, translateProductValue } from './productVocab';
+import { AR_VOCAB, translateProductValue, localizedContent } from './productVocab';
 
 describe('translateProductValue', () => {
   it('returns the original value for en', () => {
@@ -27,5 +27,19 @@ describe('vocab exhaustiveness', () => {
       if (p.silhouette && !AR_VOCAB.silhouette[p.silhouette]) missing.push(`silhouette:${p.silhouette}`);
     }
     expect(missing).toEqual([]);
+  });
+});
+
+describe('localizedContent', () => {
+  const p = { name: 'Test Gown', nameAr: 'فستان تجريبي', description: 'Desc', descriptionAr: 'وصف' };
+  it('returns en fields for en', () => {
+    expect(localizedContent(p, 'en')).toEqual({ name: 'Test Gown', description: 'Desc' });
+  });
+  it('returns ar fields for ar', () => {
+    expect(localizedContent(p, 'ar')).toEqual({ name: 'فستان تجريبي', description: 'وصف' });
+  });
+  it('falls back to en fields when ar fields missing', () => {
+    const p2 = { name: 'X', description: 'Y' };
+    expect(localizedContent(p2, 'ar')).toEqual({ name: 'X', description: 'Y' });
   });
 });

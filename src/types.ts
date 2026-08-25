@@ -4,7 +4,9 @@ export type Category = "Bridal Gown" | "Evening Dress" | "Accessory" | "Fine Jew
 export interface Product {
   id: string;
   name: string;
+  nameAr?: string;
   description: string;
+  descriptionAr?: string;
   productType: ProductType;
   salePrice?: number;
   rentalPrice?: number;
@@ -23,6 +25,7 @@ export interface Product {
   videoUrl?: string;
   collectionYear?: number;
   silhouette?: string;
+  sortOrder?: number;
 }
 
 export interface Testimonial {

@@ -14,7 +14,7 @@ import { useFeature } from '../hooks/useFeature';
 import { useToast } from '../contexts/ToastContext';
 import { fetchApprovedReviews, submitReview, type Review } from '../services/reviews';
 import { uploadImage } from '../services/upload';
-import { translateProductValue } from '../lib/productVocab';
+import { translateProductValue, localizedContent } from '../lib/productVocab';
 import ProductCard from '../components/ProductCard';
 import AvailabilityCalendar from '../components/AvailabilityCalendar';
 import SizeGuide from '../components/SizeGuide';
@@ -56,8 +56,10 @@ export default function ProductDetail() {
     dynamicProducts.find(p => p.id === id) || products.find(p => p.id === id),
   [id, dynamicProducts, products]);
 
+  const { name: productName, description: productDescription } = localizedContent(product ?? { name: '', description: '' }, language);
+
   const { pullQuote, bodyCopy } = useMemo(() => {
-    const d = product?.description || '';
+    const d = productDescription || '';
     const cut = d.indexOf('. ');
     if (!d || cut === -1) return { pullQuote: '', bodyCopy: d };
     return { pullQuote: d.slice(0, cut + 1), bodyCopy: d.slice(cut + 2).trim() };
@@ -71,8 +73,8 @@ export default function ProductDetail() {
   useEffect(() => {
     if (!product) return;
     const url = `${window.location.origin}/product/${product.id}`;
-    document.title = `${product.name} | Atelier Riman`;
-    analytics.productView({ id: product.id, name: product.name, category: product.category });
+    document.title = `${productName} | Atelier Riman`;
+    analytics.productView({ id: product.id, name: productName, category: product.category });
 
     const setMeta = (attr: string, key: string, content: string) => {
       let el = document.querySelector(`meta[${attr}="${key}"]`);
@@ -84,17 +86,17 @@ export default function ProductDetail() {
       el.setAttribute('content', content);
     };
 
-    setMeta('name', 'description', product.description.slice(0, 155));
-    setMeta('property', 'og:title', `${product.name} | Atelier Riman`);
-    setMeta('property', 'og:description', product.description.slice(0, 155));
+    setMeta('name', 'description', productDescription.slice(0, 155));
+    setMeta('property', 'og:title', `${productName} | Atelier Riman`);
+    setMeta('property', 'og:description', productDescription.slice(0, 155));
     setMeta('property', 'og:type', 'product');
     if (product.images[0]) setMeta('property', 'og:image', product.images[0]);
 
     const schema = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      name: product.name,
-      description: product.description,
+      name: productName,
+      description: productDescription,
       image: product.images,
       sku: `RF-${product.id.padStart(4, '0')}`,
       brand: { '@type': 'Brand', name: product.designer || 'Atelier Riman' },
@@ -166,7 +168,7 @@ export default function ProductDetail() {
       addToast({
         type: 'success',
         title: intent === 'rent' ? t('product.toast_rental') : t('product.toast_added'),
-        message: `${product.name} — ${intent === 'rent' ? t('product.toast_suffix_rental') : t('product.toast_suffix_added')}`
+        message: `${productName} — ${intent === 'rent' ? t('product.toast_suffix_rental') : t('product.toast_suffix_added')}`
       });
       if (intent === 'rent') setShowConfirmation(true);
     }, 600);
@@ -200,7 +202,7 @@ export default function ProductDetail() {
       if (!isInWishlist(product.id)) addToWishlist(product);
       const gowns: GownRef[] = [{
         id: product.id,
-        name: product.name,
+        name: productName,
         size: selectedSize || undefined,
         intent: isRent ? 'rent' : 'sale',
       }];
@@ -218,7 +220,7 @@ export default function ProductDetail() {
             <ChevronRight className="w-3 h-3" />
             <Link to={`/collection/${categoryToSlug(product.category)}`} className="hover:text-gold transition-colors">{translateProductValue('category', product.category, language)}</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-stone-800 font-medium">{product.name}</span>
+            <span className="text-stone-800 font-medium">{productName}</span>
           </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-[48fr_52fr] gap-10 lg:gap-14 mb-20">
@@ -230,7 +232,7 @@ export default function ProductDetail() {
                     <motion.div key="3d-viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
                       <div className="w-full h-full">
                         <Suspense fallback={<div className="w-full h-full flex items-center justify-center bg-stone-50"><Loader2 className="w-8 h-8 text-gold animate-spin" /></div>}>
-                          <ThreeDViewer src={product.glbUrl} poster={product.images[0]} alt={`${product.name} 3D model`} className="w-full h-full border border-gold/20" />
+                          <ThreeDViewer src={product.glbUrl} poster={product.images[0]} alt={`${productName} 3D model`} className="w-full h-full border border-gold/20" />
                         </Suspense>
                       </div>
                     </motion.div>
@@ -256,7 +258,7 @@ export default function ProductDetail() {
                     >
                       <motion.img
                         src={product.images[product.videoUrl ? currentImageIndex - 1 : currentImageIndex]}
-                        alt={product.name}
+                        alt={productName}
                         fetchPriority="high"
                         animate={{
                           scale: isZoomed ? 1.8 : 1,
@@ -311,7 +313,7 @@ export default function ProductDetail() {
                   </button>
                   {showShareMenu && (
                     <div className="absolute bottom-12 right-0 bg-ivory border border-stone-100 p-2 w-44">
-                      <a href={`https://wa.me/?text=${encodeURIComponent(`Check out ${product.name} at Riman Fashion: ${window.location.origin}/product/${product.id}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2.5 text-micro tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
+                      <a href={`https://wa.me/?text=${encodeURIComponent(`Check out ${productName} at Riman Fashion: ${window.location.origin}/product/${product.id}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2.5 text-micro tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
                         WhatsApp
                       </a>
                       <button onClick={() => { navigator.clipboard.writeText(window.location.href); setShowShareMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-micro tracking-wider uppercase text-stone-700 hover:bg-pearl transition-colors">
@@ -336,7 +338,7 @@ export default function ProductDetail() {
                   const index = product.videoUrl ? i + 1 : i;
                   return (
                     <button key={i} onClick={() => setCurrentImageIndex(index)} className={cn("w-16 h-16 flex-shrink-0 bg-stone-100 overflow-hidden border-2 transition-all", currentImageIndex === index ? "border-gold" : "border-transparent")}>
-                      <img src={img} className="w-full h-full object-cover" alt={`${product.name} thumbnail ${i + 1}`} />
+                      <img src={img} className="w-full h-full object-cover" alt={`${productName} thumbnail ${i + 1}`} />
                     </button>
                   );
                 })}
@@ -366,7 +368,7 @@ export default function ProductDetail() {
             <div className="flex flex-col lg:sticky lg:top-28 lg:self-start">
               <header className="mb-8">
                 <span className="text-micro tracking-[0.3em] uppercase text-gold block mb-2 font-bold">{product.designer || 'Riman Atelier'}</span>
-                <h1 className="font-heading text-3xl md:text-4xl text-stone-800 tracking-wider mb-3 leading-tight">{product.name}</h1>
+                <h1 className="font-heading text-3xl md:text-4xl text-stone-800 tracking-wider mb-3 leading-tight">{productName}</h1>
                 <div className="flex gap-3">
                   {product.isNew && <span className="text-gold text-micro uppercase tracking-widest border border-gold/30 px-3 py-1 font-bold">{t('product.limited_edition')}</span>}
                   <span className="text-stone-600 text-micro uppercase tracking-widest border border-stone-200 px-3 py-1 font-medium">SKU: RF-{product.id.padStart(4, '0')}</span>
@@ -780,7 +782,7 @@ export default function ProductDetail() {
         {/* Mobile Sticky Bottom Bar */}
         <div className="fixed bottom-0 left-0 right-0 z-50 bg-ivory border-t border-stone-200 p-4 flex items-center gap-4 lg:hidden">
           <div className="flex-1 min-w-0">
-            <p className="font-heading text-micro tracking-wider uppercase text-stone-800 truncate">{product.name}</p>
+            <p className="font-heading text-micro tracking-wider uppercase text-stone-800 truncate">{productName}</p>
             <p className="font-heading text-sm text-gold"><span className="text-micro font-body text-stone-600 uppercase tracking-wider me-1">{t('pricing.from')}</span>{formatPrice(isSale ? (product.salePrice || 0) : (isRent ? (product.rentalPrice || 0) : 0))}</p>
           </div>
           <div className="flex flex-col gap-1.5 shrink-0">
@@ -844,7 +846,7 @@ function BookingConfirmationModal({ product, date, onClose }: { product: Product
           <div className="bg-stone-50 p-6 mb-10 text-left space-y-4">
             <div className="flex justify-between items-center text-xs pb-4 border-b border-stone-100">
               <span className="text-stone-600 uppercase tracking-widest">{t('product.selection')}</span>
-              <span className="font-bold text-stone-800">{product.name}</span>
+               <span className="font-bold text-stone-800">{product.name}</span>
             </div>
             <div className="flex justify-between items-center text-xs pb-4 border-b border-stone-100">
               <span className="text-stone-600 uppercase tracking-widest">{t('product.period_starts')}</span>
