@@ -62,6 +62,27 @@ export async function createRentalBooking(booking: RentalBooking): Promise<Renta
   return data;
 }
 
+export async function fetchProductBookings(productId: string): Promise<RentalBooking[]> {
+  const { data, error } = await supabase
+    .from('rental_bookings')
+    .select('*')
+    .eq('product_id', productId)
+    .neq('status', 'cancelled')
+    .order('start_date', { ascending: true });
+
+  if (error) throw error;
+  return data || [];
+}
+
+export async function deleteRentalBooking(id: string): Promise<void> {
+  const { error } = await supabase
+    .from('rental_bookings')
+    .delete()
+    .eq('id', id);
+
+  if (error) throw error;
+}
+
 export async function updateRentalBookingStatus(id: string, status: string, notes?: string): Promise<RentalBooking> {
   const updates: any = { status, updated_at: new Date().toISOString() };
   if (notes) updates.condition_notes = notes;

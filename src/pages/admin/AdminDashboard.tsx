@@ -17,10 +17,10 @@ interface DashboardStats {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Bridal Gown': '#8B7355',
-  'Evening Dress': '#D4A574',
-  'Accessory': '#C4A882',
-  'Fine Jewelry': '#F5F0E8',
+  'Bridal Gown': '#A2492B',
+  'Evening Dress': '#C45A3C',
+  'Accessory': '#7A3520',
+  'Fine Jewelry': '#E8E3D9',
 };
 
 export default function AdminDashboard() {
@@ -74,7 +74,7 @@ export default function AdminDashboard() {
       const categoryBreakdown = Array.from(catCount.entries()).map(([name, count]) => ({
         name,
         value: Math.round((count / total) * 100),
-        color: CATEGORY_COLORS[name] || '#8B7355',
+        color: CATEGORY_COLORS[name] || '#A2492B',
       }));
 
       setStats({
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
         newClients: clientsResult.length,
         totalOrders: orders.length,
         monthlyRevenue: monthlyRevenue.length > 0 ? monthlyRevenue : [{ name: 'No data', revenue: 0 }],
-        categoryBreakdown: categoryBreakdown.length > 0 ? categoryBreakdown : [{ name: 'No data', value: 100, color: '#e5e5e5' }],
+        categoryBreakdown: categoryBreakdown.length > 0 ? categoryBreakdown : [{ name: 'No data', value: 100, color: '#E8E3D9' }],
         recentOrders: orders.slice(0, 6),
       });
     } catch (err: any) {
@@ -144,15 +144,15 @@ export default function AdminDashboard() {
               <AreaChart data={s.monthlyRevenue}>
                 <defs>
                   <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8B7355" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#8B7355" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#A2492B" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#A2492B" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#A8A29E' }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#A8A29E' }} />
-                <Tooltip contentStyle={{ backgroundColor: '#1C1917', border: 'none', borderRadius: '0', color: '#fff', fontSize: '12px' }} itemStyle={{ color: '#D4A574' }} />
-                <Area type="monotone" dataKey="revenue" stroke="#8B7355" fillOpacity={1} fill="url(#colorRevenue)" strokeWidth={2} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E8E3D9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#57534E' }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#57534E' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#161513', border: 'none', borderRadius: '0', color: '#EFEAE2', fontSize: '12px' }} itemStyle={{ color: '#C45A3C' }} />
+                <Area type="monotone" dataKey="revenue" stroke="#A2492B" fillOpacity={1} fill="url(#colorRevenue)" strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -164,7 +164,7 @@ export default function AdminDashboard() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={s.categoryBreakdown} layout="vertical" barSize={32}>
                 <XAxis type="number" hide />
-                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontStyle: 'bold', fill: '#444' }} />
+                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontStyle: 'bold', fill: '#44403C' }} />
                 <Tooltip cursor={{ fill: 'transparent' }} />
                 <Bar dataKey="value" radius={[0, 0, 0, 0]}>
                   {s.categoryBreakdown.map((entry, index) => (

@@ -1,10 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { LanguageProvider } from '../../contexts/LanguageContext';
 import InvitationRule from './InvitationRule';
 
 describe('InvitationRule', () => {
+  beforeEach(() => {
+    localStorage.setItem('riman_lang', 'en');
+  });
+
   it('renders invitation line and link to appointments', () => {
     render(
       <MemoryRouter>

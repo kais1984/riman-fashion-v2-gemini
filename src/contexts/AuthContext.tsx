@@ -15,9 +15,9 @@ interface User {
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string, captchaToken?: string) => Promise<void>;
   signOut: () => Promise<void>;
-  signUp: (email: string, name: string, password: string) => Promise<void>;
+  signUp: (email: string, name: string, password: string, captchaToken?: string) => Promise<void>;
   error: string | null;
 }
 
@@ -151,21 +151,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string, captchaToken?: string) => {
     setError(null);
 
     if (!isSupabaseConfigured) {
       return localSignIn(email, password);
     }
 
-    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+      options: captchaToken ? { captchaToken } : undefined,
+    });
     if (authError) {
       setError(authError.message);
       throw new Error(authError.message);
     }
   };
 
-  const signUp = async (email: string, name: string, password: string) => {
+  const signUp = async (email: string, name: string, password: string, captchaToken?: string) => {
     setError(null);
 
     if (!isSupabaseConfigured) {
@@ -175,7 +179,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error: authError } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { name } },
+      options: { data: { name }, ...(captchaToken ? { captchaToken } : {}) },
     });
     if (authError) {
       setError(authError.message);
@@ -190,7 +194,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(LOCAL_SESSION_KEY);
     try {
       if (isSupabaseConfigured) {
-        await supabase.auth.signOut();
+        // Global scope revokes refresh tokens on all devices — blocks session hijack reuse.
+        await supabase.auth.signOut({ scope: 'global' });
       }
     } catch {
       // Sign out locally even if Supabase call fails

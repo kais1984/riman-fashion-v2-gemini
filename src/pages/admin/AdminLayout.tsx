@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingCart, Calendar, FileText, Settings, LogOut, ChevronRight, CalendarCheck, X, Images } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, Calendar, FileText, Settings, LogOut, ChevronRight, CalendarCheck, X, Images, MessageSquare } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useAuth } from '../../contexts/AuthContext';
 import { useState, useEffect } from 'react';
@@ -12,6 +12,7 @@ const adminNav = [
   { label: "Appointments", path: "/admin/appointments", icon: CalendarCheck },
   { label: "Content", path: "/admin/content", icon: FileText },
   { label: "Gallery", path: "/admin/gallery", icon: Images },
+  { label: "Reviews", path: "/admin/reviews", icon: MessageSquare },
   { label: "Settings", path: "/admin/settings", icon: Settings },
 ];
 

@@ -3,13 +3,13 @@
   /* Use a light background for the whole page */
   body {
     background: #fff !important;
-    color: #000 !important;
+    color: #161513 !important;
   }
 
-  /* Preserve gold highlights but make them darker for contrast */
+  /* Preserve terracotta highlights but make them darker for contrast */
   .text-gold, .bg-gold {
-    color: #b8860b !important;
-    background-color: #f5e6c5 !important;
+    color: #7A3520 !important;
+    background-color: #F6F0E6 !important;
   }
 
   /* Hide interactive UI that isn’t needed in print */

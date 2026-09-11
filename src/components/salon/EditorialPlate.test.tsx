@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { LanguageProvider } from '../../contexts/LanguageContext';
@@ -19,6 +19,10 @@ const gown: Product = {
 };
 
 describe('EditorialPlate', () => {
+  beforeEach(() => {
+    localStorage.setItem('riman_lang', 'en');
+  });
+
   it('renders look number, name, fabric and enquire link', () => {
     render(
       <MemoryRouter>

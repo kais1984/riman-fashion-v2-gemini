@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { testimonials } from '../data/products';
 import ScrollReveal from '../components/ScrollReveal';
 import { useData } from '../contexts/DataContext';
@@ -16,7 +17,15 @@ const DISCIPLINES = [
 
 export default function Index() {
   const { products } = useData();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [showHeroVideo, setShowHeroVideo] = useState(true);
+
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    const smallScreen = window.matchMedia('(max-width: 768px)').matches;
+    if (reduced || saveData || smallScreen) setShowHeroVideo(false);
+  }, []);
 
   const featured = products.filter((p) => p.isFeatured).slice(0, 4);
   const plates = featured.length >= 2 ? featured : products.slice(0, 4);
@@ -24,29 +33,53 @@ export default function Index() {
 
   return (
     <main className="film-grain">
-      {/* ARRIVAL */}
+      {/* ARRIVAL — single message, dual conversion: booking (primary) + shop (secondary) */}
       <section id="hero" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center bg-onyx overflow-hidden">
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/assets/rimanfashion_3panel_split.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          ref={(el) => { if (el) el.playbackRate = 0.7; }}
-          aria-label="Riman Fashion couture atelier showcase"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" aria-hidden="true" />
+        {showHeroVideo ? (
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/assets/rimanfashion_3panel_split.mp4"
+            poster="/assets/rimanfashion_3542687554351211237_227867687_1_2025-01-10.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            disablePictureInPicture
+            ref={(el) => {
+              if (!el) return;
+              el.playbackRate = 0.7;
+              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                el.pause();
+                el.removeAttribute('autoPlay');
+              }
+            }}
+            aria-hidden="true"
+            tabIndex={-1}
+          />
+        ) : (
+          <img
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/assets/rimanfashion_3542687554351211237_227867687_1_2025-01-10.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+          />
+        )}
+        <div className="absolute inset-0 bg-onyx/60" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" aria-hidden="true" />
         <CalligraphicAccent
           word="أناقة"
-          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(10rem,30vw,28rem)]"
+          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(6rem,16vw,14rem)] opacity-25 pointer-events-none"
         />
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto animate-fade-in">
-          <p className="font-label text-micro md:text-xs tracking-[0.35em] uppercase text-white/90 mb-8">
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto animate-fade-in">
+          <p className="font-label text-xs md:text-sm tracking-[0.35em] uppercase text-white mb-4 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
             {t('hero.subtitle')}
           </p>
-          <h1 className="font-heading text-white font-light leading-[0.95] text-[clamp(3.5rem,11vw,9rem)] mb-12">
+          <p className="font-label text-xs tracking-[0.25em] uppercase text-bone/90 mb-6 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            {t('cat.bridal')} · {t('cat.evening')} · {t('cat.rentals')}
+          </p>
+          <h1 className="font-heading text-white font-light leading-[1.02] text-[clamp(2.5rem,8vw,7rem)] mb-6 [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]">
             {t('hero.title').split('&').map((part, i, arr) => (
               <span key={i}>
                 {part}
@@ -54,19 +87,33 @@ export default function Index() {
               </span>
             ))}
           </h1>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link to="/appointment" className="btn-luxury" aria-label={t('cta.viewing')}>
+          <p className="font-body text-base md:text-lg text-white leading-relaxed mb-4 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            {language === 'ar' ? 'شراء · إيجار · تفصيل حسب الطلب — تجربة خاصة في الشارقة' : 'Buy · Rent · Bespoke — private fittings in Sharjah'}
+          </p>
+          <p className="font-label text-xs tracking-[0.2em] uppercase text-white/90 mb-10 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            {t('invitation.contact_line')}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/appointment"
+              className="btn-luxury w-full sm:w-auto min-h-[56px] inline-flex items-center justify-center bg-bone text-onyx hover:text-gold-dark ring-1 ring-white/30 shadow-2xl text-sm"
+              aria-label={t('cta.viewing')}
+            >
               {t('cta.viewing')}
             </Link>
-            <a
-              href="#atelier"
-              className="font-label text-xs tracking-[0.25em] uppercase text-white/80 hover:text-gold transition-colors duration-700 border-b border-white/30 hover:border-gold pb-1"
+            <Link
+              to="/search"
+              className="w-full sm:w-auto min-h-[56px] inline-flex items-center justify-center px-10 font-label text-xs tracking-[0.25em] uppercase text-white bg-white/10 backdrop-blur-sm border border-white/70 hover:border-gold hover:text-gold hover:bg-black/40 transition-colors duration-300 [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]"
+              aria-label={t('cta.explore')}
             >
-              {t('cta.explore')}
-            </a>
+              {t('cta.explore')} →
+            </Link>
           </div>
+          <p className="mt-8 font-label text-xs tracking-[0.2em] uppercase text-white/90 [text-shadow:0_2px_12px_rgba(0,0,0,0.8)]">
+            {language === 'ar' ? '★★★★★ أكثر من 200 عروس · fittings خاصة يومياً' : '★★★★★ 200+ brides · Private fittings daily'}
+          </p>
         </div>
-        <span className="absolute bottom-8 left-1/2 -translate-x-1/2 font-label text-micro tracking-[0.3em] uppercase text-white/60">
+        <span aria-hidden="true" className="hidden sm:block absolute bottom-8 left-1/2 -translate-x-1/2 font-label text-xs tracking-[0.3em] uppercase text-white/80">
           {t('hero.discover')}
         </span>
       </section>
@@ -134,7 +181,13 @@ export default function Index() {
                     {d.isVideo ? (
                       <video
                         src={d.media}
-                        autoPlay muted loop playsInline preload="metadata"
+                        autoPlay muted loop playsInline preload="none"
+                        aria-hidden="true"
+                        tabIndex={-1}
+                        ref={(el) => {
+                          if (!el) return;
+                          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) el.pause();
+                        }}
                         className="aspect-[3/4] w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.04]"
                       />
                     ) : (
@@ -158,8 +211,6 @@ export default function Index() {
           </div>
         </div>
       </section>
-
-      <InvitationRule className="bg-champagne border-t border-gold/15" />
 
       {/* L'INVITATION */}
       <section className="bg-champagne py-24 md:py-36 px-6 text-center relative overflow-hidden">
@@ -189,9 +240,6 @@ export default function Index() {
           </div>
         </div>
       </section>
-
-      {/* Recurring booking thread */}
-      <InvitationRule className="bg-champagne border-t border-gold/15" />
     </main>
   );
 }

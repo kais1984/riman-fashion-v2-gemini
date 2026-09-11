@@ -40,7 +40,7 @@ export const isSupabaseConfigured = isConfigured;
 
 if (isConfigured) {
   const maskedUrl = supabaseUrl.replace(/(https?:\/\/).{5}/, '$1*****');
-  console.info(`%c[Riman] Connecting to Supabase: ${maskedUrl}`, 'color: #d4a574; font-weight: bold;');
+  console.info(`%c[Riman] Connecting to Supabase: ${maskedUrl}`, 'color: #A2492B; font-weight: bold;');
 }
 
 if (!isConfigured) {

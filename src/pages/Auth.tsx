@@ -6,6 +6,9 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Mail, Lock, User, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Logo from '../components/Logo';
+import TurnstileCaptcha from '../components/TurnstileCaptcha';
+
+const TURNSTILE_ENABLED = Boolean(import.meta.env.VITE_TURNSTILE_SITE_KEY);
 
 export default function Auth() {
   const { t } = useLanguage();
@@ -14,6 +17,7 @@ export default function Auth() {
   const { signIn, signUp, error, user, isLoading } = useAuth();
   const [localError, setLocalError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -43,13 +47,18 @@ export default function Auth() {
       setLocalError('Please enter your name.');
       return;
     }
+    if (TURNSTILE_ENABLED && !captchaToken) {
+      setLocalError('Please complete the security check.');
+      return;
+    }
 
     try {
       if (isLogin) {
-        await signIn(formData.email, formData.password);
+        await signIn(formData.email, formData.password, captchaToken || undefined);
       } else {
-        await signUp(formData.email, formData.name, formData.password);
+        await signUp(formData.email, formData.name, formData.password, captchaToken || undefined);
       }
+      setCaptchaToken(null);
       setSuccess(true);
     } catch (err: any) {
       let message = err.message || 'An error occurred. Please try again.';
@@ -152,6 +161,8 @@ export default function Auth() {
               </div>
 
               {displayError && <p className="text-micro text-rose-500 uppercase tracking-widest text-center">{displayError}</p>}
+
+              <TurnstileCaptcha onToken={setCaptchaToken} />
 
               <button type="submit" className="w-full btn-luxury group flex items-center justify-center gap-3 !py-5">
                 {isLogin ? t('auth.enter_atelier') : t('auth.create_profile')}

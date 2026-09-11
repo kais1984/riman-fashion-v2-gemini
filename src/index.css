@@ -102,6 +102,7 @@
   [dir="rtl"] .text-micro { font-size: 14px; }
   [dir="rtl"] .text-caption { font-size: 15px; }
   /* Tracking is meaningless in Arabic and causes rendering issues */
+  [dir="rtl"] *[class*="tracking-"] { letter-spacing: 0 !important; }
   [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
   [dir="rtl"] .tracking-wider { letter-spacing: 0 !important; }
   [dir="rtl"] .tracking-\[0\.3em\] { letter-spacing: 0 !important; }
@@ -187,9 +188,6 @@
       background: linear-gradient(135deg, #7A3520, #A2492B) !important;
     }
     .animate-pulse {
-      animation: none !important;
-    }
-    .animate-bounce {
       animation: none !important;
     }
     .animate-float {

@@ -7,6 +7,7 @@ import { createAppointment } from '../services/appointments';
 import { sendAppointmentConfirmationEmail, sendAppointmentAdminAlert } from '../lib/email';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSettings } from '../contexts/SettingsContext';
 
 const SERVICE_TYPES = [
   { value: 'bridal', label: 'Bridal Consultation', icon: '👰' },
@@ -16,21 +17,23 @@ const SERVICE_TYPES = [
 ];
 
 const TIME_SLOTS = [
-  '10:00', '10:30', '11:00', '11:30',
+  '11:00', '11:30',
   '12:00', '12:30',
+  '1:00', '1:30',
   '2:00', '2:30', '3:00', '3:30',
   '4:00', '4:30', '5:00', '5:30',
   '6:00', '6:30', '7:00', '7:30',
-  '8:00',
+  '8:00', '8:30',
 ];
 
 const SLOT_PERIOD: Record<string, 'AM' | 'PM'> = {
-  '10:00': 'AM', '10:30': 'AM', '11:00': 'AM', '11:30': 'AM',
+  '11:00': 'AM', '11:30': 'AM',
   '12:00': 'PM', '12:30': 'PM',
+  '1:00': 'PM', '1:30': 'PM',
   '2:00': 'PM', '2:30': 'PM', '3:00': 'PM', '3:30': 'PM',
   '4:00': 'PM', '4:30': 'PM', '5:00': 'PM', '5:30': 'PM',
   '6:00': 'PM', '6:30': 'PM', '7:00': 'PM', '7:30': 'PM',
-  '8:00': 'PM',
+  '8:00': 'PM', '8:30': 'PM',
 };
 
 const formatSlot = (slot: string) => `${slot} ${SLOT_PERIOD[slot]}`;
@@ -38,6 +41,7 @@ const formatSlot = (slot: string) => `${slot} ${SLOT_PERIOD[slot]}`;
 export default function AppointmentPage() {
   const [step, setStep] = useState(1);
   const { t, isRtl } = useLanguage();
+  const { settings } = useSettings();
   const location = useLocation();
   const incomingGowns: GownRef[] = (location.state as { gowns?: GownRef[] } | null)?.gowns ?? [];
   const gownNames = incomingGowns.map(g => `${g.name}${g.size ? ` (${g.size})` : ''}`);
@@ -332,7 +336,7 @@ export default function AppointmentPage() {
           <div className="mt-12 bg-onyx p-8 text-center">
             <p className="font-heading text-lg text-white tracking-widest uppercase mb-2">Riman Atelier</p>
             <p className="font-body text-stone-400 text-sm mb-4">Sharjah, UAE</p>
-            <p className="font-body text-stone-400 text-sm">{t('appointment.atelier_hours')}</p>
+            <p className="font-body text-stone-400 text-sm">{settings.contact.hours || t('appointment.atelier_hours')}</p>
             <a href="https://wa.me/971553730792" target="_blank" rel="noopener noreferrer" className="inline-block mt-6 text-gold text-xs tracking-widest uppercase hover:text-gold-light transition-colors font-bold">
               {t('appointment.whatsapp_help')}
             </a>

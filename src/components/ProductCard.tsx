@@ -278,7 +278,7 @@ export default function ProductCard({ product, lookNumber }: ProductCardProps) {
 
           <Link
             to={`/product/${product.id}`}
-            className="inline-flex items-center gap-1.5 font-label text-micro tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
+            className="inline-flex items-center gap-1.5 min-h-[44px] font-label text-micro tracking-[0.25em] uppercase text-stone-800 hover:text-gold transition-colors duration-500 mt-2"
           >
             {t('silhouettes.enquire')}
             <ArrowRight className="w-3 h-3" />

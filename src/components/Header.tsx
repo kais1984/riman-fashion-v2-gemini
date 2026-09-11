@@ -10,12 +10,10 @@ import { useScrollLock } from '../hooks/useScrollLock';
 import Logo from './Logo';
 
 const navLinks = [
-  { label: "Our Story", path: "/about", key: 'nav.about' },
   { label: "Bridal", path: "/collection/bridal", key: 'nav.bridal' },
   { label: "Evening", path: "/collection/evening", key: 'nav.evening' },
   { label: "Rentals", path: "/collection/rental", key: 'nav.rentals' },
   { label: "Contact", path: "/contact", key: 'nav.contact' },
-  { label: "Private Viewing", path: "/appointment", key: 'nav.private_viewing' },
 ];
 
 export default function Header() {
@@ -25,9 +23,18 @@ export default function Header() {
   const wishlistCount = wishlist.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [logoPos, setLogoPos] = useState({ x: 0, y: 0 });
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const headerSolid = !isHome || isScrolled;
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleLogoMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -55,11 +62,13 @@ export default function Header() {
         isHome ? "fixed" : "absolute",
         !isHome
           ? "bg-ivory/98 backdrop-blur-md py-3 border-b border-stone-200"
-          : "bg-transparent py-5 md:py-8"
+          : isScrolled
+            ? "bg-onyx/90 backdrop-blur-md py-3 border-b border-white/10 shadow-2xl"
+            : "bg-transparent py-5 md:py-8"
       )}
     >
-      {(!isHome) && (
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+      {(headerSolid || isScrolled) && (
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
       )}
       <div className="container mx-auto px-6 relative flex items-center">
         {/* Left Layer: Menu / Primary Nav / Language / Search */}
@@ -68,15 +77,15 @@ export default function Header() {
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="p-2 -ml-2 hover:bg-stone-100 transition-colors"
-              aria-label="Open navigation menu"
+              aria-label={t('header.menu_open')}
             >
               <Menu className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
             </button>
           </div>
           
-          {/* Desktop Nav On Left */}
-          <nav className="hidden xl:flex items-center gap-4">
-            {navLinks.slice(0, 4).map((link) => (
+          {/* Desktop Nav On Left — core 3 collections only */}
+          <nav className="hidden xl:flex items-center gap-6" aria-label="Collections">
+            {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -84,7 +93,7 @@ export default function Header() {
                   "font-label text-xs tracking-[0.25em] uppercase transition-all duration-300",
                   (!isHome) 
                     ? "text-stone-600 hover:text-gold-dark" 
-                    : "text-white/80 hover:text-gold border-b border-transparent hover:border-gold/40"
+                    : "text-white hover:text-gold border-b border-transparent hover:border-gold/40"
                 )}
               >
                 {link.key ? t(link.key) : link.label}
@@ -92,18 +101,18 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Language + Search on the left to balance the two sides */}
+          {/* Language + Search — always reachable, all breakpoints */}
           <button
             onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-            className={cn("hidden xl:flex items-center gap-1.5 font-body text-xs tracking-widest uppercase transition-colors ml-2",
-              (!isHome) ? "text-stone-800" : "text-white"
+            className={cn("flex items-center justify-center min-w-[44px] min-h-[44px] gap-1.5 px-3 font-label text-xs tracking-widest uppercase transition-colors ml-1 border",
+              (!isHome) ? "text-stone-800 border-stone-300 hover:border-gold hover:text-gold-dark" : "text-white border-white/40 hover:border-gold hover:text-gold"
             )}
-            aria-label={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
+            aria-label={language === 'en' ? t('header.switch_to_ar') : t('header.switch_to_en')}
           >
-            <Globe className="w-5 h-5" />
-            <span className="hidden lg:inline">{language === 'en' ? 'AR' : 'EN'}</span>
+            <Globe className="w-4 h-4" aria-hidden="true" />
+            <span>{language === 'en' ? 'عربي' : 'EN'}</span>
           </button>
-          <Link to="/search" className="hidden xl:block hover:text-gold transition-colors" aria-label="Search">
+          <Link to="/search" className="hidden sm:flex items-center justify-center min-w-[44px] min-h-[44px] hover:text-gold transition-colors" aria-label={t('header.search')}>
             <Search className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
           </Link>
         </div>
@@ -129,9 +138,9 @@ export default function Header() {
               />
               <span className={cn(
                 "text-xs tracking-[0.5em] uppercase mt-2 transition-all duration-700 font-heading font-bold",
-                (!isHome) ? "text-stone-600 opacity-100" : "text-white/60 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-1"
+                (!isHome) ? "text-stone-600 opacity-100" : "text-white/90 opacity-100"
               )}>
-                {isHome ? 'Atelier' : 'Riman'}
+                {isHome ? 'Atelier Riman' : 'Riman'}
               </span>
             </Link>
           </motion.div>
@@ -139,8 +148,8 @@ export default function Header() {
 
         {/* Right Layer: Secondary Nav + Actions */}
         <div className="flex flex-1 items-center justify-end gap-4 md:gap-6">
-          <nav className="hidden xl:flex items-center gap-4 mr-4 border-r border-stone-200 pr-4">
-            {navLinks.slice(4, 7).map((link) => (
+          <nav className="hidden xl:flex items-center gap-6 mr-4 border-r border-stone-200 pr-4" aria-label="Atelier">
+            {navLinks.slice(3, 4).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -148,7 +157,7 @@ export default function Header() {
                   "font-label text-xs tracking-[0.25em] uppercase transition-all duration-300",
                   (!isHome) 
                     ? "text-stone-600 hover:text-gold-dark" 
-                    : "text-white/80 hover:text-gold border-b border-transparent hover:border-gold/40"
+                    : "text-white hover:text-gold border-b border-transparent hover:border-gold/40"
                 )}
               >
                 {link.key ? t(link.key) : link.label}
@@ -156,25 +165,37 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3 md:gap-4">
-            <Link to="/style-quiz" className="hover:text-gold transition-colors" aria-label="Style Quiz">
+          <Link
+            to="/appointment"
+            className={cn(
+              "hidden md:inline-flex items-center justify-center min-h-[48px] px-6 font-label text-xs tracking-[0.2em] uppercase border transition-colors",
+              (!isHome)
+                ? "border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white"
+                : "bg-bone text-onyx border-bone hover:bg-gold hover:border-gold hover:text-onyx"
+            )}
+            aria-label={t('cta.appointment')}
+          >
+            {t('cta.appointment')}
+          </Link>
+          <div className="flex items-center gap-1 md:gap-2">
+            <Link to="/style-quiz" className="flex items-center justify-center min-w-[44px] min-h-[44px] hover:text-gold transition-colors" aria-label={t('header.style_quiz')}>
               <Sparkles className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
             </Link>
-            <Link to="/wishlist" className="hidden lg:block relative group/wishlist hover:text-gold transition-colors" aria-label="Your Selection">
+            <Link to="/wishlist" className="hidden lg:block relative group/wishlist hover:text-gold transition-colors p-2" aria-label={t('header.your_selection')}>
               <Heart className={cn("w-6 h-6 transition-transform group-hover/wishlist:scale-110", (!isHome) ? "text-stone-800" : "text-white")} />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-white text-micro min-w-4 h-4 px-0.5 flex items-center justify-center font-bold shadow-sm rounded-full leading-none">
+                <span className="absolute -top-1 -right-1 bg-gold-dark text-white text-[11px] font-bold min-w-4 h-4 px-0.5 flex items-center justify-center leading-none">
                   {wishlistCount}
                 </span>
               )}
             </Link>
-            <Link to="/profile" className="hidden md:block hover:text-gold transition-colors" aria-label="Account">
+            <Link to="/profile" className="hidden md:block hover:text-gold transition-colors p-2" aria-label={t('header.account')}>
               <User className={cn("w-6 h-6", (!isHome) ? "text-stone-800" : "text-white")} />
             </Link>
-            <Link to="/checkout" className="hidden md:block relative group/cart">
+            <Link to="/checkout" className="hidden md:block relative group/cart p-2" aria-label={t('header.bag')}>
               <ShoppingBag className={cn("w-6 h-6 transition-transform group-hover/cart:scale-110", (!isHome) ? "text-stone-800" : "text-white")} />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gold text-white text-micro min-w-4 h-4 px-0.5 flex items-center justify-center font-bold shadow-sm rounded-full leading-none">
+                <span className="absolute -top-1 -right-1 bg-gold-dark text-white text-[11px] font-bold min-w-4 h-4 px-0.5 flex items-center justify-center leading-none">
                   {totalItems}
                 </span>
               )}
@@ -212,7 +233,7 @@ export default function Header() {
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="w-9 h-9 flex items-center justify-center bg-stone-100 text-stone-800 hover:bg-gold hover:text-white transition-all duration-300"
-                  aria-label="Close menu"
+                  aria-label={t('header.menu_close')}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -220,6 +241,32 @@ export default function Header() {
               <div className="h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
                <div className="flex-1 overflow-y-auto px-5 py-6">
+                {/* Utility row: language + search, always reachable on mobile */}
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="flex flex-1 border border-stone-200" role="group" aria-label="Language">
+                    {(['en', 'ar'] as const).map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => setLanguage(lang)}
+                        aria-pressed={language === lang}
+                        className={cn(
+                          "flex-1 min-h-[44px] font-label text-micro tracking-[0.2em] uppercase transition-colors",
+                          language === lang ? "bg-stone-800 text-white" : "text-stone-600 hover:bg-stone-100"
+                        )}
+                      >
+                        {lang === 'en' ? 'EN' : 'AR'}
+                      </button>
+                    ))}
+                  </div>
+                  <Link
+                    to="/search"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 min-h-[44px] px-4 border border-stone-200 font-label text-micro tracking-[0.2em] uppercase text-stone-700 hover:border-gold"
+                    aria-label={t('header.search')}
+                  >
+                    <Search className="w-4 h-4" />
+                  </Link>
+                </div>
                 {/* Primary Navigation */}
                 <div className="mb-5">
                   <p className="text-micro tracking-[0.2em] uppercase text-gold font-bold mb-3">{t('header.collections')}</p>
@@ -311,14 +358,23 @@ export default function Header() {
                   </nav>
                 </div>
 
-                {/* CTA Button */}
-                <Link 
-                  to="/appointment" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block w-full btn-luxury text-center py-3 text-xs"
-                >
-                  {t('cta.appointment')}
-                </Link>
+                {/* Dual CTA: booking (primary) + shop (secondary) */}
+                <div className="flex flex-col gap-2">
+                  <Link
+                    to="/appointment"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex w-full min-h-[52px] items-center justify-center btn-luxury text-center py-3 text-xs"
+                  >
+                    {t('cta.appointment')}
+                  </Link>
+                  <Link
+                    to="/search"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex w-full min-h-[52px] items-center justify-center text-center py-3 font-label text-xs tracking-[0.25em] uppercase border border-stone-800 text-stone-800 hover:border-gold hover:text-gold-dark transition-colors"
+                  >
+                    {t('cta.explore')}
+                  </Link>
+                </div>
               </div>
 
               <div className="p-4 mt-auto bg-ivory border-t border-stone-100">

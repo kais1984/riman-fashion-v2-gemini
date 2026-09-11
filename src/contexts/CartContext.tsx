@@ -8,6 +8,7 @@ import {
   calculateTotalItems,
   type CartItem,
 } from '../lib/cart';
+import { analytics } from '../services/analytics';
 
 interface CartContextType {
   items: CartItem[];
@@ -39,11 +40,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const addItem = (product: Product, intent: 'sale' | 'rent', size?: string, date?: Date) => {
-    setItems(prev => addItemToCart(prev, product, intent, size, date));
+    setItems(prev => {
+      const next = addItemToCart(prev, product, intent, size, date);
+      analytics.addToCart({
+        id: product.id,
+        name: product.name,
+        price: intent === 'rent' ? product.rentalPrice : product.salePrice,
+        intent,
+      });
+      return next;
+    });
   };
 
   const removeItem = (id: string, size?: string, intent?: 'sale' | 'rent') => {
     setItems(prev => removeItemFromCart(prev, id, size, intent));
+    analytics.removeFromCart(id);
   };
 
   const updateQuantity = (id: string, quantity: number, size?: string, intent?: 'sale' | 'rent') => {

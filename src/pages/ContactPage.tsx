@@ -6,12 +6,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, ChevronRight, MapPin, Phone, Clock } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useSettings } from '../contexts/SettingsContext';
 import { submitContactForm } from '../services/contact';
 import { isSupabaseConfigured } from '../services/supabase';
 import { useToast } from '../contexts/ToastContext';
 
 export default function ContactPage() {
   const { t } = useLanguage();
+  const { settings } = useSettings();
   const bookingSchema = z.object({
     name: z.string().min(2, t('contact.val_name')),
     email: z.string().email(t('contact.val_email')),
@@ -90,7 +92,7 @@ export default function ContactPage() {
               <ContactInfoItem 
                 icon={<Clock className="w-5 h-5" />}
                 title={t('contact.hours')}
-                content={t('contact.hours_detail')}
+                content={settings.contact.hours || t('contact.hours_detail')}
               />
               <div className="bg-stone-50 p-6 border border-stone-100 flex flex-col justify-center">
                 <p className="font-body text-micro text-stone-600 uppercase tracking-widest mb-2 italic">{t('contact.special_note')}</p>

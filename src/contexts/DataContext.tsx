@@ -29,6 +29,7 @@ interface DataContextType {
   addProduct: (product: Product) => Promise<Product>;
   editProduct: (id: string, product: Partial<Product>) => Promise<Product>;
   removeProduct: (id: string) => Promise<void>;
+  reorderProducts: (orderedIds: string[]) => Promise<void>;
 }
 
 const defaultContent: SiteContent = {
@@ -191,8 +192,25 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     if (!isSupabaseConfigured) addToast({ type: 'info', title: 'Removed locally', message: 'Backend not connected.' });
   };
 
+  const reorderProducts = async (orderedIds: string[]): Promise<void> => {
+    if (isSupabaseConfigured) {
+      try {
+        const { updateProductOrder } = await import('../services/products');
+        await updateProductOrder(orderedIds);
+      } catch (err) {
+        addToast({ type: 'error', title: 'Could not save order', message: 'Order applied locally only.' });
+      }
+    }
+    setProducts(prev => {
+      const map = new Map(prev.map(p => [p.id, p]));
+      const ordered = orderedIds.map(id => map.get(id)).filter((p): p is Product => Boolean(p));
+      const missing = prev.filter(p => !orderedIds.includes(p.id));
+      return [...ordered, ...missing];
+    });
+  };
+
   return (
-    <DataContext.Provider value={{ products, content, updateProducts, updateContent, resetData, isLoading, addProduct, editProduct, removeProduct }}>
+    <DataContext.Provider value={{ products, content, updateProducts, updateContent, resetData, isLoading, addProduct, editProduct, removeProduct, reorderProducts }}>
       {children}
     </DataContext.Provider>
   );

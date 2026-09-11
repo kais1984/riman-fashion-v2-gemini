@@ -42,7 +42,7 @@ interface OrderEmailData {
 export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<{ success: boolean; error?: string }> {
   try {
     const itemsHtml = data.items.map(item => `
-      <tr style="border-bottom: 1px solid #e5e5e5;">
+      <tr style="border-bottom: 1px solid #E8E3D9;">
         <td style="padding: 12px 8px;">${item.name}${item.size ? ` (${item.size})` : ''}</td>
         <td style="padding: 12px 8px; text-align: center;">${item.quantity}</td>
         <td style="padding: 12px 8px; text-align: right;">AED ${item.price.toLocaleString()}</td>
@@ -50,7 +50,7 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<
     `).join('');
 
     const rentalInfo = data.items.some(i => i.intent === 'rent') ? `
-      <p style="margin: 16px 0; padding: 12px; background: #fef3c7; border-radius: 4px; font-size: 14px; color: #92400e;">
+      <p style="margin: 16px 0; padding: 12px; background: #F6F0E6; border: 1px solid #E8E3D9; font-size: 14px; color: #44403C;">
         <strong>Rental order:</strong> Your rental period will be confirmed via email. Please ensure items are returned by the agreed date.
       </p>
     ` : '';
@@ -62,14 +62,16 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1f1f1f; max-width: 600px; margin: 0 auto; padding: 24px;">
-          <div style="text-align: center; margin-bottom: 32px;">
-            <h1 style="font-family: 'Playfair Display', Georgia, serif; color: #0a0a0a; margin: 0 0 8px; font-size: 28px;">Riman Fashion</h1>
-            <p style="color: #666; font-size: 14px; margin: 0;">Atelier Riman — Sharjah</p>
+        <body style="margin: 0; padding: 0; background: #EFEAE2;">
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: #292524; max-width: 600px; margin: 0 auto; padding: 24px;">
+          <div style="text-align: center; margin-bottom: 32px; padding-top: 16px;">
+            <h1 style="font-family: Georgia, 'Times New Roman', serif; color: #161513; margin: 0 0 8px; font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase;">Atelier Riman</h1>
+            <p style="color: #78716C; font-size: 13px; margin: 0; letter-spacing: 0.2em; text-transform: uppercase;">Sharjah</p>
+            <div style="width: 48px; height: 2px; background: #A2492B; margin: 16px auto 0;"></div>
           </div>
 
-          <div style="background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-            <h2 style="margin: 0 0 16px; font-size: 20px; color: #0a0a0a;">Order Confirmation</h2>
+          <div style="background: #F6F0E6; border: 1px solid #E8E3D9; padding: 24px; margin-bottom: 24px;">
+            <h2 style="margin: 0 0 16px; font-size: 20px; color: #161513; font-family: Georgia, 'Times New Roman', serif;">Order Confirmation</h2>
             <p style="margin: 0 0 8px;">Hi <strong>${data.customerName}</strong>,</p>
             <p style="margin: 0 0 16px;">Thank you for your order! We're delighted to confirm your purchase.</p>
             
@@ -80,10 +82,10 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h3 style="font-size: 16px; color: #0a0a0a; margin: 0 0 12px; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px;">Order Details</h3>
+            <h3 style="font-size: 16px; color: #161513; margin: 0 0 12px; border-bottom: 2px solid #A2492B; padding-bottom: 8px; font-family: Georgia, 'Times New Roman', serif;">Order Details</h3>
             <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
               <thead>
-                <tr style="border-bottom: 2px solid #d4af37;">
+                <tr style="border-bottom: 1px solid #E8E3D9;">
                   <th style="text-align: left; padding: 12px 8px; font-weight: 600;">Item</th>
                   <th style="text-align: center; padding: 12px 8px; font-weight: 600;">Qty</th>
                   <th style="text-align: right; padding: 12px 8px; font-weight: 600;">Price</th>
@@ -98,27 +100,28 @@ export async function sendOrderConfirmationEmail(data: OrderEmailData): Promise<
               <p style="margin: 4px 0;"><strong>Subtotal:</strong> AED ${data.subtotal.toLocaleString()}</p>
               <p style="margin: 4px 0;"><strong>Shipping:</strong> AED ${data.shipping.toLocaleString()}</p>
               <p style="margin: 4px 0;"><strong>Tax:</strong> AED ${data.tax.toLocaleString()}</p>
-              <p style="margin: 8px 0 0; font-size: 18px; color: #d4af37;"><strong>Total: AED ${data.total.toLocaleString()}</strong></p>
+              <p style="margin: 8px 0 0; font-size: 18px; color: #A2492B;"><strong>Total: AED ${data.total.toLocaleString()}</strong></p>
             </div>
           </div>
 
-          <div style="background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-            <h3 style="margin: 0 0 12px; font-size: 16px; color: #0a0a0a;">Shipping Address</h3>
+          <div style="background: #F6F0E6; border: 1px solid #E8E3D9; padding: 24px; margin-bottom: 24px;">
+            <h3 style="margin: 0 0 12px; font-size: 16px; color: #161513; font-family: Georgia, 'Times New Roman', serif;">Shipping Address</h3>
             <p style="margin: 4px 0;">${data.shippingAddress.name}</p>
             <p style="margin: 4px 0;">${data.shippingAddress.line1}${data.shippingAddress.line2 ? ', ' + data.shippingAddress.line2 : ''}</p>
             <p style="margin: 4px 0;">${data.shippingAddress.city}${data.shippingAddress.state ? ', ' + data.shippingAddress.state : ''} ${data.shippingAddress.postalCode}</p>
             <p style="margin: 4px 0;">${data.shippingAddress.country}</p>
           </div>
 
-          <div style="background: #fafafa; border: 1px solid #e5e5e5; border-radius: 8px; padding: 24px; margin-bottom: 24px;">
-            <h3 style="margin: 0 0 12px; font-size: 16px; color: #0a0a0a;">Payment Method</h3>
+          <div style="background: #F6F0E6; border: 1px solid #E8E3D9; padding: 24px; margin-bottom: 24px;">
+            <h3 style="margin: 0 0 12px; font-size: 16px; color: #161513; font-family: Georgia, 'Times New Roman', serif;">Payment Method</h3>
             <p style="margin: 0;">${data.paymentMethod}</p>
           </div>
 
-          <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 32px 0;">
-          <p style="font-size: 12px; color: #999; text-align: center; margin: 0;">
+          <hr style="border: none; border-top: 1px solid #E8E3D9; margin: 32px 0;">
+          <p style="font-size: 12px; color: #78716C; text-align: center; margin: 0;">
             Atelier Riman · Al Zahra St, Sharjah, UAE · hello@rimanfashion.com
           </p>
+          </div>
         </body>
       </html>
     `;
@@ -223,19 +226,22 @@ export async function sendAppointmentConfirmationEmail(data: {
 
     const html = `
       <!DOCTYPE html>
-      <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1f1f1f;max-width:600px;margin:0 auto;padding:24px;">
-        <div style="text-align:center;margin-bottom:32px;">
-          <h1 style="font-family:'Playfair Display',Georgia,serif;color:#0a0a0a;margin:0 0 8px;font-size:28px;">Riman Fashion</h1>
-          <p style="color:#666;font-size:14px;margin:0;">Atelier Riman — Sharjah</p>
+      <html><body style="margin:0;padding:0;background:#EFEAE2;">
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#292524;max-width:600px;margin:0 auto;padding:24px;">
+        <div style="text-align:center;margin-bottom:32px;padding-top:16px;">
+          <h1 style="font-family:Georgia,'Times New Roman',serif;color:#161513;margin:0 0 8px;font-size:26px;letter-spacing:0.1em;text-transform:uppercase;">Atelier Riman</h1>
+          <p style="color:#78716C;font-size:13px;margin:0;letter-spacing:0.2em;text-transform:uppercase;">Sharjah</p>
+          <div style="width:48px;height:2px;background:#A2492B;margin:16px auto 0;"></div>
         </div>
-        <div style="background:#fafafa;border:1px solid #e5e5e5;border-radius:8px;padding:24px;">
-          <h2 style="margin:0 0 16px;font-size:20px;">Your Private Viewing</h2>
+        <div style="background:#F6F0E6;border:1px solid #E8E3D9;padding:24px;">
+          <h2 style="margin:0 0 16px;font-size:20px;font-family:Georgia,'Times New Roman',serif;color:#161513;">Your Private Viewing</h2>
           <p>Dear <strong>${data.name}</strong>,</p>
           <p>Your viewing request has been received for <strong>${new Date(data.date).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</strong> at <strong>${data.time}</strong>.</p>
           ${data.gowns.length ? `<p>Pieces prepared for you:<br/><em>${data.gowns.join('<br/>')}</em></p>` : ''}
           <p style="margin-bottom:0;">Al Zahra St, Sharjah, UAE. To reschedule, simply reply to this email.</p>
         </div>
-        <p style="font-size:12px;color:#999;text-align:center;margin-top:32px;">Atelier Riman · hello@rimanfashion.com</p>
+        <p style="font-size:12px;color:#78716C;text-align:center;margin-top:32px;">Atelier Riman · hello@rimanfashion.com</p>
+        </div>
       </body></html>`;
 
     const { error } = await resend.emails.send({

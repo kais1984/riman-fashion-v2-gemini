@@ -17,12 +17,12 @@ export default function CollectionPage() {
 
   const SILHOUETTES = useMemo(() => [
     { value: '', label: t('collection.all_silhouettes') },
-    { value: 'A-Line', label: 'A-Line' },
-    { value: 'Ballgown', label: 'Ball Gown' },
-    { value: 'Mermaid', label: 'Mermaid' },
-    { value: 'Column', label: 'Column / Sheath' },
-    { value: 'Kaftan', label: 'Kaftan' },
-    { value: 'One Size', label: 'Accessories' },
+    { value: 'A-Line', label: t('silhouette.A-Line') },
+    { value: 'Ballgown', label: t('silhouette.Ballgown') },
+    { value: 'Mermaid', label: t('silhouette.Mermaid') },
+    { value: 'Column', label: t('silhouette.Column') },
+    { value: 'Kaftan', label: t('silhouette.Kaftan') },
+    { value: 'One Size', label: t('silhouette.One Size') },
   ], [t]);
   const [sortBy, setSortBy] = useState('featured');
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
@@ -45,6 +45,8 @@ export default function CollectionPage() {
     'Amber': '#FFBF00',
     'Dual Tone': '#C0C0C0',
     'Pearl': '#F0EAD6',
+    'Sage Green': '#9CAF88',
+    'Lavender': '#E6E0F0',
   };
 
   const allAvailableColors = useMemo(() => {
@@ -218,7 +220,7 @@ export default function CollectionPage() {
                             "w-8 h-8 rounded-full border border-stone-200 transition-all duration-300 relative",
                             selectedColors.includes(color) ? "ring-2 ring-gold ring-offset-2 scale-110" : "hover:scale-110"
                           )}
-                          style={{ backgroundColor: colorMap[color] || '#ccc' }}
+                          style={{ backgroundColor: colorMap[color] || '#E8E3D9' }}
                         >
                           {selectedColors.includes(color) && (
                             <div className="absolute inset-0 flex items-center justify-center">

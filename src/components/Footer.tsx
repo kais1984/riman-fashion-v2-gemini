@@ -92,7 +92,7 @@ export default function Footer() {
                 placeholder={t('footer.newsletter_placeholder')}
                 className="w-full bg-transparent border-b border-stone-800 focus:border-gold py-3 md:py-4 pr-12 text-sm font-body tracking-[0.15em] outline-none transition-all placeholder:text-stone-700"
               />
-              <button type="submit" className="absolute right-0 bottom-3 md:bottom-4 text-gold hover:translate-x-1 transition-transform">
+              <button type="submit" aria-label={t('footer.newsletter_submit')} className="absolute right-0 bottom-3 md:bottom-4 text-gold hover:translate-x-1 transition-transform">
                 {isSubmitSuccessful ? <span className="text-micro tracking-widest">{t('footer.submitted')}</span> : <ArrowRight className="w-5 h-5" />}
               </button>
               {errors.email && <p className="absolute top-full mt-2 text-red-500 text-micro uppercase tracking-widest">{errors.email.message}</p>}

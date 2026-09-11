@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import GalleryFilters from './GalleryFilters';
 import { BrowserRouter } from 'react-router-dom';
@@ -13,6 +13,10 @@ function renderWithProviders(ui: import('react').ReactElement) {
 }
 
 describe('GalleryFilters', () => {
+  beforeEach(() => {
+    localStorage.setItem('riman_lang', 'en');
+  });
+
   it('renders all category buttons', () => {
     renderWithProviders(
       <GalleryFilters activeCategory="all" onCategoryChange={vi.fn()} />

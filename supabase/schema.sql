@@ -22,7 +22,21 @@ ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Public profiles are viewable by everyone" ON profiles;
 DROP POLICY IF EXISTS "Public profiles are viewable by everyone" ON profiles;
-CREATE POLICY "Public profiles are viewable by everyone" ON profiles FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
+DROP POLICY IF EXISTS "Users can view their own profile" ON profiles;
+CREATE POLICY "Users can view their own profile" ON profiles
+  FOR SELECT USING (auth.uid() = id);
+
+DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
+CREATE POLICY "Admins can view all profiles" ON profiles
+  FOR SELECT USING (public.is_admin());
+
+-- Public safe columns only via view (no email/phone)
+CREATE OR REPLACE VIEW profiles_public AS
+  SELECT id, name, avatar_url FROM profiles;
+
+GRANT SELECT ON profiles_public TO anon;
+GRANT SELECT ON profiles_public TO authenticated;
 
 DROP POLICY IF EXISTS "Users can insert their own profile" ON profiles;
 DROP POLICY IF EXISTS "Users can insert their own profile" ON profiles;
@@ -98,9 +112,9 @@ CREATE POLICY "Products are viewable by everyone" ON products FOR SELECT USING (
 DROP POLICY IF EXISTS "Admins can manage products" ON products;
 DROP POLICY IF EXISTS "Admins can manage products" ON products;
 CREATE POLICY "Admins can manage products" ON products FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 ) WITH CHECK (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- ============================================
@@ -125,7 +139,7 @@ ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Admins can manage customers" ON customers;
 DROP POLICY IF EXISTS "Admins can manage customers" ON customers;
 CREATE POLICY "Admins can manage customers" ON customers FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- ============================================
@@ -151,7 +165,7 @@ ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Users can view their own orders" ON orders;
 DROP POLICY IF EXISTS "Users can view their own orders" ON orders;
 CREATE POLICY "Users can view their own orders" ON orders FOR SELECT
-  USING (auth.uid() = user_id OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin'));
+  USING (auth.uid() = user_id OR public.is_admin());
 
 DROP POLICY IF EXISTS "Users can create orders" ON orders;
 DROP POLICY IF EXISTS "Users can create orders" ON orders;
@@ -160,7 +174,7 @@ CREATE POLICY "Users can create orders" ON orders FOR INSERT WITH CHECK (auth.ui
 DROP POLICY IF EXISTS "Admins can manage orders" ON orders;
 DROP POLICY IF EXISTS "Admins can manage orders" ON orders;
 CREATE POLICY "Admins can manage orders" ON orders FOR UPDATE
-  USING (EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin'));
+  USING (public.is_admin());
 
 -- ============================================
 -- 5. ORDER ITEMS
@@ -189,13 +203,13 @@ DROP POLICY IF EXISTS "Users can view their own order items" ON order_items;
 DROP POLICY IF EXISTS "Users can view their own order items" ON order_items;
 CREATE POLICY "Users can view their own order items" ON order_items FOR SELECT
   USING (
-    EXISTS (SELECT 1 FROM orders WHERE orders.id = order_items.order_id AND (orders.user_id = auth.uid() OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')))
+    EXISTS (SELECT 1 FROM orders WHERE orders.id = order_items.order_id AND (orders.user_id = auth.uid() OR public.is_admin()))
   );
 
 DROP POLICY IF EXISTS "Admins can manage order items" ON order_items;
 DROP POLICY IF EXISTS "Admins can manage order items" ON order_items;
 CREATE POLICY "Admins can manage order items" ON order_items FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- ============================================
@@ -227,12 +241,12 @@ ALTER TABLE rental_bookings ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Rental bookings viewable by owner or admin" ON rental_bookings;
 DROP POLICY IF EXISTS "Rental bookings viewable by owner or admin" ON rental_bookings;
 CREATE POLICY "Rental bookings viewable by owner or admin" ON rental_bookings FOR SELECT
-  USING (auth.uid() = user_id OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin'));
+  USING (auth.uid() = user_id OR public.is_admin());
 
 DROP POLICY IF EXISTS "Admins can manage rental bookings" ON rental_bookings;
 DROP POLICY IF EXISTS "Admins can manage rental bookings" ON rental_bookings;
 CREATE POLICY "Admins can manage rental bookings" ON rental_bookings FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- Prevent overlapping rentals
@@ -299,7 +313,7 @@ ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Approved reviews are viewable by everyone" ON reviews;
 DROP POLICY IF EXISTS "Approved reviews are viewable by everyone" ON reviews;
 CREATE POLICY "Approved reviews are viewable by everyone" ON reviews FOR SELECT
-  USING (is_approved = true OR EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin'));
+  USING (is_approved = true OR public.is_admin());
 
 DROP POLICY IF EXISTS "Authenticated users can create reviews" ON reviews;
 DROP POLICY IF EXISTS "Authenticated users can create reviews" ON reviews;
@@ -308,7 +322,7 @@ CREATE POLICY "Authenticated users can create reviews" ON reviews FOR INSERT WIT
 DROP POLICY IF EXISTS "Admins can manage reviews" ON reviews;
 DROP POLICY IF EXISTS "Admins can manage reviews" ON reviews;
 CREATE POLICY "Admins can manage reviews" ON reviews FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- ============================================
@@ -335,7 +349,7 @@ CREATE POLICY "Anyone can submit contact form" ON contact_submissions FOR INSERT
 DROP POLICY IF EXISTS "Admins can manage contact submissions" ON contact_submissions;
 DROP POLICY IF EXISTS "Admins can manage contact submissions" ON contact_submissions;
 CREATE POLICY "Admins can manage contact submissions" ON contact_submissions FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- ============================================
@@ -356,7 +370,7 @@ CREATE POLICY "Site content is viewable by everyone" ON site_content FOR SELECT 
 DROP POLICY IF EXISTS "Admins can manage site content" ON site_content;
 DROP POLICY IF EXISTS "Admins can manage site content" ON site_content;
 CREATE POLICY "Admins can manage site content" ON site_content FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- Seed default content (only if not exists)
@@ -405,9 +419,9 @@ CREATE POLICY "Site settings are viewable by everyone" ON site_settings FOR SELE
 DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
 DROP POLICY IF EXISTS "Admins can manage site settings" ON site_settings;
 CREATE POLICY "Admins can manage site settings" ON site_settings FOR ALL USING (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 ) WITH CHECK (
-  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+  public.is_admin()
 );
 
 -- Seed default settings
@@ -549,19 +563,19 @@ CREATE POLICY "Public read access" ON gallery_items
 DROP POLICY IF EXISTS "Admin insert" ON gallery_items;
 CREATE POLICY "Admin insert" ON gallery_items
   FOR INSERT WITH CHECK (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 DROP POLICY IF EXISTS "Admin update" ON gallery_items;
 CREATE POLICY "Admin update" ON gallery_items
   FOR UPDATE USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 DROP POLICY IF EXISTS "Admin delete" ON gallery_items;
 CREATE POLICY "Admin delete" ON gallery_items
   FOR DELETE USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 -- Storage policies (run after creating 'gallery' bucket in Dashboard)
@@ -585,19 +599,19 @@ DROP POLICY IF EXISTS "Authenticated delete" ON gallery_items;
 DROP POLICY IF EXISTS "Admin insert" ON gallery_items;
 CREATE POLICY "Admin insert" ON gallery_items
   FOR INSERT WITH CHECK (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 DROP POLICY IF EXISTS "Admin update" ON gallery_items;
 CREATE POLICY "Admin update" ON gallery_items
   FOR UPDATE USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 DROP POLICY IF EXISTS "Admin delete" ON gallery_items;
 CREATE POLICY "Admin delete" ON gallery_items
   FOR DELETE USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 
@@ -619,7 +633,7 @@ CREATE POLICY "Users can view their own profile" ON profiles
 DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
 CREATE POLICY "Admins can view all profiles" ON profiles
   FOR SELECT USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
+    public.is_admin()
   );
 
 -- Public can only see safe columns via a view
@@ -639,7 +653,7 @@ RETURNS boolean
 LANGUAGE sql
 SECURITY DEFINER
 AS $$
-  SELECT EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin');
+  SELECT public.is_admin();
 $$;
 
 DROP POLICY IF EXISTS "Admins can view all profiles" ON profiles;
@@ -653,7 +667,8 @@ CREATE POLICY "Admins can view all profiles" ON profiles
 -- ============================================
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('product-images', 'product-images', true),
-       ('gallery', 'gallery', true)
+       ('gallery', 'gallery', true),
+       ('review-photos', 'review-photos', true)
 ON CONFLICT (id) DO NOTHING;
 
 DROP POLICY IF EXISTS "Public read product-images" ON storage.objects;
@@ -666,33 +681,56 @@ CREATE POLICY "Public read gallery"
   ON storage.objects FOR SELECT
   USING (bucket_id = 'gallery');
 
+DROP POLICY IF EXISTS "Public read review-photos" ON storage.objects;
+CREATE POLICY "Public read review-photos"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'review-photos');
+
 DROP POLICY IF EXISTS "Auth upload product-images" ON storage.objects;
-CREATE POLICY "Auth upload product-images"
+CREATE POLICY "Admin upload product-images"
   ON storage.objects FOR INSERT TO authenticated
-  WITH CHECK (bucket_id = 'product-images');
+  WITH CHECK (bucket_id = 'product-images' AND public.is_admin());
 
 DROP POLICY IF EXISTS "Auth update product-images" ON storage.objects;
-CREATE POLICY "Auth update product-images"
+CREATE POLICY "Admin update product-images"
   ON storage.objects FOR UPDATE TO authenticated
-  USING (bucket_id = 'product-images');
+  USING (bucket_id = 'product-images' AND public.is_admin());
 
 DROP POLICY IF EXISTS "Auth delete product-images" ON storage.objects;
-CREATE POLICY "Auth delete product-images"
+CREATE POLICY "Admin delete product-images"
   ON storage.objects FOR DELETE TO authenticated
-  USING (bucket_id = 'product-images');
+  USING (bucket_id = 'product-images' AND public.is_admin());
 
 DROP POLICY IF EXISTS "Auth upload gallery" ON storage.objects;
-CREATE POLICY "Auth upload gallery"
+CREATE POLICY "Admin upload gallery"
   ON storage.objects FOR INSERT TO authenticated
-  WITH CHECK (bucket_id = 'gallery');
+  WITH CHECK (bucket_id = 'gallery' AND public.is_admin());
 
 DROP POLICY IF EXISTS "Auth update gallery" ON storage.objects;
-CREATE POLICY "Auth update gallery"
+CREATE POLICY "Admin update gallery"
   ON storage.objects FOR UPDATE TO authenticated
-  USING (bucket_id = 'gallery');
+  USING (bucket_id = 'gallery' AND public.is_admin());
 
 DROP POLICY IF EXISTS "Auth delete gallery" ON storage.objects;
-CREATE POLICY "Auth delete gallery"
+DROP POLICY IF EXISTS "Admin delete gallery" ON storage.objects;
+CREATE POLICY "Admin delete gallery"
   ON storage.objects FOR DELETE TO authenticated
-  USING (bucket_id = 'gallery');
+  USING (bucket_id = 'gallery' AND public.is_admin());
+
+-- Review photos: customers may upload (validated client-side: images <=5MB),
+-- but only admins can overwrite or delete.
+DROP POLICY IF EXISTS "Auth upload review-photos" ON storage.objects;
+CREATE POLICY "Auth upload review-photos"
+  ON storage.objects FOR INSERT TO authenticated
+  WITH CHECK (bucket_id = 'review-photos');
+
+DROP POLICY IF EXISTS "Admin update review-photos" ON storage.objects;
+CREATE POLICY "Admin update review-photos"
+  ON storage.objects FOR UPDATE TO authenticated
+  USING (bucket_id = 'review-photos' AND public.is_admin());
+
+DROP POLICY IF EXISTS "Admin delete review-photos" ON storage.objects;
+CREATE POLICY "Admin delete review-photos"
+  ON storage.objects FOR DELETE TO authenticated
+  USING (bucket_id = 'review-photos' AND public.is_admin());
 

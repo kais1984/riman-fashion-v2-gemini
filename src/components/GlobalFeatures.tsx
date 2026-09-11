@@ -21,7 +21,7 @@ export default function GlobalFeatures() {
     const newsletterTimer = setTimeout(() => {
       const dismissed = localStorage.getItem('riman_newsletter_dismissed');
       if (!dismissed) setShowNewsletter(true);
-    }, 5000);
+    }, 30000);
     return () => clearTimeout(newsletterTimer);
   }, [newsletterEnabled]);
 
@@ -43,13 +43,15 @@ export default function GlobalFeatures() {
 
   return (
     <>
-      {/* WhatsApp Float */}
+      {/* WhatsApp Float — lifts above cookie banner + bottom nav to avoid collision */}
       {whatsappEnabled && (
-        <a 
-          href="https://wa.me/971553730792" 
-          target="_blank" 
+        <a
+          href="https://wa.me/971553730792"
+          target="_blank"
           rel="noreferrer"
-          className="fixed bottom-20 right-4 md:bottom-10 md:right-10 z-[100] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
+          className={`fixed right-4 md:right-10 z-[100] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all ${
+            showCookies ? 'bottom-36 md:bottom-32' : 'bottom-20 md:bottom-10'
+          }`}
           aria-label={t('common.whatsapp_label')}
         >
           <MessageCircle className="w-8 h-8 fill-current" />
@@ -105,17 +107,17 @@ export default function GlobalFeatures() {
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 w-full z-[150] bg-ivory border-t border-stone-200 p-6 md:p-8"
+            className="fixed bottom-16 md:bottom-0 left-0 w-full z-[150] bg-onyx border-t border-gold/30 px-6 py-4 md:py-5 pb-[max(1rem,env(safe-area-inset-bottom))]"
           >
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 max-w-5xl">
               <div className="text-center md:text-left">
-                <p className="text-micro tracking-widest uppercase text-stone-600 mb-1">{t('cookies.heading')}</p>
-                <p className="text-xs text-stone-800 tracking-wide">{t('cookies.body')} <Link to="/privacy" className="underline hover:text-gold">{t('cookies.learn')}</Link>.</p>
+                <p className="font-label text-xs tracking-[0.2em] uppercase text-bone/80 mb-1">{t('cookies.heading')}</p>
+                <p className="text-sm text-bone/90">{t('cookies.body')} <Link to="/privacy" className="underline hover:text-gold-light">{t('cookies.learn')}</Link>.</p>
               </div>
-              <div className="flex gap-4">
-                <button 
+              <div className="flex gap-3 shrink-0">
+                <button
                   onClick={handleAcceptCookies}
-                  className="px-8 py-3 bg-stone-900 text-white text-micro tracking-[0.2em] uppercase hover:bg-stone-800 transition-all font-bold"
+                  className="px-6 py-3 bg-bone text-onyx font-label text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-onyx transition-all font-bold min-h-[44px]"
                 >
                   {t('cookies.accept')}
                 </button>

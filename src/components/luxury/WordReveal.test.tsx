@@ -4,6 +4,7 @@ import WordReveal from './WordReveal';
 import { LanguageProvider } from '../../contexts/LanguageContext';
 
 beforeAll(() => {
+  localStorage.setItem('riman_lang', 'en');
   // motion's useScroll needs IntersectionObserver in jsdom
   globalThis.IntersectionObserver = class {
     observe() {}

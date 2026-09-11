@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { Product } from '../types';
 import { useAuth } from './AuthContext';
 import { fetchWishlist, addToWishlistDb, removeFromWishlistDb } from '../services/wishlist';
+import { analytics } from '../services/analytics';
 
 interface WishlistContextType {
   wishlist: Product[];
@@ -59,6 +60,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       if (prev.find(p => p.id === product.id)) return prev;
       const updated = [...prev, product];
       saveToLocal(updated);
+      analytics.addToSelection({ id: product.id, name: product.name, category: product.category }, updated.length);
       return updated;
     });
 
@@ -71,6 +73,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     setWishlist(prev => {
       const updated = prev.filter(p => p.id !== id);
       saveToLocal(updated);
+      analytics.removeFromSelection(id);
       return updated;
     });
 

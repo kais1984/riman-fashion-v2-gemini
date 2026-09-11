@@ -174,9 +174,20 @@ function SEOInjector() {
     if (settings.advanced.customHeadCode) {
       const existing = document.getElementById('custom-head-code');
       if (existing) existing.remove();
+      // Sanitize: strip scripts, iframes, forms, event handlers — same policy as SEOHead.
+      // customHeadCode is admin-only; this blocks stored-XSS if the value is ever compromised.
+      const sanitized = settings.advanced.customHeadCode
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+        .replace(/<object[\s\S]*?<\/object>/gi, '')
+        .replace(/<embed[\s\S]*?>/gi, '')
+        .replace(/<form[\s\S]*?<\/form>/gi, '')
+        .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+        .replace(/javascript\s*:/gi, '');
+      if (!sanitized.trim()) return;
       const wrapper = document.createElement('div');
       wrapper.id = 'custom-head-code';
-      wrapper.innerHTML = settings.advanced.customHeadCode;
+      wrapper.innerHTML = sanitized;
       document.head.appendChild(wrapper);
     }
   }, [settings.advanced]);

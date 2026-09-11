@@ -36,12 +36,22 @@ export async function fetchProductById(id: string): Promise<Product | null> {
 export async function createProduct(product: Product): Promise<Product> {
   const { data, error } = await supabase
     .from('products')
-    .insert(mapProductToDb(product))
+    .insert(mapProductToDb({ ...product, sortOrder: product.sortOrder ?? 0 }))
     .select()
     .single();
 
   if (error) throw error;
   return mapDbProduct(data);
+}
+
+export async function updateProductOrder(orderedIds: string[]): Promise<void> {
+  for (let i = 0; i < orderedIds.length; i++) {
+    const { error } = await supabase
+      .from('products')
+      .update({ sort_order: i + 1, updated_at: new Date().toISOString() })
+      .eq('id', orderedIds[i]);
+    if (error) throw error;
+  }
 }
 
 export async function updateProduct(id: string, product: Partial<Product>): Promise<Product> {
@@ -88,6 +98,7 @@ function mapDbProduct(row: any): Product {
     glbUrl: row.glb_url,
     collectionYear: row.collection_year,
     silhouette: row.silhouette,
+    sortOrder: row.sort_order,
   };
 }
 
@@ -114,5 +125,6 @@ function mapProductToDb(product: Product): any {
     glb_url: product.glbUrl,
     collection_year: product.collectionYear,
     silhouette: product.silhouette,
+    ...(product.sortOrder !== undefined ? { sort_order: product.sortOrder } : {}),
   };
 }

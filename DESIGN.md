@@ -169,6 +169,14 @@ Warm layered — depth is conveyed through tonal surface stacking rather than dr
 - **Newsletter:** Working lead capture persisting to localStorage.
 - **Social Icons:** Circular borders, stone-800. On hover: terracotta background and border, white icon.
 
+### Email Templates (src/lib/email.ts)
+Email clients strip webfonts and most CSS, so transactional emails carry deliberate, documented substitutions rather than drift:
+- **Display font:** `Georgia, 'Times New Roman', serif` stands in for Fraunces (uppercase, wide tracking preserved).
+- **Body font:** system sans stack (`-apple-system, 'Segoe UI', sans-serif`) for deliverability.
+- **Surfaces:** bone `#EFEAE2` page, champagne `#F6F0E6` panels, pearl `#E8E3D9` borders — sharp edges, no border-radius.
+- **Text:** onyx `#161513` headings, stone-800 `#292524` body, stone-500 `#78716C` captions.
+- **Accent:** terracotta `#A2492B` for rules, table headers, and totals only.
+
 ## 6. Do's and Don'ts
 
 ### Do:

@@ -39,7 +39,8 @@ export default function Checkout() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [orderNotes, setOrderNotes] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'atelier' | 'card'>('atelier');
+  // Stripe (Visa / Mastercard) + reserve-at-atelier. Owner confirms every order via WhatsApp.
+  const [paymentMethod, setPaymentMethod] = useState<'atelier' | 'card'>('card');
   const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
   let orderId: string | null = null;
 
@@ -146,6 +147,7 @@ export default function Checkout() {
         })),
       );
 
+      // Stripe card payment (Visa / Mastercard) — redirect to hosted checkout.
       if (paymentMethod === 'card' && isStripeConfigured()) {
         const url = await createCheckoutSession({
           items: items.map(i => ({
@@ -245,7 +247,7 @@ export default function Checkout() {
             postalCode: '',
             country: formData.country,
           },
-          paymentMethod: paymentMethod === 'card' ? 'Card (Stripe)' : 'Atelier (Pay on Delivery)',
+          paymentMethod: paymentMethod === 'card' ? 'Card (Stripe — Visa / Mastercard)' : 'Atelier (Owner confirms via WhatsApp)',
           createdAt: new Date().toISOString(),
         };
 
@@ -537,10 +539,26 @@ export default function Checkout() {
                       />
                     </div>
 
-                    {/* Payment method */}
+                    {/* Payment method — Stripe card (Visa/Mastercard) + reserve at atelier */}
                     <div className="space-y-4">
                       <h3 className="font-heading text-xs tracking-[0.2em] uppercase text-stone-600">{t('checkout.payment_method')}</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setPaymentMethod('card')}
+                          className={cn(
+                            "flex items-center gap-4 p-4 border text-left transition-all",
+                            paymentMethod === 'card'
+                              ? "bg-gold/5 border-gold/30 text-stone-800"
+                              : "bg-ivory border-stone-100 text-stone-600 hover:border-stone-300"
+                          )}
+                        >
+                          <CreditCard className={cn("w-5 h-5 shrink-0", paymentMethod === 'card' ? 'text-gold' : 'text-stone-500')} />
+                          <div>
+                            <p className="text-micro tracking-widest uppercase font-bold">{t('checkout.pay_online')} — Visa / Mastercard</p>
+                            <p className="text-micro text-stone-600 mt-0.5 tracking-wide">{t('checkout.pay_online_desc')}</p>
+                          </div>
+                        </button>
                         <button
                           type="button"
                           onClick={() => setPaymentMethod('atelier')}
@@ -555,22 +573,6 @@ export default function Checkout() {
                           <div>
                             <p className="text-micro tracking-widest uppercase font-bold">{t('checkout.pay_atelier')}</p>
                             <p className="text-micro text-stone-600 mt-0.5 tracking-wide">{t('checkout.pay_atelier_desc')}</p>
-                          </div>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setPaymentMethod('card')}
-                          className={cn(
-                            "flex items-center gap-4 p-4 border text-left transition-all",
-                            paymentMethod === 'card'
-                              ? "bg-gold/5 border-gold/30 text-stone-800"
-                              : "bg-ivory border-stone-100 text-stone-600 hover:border-stone-300"
-                          )}
-                        >
-                          <CreditCard className={cn("w-5 h-5 shrink-0", paymentMethod === 'card' ? 'text-gold' : 'text-stone-500')} />
-                          <div>
-                            <p className="text-micro tracking-widest uppercase font-bold">{t('checkout.pay_online')}</p>
-                            <p className="text-micro text-stone-600 mt-0.5 tracking-wide">{t('checkout.pay_online_desc')}</p>
                           </div>
                         </button>
                       </div>
